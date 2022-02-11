@@ -317,25 +317,25 @@ void SceneUI::Init()
 	meshList[GEO_BLEND] = MeshBuilder::GenerateQuad("blend", Color(1, 1, 1), 1.f);
 	meshList[GEO_BLEND]->textureID = LoadTGA("Image//NYP.tga");
 
-	meshList[GEO_MODEL1] = MeshBuilder::GenerateOBJ("model1", "OBJ//chair.obj");
-	meshList[GEO_MODEL1]->textureID = LoadTGA("Image//chair.tga");
+	//meshList[GEO_MODEL1] = MeshBuilder::GenerateOBJ("model1", "OBJ//chair.obj");
+	//meshList[GEO_MODEL1]->textureID = LoadTGA("Image//chair.tga");
 
-	meshList[GEO_MODEL2] = MeshBuilder::GenerateOBJ("model2", "OBJ//doorman.obj");
-	meshList[GEO_MODEL2]->textureID = LoadTGA("Image//doorman.tga");
+	//meshList[GEO_MODEL2] = MeshBuilder::GenerateOBJ("model2", "OBJ//doorman.obj");
+	//meshList[GEO_MODEL2]->textureID = LoadTGA("Image//doorman.tga");
 
-	meshList[GEO_MODEL3] = MeshBuilder::GenerateOBJ("model3", "OBJ//dartboard.obj");
-	meshList[GEO_MODEL3]->textureID = LoadTGA("Image//dartboard.tga");
+	//meshList[GEO_MODEL3] = MeshBuilder::GenerateOBJ("model3", "OBJ//dartboard.obj");
+	//meshList[GEO_MODEL3]->textureID = LoadTGA("Image//dartboard.tga");
 
-	meshList[GEO_MODEL4] = MeshBuilder::GenerateOBJ("model4", "OBJ//shoe.obj");
-	meshList[GEO_MODEL4]->textureID = LoadTGA("Image//shoe.tga");
+	//meshList[GEO_MODEL4] = MeshBuilder::GenerateOBJ("model4", "OBJ//shoe.obj");
+	//meshList[GEO_MODEL4]->textureID = LoadTGA("Image//shoe.tga");
 
-	meshList[GEO_MODEL5] = MeshBuilder::GenerateOBJ("model5", "OBJ//winebottle.obj");
-	meshList[GEO_MODEL5]->textureID = LoadTGA("Image//winebottle.tga");
-	
-	meshList[GEO_MODEL7] = MeshBuilder::GenerateOBJMTL("model7", "OBJ//house_type01.obj", "OBJ//house_type01.mtl");
-	
-	meshList[GEO_MODEL8] = MeshBuilder::GenerateOBJMTL("model7", "OBJ//cottage_obj.obj", "OBJ//cottage_obj.mtl"); //cottage_diffuse
-	meshList[GEO_MODEL8]->textureID = LoadTGA("Image//cottage_diffuse.tga");
+	//meshList[GEO_MODEL5] = MeshBuilder::GenerateOBJ("model5", "OBJ//winebottle.obj");
+	//meshList[GEO_MODEL5]->textureID = LoadTGA("Image//winebottle.tga");
+	//
+	//meshList[GEO_MODEL7] = MeshBuilder::GenerateOBJMTL("model7", "OBJ//house_type01.obj", "OBJ//house_type01.mtl");
+	//
+	//meshList[GEO_MODEL8] = MeshBuilder::GenerateOBJMTL("model7", "OBJ//cottage_obj.obj", "OBJ//cottage_obj.mtl"); //cottage_diffuse
+	//meshList[GEO_MODEL8]->textureID = LoadTGA("Image//cottage_diffuse.tga");
 
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16,16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//comicsans.tga");
