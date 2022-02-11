@@ -364,7 +364,7 @@ void Assignment2::Init()
 	meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("sphere", Color(1, 1, 1), 10, 20, 1.f);		//light for lamppost
 	
 	meshList[GEO_HOLLOW] = MeshBuilder::GenerateOBJMTL("hollow", "OBJ//Hollow.obj", "OBJ//Hollow.mtl");
-	meshList[GEO_HOLLOW]->textureID = LoadTGA("Image//Hollow-text.tga");
+	//meshList[GEO_HOLLOW]->textureID = LoadTGA("Image//Hollow-text.tga");
 
 	meshList[GEO_HORNET] = MeshBuilder::GenerateOBJMTL("hornet", "OBJ//zombie.obj", "OBJ//zombie.mtl");
 	
@@ -372,9 +372,9 @@ void Assignment2::Init()
 	meshList[GEO_BENCH] = MeshBuilder::GenerateOBJMTL("bench", "OBJ//bench.obj","OBJ//bench.mtl");
 
 	meshList[GEO_ROCKS] = MeshBuilder::GenerateOBJMTL("rocks", "OBJ//rocks.obj", "OBJ//rocks.mtl");
-	meshList[GEO_ROCKS]->textureID = LoadTGA("Image//rockwall.tga");
+	//meshList[GEO_ROCKS]->textureID = LoadTGA("Image//rockwall.tga");
 	meshList[GEO_TALLROCK] = MeshBuilder::GenerateOBJMTL("tallrock", "OBJ//rocksTall.obj", "OBJ//rocksTall.mtl");
-	meshList[GEO_TALLROCK]->textureID = LoadTGA("Image//rockwall.tga");	
+	//meshList[GEO_TALLROCK]->textureID = LoadTGA("Image//rockwall.tga");	
 
 	meshList[GEO_BROKENBENCH] = MeshBuilder::GenerateOBJMTL("benchdamaged", "OBJ//benchDamaged.obj", "OBJ//benchDamaged.mtl");
 
@@ -387,7 +387,7 @@ void Assignment2::Init()
 	meshList[GEO_CRYPT] = MeshBuilder::GenerateOBJMTL("crypt", "OBJ//crypt.obj", "OBJ//crypt.mtl");
 
 	meshList[GEO_DEBRIS] = MeshBuilder::GenerateOBJMTL("debris", "OBJ//debris.obj", "OBJ//debris.mtl");
-	meshList[GEO_DEBRIS]->textureID = LoadTGA("Image//rockwall.tga");
+	//meshList[GEO_DEBRIS]->textureID = LoadTGA("Image//rockwall.tga");
 
 	meshList[GEO_LAMP] = MeshBuilder::GenerateOBJMTL("debris", "OBJ//lightpostDouble.obj", "OBJ//lightpostDouble.mtl");
 
@@ -400,10 +400,10 @@ void Assignment2::Init()
 	meshList[GEO_FIREBASKET] = MeshBuilder::GenerateOBJMTL("basket", "OBJ//fireBasket.obj", "OBJ//fireBasket.mtl");
 
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16,16);
-	meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
+	//meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
 
 	meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
-	meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
+	//meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
 
 	//An array of 3 vectors which represents the colors of the 3 vertices
 
@@ -1045,1207 +1045,1207 @@ void Assignment2::Render()
 
 	RenderSkybox();
 
-	//body
-	modelStack.PushMatrix();
-	{
-		modelStack.Translate(0, 1.4, 0);
-		modelStack.Translate(camera.position.x, 0, camera.position.z);
-		modelStack.Translate(0, spellbodyUp, 0);
-		modelStack.Rotate(characterRotate, 0, 1, 0);
-		modelStack.Rotate(90,0,1,0);
-		modelStack.Rotate(rotateBody, 0, 1, 0);
-		modelStack.Scale(0.1, 0.1, 0.1);
-
-		//head
-		modelStack.PushMatrix();
-		{
-			modelStack.Translate(0, 15, 0);
-			modelStack.Translate(0, -85, 0);
-			modelStack.Rotate(spellheadrotate, -1, 0, 0);
-
-			//base of down head 
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(0, -5, 0);
-				modelStack.Rotate(0, 0, 0, 1);
-				modelStack.Scale(8, 3, 6);
-				RenderMesh(meshList[GEO_HEMISPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-			//base of up head 
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(0, 5, 0);
-				modelStack.Rotate(180, 0, 0, 1);
-				modelStack.Scale(8, 3, 6);
-				RenderMesh(meshList[GEO_HEMISPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-
-
-			//eyes
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(3, 0, 4);
-				modelStack.Rotate(0, 0, 0, 1);
-				modelStack.Scale(3, 4, 3);
-				RenderMesh(meshList[GEO_SPHERE], true);
-			}
-			modelStack.PopMatrix();
-			//end eyes 
-
-			//eyes
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-3, 0, 4);
-				modelStack.Rotate(0, 0, 0, 1);
-				modelStack.Scale(3, 4, 3);
-				RenderMesh(meshList[GEO_SPHERE], true);
-			}
-			modelStack.PopMatrix();
-			//end eyes 
-
-			//horns
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(3, 9, 0);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Rotate(-45, 0, 1, 0);
-
-				modelStack.PushMatrix();
-				{
-					modelStack.Translate(0, 0, -4);
-					modelStack.Rotate(270, 0.1, 0.1, 10);
-					modelStack.Scale(2, 1, 2);
-					RenderMesh(meshList[GEO_HEMISPHERE], true);
-				}
-				modelStack.PopMatrix();
-
-				modelStack.Scale(4, 4, 4);
-				RenderMesh(meshList[GEO_HALFTORUS], true);
-			}
-			modelStack.PopMatrix();
-
-			//horn 2
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-3, 9, 0);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Rotate(180, 0, 0, 1);
-				modelStack.Rotate(-45, 0, 1, 0);
-
-				modelStack.PushMatrix();
-				{
-					modelStack.Translate(0, 0, -4);
-					modelStack.Rotate(270, 0.1, 0.1, 10);
-					modelStack.Scale(2, 1, 2);
-					RenderMesh(meshList[GEO_HEMISPHERE], true);
-				}
-				modelStack.PopMatrix();
-
-				modelStack.Scale(4, 4, 4);
-				RenderMesh(meshList[GEO_HALFTORUS], true);
-			}
-			modelStack.PopMatrix();
-
-			//end horns
-
-			modelStack.Scale(8, 10, 6);
-			RenderMesh(meshList[GEO_CYLINDER], true);
-			//end head
-		}
-		modelStack.PopMatrix();
-
-		//left arm
-		modelStack.PushMatrix();
-		{
-
-			modelStack.Translate(4, 2, 0);
-			modelStack.Translate(0, 0, spellarmTranslateZ);
-			modelStack.Rotate(20, 0, 0, 1);
-			modelStack.Rotate(spellarmrotate, 1, 0, 0);
-			modelStack.Scale(2, 8, 2);
-			RenderMesh(meshList[GEO_SPHERE], true);
-		}
-		modelStack.PopMatrix();
-		//left arm end
-
-
-		//right arm
-		modelStack.PushMatrix();
-		{
-			modelStack.Translate(armTranslateX, armTranslateY, armTranslateZ);
-			modelStack.Translate(0, 0, spellarmTranslateZ);
-			modelStack.Rotate(rotateAngle, 0, 1, 0);
-			modelStack.Rotate(swordRotate, 1, 0, 0);
-			modelStack.Rotate(spellarmrotate, 1, 0, 0);
-
-			//sword hilt
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-14, -4, 13.5);
-				modelStack.Translate(swordTranslateX, swordTranslateY, 0);
-				modelStack.Translate(0, spellswordtranslate, 0);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Rotate(swordRotate, 0, 1, 0);
-				modelStack.Rotate(swordRotate2, 0, 1, 0);
-
-				//blade
-				modelStack.PushMatrix();
-				{
-					modelStack.Translate(8, 2, 0);
-					modelStack.Rotate(90, 0, 1, 0);
-					modelStack.Scale(3, 20, 2);
-					RenderMesh(meshList[GEO_SWORD], true);
-				}
-				modelStack.PopMatrix();
-
-				modelStack.Translate(8, -8, 0);
-				modelStack.Rotate(0, 0, 0, 1);
-				modelStack.Scale(0.5, 8, 0.5);
-				RenderMesh(meshList[GEO_CYLINDER], true);
-			}
-			modelStack.PopMatrix();
-
-			modelStack.Translate(-4, 2, 0);
-			modelStack.Rotate(20, 0, 0, -1);
-			modelStack.Scale(2, 8, 2);
-			RenderMesh(meshList[GEO_SPHERE], true);
-
-		}
-		modelStack.PopMatrix();
-		//right arm end
-
-
-		//right leg
-		modelStack.PushMatrix();
-		{
-			modelStack.Translate(2, -6, 0);
-			modelStack.Translate(0, 0, spelllegTranslateZ);
-			modelStack.Translate(0, spelllegTranslateY, 0);
-			modelStack.Rotate(firstlegRotate, 1, 0, 0);
-			modelStack.Rotate(spellarmrotate, 1, 0, 0);
-			modelStack.Scale(2, 8, 2);
-			RenderMesh(meshList[GEO_SPHERE], true);
-		}
-		modelStack.PopMatrix();
-		//right leg done
-
-
-		//left leg
-		modelStack.PushMatrix();
-		{
-			modelStack.Translate(-2, -6, 0);
-			modelStack.Translate(0, 0, spelllegTranslateZ);
-			modelStack.Translate(0, spelllegTranslateY, 0);
-
-			modelStack.Rotate(secondlegRotate, 1, 0, 0);
-			modelStack.Rotate(spellarmrotate, 1, 0, 0);
-			modelStack.Scale(2, 8, 2);
-			RenderMesh(meshList[GEO_SPHERE], true);
-
-		}
-		modelStack.PopMatrix();
-		//left leg done
-
-
-		//waist
-		modelStack.PushMatrix();
-		{
-			modelStack.Translate(0, -7.4, 0);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Scale(4, 3, 4);
-			RenderMesh(meshList[GEO_HEMISPHERE2], true);
-		}
-		modelStack.PopMatrix();
-		//end waist
-
-		//cape
-		modelStack.PushMatrix();
-		{
-			modelStack.Translate(0, 6.5, 0);
-
-			//back 1
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(0, -6.4, -4.6);
-				modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
-				modelStack.Rotate(12, 1, 0, 0);
-				modelStack.Rotate(spellcaperotate, 1, 0, 0);
-
-				modelStack.PushMatrix();
-				{
-					modelStack.Translate(0, -6, -0.5);
-					modelStack.Rotate(25, 1, 0, 0);
-					modelStack.Rotate(spellcaperotate2, 1, 0, 0);
-
-					modelStack.PushMatrix();
-					{
-						modelStack.Translate(0, -2.8, -0.3);
-						modelStack.Rotate(5, 1, 0, 0);
-						modelStack.Rotate(180, 1, 0, 0);
-						modelStack.Rotate(spellcaperotate3, 1, 0, 0);
-						modelStack.Scale(0.8, 4, 0.8);
-						RenderMesh(meshList[GEO_CONE], true);
-					}
-					modelStack.PopMatrix();
-
-					modelStack.Scale(1, 2, 1);
-					RenderMesh(meshList[GEO_CAPE], true);
-				}
-				modelStack.PopMatrix();
-
-				modelStack.Scale(1, 12, 1);
-				RenderMesh(meshList[GEO_CAPE], true);
-			}
-			modelStack.PopMatrix();
-			//back 2
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-1.5, -6.4, -4.2);
-				modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
-				modelStack.Rotate(spellcaperotate, 1, 0, 0);
-				modelStack.Rotate(12, 1, 0, 0);
-
-
-				modelStack.PushMatrix();
-				{
-					modelStack.Translate(0, -6, -0.5);
-					modelStack.Rotate(spellcaperotate2, 1, 0, 0);
-					modelStack.Rotate(25, 1, 0, 0);
-
-					modelStack.PushMatrix();
-					{
-						modelStack.Translate(0, -2.8, -0.3);
-						modelStack.Rotate(5, 1, 0, 0);
-						modelStack.Rotate(180, 1, 0, 0);
-						modelStack.Rotate(spellcaperotate3, 1, 0, 0);
-						modelStack.Scale(0.8, 4, 0.8);
-						RenderMesh(meshList[GEO_CONE], true);
-					}
-					modelStack.PopMatrix();
-
-					modelStack.Scale(1, 2, 1);
-					RenderMesh(meshList[GEO_CAPE], true);
-				}
-				modelStack.PopMatrix();
-
-				modelStack.Scale(1, 12, 1);
-				RenderMesh(meshList[GEO_CAPE], true);
-			}
-			modelStack.PopMatrix();
-
-			//back 3
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(1.7, -6.4, -4.3);
-				modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
-				modelStack.Rotate(spellcaperotate, 1, 0, 0);
-				modelStack.Rotate(14, 1, 0, 0);
-
-				modelStack.PushMatrix();
-				{
-					modelStack.Translate(0, -6, -0.5);
-					modelStack.Rotate(25, 1, 0, 0);
-					modelStack.Rotate(spellcaperotate2, 1, 0, 0);
-
-					modelStack.PushMatrix();
-					{
-						modelStack.Translate(0, -2.8, -0.3);
-						modelStack.Rotate(5, 1, 0, 0);
-						modelStack.Rotate(180, 1, 0, 0);
-						modelStack.Rotate(spellcaperotate3, 1, 0, 0);
-						modelStack.Scale(0.8, 4, 0.8);
-						RenderMesh(meshList[GEO_CONE], true);
-					}
-					modelStack.PopMatrix();
-
-					modelStack.Scale(1, 2, 1);
-					RenderMesh(meshList[GEO_CAPE], true);
-				}
-				modelStack.PopMatrix();
-
-				modelStack.Scale(1, 12, 1);
-				RenderMesh(meshList[GEO_CAPE], true);
-			}
-			modelStack.PopMatrix();
-
-
-			//back 4
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(3.2, -6.4, -3.6);
-				modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
-				modelStack.Rotate(spellcaperotate, 1, 0, 0);
-				modelStack.Rotate(17, 1, 0, 0);
-				modelStack.Rotate(3, 0, 0, 1);
-				modelStack.Rotate(-5, 0, 1, 0);
-
-
-				modelStack.PushMatrix();
-				{
-					modelStack.Translate(0, -6, -0.5);
-					modelStack.Rotate(25, 1, 0, 0);
-					modelStack.Rotate(spellcaperotate4, 1, 0, 0);
-
-					modelStack.PushMatrix();
-					{
-						modelStack.Translate(0, -2.8, -0.3);
-						modelStack.Rotate(5, 1, 0, 0);
-						modelStack.Rotate(180, 1, 0, 0);
-						modelStack.Rotate(spellcaperotate5, 1, 0, 0);
-						modelStack.Scale(0.8, 4, 0.8);
-						RenderMesh(meshList[GEO_CONE], true);
-					}
-					modelStack.PopMatrix();
-
-					modelStack.Scale(1, 2, 1);
-					RenderMesh(meshList[GEO_CAPE], true);
-				}
-				modelStack.PopMatrix();
-
-				modelStack.Scale(1, 12, 1);
-				RenderMesh(meshList[GEO_CAPE], true);
-			}
-			modelStack.PopMatrix();
-
-			//back 5
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-3.2, -6.4, -3.6);
-				modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
-				modelStack.Rotate(spellcaperotate, 1, 0, 0);
-				modelStack.Rotate(17, 1, 0, 0);
-				modelStack.Rotate(-3, 0, 0, 1);
-				modelStack.Rotate(-5, 0, 1, 0);
-
-				modelStack.PushMatrix();
-				{
-					modelStack.Translate(0, -6, -0.5);
-					modelStack.Rotate(25, 1, 0, 0);
-					modelStack.Rotate(spellcaperotate4, 1, 0, 0);
-
-					modelStack.PushMatrix();
-					{
-						modelStack.Translate(0, -2.8, -0.3);
-						modelStack.Rotate(5, 1, 0, 0);
-						modelStack.Rotate(180, 1, 0, 0);
-						modelStack.Rotate(spellcaperotate5, 1, 0, 0);
-						modelStack.Scale(0.8, 4, 0.8);
-						RenderMesh(meshList[GEO_CONE], true);
-					}
-					modelStack.PopMatrix();
-
-					modelStack.Scale(1, 2, 1);
-					RenderMesh(meshList[GEO_CAPE], true);
-				}
-				modelStack.PopMatrix();
-
-				modelStack.Scale(1, 12, 1);
-				RenderMesh(meshList[GEO_CAPE], true);
-			}
-			modelStack.PopMatrix();
-
-			//back 6
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-4.2, -6.4, -3);
-				modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
-				modelStack.Rotate(spellcaperotate, 1, 0, 0);
-				modelStack.Rotate(17, 1, 0, 0);
-				modelStack.Rotate(-14, 0, 0, 1);
-				modelStack.Rotate(-5, 0, 1, 0);
-
-				modelStack.PushMatrix();
-				{
-					modelStack.Translate(0, -6, -0.5);
-					modelStack.Rotate(25, 1, 0, 0);
-					modelStack.Rotate(spellcaperotate2, 1, 0, 0);
-
-					modelStack.PushMatrix();
-					{
-						modelStack.Translate(0, -2.8, -0.3);
-						modelStack.Rotate(5, 1, 0, 0);
-						modelStack.Rotate(180, 1, 0, 0);
-						modelStack.Rotate(spellcaperotate5, 1, 0, 0);
-						modelStack.Scale(0.8, 4, 0.8);
-						RenderMesh(meshList[GEO_CONE], true);
-					}
-					modelStack.PopMatrix();
-
-					modelStack.Scale(1, 2, 1);
-					RenderMesh(meshList[GEO_CAPE], true);
-				}
-				modelStack.PopMatrix();
-
-				modelStack.Scale(1, 12, 1);
-				RenderMesh(meshList[GEO_CAPE], true);
-			}
-			modelStack.PopMatrix();
-
-			//side 1
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-5.2, -6.4, -2.5);
-				modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
-				modelStack.Rotate(spellcaperotate, 1, 0, 0);
-				modelStack.Rotate(17, 1, 0, 0);
-				modelStack.Rotate(-19, 0, 0, 1);
-				modelStack.Rotate(-15, 0, 1, 0);
-
-				modelStack.PushMatrix();
-				{
-					modelStack.Translate(0, -6, -0.5);
-					modelStack.Rotate(25, 1, 0, 0);
-					modelStack.Rotate(spellcaperotate2, 1, 0, 0);
-
-					modelStack.PushMatrix();
-					{
-						modelStack.Translate(0, -2.8, -0.3);
-						modelStack.Rotate(5, 1, 0, 0);
-						modelStack.Rotate(180, 1, 0, 0);
-						modelStack.Rotate(spellcaperotate4, 1, 0, 0);
-						modelStack.Scale(0.8, 4, 0.8);
-						RenderMesh(meshList[GEO_CONE], true);
-					}
-					modelStack.PopMatrix();
-
-					modelStack.Scale(1, 2, 1);
-					RenderMesh(meshList[GEO_CAPE], true);
-				}
-				modelStack.PopMatrix();
-
-				modelStack.Scale(1, 12, 1);
-				RenderMesh(meshList[GEO_CAPE], true);
-			}
-			modelStack.PopMatrix();
-
-			//back 7
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(4.2, -6.4, -3);
-				modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
-				modelStack.Rotate(spellcaperotate, 1, 0, 0);
-				modelStack.Rotate(17, 1, 0, 0);
-				modelStack.Rotate(14, 0, 0, 1);
-				modelStack.Rotate(5, 0, 1, 0);
-
-				modelStack.PushMatrix();
-				{
-					modelStack.Translate(0, -6, -0.5);
-					modelStack.Rotate(25, 1, 0, 0);
-					modelStack.Rotate(spellcaperotate4, 1, 0, 0);
-
-					modelStack.PushMatrix();
-					{
-						modelStack.Translate(0, -2.8, -0.3);
-						modelStack.Rotate(5, 1, 0, 0);
-						modelStack.Rotate(180, 1, 0, 0);
-						modelStack.Rotate(spellcaperotate5, 1, 0, 0);
-						modelStack.Scale(0.8, 4, 0.8);
-						RenderMesh(meshList[GEO_CONE], true);
-					}
-					modelStack.PopMatrix();
-
-					modelStack.Scale(1, 2, 1);
-					RenderMesh(meshList[GEO_CAPE], true);
-				}
-				modelStack.PopMatrix();
-
-				modelStack.Scale(1, 12, 1);
-				RenderMesh(meshList[GEO_CAPE], true);
-			}
-			modelStack.PopMatrix();
-
-			//side 2
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(5.2, -6.4, -2.5);
-				modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
-				modelStack.Rotate(spellcaperotate, 1, 0, 0);
-				modelStack.Rotate(17, 1, 0, 0);
-				modelStack.Rotate(19, 0, 0, 1);
-				modelStack.Rotate(15, 0, 1, 0);
-
-				modelStack.PushMatrix();
-				{
-					modelStack.Translate(0, -6, -0.5);
-					modelStack.Rotate(25, 1, 0, 0);
-					modelStack.Rotate(spellcaperotate2, 1, 0, 0);
-
-					modelStack.PushMatrix();
-					{
-						modelStack.Translate(0, -2.8, -0.3);
-						modelStack.Rotate(5, 1, 0, 0);
-						modelStack.Rotate(180, 1, 0, 0);
-						modelStack.Rotate(spellcaperotate3, 1, 0, 0);
-						modelStack.Scale(0.8, 4, 0.8);
-						RenderMesh(meshList[GEO_CONE], true);
-					}
-					modelStack.PopMatrix();
-
-					modelStack.Scale(1, 2, 1);
-					RenderMesh(meshList[GEO_CAPE], true);
-				}
-				modelStack.PopMatrix();
-
-				modelStack.Scale(1, 12, 1);
-				RenderMesh(meshList[GEO_CAPE], true);
-			}
-			modelStack.PopMatrix();
-
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Scale(3, 3, 3);
-			RenderMesh(meshList[GEO_TORUS], true);
-
-		}
-		modelStack.PopMatrix();
-		//end cape
-
-		//SPELL: Vengeful Spirit
-		modelStack.PushMatrix();
-		{
-			//spell
-			modelStack.Translate(spellx, spelly, spellz);
-			modelStack.Rotate(0, 0, 0, 1);
-
-			//first tentacle
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(0, 0, -20);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Scale(2, 40, 2);
-				RenderMesh(meshList[GEO_HEMISPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-			//second tentacle
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(5, 3, -15);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Scale(2, 40, 2);
-				RenderMesh(meshList[GEO_HEMISPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-			//third tentacle
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(10, -6, -5);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Scale(2, 40, 2);
-				RenderMesh(meshList[GEO_HEMISPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-			//fourth tentacle
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(10, 10, 5);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Scale(2, 40, 2);
-				RenderMesh(meshList[GEO_HEMISPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-
-			//fifth tentacle
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-2, 10, 3);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Scale(2, 40, 2);
-				RenderMesh(meshList[GEO_HEMISPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-			//sixth tentacle
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-14, 7, -7);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Scale(2, 40, 2);
-				RenderMesh(meshList[GEO_HEMISPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-
-			//seventh tentacle
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-14, -7, -7);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Scale(2, 40, 2);
-				RenderMesh(meshList[GEO_HEMISPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-			//eigth tentacle
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(14, 2, -5);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Scale(2, 40, 2);
-				RenderMesh(meshList[GEO_HEMISPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-			//ninth tentacle
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-5, -4, -10);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Scale(2, 40, 2);
-				RenderMesh(meshList[GEO_HEMISPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-			//ninth tentacle
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-5, 6, -10);
-				modelStack.Rotate(90, 1, 0, 0);
-				modelStack.Scale(2, 40, 2);
-				RenderMesh(meshList[GEO_HEMISPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-			//eyes
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(-6, 3, 19);
-				modelStack.Rotate(55, 0, 0, 1);
-				modelStack.Rotate(-45, 1, 0, 0);
-				modelStack.Scale(5, 7, 5);
-				RenderMesh(meshList[GEO_SPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(6, 3, 19);
-				modelStack.Rotate(-55, 1, 0, 0);
-				modelStack.Rotate(-45, 0, 0, 1);
-				modelStack.Scale(5, 7, 5);
-				RenderMesh(meshList[GEO_SPHERE], true);
-			}
-			modelStack.PopMatrix();
-
-			modelStack.Scale(20, 15, 25);
-			RenderMesh(meshList[GEO_SPHERE2], true);
-		}
-		modelStack.PopMatrix();
-
-		modelStack.Rotate(0, 0, 0, 1);
-		modelStack.Scale(4, 15, 4);
-		RenderMesh(meshList[GEO_BODY], true);
-		modelStack.PopMatrix();
-		//end body
-	}
-
-
-
-
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 0);
-	modelStack.Rotate(-90, 1, 0, 0);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(1000, 1000, 1000);
-	RenderMesh(meshList[GEO_QUAD], true);
-	modelStack.PopMatrix();
-	/**************************************************/
-	//NPCS and interactables
-	modelStack.PushMatrix();
-	modelStack.Translate(npcx, 0.3, npcz);
-	modelStack.Rotate(90, 0, 0, 1);
-	modelStack.Rotate(45, 1, 0, 0);
-	modelStack.Scale(0.5, 0.5, 0.5);
-	RenderMesh(meshList[GEO_HOLLOW], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(enemyx, 0, enemyz);
-	modelStack.Rotate(0, 0, 0, 1);
-	modelStack.Scale(10, 10, 10);
-	RenderMesh(meshList[GEO_HORNET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(benchposx, 0, benchposz);
-	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Scale(6, 6, 6);
-	RenderMesh(meshList[GEO_BENCH], true);
-	modelStack.PopMatrix();
-	/*************************************************************/
-
-	//right side
-	modelStack.PushMatrix();
-	modelStack.Translate(-30, 0, 0);
-	modelStack.Rotate(0, 0, 0, 1);
-	modelStack.Scale(50, 50, 50);
-	RenderMesh(meshList[GEO_ROCKS], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-20, 0, 35);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(60, 30, 30);
-	RenderMesh(meshList[GEO_TALLROCK], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-16, 0, 67);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 7, 10);
-	RenderMesh(meshList[GEO_GRAVE], true);
-	modelStack.PopMatrix();
-
-	//left side
-	modelStack.PushMatrix();
-	modelStack.Translate(40, 0, 0);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(50, 50, 50);
-	RenderMesh(meshList[GEO_ROCKS], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(40, 0, 60);
-	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Scale(100, 40, 40);
-	RenderMesh(meshList[GEO_TALLROCK], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(24, 0, -18);
-	modelStack.Rotate(95, 0, 1, 0);
-	modelStack.Scale(30, 30, 30);
-	RenderMesh(meshList[GEO_DEBRIS], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 55);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 7, 10);
-	RenderMesh(meshList[GEO_CRYPT], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 35);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 7, 10);
-	RenderMesh(meshList[GEO_CRYPT], true);
-	modelStack.PopMatrix();
-
-
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 45);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 10, 10);
-	RenderMesh(meshList[GEO_LAMP], true);
-	modelStack.PopMatrix();
-
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-24, 0, 73);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 10, 10);
-	RenderMesh(meshList[GEO_LANTERN], true);
-	modelStack.PopMatrix();
-
-	//back side
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -35);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(50, 50, 50);
-	RenderMesh(meshList[GEO_TALLROCK], true);
-	modelStack.PopMatrix();	
-
-
-
-	modelStack.PushMatrix();
-	modelStack.Translate(5, 0, 20);
-	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Scale(6, 6, 6);
-	RenderMesh(meshList[GEO_BROKENBENCH], true);
-	modelStack.PopMatrix();
-	
-	//in front
-	modelStack.PushMatrix();
-	modelStack.Translate(-0, 0, 110);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(100, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALL], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-60, 0, 110);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(100, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALL], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-100, 0, 60);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(100, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALL], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-15, 0, 65);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-20, 0, 95);
-	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Scale(20, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-70, 0, 20);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(100, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALL], true);
-	modelStack.PopMatrix();
-
-	//roads
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 4);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 18);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 32);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 46);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 60);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 74);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-6, 0, 74);
-	modelStack.Rotate(-160, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-10, 0, 78);
-	modelStack.Rotate(-160, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet.x, 1, bullet.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet2.x, 1, bullet2.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet3.x, 1, bullet3.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet4.x, 1, bullet4.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet5.x, 1, bullet5.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet6.x, 1, bullet6.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet7.x, 1, bullet7.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	{
-		modelStack.Translate(basketx, 0, basketz);
-		modelStack.Translate(0, 0, translatebasketz);
-		modelStack.Rotate(0, 0, 1, 0);
-		
-		//sword hilt
-		modelStack.PushMatrix();
-		{
-			modelStack.Translate(0, 5, 0);
-			modelStack.Rotate(180, 1, 0, 0);
-			modelStack.Rotate(90, 0, 1, 0);
-			modelStack.Scale(3, 3, 3);
-			//blade
-			modelStack.PushMatrix();
-			{
-				modelStack.Translate(0, 0, 0);
-				modelStack.Rotate(90, 0, 1, 0);
-				modelStack.Scale(3, 20, 2);
-				modelStack.Scale(0.1, 0.1, 0.1);
-				RenderMesh(meshList[GEO_SWORD], true);
-			}
-			modelStack.PopMatrix();
-
-			modelStack.Translate(0, -1, 0);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Scale(0.5, 8, 0.5);
-			modelStack.Scale(0.1, 0.1, 0.1);
-			RenderMesh(meshList[GEO_CYLINDER], true);
-		}
-		modelStack.PopMatrix();
-
-		modelStack.Scale(20, 20, 20);
-		RenderMesh(meshList[GEO_FIREBASKET], true);
-	}
-	modelStack.PopMatrix();
-
-
-
-	
-
-	//my lamps
-	modelStack.PushMatrix();
-	{
-		modelStack.Translate(10, 1, 20);
-		modelStack.Scale(0.1, 0.1, 0.1);
-
-		//lamp base
-		modelStack.PushMatrix();
-		{
-			//modelStack.PushMatrix();
-			//{
-			//	//light
-			//	modelStack.Translate(0, 75, 0);
-			//	modelStack.Scale(10, 10, 10);
-			//	RenderMesh(meshList[GEO_LAMPLIGHT], false);
-			//}
-			//modelStack.PopMatrix();
-
-			modelStack.Translate(0, -5, 0);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Scale(12, 12, 12);
-			RenderMesh(meshList[GEO_CONE], true);
-		}
-		modelStack.PopMatrix();
-
-		modelStack.Translate(0, 30, 0);
-		modelStack.Rotate(0, 0, 0, 1);
-		modelStack.Scale(4, 80, 4);
-		RenderMesh(meshList[GEO_CAPE], true);
-	}
-	modelStack.PopMatrix();
-	
-	modelStack.PushMatrix();
-	{
-		modelStack.Translate(-11, 1, 67);
-		modelStack.Scale(0.1, 0.1, 0.1);
-
-		//lamp base
-		modelStack.PushMatrix();
-		{
-			modelStack.PushMatrix();
-			{
-				//light
-				modelStack.Translate(0, 75, 0);
-				modelStack.Scale(10, 10, 10);
-				RenderMesh(meshList[GEO_LAMPLIGHT], false);
-			}
-			modelStack.PopMatrix();
-
-			modelStack.Translate(0, -5, 0);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Scale(12, 12, 12);
-			RenderMesh(meshList[GEO_CONE], true);
-		}
-		modelStack.PopMatrix();
-
-		modelStack.Translate(0, 30, 0);
-		modelStack.Rotate(0, 0, 0, 1);
-		modelStack.Scale(4, 80, 4);
-		RenderMesh(meshList[GEO_CAPE], true);
-	}
-	modelStack.PopMatrix();
+	////body
+	//modelStack.PushMatrix();
+	//{
+	//	modelStack.Translate(0, 1.4, 0);
+	//	modelStack.Translate(camera.position.x, 0, camera.position.z);
+	//	modelStack.Translate(0, spellbodyUp, 0);
+	//	modelStack.Rotate(characterRotate, 0, 1, 0);
+	//	modelStack.Rotate(90,0,1,0);
+	//	modelStack.Rotate(rotateBody, 0, 1, 0);
+	//	modelStack.Scale(0.1, 0.1, 0.1);
+
+	//	//head
+	//	modelStack.PushMatrix();
+	//	{
+	//		modelStack.Translate(0, 15, 0);
+	//		modelStack.Translate(0, -85, 0);
+	//		modelStack.Rotate(spellheadrotate, -1, 0, 0);
+
+	//		//base of down head 
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(0, -5, 0);
+	//			modelStack.Rotate(0, 0, 0, 1);
+	//			modelStack.Scale(8, 3, 6);
+	//			RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//base of up head 
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(0, 5, 0);
+	//			modelStack.Rotate(180, 0, 0, 1);
+	//			modelStack.Scale(8, 3, 6);
+	//			RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+
+
+	//		//eyes
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(3, 0, 4);
+	//			modelStack.Rotate(0, 0, 0, 1);
+	//			modelStack.Scale(3, 4, 3);
+	//			RenderMesh(meshList[GEO_SPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+	//		//end eyes 
+
+	//		//eyes
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-3, 0, 4);
+	//			modelStack.Rotate(0, 0, 0, 1);
+	//			modelStack.Scale(3, 4, 3);
+	//			RenderMesh(meshList[GEO_SPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+	//		//end eyes 
+
+	//		//horns
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(3, 9, 0);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Rotate(-45, 0, 1, 0);
+
+	//			modelStack.PushMatrix();
+	//			{
+	//				modelStack.Translate(0, 0, -4);
+	//				modelStack.Rotate(270, 0.1, 0.1, 10);
+	//				modelStack.Scale(2, 1, 2);
+	//				RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//			}
+	//			modelStack.PopMatrix();
+
+	//			modelStack.Scale(4, 4, 4);
+	//			RenderMesh(meshList[GEO_HALFTORUS], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//horn 2
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-3, 9, 0);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Rotate(180, 0, 0, 1);
+	//			modelStack.Rotate(-45, 0, 1, 0);
+
+	//			modelStack.PushMatrix();
+	//			{
+	//				modelStack.Translate(0, 0, -4);
+	//				modelStack.Rotate(270, 0.1, 0.1, 10);
+	//				modelStack.Scale(2, 1, 2);
+	//				RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//			}
+	//			modelStack.PopMatrix();
+
+	//			modelStack.Scale(4, 4, 4);
+	//			RenderMesh(meshList[GEO_HALFTORUS], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//end horns
+
+	//		modelStack.Scale(8, 10, 6);
+	//		RenderMesh(meshList[GEO_CYLINDER], true);
+	//		//end head
+	//	}
+	//	modelStack.PopMatrix();
+
+	//	//left arm
+	//	modelStack.PushMatrix();
+	//	{
+
+	//		modelStack.Translate(4, 2, 0);
+	//		modelStack.Translate(0, 0, spellarmTranslateZ);
+	//		modelStack.Rotate(20, 0, 0, 1);
+	//		modelStack.Rotate(spellarmrotate, 1, 0, 0);
+	//		modelStack.Scale(2, 8, 2);
+	//		RenderMesh(meshList[GEO_SPHERE], true);
+	//	}
+	//	modelStack.PopMatrix();
+	//	//left arm end
+
+
+	//	//right arm
+	//	modelStack.PushMatrix();
+	//	{
+	//		modelStack.Translate(armTranslateX, armTranslateY, armTranslateZ);
+	//		modelStack.Translate(0, 0, spellarmTranslateZ);
+	//		modelStack.Rotate(rotateAngle, 0, 1, 0);
+	//		modelStack.Rotate(swordRotate, 1, 0, 0);
+	//		modelStack.Rotate(spellarmrotate, 1, 0, 0);
+
+	//		//sword hilt
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-14, -4, 13.5);
+	//			modelStack.Translate(swordTranslateX, swordTranslateY, 0);
+	//			modelStack.Translate(0, spellswordtranslate, 0);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Rotate(swordRotate, 0, 1, 0);
+	//			modelStack.Rotate(swordRotate2, 0, 1, 0);
+
+	//			//blade
+	//			modelStack.PushMatrix();
+	//			{
+	//				modelStack.Translate(8, 2, 0);
+	//				modelStack.Rotate(90, 0, 1, 0);
+	//				modelStack.Scale(3, 20, 2);
+	//				RenderMesh(meshList[GEO_SWORD], true);
+	//			}
+	//			modelStack.PopMatrix();
+
+	//			modelStack.Translate(8, -8, 0);
+	//			modelStack.Rotate(0, 0, 0, 1);
+	//			modelStack.Scale(0.5, 8, 0.5);
+	//			RenderMesh(meshList[GEO_CYLINDER], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		modelStack.Translate(-4, 2, 0);
+	//		modelStack.Rotate(20, 0, 0, -1);
+	//		modelStack.Scale(2, 8, 2);
+	//		RenderMesh(meshList[GEO_SPHERE], true);
+
+	//	}
+	//	modelStack.PopMatrix();
+	//	//right arm end
+
+
+	//	//right leg
+	//	modelStack.PushMatrix();
+	//	{
+	//		modelStack.Translate(2, -6, 0);
+	//		modelStack.Translate(0, 0, spelllegTranslateZ);
+	//		modelStack.Translate(0, spelllegTranslateY, 0);
+	//		modelStack.Rotate(firstlegRotate, 1, 0, 0);
+	//		modelStack.Rotate(spellarmrotate, 1, 0, 0);
+	//		modelStack.Scale(2, 8, 2);
+	//		RenderMesh(meshList[GEO_SPHERE], true);
+	//	}
+	//	modelStack.PopMatrix();
+	//	//right leg done
+
+
+	//	//left leg
+	//	modelStack.PushMatrix();
+	//	{
+	//		modelStack.Translate(-2, -6, 0);
+	//		modelStack.Translate(0, 0, spelllegTranslateZ);
+	//		modelStack.Translate(0, spelllegTranslateY, 0);
+
+	//		modelStack.Rotate(secondlegRotate, 1, 0, 0);
+	//		modelStack.Rotate(spellarmrotate, 1, 0, 0);
+	//		modelStack.Scale(2, 8, 2);
+	//		RenderMesh(meshList[GEO_SPHERE], true);
+
+	//	}
+	//	modelStack.PopMatrix();
+	//	//left leg done
+
+
+	//	//waist
+	//	modelStack.PushMatrix();
+	//	{
+	//		modelStack.Translate(0, -7.4, 0);
+	//		modelStack.Rotate(0, 0, 0, 1);
+	//		modelStack.Scale(4, 3, 4);
+	//		RenderMesh(meshList[GEO_HEMISPHERE2], true);
+	//	}
+	//	modelStack.PopMatrix();
+	//	//end waist
+
+	//	//cape
+	//	modelStack.PushMatrix();
+	//	{
+	//		modelStack.Translate(0, 6.5, 0);
+
+	//		//back 1
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(0, -6.4, -4.6);
+	//			modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
+	//			modelStack.Rotate(12, 1, 0, 0);
+	//			modelStack.Rotate(spellcaperotate, 1, 0, 0);
+
+	//			modelStack.PushMatrix();
+	//			{
+	//				modelStack.Translate(0, -6, -0.5);
+	//				modelStack.Rotate(25, 1, 0, 0);
+	//				modelStack.Rotate(spellcaperotate2, 1, 0, 0);
+
+	//				modelStack.PushMatrix();
+	//				{
+	//					modelStack.Translate(0, -2.8, -0.3);
+	//					modelStack.Rotate(5, 1, 0, 0);
+	//					modelStack.Rotate(180, 1, 0, 0);
+	//					modelStack.Rotate(spellcaperotate3, 1, 0, 0);
+	//					modelStack.Scale(0.8, 4, 0.8);
+	//					RenderMesh(meshList[GEO_CONE], true);
+	//				}
+	//				modelStack.PopMatrix();
+
+	//				modelStack.Scale(1, 2, 1);
+	//				RenderMesh(meshList[GEO_CAPE], true);
+	//			}
+	//			modelStack.PopMatrix();
+
+	//			modelStack.Scale(1, 12, 1);
+	//			RenderMesh(meshList[GEO_CAPE], true);
+	//		}
+	//		modelStack.PopMatrix();
+	//		//back 2
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-1.5, -6.4, -4.2);
+	//			modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
+	//			modelStack.Rotate(spellcaperotate, 1, 0, 0);
+	//			modelStack.Rotate(12, 1, 0, 0);
+
+
+	//			modelStack.PushMatrix();
+	//			{
+	//				modelStack.Translate(0, -6, -0.5);
+	//				modelStack.Rotate(spellcaperotate2, 1, 0, 0);
+	//				modelStack.Rotate(25, 1, 0, 0);
+
+	//				modelStack.PushMatrix();
+	//				{
+	//					modelStack.Translate(0, -2.8, -0.3);
+	//					modelStack.Rotate(5, 1, 0, 0);
+	//					modelStack.Rotate(180, 1, 0, 0);
+	//					modelStack.Rotate(spellcaperotate3, 1, 0, 0);
+	//					modelStack.Scale(0.8, 4, 0.8);
+	//					RenderMesh(meshList[GEO_CONE], true);
+	//				}
+	//				modelStack.PopMatrix();
+
+	//				modelStack.Scale(1, 2, 1);
+	//				RenderMesh(meshList[GEO_CAPE], true);
+	//			}
+	//			modelStack.PopMatrix();
+
+	//			modelStack.Scale(1, 12, 1);
+	//			RenderMesh(meshList[GEO_CAPE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//back 3
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(1.7, -6.4, -4.3);
+	//			modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
+	//			modelStack.Rotate(spellcaperotate, 1, 0, 0);
+	//			modelStack.Rotate(14, 1, 0, 0);
+
+	//			modelStack.PushMatrix();
+	//			{
+	//				modelStack.Translate(0, -6, -0.5);
+	//				modelStack.Rotate(25, 1, 0, 0);
+	//				modelStack.Rotate(spellcaperotate2, 1, 0, 0);
+
+	//				modelStack.PushMatrix();
+	//				{
+	//					modelStack.Translate(0, -2.8, -0.3);
+	//					modelStack.Rotate(5, 1, 0, 0);
+	//					modelStack.Rotate(180, 1, 0, 0);
+	//					modelStack.Rotate(spellcaperotate3, 1, 0, 0);
+	//					modelStack.Scale(0.8, 4, 0.8);
+	//					RenderMesh(meshList[GEO_CONE], true);
+	//				}
+	//				modelStack.PopMatrix();
+
+	//				modelStack.Scale(1, 2, 1);
+	//				RenderMesh(meshList[GEO_CAPE], true);
+	//			}
+	//			modelStack.PopMatrix();
+
+	//			modelStack.Scale(1, 12, 1);
+	//			RenderMesh(meshList[GEO_CAPE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+
+	//		//back 4
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(3.2, -6.4, -3.6);
+	//			modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
+	//			modelStack.Rotate(spellcaperotate, 1, 0, 0);
+	//			modelStack.Rotate(17, 1, 0, 0);
+	//			modelStack.Rotate(3, 0, 0, 1);
+	//			modelStack.Rotate(-5, 0, 1, 0);
+
+
+	//			modelStack.PushMatrix();
+	//			{
+	//				modelStack.Translate(0, -6, -0.5);
+	//				modelStack.Rotate(25, 1, 0, 0);
+	//				modelStack.Rotate(spellcaperotate4, 1, 0, 0);
+
+	//				modelStack.PushMatrix();
+	//				{
+	//					modelStack.Translate(0, -2.8, -0.3);
+	//					modelStack.Rotate(5, 1, 0, 0);
+	//					modelStack.Rotate(180, 1, 0, 0);
+	//					modelStack.Rotate(spellcaperotate5, 1, 0, 0);
+	//					modelStack.Scale(0.8, 4, 0.8);
+	//					RenderMesh(meshList[GEO_CONE], true);
+	//				}
+	//				modelStack.PopMatrix();
+
+	//				modelStack.Scale(1, 2, 1);
+	//				RenderMesh(meshList[GEO_CAPE], true);
+	//			}
+	//			modelStack.PopMatrix();
+
+	//			modelStack.Scale(1, 12, 1);
+	//			RenderMesh(meshList[GEO_CAPE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//back 5
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-3.2, -6.4, -3.6);
+	//			modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
+	//			modelStack.Rotate(spellcaperotate, 1, 0, 0);
+	//			modelStack.Rotate(17, 1, 0, 0);
+	//			modelStack.Rotate(-3, 0, 0, 1);
+	//			modelStack.Rotate(-5, 0, 1, 0);
+
+	//			modelStack.PushMatrix();
+	//			{
+	//				modelStack.Translate(0, -6, -0.5);
+	//				modelStack.Rotate(25, 1, 0, 0);
+	//				modelStack.Rotate(spellcaperotate4, 1, 0, 0);
+
+	//				modelStack.PushMatrix();
+	//				{
+	//					modelStack.Translate(0, -2.8, -0.3);
+	//					modelStack.Rotate(5, 1, 0, 0);
+	//					modelStack.Rotate(180, 1, 0, 0);
+	//					modelStack.Rotate(spellcaperotate5, 1, 0, 0);
+	//					modelStack.Scale(0.8, 4, 0.8);
+	//					RenderMesh(meshList[GEO_CONE], true);
+	//				}
+	//				modelStack.PopMatrix();
+
+	//				modelStack.Scale(1, 2, 1);
+	//				RenderMesh(meshList[GEO_CAPE], true);
+	//			}
+	//			modelStack.PopMatrix();
+
+	//			modelStack.Scale(1, 12, 1);
+	//			RenderMesh(meshList[GEO_CAPE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//back 6
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-4.2, -6.4, -3);
+	//			modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
+	//			modelStack.Rotate(spellcaperotate, 1, 0, 0);
+	//			modelStack.Rotate(17, 1, 0, 0);
+	//			modelStack.Rotate(-14, 0, 0, 1);
+	//			modelStack.Rotate(-5, 0, 1, 0);
+
+	//			modelStack.PushMatrix();
+	//			{
+	//				modelStack.Translate(0, -6, -0.5);
+	//				modelStack.Rotate(25, 1, 0, 0);
+	//				modelStack.Rotate(spellcaperotate2, 1, 0, 0);
+
+	//				modelStack.PushMatrix();
+	//				{
+	//					modelStack.Translate(0, -2.8, -0.3);
+	//					modelStack.Rotate(5, 1, 0, 0);
+	//					modelStack.Rotate(180, 1, 0, 0);
+	//					modelStack.Rotate(spellcaperotate5, 1, 0, 0);
+	//					modelStack.Scale(0.8, 4, 0.8);
+	//					RenderMesh(meshList[GEO_CONE], true);
+	//				}
+	//				modelStack.PopMatrix();
+
+	//				modelStack.Scale(1, 2, 1);
+	//				RenderMesh(meshList[GEO_CAPE], true);
+	//			}
+	//			modelStack.PopMatrix();
+
+	//			modelStack.Scale(1, 12, 1);
+	//			RenderMesh(meshList[GEO_CAPE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//side 1
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-5.2, -6.4, -2.5);
+	//			modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
+	//			modelStack.Rotate(spellcaperotate, 1, 0, 0);
+	//			modelStack.Rotate(17, 1, 0, 0);
+	//			modelStack.Rotate(-19, 0, 0, 1);
+	//			modelStack.Rotate(-15, 0, 1, 0);
+
+	//			modelStack.PushMatrix();
+	//			{
+	//				modelStack.Translate(0, -6, -0.5);
+	//				modelStack.Rotate(25, 1, 0, 0);
+	//				modelStack.Rotate(spellcaperotate2, 1, 0, 0);
+
+	//				modelStack.PushMatrix();
+	//				{
+	//					modelStack.Translate(0, -2.8, -0.3);
+	//					modelStack.Rotate(5, 1, 0, 0);
+	//					modelStack.Rotate(180, 1, 0, 0);
+	//					modelStack.Rotate(spellcaperotate4, 1, 0, 0);
+	//					modelStack.Scale(0.8, 4, 0.8);
+	//					RenderMesh(meshList[GEO_CONE], true);
+	//				}
+	//				modelStack.PopMatrix();
+
+	//				modelStack.Scale(1, 2, 1);
+	//				RenderMesh(meshList[GEO_CAPE], true);
+	//			}
+	//			modelStack.PopMatrix();
+
+	//			modelStack.Scale(1, 12, 1);
+	//			RenderMesh(meshList[GEO_CAPE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//back 7
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(4.2, -6.4, -3);
+	//			modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
+	//			modelStack.Rotate(spellcaperotate, 1, 0, 0);
+	//			modelStack.Rotate(17, 1, 0, 0);
+	//			modelStack.Rotate(14, 0, 0, 1);
+	//			modelStack.Rotate(5, 0, 1, 0);
+
+	//			modelStack.PushMatrix();
+	//			{
+	//				modelStack.Translate(0, -6, -0.5);
+	//				modelStack.Rotate(25, 1, 0, 0);
+	//				modelStack.Rotate(spellcaperotate4, 1, 0, 0);
+
+	//				modelStack.PushMatrix();
+	//				{
+	//					modelStack.Translate(0, -2.8, -0.3);
+	//					modelStack.Rotate(5, 1, 0, 0);
+	//					modelStack.Rotate(180, 1, 0, 0);
+	//					modelStack.Rotate(spellcaperotate5, 1, 0, 0);
+	//					modelStack.Scale(0.8, 4, 0.8);
+	//					RenderMesh(meshList[GEO_CONE], true);
+	//				}
+	//				modelStack.PopMatrix();
+
+	//				modelStack.Scale(1, 2, 1);
+	//				RenderMesh(meshList[GEO_CAPE], true);
+	//			}
+	//			modelStack.PopMatrix();
+
+	//			modelStack.Scale(1, 12, 1);
+	//			RenderMesh(meshList[GEO_CAPE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//side 2
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(5.2, -6.4, -2.5);
+	//			modelStack.Translate(0, spellcapetranslateY, spellcapetranslateZ);
+	//			modelStack.Rotate(spellcaperotate, 1, 0, 0);
+	//			modelStack.Rotate(17, 1, 0, 0);
+	//			modelStack.Rotate(19, 0, 0, 1);
+	//			modelStack.Rotate(15, 0, 1, 0);
+
+	//			modelStack.PushMatrix();
+	//			{
+	//				modelStack.Translate(0, -6, -0.5);
+	//				modelStack.Rotate(25, 1, 0, 0);
+	//				modelStack.Rotate(spellcaperotate2, 1, 0, 0);
+
+	//				modelStack.PushMatrix();
+	//				{
+	//					modelStack.Translate(0, -2.8, -0.3);
+	//					modelStack.Rotate(5, 1, 0, 0);
+	//					modelStack.Rotate(180, 1, 0, 0);
+	//					modelStack.Rotate(spellcaperotate3, 1, 0, 0);
+	//					modelStack.Scale(0.8, 4, 0.8);
+	//					RenderMesh(meshList[GEO_CONE], true);
+	//				}
+	//				modelStack.PopMatrix();
+
+	//				modelStack.Scale(1, 2, 1);
+	//				RenderMesh(meshList[GEO_CAPE], true);
+	//			}
+	//			modelStack.PopMatrix();
+
+	//			modelStack.Scale(1, 12, 1);
+	//			RenderMesh(meshList[GEO_CAPE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		modelStack.Rotate(0, 0, 0, 1);
+	//		modelStack.Scale(3, 3, 3);
+	//		RenderMesh(meshList[GEO_TORUS], true);
+
+	//	}
+	//	modelStack.PopMatrix();
+	//	//end cape
+
+	//	//SPELL: Vengeful Spirit
+	//	modelStack.PushMatrix();
+	//	{
+	//		//spell
+	//		modelStack.Translate(spellx, spelly, spellz);
+	//		modelStack.Rotate(0, 0, 0, 1);
+
+	//		//first tentacle
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(0, 0, -20);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Scale(2, 40, 2);
+	//			RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//second tentacle
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(5, 3, -15);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Scale(2, 40, 2);
+	//			RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//third tentacle
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(10, -6, -5);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Scale(2, 40, 2);
+	//			RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//fourth tentacle
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(10, 10, 5);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Scale(2, 40, 2);
+	//			RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+
+	//		//fifth tentacle
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-2, 10, 3);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Scale(2, 40, 2);
+	//			RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//sixth tentacle
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-14, 7, -7);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Scale(2, 40, 2);
+	//			RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+
+	//		//seventh tentacle
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-14, -7, -7);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Scale(2, 40, 2);
+	//			RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//eigth tentacle
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(14, 2, -5);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Scale(2, 40, 2);
+	//			RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//ninth tentacle
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-5, -4, -10);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Scale(2, 40, 2);
+	//			RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//ninth tentacle
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-5, 6, -10);
+	//			modelStack.Rotate(90, 1, 0, 0);
+	//			modelStack.Scale(2, 40, 2);
+	//			RenderMesh(meshList[GEO_HEMISPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		//eyes
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(-6, 3, 19);
+	//			modelStack.Rotate(55, 0, 0, 1);
+	//			modelStack.Rotate(-45, 1, 0, 0);
+	//			modelStack.Scale(5, 7, 5);
+	//			RenderMesh(meshList[GEO_SPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(6, 3, 19);
+	//			modelStack.Rotate(-55, 1, 0, 0);
+	//			modelStack.Rotate(-45, 0, 0, 1);
+	//			modelStack.Scale(5, 7, 5);
+	//			RenderMesh(meshList[GEO_SPHERE], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		modelStack.Scale(20, 15, 25);
+	//		RenderMesh(meshList[GEO_SPHERE2], true);
+	//	}
+	//	modelStack.PopMatrix();
+
+	//	modelStack.Rotate(0, 0, 0, 1);
+	//	modelStack.Scale(4, 15, 4);
+	//	RenderMesh(meshList[GEO_BODY], true);
+	//	modelStack.PopMatrix();
+	//	//end body
+	//}
+
+
 
 
 
 	//modelStack.PushMatrix();
-	//modelStack.Translate(0, 5, 50);
-	//modelStack.Rotate(180, 0, 1, 0);
-	//modelStack.Rotate(grimmx, 0, 1, 0);
-	//modelStack.Rotate(grimmz, 0, 1, 0);
-
-	//modelStack.Scale(10, 10, 10);
-	//RenderMesh(meshList[GEO_BLEND], false);
+	//modelStack.Translate(0, 0, 0);
+	//modelStack.Rotate(-90, 1, 0, 0);
+	//modelStack.Rotate(0, 0, 1, 0);
+	//modelStack.Scale(1000, 1000, 1000);
+	//RenderMesh(meshList[GEO_QUAD], true);
+	//modelStack.PopMatrix();
+	///**************************************************/
+	////NPCS and interactables
+	//modelStack.PushMatrix();
+	//modelStack.Translate(npcx, 0.3, npcz);
+	//modelStack.Rotate(90, 0, 0, 1);
+	//modelStack.Rotate(45, 1, 0, 0);
+	//modelStack.Scale(0.5, 0.5, 0.5);
+	//RenderMesh(meshList[GEO_HOLLOW], true);
 	//modelStack.PopMatrix();
 
-	
-	//**********************************************************************************************************************************************************
-	//bench and npc interactions
-	if (isclosetobench && benchinteract == false)
-	{
-		RenderTextOnScreen(meshList[GEO_TEXT], "Press 'E' to sit.", Color(0, 1, 0), 2, 0, 15);
-	
-	}
-	if (isclosetobench && benchinteract)
-	{
+	//modelStack.PushMatrix();
+	//modelStack.Translate(enemyx, 0, enemyz);
+	//modelStack.Rotate(0, 0, 0, 1);
+	//modelStack.Scale(10, 10, 10);
+	//RenderMesh(meshList[GEO_HORNET], true);
+	//modelStack.PopMatrix();
 
-		RenderTextOnScreen(meshList[GEO_TEXT], "Press 'E' to get up.", Color(0, 1, 0), 2, 0, 15);
-		
-	}
-	if (isclosetonpc && npcinteract == false)
-	{
-		RenderTextOnScreen(meshList[GEO_TEXT], "Press 'E' to talk.", Color(0, 1, 0), 2, 0, 15);
-		if (Application::IsKeyPressed('E'))
-		{
-			npcinteract = true;
-		}
-	}
-	if (isclosetonpc && npcinteract)
-	{
-		RenderTextOnScreen(meshList[GEO_TEXT2], "Corpse: man im dead. go get", Color(0, 1, 0), 3, 0, 15);
-		RenderTextOnScreen(meshList[GEO_TEXT2], "        revenge for me.", Color(0, 1, 0), 3, 0, 11);
-	}
-	else
-	{
-		npcinteract = false;
-	}
+	//modelStack.PushMatrix();
+	//modelStack.Translate(benchposx, 0, benchposz);
+	//modelStack.Rotate(270, 0, 1, 0);
+	//modelStack.Scale(6, 6, 6);
+	//RenderMesh(meshList[GEO_BENCH], true);
+	//modelStack.PopMatrix();
+	///*************************************************************/
 
-	if (isclosetobasket)
-	{
-		RenderTextOnScreen(meshList[GEO_TEXT], "Press 'E' to attack!", Color(1, 0, 0), 2, 0, 15);
+	////right side
+	//modelStack.PushMatrix();
+	//modelStack.Translate(-30, 0, 0);
+	//modelStack.Rotate(0, 0, 0, 1);
+	//modelStack.Scale(50, 50, 50);
+	//RenderMesh(meshList[GEO_ROCKS], true);
+	//modelStack.PopMatrix();
 
-	}
+	//modelStack.PushMatrix();
+	//modelStack.Translate(-20, 0, 35);
+	//modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Scale(60, 30, 30);
+	//RenderMesh(meshList[GEO_TALLROCK], true);
+	//modelStack.PopMatrix();
 
-	if (isclosetobench)
-	{
-		modelStack.PushMatrix();
-		modelStack.Translate(benchposx + 5, 8, benchposz -5);
-		modelStack.Rotate(270, 0, 1, 0);
-		modelStack.Scale(1, 1, 1);
-		RenderText(meshList[GEO_TEXT], "Sit down to heal.", Color(0, 1, 0));
-		modelStack.PopMatrix();
-	}
+	//modelStack.PushMatrix();
+	//modelStack.Translate(-16, 0, 67);
+	//modelStack.Rotate(0, 0, 1, 0);
+	//modelStack.Scale(10, 7, 10);
+	//RenderMesh(meshList[GEO_GRAVE], true);
+	//modelStack.PopMatrix();
 
-	modelStack.PushMatrix();
-	modelStack.Translate(6, 4, 104);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(1, 1, 1);
-	RenderText(meshList[GEO_TEXT], "Run for the sword!", Color(0, 0.6, 1));
-	modelStack.PopMatrix();
-	
+	////left side
+	//modelStack.PushMatrix();
+	//modelStack.Translate(40, 0, 0);
+	//modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Scale(50, 50, 50);
+	//RenderMesh(meshList[GEO_ROCKS], true);
+	//modelStack.PopMatrix();
 
-	modelStack.PushMatrix();
-	modelStack.Translate(enemyx - 10, 15, enemyz);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(1, 1, 1);
-	RenderText(meshList[GEO_TEXT], "Enemy Health:", Color(1, 0, 0));
-	modelStack.PopMatrix();
+	//modelStack.PushMatrix();
+	//modelStack.Translate(40, 0, 60);
+	//modelStack.Rotate(270, 0, 1, 0);
+	//modelStack.Scale(100, 40, 40);
+	//RenderMesh(meshList[GEO_TALLROCK], true);
+	//modelStack.PopMatrix();
 
-	modelStack.PushMatrix();
-	modelStack.Translate(enemyx + 4, 15, enemyz);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(1, 1, 1);
-	RenderText(meshList[GEO_TEXT], std::to_string(enemyhealth), Color(1, 0, 0));
-	modelStack.PopMatrix();
+	//modelStack.PushMatrix();
+	//modelStack.Translate(24, 0, -18);
+	//modelStack.Rotate(95, 0, 1, 0);
+	//modelStack.Scale(30, 30, 30);
+	//RenderMesh(meshList[GEO_DEBRIS], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(25, 0, 55);
+	//modelStack.Rotate(0, 0, 1, 0);
+	//modelStack.Scale(10, 7, 10);
+	//RenderMesh(meshList[GEO_CRYPT], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(25, 0, 35);
+	//modelStack.Rotate(0, 0, 1, 0);
+	//modelStack.Scale(10, 7, 10);
+	//RenderMesh(meshList[GEO_CRYPT], true);
+	//modelStack.PopMatrix();
 
 
-	if (die)
-	{
-		battlestart = false;
-		modelStack.PushMatrix();
-		modelStack.Translate(-100, 3, 17);
-		modelStack.Rotate(0, 0, 1, 0);
-		modelStack.Scale(1, 1, 1);
-		RenderText(meshList[GEO_TEXT], "You Died!", Color(1, 0, 0));
-		modelStack.PopMatrix();
-		modelStack.PushMatrix();
+	//modelStack.PushMatrix();
+	//modelStack.Translate(25, 0, 45);
+	//modelStack.Rotate(0, 0, 1, 0);
+	//modelStack.Scale(10, 10, 10);
+	//RenderMesh(meshList[GEO_LAMP], true);
+	//modelStack.PopMatrix();
 
-		modelStack.Translate(-102, 1, 17);
-		modelStack.Rotate(0, 0, 1, 0);
-		modelStack.Scale(0.6, 0.6, 0.6);
-		RenderText(meshList[GEO_TEXT], "Press 'R' to restart", Color(1, 0, 0));
-		modelStack.PopMatrix();
-	}
-	if (win)
-	{
-		battlestart = false;
-		modelStack.PushMatrix();
-		modelStack.Translate(-100, 3, 17);
-		modelStack.Rotate(0, 0, 1, 0);
-		modelStack.Scale(1, 1, 1);
-		RenderText(meshList[GEO_TEXT], "You Win!", Color(0, 0, 1));
-		modelStack.PopMatrix();
-		modelStack.PushMatrix();
 
-		modelStack.Translate(-102, 1, 17);
-		modelStack.Rotate(0, 0, 1, 0);
-		modelStack.Scale(0.6, 0.6, 0.6);
-		RenderText(meshList[GEO_TEXT], "Press 'R' to restart", Color(0, 0, 1));
-		modelStack.PopMatrix();
-	}
+	//modelStack.PushMatrix();
+	//modelStack.Translate(-24, 0, 73);
+	//modelStack.Rotate(0, 0, 1, 0);
+	//modelStack.Scale(10, 10, 10);
+	//RenderMesh(meshList[GEO_LANTERN], true);
+	//modelStack.PopMatrix();
+
+	////back side
+	//modelStack.PushMatrix();
+	//modelStack.Translate(0, 0, -35);
+	//modelStack.Rotate(180, 0, 1, 0);
+	//modelStack.Scale(50, 50, 50);
+	//RenderMesh(meshList[GEO_TALLROCK], true);
+	//modelStack.PopMatrix();	
+
+
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(5, 0, 20);
+	//modelStack.Rotate(270, 0, 1, 0);
+	//modelStack.Scale(6, 6, 6);
+	//RenderMesh(meshList[GEO_BROKENBENCH], true);
+	//modelStack.PopMatrix();
+	//
+	////in front
+	//modelStack.PushMatrix();
+	//modelStack.Translate(-0, 0, 110);
+	//modelStack.Rotate(0, 0, 1, 0);
+	//modelStack.Scale(100, 10, 10);
+	//RenderMesh(meshList[GEO_STONEWALL], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(-60, 0, 110);
+	//modelStack.Rotate(0, 0, 1, 0);
+	//modelStack.Scale(100, 10, 10);
+	//RenderMesh(meshList[GEO_STONEWALL], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(-100, 0, 60);
+	//modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Scale(100, 10, 10);
+	//RenderMesh(meshList[GEO_STONEWALL], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(-15, 0, 65);
+	//modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Scale(20, 10, 10);
+	//RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(-20, 0, 95);
+	//modelStack.Rotate(270, 0, 1, 0);
+	//modelStack.Scale(20, 10, 10);
+	//RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(-70, 0, 20);
+	//modelStack.Rotate(0, 0, 1, 0);
+	//modelStack.Scale(100, 10, 10);
+	//RenderMesh(meshList[GEO_STONEWALL], true);
+	//modelStack.PopMatrix();
+
+	////roads
+	//modelStack.PushMatrix();
+	//modelStack.Translate(0, 0, 4);
+	//modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Scale(20, 5, 5);
+	//RenderMesh(meshList[GEO_ROAD], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(0, 0, 18);
+	//modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Scale(20, 5, 5);
+	//RenderMesh(meshList[GEO_ROAD], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(0, 0, 32);
+	//modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Scale(20, 5, 5);
+	//RenderMesh(meshList[GEO_ROAD], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(0, 0, 46);
+	//modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Scale(20, 5, 5);
+	//RenderMesh(meshList[GEO_ROAD], true);
+	//modelStack.PopMatrix();
+
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(0, 0, 60);
+	//modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Scale(20, 5, 5);
+	//RenderMesh(meshList[GEO_ROAD], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(0, 0, 74);
+	//modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Scale(20, 5, 5);
+	//RenderMesh(meshList[GEO_ROAD], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(-6, 0, 74);
+	//modelStack.Rotate(-160, 0, 1, 0);
+	//modelStack.Scale(20, 5, 5);
+	//RenderMesh(meshList[GEO_ROAD], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(-10, 0, 78);
+	//modelStack.Rotate(-160, 0, 1, 0);
+	//modelStack.Scale(20, 5, 5);
+	//RenderMesh(meshList[GEO_ROAD], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(bullet.x, 1, bullet.z);
+	//modelStack.Rotate(90, 1, 0, 0);
+	//modelStack.Scale(20, 5, 20);
+	//RenderMesh(meshList[GEO_BULLET], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(bullet2.x, 1, bullet2.z);
+	//modelStack.Rotate(90, 1, 0, 0);
+	//modelStack.Scale(20, 5, 20);
+	//RenderMesh(meshList[GEO_BULLET], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(bullet3.x, 1, bullet3.z);
+	//modelStack.Rotate(90, 1, 0, 0);
+	//modelStack.Scale(20, 5, 20);
+	//RenderMesh(meshList[GEO_BULLET], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(bullet4.x, 1, bullet4.z);
+	//modelStack.Rotate(90, 1, 0, 0);
+	//modelStack.Scale(20, 5, 20);
+	//RenderMesh(meshList[GEO_BULLET], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(bullet5.x, 1, bullet5.z);
+	//modelStack.Rotate(90, 1, 0, 0);
+	//modelStack.Scale(20, 5, 20);
+	//RenderMesh(meshList[GEO_BULLET], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(bullet6.x, 1, bullet6.z);
+	//modelStack.Rotate(90, 1, 0, 0);
+	//modelStack.Scale(20, 5, 20);
+	//RenderMesh(meshList[GEO_BULLET], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(bullet7.x, 1, bullet7.z);
+	//modelStack.Rotate(90, 1, 0, 0);
+	//modelStack.Scale(20, 5, 20);
+	//RenderMesh(meshList[GEO_BULLET], true);
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//{
+	//	modelStack.Translate(basketx, 0, basketz);
+	//	modelStack.Translate(0, 0, translatebasketz);
+	//	modelStack.Rotate(0, 0, 1, 0);
+	//	
+	//	//sword hilt
+	//	modelStack.PushMatrix();
+	//	{
+	//		modelStack.Translate(0, 5, 0);
+	//		modelStack.Rotate(180, 1, 0, 0);
+	//		modelStack.Rotate(90, 0, 1, 0);
+	//		modelStack.Scale(3, 3, 3);
+	//		//blade
+	//		modelStack.PushMatrix();
+	//		{
+	//			modelStack.Translate(0, 0, 0);
+	//			modelStack.Rotate(90, 0, 1, 0);
+	//			modelStack.Scale(3, 20, 2);
+	//			modelStack.Scale(0.1, 0.1, 0.1);
+	//			RenderMesh(meshList[GEO_SWORD], true);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		modelStack.Translate(0, -1, 0);
+	//		modelStack.Rotate(0, 0, 0, 1);
+	//		modelStack.Scale(0.5, 8, 0.5);
+	//		modelStack.Scale(0.1, 0.1, 0.1);
+	//		RenderMesh(meshList[GEO_CYLINDER], true);
+	//	}
+	//	modelStack.PopMatrix();
+
+	//	modelStack.Scale(20, 20, 20);
+	//	RenderMesh(meshList[GEO_FIREBASKET], true);
+	//}
+	//modelStack.PopMatrix();
+
+
+
+	//
+
+	////my lamps
+	//modelStack.PushMatrix();
+	//{
+	//	modelStack.Translate(10, 1, 20);
+	//	modelStack.Scale(0.1, 0.1, 0.1);
+
+	//	//lamp base
+	//	modelStack.PushMatrix();
+	//	{
+	//		//modelStack.PushMatrix();
+	//		//{
+	//		//	//light
+	//		//	modelStack.Translate(0, 75, 0);
+	//		//	modelStack.Scale(10, 10, 10);
+	//		//	RenderMesh(meshList[GEO_LAMPLIGHT], false);
+	//		//}
+	//		//modelStack.PopMatrix();
+
+	//		modelStack.Translate(0, -5, 0);
+	//		modelStack.Rotate(0, 0, 0, 1);
+	//		modelStack.Rotate(0, 0, 0, 1);
+	//		modelStack.Scale(12, 12, 12);
+	//		RenderMesh(meshList[GEO_CONE], true);
+	//	}
+	//	modelStack.PopMatrix();
+
+	//	modelStack.Translate(0, 30, 0);
+	//	modelStack.Rotate(0, 0, 0, 1);
+	//	modelStack.Scale(4, 80, 4);
+	//	RenderMesh(meshList[GEO_CAPE], true);
+	//}
+	//modelStack.PopMatrix();
+	//
+	//modelStack.PushMatrix();
+	//{
+	//	modelStack.Translate(-11, 1, 67);
+	//	modelStack.Scale(0.1, 0.1, 0.1);
+
+	//	//lamp base
+	//	modelStack.PushMatrix();
+	//	{
+	//		modelStack.PushMatrix();
+	//		{
+	//			//light
+	//			modelStack.Translate(0, 75, 0);
+	//			modelStack.Scale(10, 10, 10);
+	//			RenderMesh(meshList[GEO_LAMPLIGHT], false);
+	//		}
+	//		modelStack.PopMatrix();
+
+	//		modelStack.Translate(0, -5, 0);
+	//		modelStack.Rotate(0, 0, 0, 1);
+	//		modelStack.Rotate(0, 0, 0, 1);
+	//		modelStack.Scale(12, 12, 12);
+	//		RenderMesh(meshList[GEO_CONE], true);
+	//	}
+	//	modelStack.PopMatrix();
+
+	//	modelStack.Translate(0, 30, 0);
+	//	modelStack.Rotate(0, 0, 0, 1);
+	//	modelStack.Scale(4, 80, 4);
+	//	RenderMesh(meshList[GEO_CAPE], true);
+	//}
+	//modelStack.PopMatrix();
+
+
+
+	////modelStack.PushMatrix();
+	////modelStack.Translate(0, 5, 50);
+	////modelStack.Rotate(180, 0, 1, 0);
+	////modelStack.Rotate(grimmx, 0, 1, 0);
+	////modelStack.Rotate(grimmz, 0, 1, 0);
+
+	////modelStack.Scale(10, 10, 10);
+	////RenderMesh(meshList[GEO_BLEND], false);
+	////modelStack.PopMatrix();
+
+	//
+	////**********************************************************************************************************************************************************
+	////bench and npc interactions
+	//if (isclosetobench && benchinteract == false)
+	//{
+	//	RenderTextOnScreen(meshList[GEO_TEXT], "Press 'E' to sit.", Color(0, 1, 0), 2, 0, 15);
+	//
+	//}
+	//if (isclosetobench && benchinteract)
+	//{
+
+	//	RenderTextOnScreen(meshList[GEO_TEXT], "Press 'E' to get up.", Color(0, 1, 0), 2, 0, 15);
+	//	
+	//}
+	//if (isclosetonpc && npcinteract == false)
+	//{
+	//	RenderTextOnScreen(meshList[GEO_TEXT], "Press 'E' to talk.", Color(0, 1, 0), 2, 0, 15);
+	//	if (Application::IsKeyPressed('E'))
+	//	{
+	//		npcinteract = true;
+	//	}
+	//}
+	//if (isclosetonpc && npcinteract)
+	//{
+	//	RenderTextOnScreen(meshList[GEO_TEXT2], "Corpse: man im dead. go get", Color(0, 1, 0), 3, 0, 15);
+	//	RenderTextOnScreen(meshList[GEO_TEXT2], "        revenge for me.", Color(0, 1, 0), 3, 0, 11);
+	//}
+	//else
+	//{
+	//	npcinteract = false;
+	//}
+
+	//if (isclosetobasket)
+	//{
+	//	RenderTextOnScreen(meshList[GEO_TEXT], "Press 'E' to attack!", Color(1, 0, 0), 2, 0, 15);
+
+	//}
+
+	//if (isclosetobench)
+	//{
+	//	modelStack.PushMatrix();
+	//	modelStack.Translate(benchposx + 5, 8, benchposz -5);
+	//	modelStack.Rotate(270, 0, 1, 0);
+	//	modelStack.Scale(1, 1, 1);
+	//	RenderText(meshList[GEO_TEXT], "Sit down to heal.", Color(0, 1, 0));
+	//	modelStack.PopMatrix();
+	//}
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(6, 4, 104);
+	//modelStack.Rotate(180, 0, 1, 0);
+	//modelStack.Scale(1, 1, 1);
+	//RenderText(meshList[GEO_TEXT], "Run for the sword!", Color(0, 0.6, 1));
+	//modelStack.PopMatrix();
+	//
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(enemyx - 10, 15, enemyz);
+	//modelStack.Rotate(0, 0, 1, 0);
+	//modelStack.Scale(1, 1, 1);
+	//RenderText(meshList[GEO_TEXT], "Enemy Health:", Color(1, 0, 0));
+	//modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(enemyx + 4, 15, enemyz);
+	//modelStack.Rotate(0, 0, 1, 0);
+	//modelStack.Scale(1, 1, 1);
+	//RenderText(meshList[GEO_TEXT], std::to_string(enemyhealth), Color(1, 0, 0));
+	//modelStack.PopMatrix();
+
+
+	//if (die)
+	//{
+	//	battlestart = false;
+	//	modelStack.PushMatrix();
+	//	modelStack.Translate(-100, 3, 17);
+	//	modelStack.Rotate(0, 0, 1, 0);
+	//	modelStack.Scale(1, 1, 1);
+	//	RenderText(meshList[GEO_TEXT], "You Died!", Color(1, 0, 0));
+	//	modelStack.PopMatrix();
+	//	modelStack.PushMatrix();
+
+	//	modelStack.Translate(-102, 1, 17);
+	//	modelStack.Rotate(0, 0, 1, 0);
+	//	modelStack.Scale(0.6, 0.6, 0.6);
+	//	RenderText(meshList[GEO_TEXT], "Press 'R' to restart", Color(1, 0, 0));
+	//	modelStack.PopMatrix();
+	//}
+	//if (win)
+	//{
+	//	battlestart = false;
+	//	modelStack.PushMatrix();
+	//	modelStack.Translate(-100, 3, 17);
+	//	modelStack.Rotate(0, 0, 1, 0);
+	//	modelStack.Scale(1, 1, 1);
+	//	RenderText(meshList[GEO_TEXT], "You Win!", Color(0, 0, 1));
+	//	modelStack.PopMatrix();
+	//	modelStack.PushMatrix();
+
+	//	modelStack.Translate(-102, 1, 17);
+	//	modelStack.Rotate(0, 0, 1, 0);
+	//	modelStack.Scale(0.6, 0.6, 0.6);
+	//	RenderText(meshList[GEO_TEXT], "Press 'R' to restart", Color(0, 0, 1));
+	//	modelStack.PopMatrix();
+	//}
 
 
 	RenderTextOnScreen(meshList[GEO_TEXT], camerax , Color(0, 1, 0), 2, 6, 0);
