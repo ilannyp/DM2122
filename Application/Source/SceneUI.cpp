@@ -341,7 +341,7 @@ void SceneUI::Init()
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//comicsans.tga");
 
 	//An array of 3 vectors which represents the colors of the 3 vertices
-
+	//hi
 	Mtx44 projection;
 	projection.SetToPerspective(45.f, 4.f / 3.f, 0.1f, 1000.f);
 	projectionStack.LoadMatrix(projection);
