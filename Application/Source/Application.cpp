@@ -11,11 +11,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Scene1.h"
+#include "SceneUI.h"
+#include "Assignment2.h"
+
 
 GLFWwindow* m_window;
 const unsigned char FPS = 60; // FPS of this game
 const unsigned int frameTime = 1000 / FPS; // time for each frame
+unsigned Application::m_width;
+unsigned Application::m_height;
+
+void resize_callback(GLFWwindow* window, int w, int h)
+{
+	Application::m_width = w;
+	Application::m_height = h;
+	glViewport(0, 0, w, h);
+}
+bool Application::IsMousePressed(unsigned short key) //0 - Left, 1 - Right, 2 - Middle
+{
+	return glfwGetMouseButton(m_window, key) != 0;
+}
+void Application::GetCursorPos(double* xpos, double* ypos)
+{
+	glfwGetCursorPos(m_window, xpos, ypos);
+}
+int Application::GetWindowWidth()
+{
+	return m_width;
+}
+int Application::GetWindowHeight()
+{
+	return m_height;
+}
 
 //Define an error callback
 static void error_callback(int error, const char* description)
@@ -44,11 +71,13 @@ Application::~Application()
 {
 }
 
+
+
 void Application::Init()
 {
 	//Set the error callback
 	glfwSetErrorCallback(error_callback);
-
+	
 	//Initialize GLFW
 	if (!glfwInit())
 	{
@@ -64,7 +93,9 @@ void Application::Init()
 
 
 	//Create a window and create its OpenGL context
-	m_window = glfwCreateWindow(800, 600, "Test Window", NULL, NULL);
+	m_width = 800;
+	m_height = 600;
+	m_window = glfwCreateWindow(m_width, m_height, "Test Window", NULL, NULL);
 
 	//If the window couldn't be created
 	if (!m_window)
@@ -78,7 +109,8 @@ void Application::Init()
 	glfwMakeContextCurrent(m_window);
 
 	//Sets the key callback
-	//glfwSetKeyCallback(m_window, key_callback);
+	glfwSetWindowSizeCallback(m_window, resize_callback);
+	
 
 	glewExperimental = true; // Needed for core profile
 	//Initialize GLEW
@@ -95,12 +127,20 @@ void Application::Init()
 void Application::Run()
 {
 	//Main Loop
-	Scene *scene = new Scene1();
-	scene->Init();
+	
+	Scene *scene1 = new SceneUI();
+	Scene* scene2 = new Assignment2();
+	Scene *scene = scene1;
+	scene1->Init();
+	scene2->Init();
 
 	m_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
 	while (!glfwWindowShouldClose(m_window) && !IsKeyPressed(VK_ESCAPE))
 	{
+		if (IsKeyPressed(VK_F1))
+			scene = scene1;
+		else if (IsKeyPressed(VK_F2))
+			scene = scene2;
 		scene->Update(m_timer.getElapsedTime());
 		scene->Render();
 		//Swap buffers
@@ -110,8 +150,11 @@ void Application::Run()
         m_timer.waitUntil(frameTime);       // Frame rate limiter. Limits each frame to a specified time in ms.   
 
 	} //Check if the ESC key had been pressed or if the window had been closed
-	scene->Exit();
-	delete scene;
+	scene1->Exit();
+	scene2->Exit();
+	delete scene1;
+	delete scene2;
+
 }
 
 void Application::Exit()

@@ -234,6 +234,11 @@ Return a random float
 	}//end of RandFloat function
 	
 /******************************************************************************/
+	inline float rotateAngle(float a, float b)
+	{
+		return asin(a / hypot(a, b)) * 180.f / PI;
+	}
+/******************************************************************************/
 /*!
 \brief
 Return a random float between min and max
@@ -251,6 +256,7 @@ Return a random float between min and max
 	}//end of RandFloatMinMax function
 
 }//end namespace Math
+
 
 /******************************************************************************/
 /*!
