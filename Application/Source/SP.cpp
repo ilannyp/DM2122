@@ -1,4 +1,4 @@
-#include "Assignment2.h"
+#include "SP.h"
 #include "GL\glew.h"
 #include "Application.h"
 #include "shader.hpp"
@@ -8,16 +8,16 @@
 #include "LoadTGA.h"
 
 
-Assignment2::Assignment2()
+SP::SP()
 {
 
 }
 
-Assignment2::~Assignment2()
+SP::~SP()
 {
 }
 
-void Assignment2::RenderMesh(Mesh* mesh, bool enableLight)
+void SP::RenderMesh(Mesh* mesh, bool enableLight)
 {
 	Mtx44 MVP, modelView, modelView_inverse_transpose;
 
@@ -58,7 +58,7 @@ void Assignment2::RenderMesh(Mesh* mesh, bool enableLight)
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 }
-void Assignment2::RenderSkybox()
+void SP::RenderSkybox()
 {
 	const float OFFSET = 499;
 
@@ -116,7 +116,7 @@ void Assignment2::RenderSkybox()
 	modelStack.PopMatrix();
 }
 
-void Assignment2::RenderText(Mesh* mesh, std::string text, Color color)
+void SP::RenderText(Mesh* mesh, std::string text, Color color)
 {
 
 	if (!mesh || mesh->textureID <= 0) //Proper error check
@@ -144,7 +144,7 @@ void Assignment2::RenderText(Mesh* mesh, std::string text, Color color)
 
 
 
-void Assignment2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y)
+void SP::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y)
 {
 	if (!mesh || mesh->textureID <= 0) //Proper error check
 		return;
@@ -184,7 +184,7 @@ void Assignment2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, 
 	glEnable(GL_DEPTH_TEST); //uncomment for RenderTextOnScreen
 }
 
-void Assignment2::Init()
+void SP::Init()
 {
 
 
@@ -458,7 +458,7 @@ void Assignment2::Init()
 
 }
 
-void Assignment2::Update(double dt)
+void SP::Update(double dt)
 {
 
 	if (Application::IsKeyPressed('1'))
@@ -998,7 +998,7 @@ void Assignment2::Update(double dt)
 }
 
 
-void Assignment2::Render()
+void SP::Render()
 {
 	// Render VBO here
 	//Clear color buffer every frame
@@ -2260,7 +2260,7 @@ void Assignment2::Render()
 
 }
 
-void Assignment2::Exit()
+void SP::Exit()
 {
 	// Cleanup VBO here
 	for (int i = 0; i < NUM_GEOMETRY; ++i)

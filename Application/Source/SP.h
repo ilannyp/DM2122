@@ -1,5 +1,5 @@
-#ifndef ASSIGNMENT_2_H
-#define ASSIGNMENT_2_H
+#ifndef SP_H
+#define SP_H
 #pragma once
 #include "Scene.h"
 #include "Camera3.h"
@@ -9,7 +9,7 @@
 #include "Light.h"
 
 
-class Assignment2 : public Scene
+class SP : public Scene
 {
 	enum UNIFORM_TYPE
 	{
@@ -224,8 +224,8 @@ private:
 	Camera2 benchcamera;
 	MS modelStack, viewStack, projectionStack;
 public:
-	Assignment2();
-	~Assignment2();
+	SP();
+	~SP();
 
 
 	virtual void Init();
