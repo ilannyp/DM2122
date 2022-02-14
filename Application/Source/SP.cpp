@@ -364,7 +364,7 @@ void SP::Init()
 	meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("sphere", Color(1, 1, 1), 10, 20, 1.f);		//light for lamppost
 	
 	meshList[GEO_HOLLOW] = MeshBuilder::GenerateOBJMTL("hollow", "OBJ//Hollow.obj", "OBJ//Hollow.mtl");
-	//meshList[GEO_HOLLOW]->textureID = LoadTGA("Image//Hollow-text.tga");
+	meshList[GEO_HOLLOW]->textureID = LoadTGA("Image//Hollow-text.tga");
 
 	meshList[GEO_HORNET] = MeshBuilder::GenerateOBJMTL("hornet", "OBJ//zombie.obj", "OBJ//zombie.mtl");
 	
@@ -372,9 +372,9 @@ void SP::Init()
 	meshList[GEO_BENCH] = MeshBuilder::GenerateOBJMTL("bench", "OBJ//bench.obj","OBJ//bench.mtl");
 
 	meshList[GEO_ROCKS] = MeshBuilder::GenerateOBJMTL("rocks", "OBJ//rocks.obj", "OBJ//rocks.mtl");
-	//meshList[GEO_ROCKS]->textureID = LoadTGA("Image//rockwall.tga");
+	meshList[GEO_ROCKS]->textureID = LoadTGA("Image//rockwall.tga");
 	meshList[GEO_TALLROCK] = MeshBuilder::GenerateOBJMTL("tallrock", "OBJ//rocksTall.obj", "OBJ//rocksTall.mtl");
-	//meshList[GEO_TALLROCK]->textureID = LoadTGA("Image//rockwall.tga");	
+	meshList[GEO_TALLROCK]->textureID = LoadTGA("Image//rockwall.tga");	
 
 	meshList[GEO_BROKENBENCH] = MeshBuilder::GenerateOBJMTL("benchdamaged", "OBJ//benchDamaged.obj", "OBJ//benchDamaged.mtl");
 
@@ -387,7 +387,7 @@ void SP::Init()
 	meshList[GEO_CRYPT] = MeshBuilder::GenerateOBJMTL("crypt", "OBJ//crypt.obj", "OBJ//crypt.mtl");
 
 	meshList[GEO_DEBRIS] = MeshBuilder::GenerateOBJMTL("debris", "OBJ//debris.obj", "OBJ//debris.mtl");
-	//meshList[GEO_DEBRIS]->textureID = LoadTGA("Image//rockwall.tga");
+	meshList[GEO_DEBRIS]->textureID = LoadTGA("Image//rockwall.tga");
 
 	meshList[GEO_LAMP] = MeshBuilder::GenerateOBJMTL("debris", "OBJ//lightpostDouble.obj", "OBJ//lightpostDouble.mtl");
 
@@ -400,10 +400,10 @@ void SP::Init()
 	meshList[GEO_FIREBASKET] = MeshBuilder::GenerateOBJMTL("basket", "OBJ//fireBasket.obj", "OBJ//fireBasket.mtl");
 
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16,16);
-	//meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
+	meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
 
 	meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
-	//meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
+	meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
 
 	//An array of 3 vectors which represents the colors of the 3 vertices
 
@@ -536,57 +536,6 @@ void SP::Update(double dt)
 
 	}
 
-	//if (Application::IsKeyPressed('Z'))			//go forward
-	//{
-
-	//	translateZ += (float)(20 * dt * translateX);
-	//	firstlegRotate += (float)(180 * dt * reverseRotateLeg);
-	//	if (firstlegRotate < -15)
-	//	{
-	//		reverseRotateLeg = 1;
-	//	}
-	//	if (firstlegRotate > 15)
-	//	{
-	//		reverseRotateLeg = -1;
-	//	}
-
-	//	secondlegRotate += (float)(180 * dt * reverseRotateLeg2);
-	//	if (secondlegRotate < -15)
-	//	{
-	//		reverseRotateLeg2 = 1;
-	//	}
-	//	if (secondlegRotate > 15)
-	//	{
-	//		reverseRotateLeg2 = -1;
-	//	}
-	//	rotateBody = 1;
-	//}
-
-	//if (Application::IsKeyPressed('X'))			//go backwards
-	//{
-
-	//	translateZ += (float)(20 * dt * -translateX);
-	//	firstlegRotate += (float)(180 * dt * reverseRotateLeg3);
-	//	if (firstlegRotate < -15)
-	//	{
-	//		reverseRotateLeg3 = 1;
-	//	}
-	//	if (firstlegRotate > 15)
-	//	{
-	//		reverseRotateLeg3 = -1;
-	//	}
-	//	secondlegRotate += (float)(180 * dt * reverseRotateLeg4);
-	//	if (secondlegRotate < -15)
-	//	{
-	//		reverseRotateLeg4 = 1;
-	//	}
-	//	if (secondlegRotate > 15)
-	//	{
-	//		reverseRotateLeg4 = -1;
-	//	}
-	//	rotateBody = 180;
-	//}
-
 	if (Application::IsKeyPressed('T') == false)
 	{
 		rotateAngle = 0;
@@ -672,21 +621,6 @@ void SP::Update(double dt)
 		}
 
 	}
-	//if (/*!spellstate && */Application::IsKeyPressed('C'))			//spawn spell
-	//{
-	//	spellx = 0;
-	//	spellswordtranslate = -80;
-
-	//	spellbodyUp += (float)(90 * dt);
-	//	if (spellbodyUp > 3)
-	//	{
-	//		spellarmTranslateZ = -5;
-	//		spelllegTranslateZ = -3;
-	//		spellbodyUp = 3;
-	//		spellheadrotate = 25;
-	//		spelly = 0;
-	//		spell.z -= (float)(240 * dt);
-	//}
 
 	if (/*spellstate && */Application::IsKeyPressed('C') == false)			//despawn spell
 	{
@@ -721,59 +655,14 @@ void SP::Update(double dt)
 
 	/*******************************************************************************************************/
 	//boundary check
-	//if (camera.position.x > 18)
-	//{
-	//	camera.position.x = 18;
-	//}
-	//if (camera.position.x < -100)
-	//{
-	//	camera.position.x = -100;
-	//}
-	//if (camera.position.z > 103)
-	//{
-	//	camera.position.z = 103;
-	//}
-	////if (camera.position.z < -14)
-	////{
-	////	camera.position.z = -14;
-	////}
-
-
-	//if (camera.position.x < -7 && camera.position.x >= -34 && camera.position.z < 72)
-	//{
-	//	if (camera.position.x < -20)
-	//	{
-	//		camera.position.x = -34;
-	//	}
-	//	else
-	//	{
-	//		camera.position.x = -7;
-	//	}
-	//}
-	////x = -34, -7
-	//if (camera.position.z < 74 && camera.position.x >= -32 && camera.position.x < -7)
-	//{
-	//	camera.position.z = 74;
-	//}
-
-
-	//if (camera.position.z <= 17 && camera.position.x <= -33)
-	//{
-	//	camera.position.z = 17;
-	//}
-
-	//
-	//if (camera.position.x <= -13 && camera.position.x >= -17 && camera.position.z <= 103 && camera.position.z >= 84)
-	//{
-	//	if (camera.position.x < -15)
-	//	{
-	//		camera.position.x = -17;
-	//	}
-	//	else
-	//	{
-	//		camera.position.x = -13;
-	//	}
-	//}
+	if (camera.position.x > -15 && camera.position.x<26 && camera.position.z>-14 && camera.position.z < 103)
+	{
+		tut_text = true;
+	}
+	else
+	{
+		tut_text = false;
+	}
 
 	/**********************************************************************************************************/
 	//making character move with camera
@@ -2246,6 +2135,14 @@ void SP::Render()
 		RenderText(meshList[GEO_TEXT], "Press 'R' to restart", Color(0, 0, 1));
 		modelStack.PopMatrix();
 	}
+
+	if (tut_text==true)
+	{
+		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 30);
+		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0, 1, 0), 2, 25, 28);
+	}
+
+
 
 
 	RenderTextOnScreen(meshList[GEO_TEXT], camerax , Color(0, 1, 0), 2, 6, 0);
