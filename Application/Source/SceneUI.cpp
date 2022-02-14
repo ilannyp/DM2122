@@ -136,7 +136,7 @@ void SceneUI::RenderText(Mesh* mesh, std::string text, Color color)
 	}
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glUniform1i(m_parameters[U_TEXT_ENABLED], 0);
-	glEnable(GL_DEPTH_TEST); //uncomment for RenderTextOnScreen
+	/*glEnable(GL_DEPTH_TEST);*/ //uncomment for RenderTextOnScreen
 }
 
 
