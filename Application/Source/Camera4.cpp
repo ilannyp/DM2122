@@ -1,16 +1,16 @@
-#include "Camera4.h"
+#include "Camera3.h"
 #include "Application.h"
 #include "Mtx44.h"
 
-Camera4::Camera4()
+Camera3::Camera3()
 {
 }
 
-Camera4::~Camera4()
+Camera3::~Camera3()
 {
 }
 
-void Camera4::Init(const Vector3& pos, const Vector3& target, const Vector3& up)
+void Camera3::Init(const Vector3& pos, const Vector3& target, const Vector3& up)
 {
 	this->position = defaultPosition = pos;
 	this->target = defaultTarget = target;
@@ -22,12 +22,12 @@ void Camera4::Init(const Vector3& pos, const Vector3& target, const Vector3& up)
 	this->up = defaultUp = right.Cross(view).Normalized();
 }
 
-void Camera4::Update(double dt)
+void Camera3::Update(double dt)
 {
 	
 	static const float CAMERA_SPEED = 45.f;
 	static const float ZOOM_SPEED = 20.f;
-	
+
 	Vector3 temp;
 	Vector3 view = (target - position).Normalized();
 	Vector3 right = view.Cross(up);
@@ -139,7 +139,7 @@ void Camera4::Update(double dt)
 	}
 }
 
-void Camera4::Reset()
+void Camera3::Reset()
 {
 	position = defaultPosition;
 	target = defaultTarget;
