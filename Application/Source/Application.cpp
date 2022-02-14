@@ -14,6 +14,7 @@
 
 #include "SP_Start.h"
 #include "SP.h"
+#include "Scene_EndScreen.h"
 
 GLFWwindow* m_window;
 const unsigned char FPS = 60; // FPS of this game
@@ -130,10 +131,12 @@ void Application::Run()
 	
 	Scene *scene1 = new SP_Start();
 	Scene *scene2 = new SP();
+	Scene *scene3 = new Scene_EndScreen();
 	 
 	Scene *scene = scene1;
 	scene1->Init();
 	scene2->Init();
+	scene3->Init();
 
 	m_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
 	while (!glfwWindowShouldClose(m_window) && !IsKeyPressed(VK_ESCAPE))
@@ -146,13 +149,26 @@ void Application::Run()
 		glfwSwapBuffers(m_window);
 		//Get and organize events, like keyboard and mouse input, window resizing, etc...
 		glfwPollEvents();
-        m_timer.waitUntil(frameTime);       // Frame rate limiter. Limits each frame to a specified time in ms.   
+        m_timer.waitUntil(frameTime);       // Frame rate limiter. Limits each frame to a specified time in ms.
+
+		if (IsKeyPressed(VK_F3))
+		//if (endscreen == true)
+			scene = scene3;
+		scene->Update(m_timer.getElapsedTime());
+		scene->Render();
+		//Swap buffers
+		glfwSwapBuffers(m_window);
+		//Get and organize events, like keyboard and mouse input, window resizing, etc...
+		glfwPollEvents();
+		m_timer.waitUntil(frameTime);       // Frame rate limiter. Limits each frame to a specified time in ms.
 
 	} //Check if the ESC key had been pressed or if the window had been closed
 	scene1->Exit();
 	scene2->Exit();
+	scene3->Exit();
 	delete scene1;
 	delete scene2;
+	delete scene3;
 
 }
 

@@ -2103,6 +2103,11 @@ void SP::Render()
 
 	if (die)
 	{
+		//endscreen = true;
+		if (true)
+		{
+			Application::IsKeyPressed(VK_F3) == true;
+		}
 		battlestart = false;
 		modelStack.PushMatrix();
 		modelStack.Translate(-100, 3, 17);
@@ -2120,6 +2125,7 @@ void SP::Render()
 	}
 	if (win)
 	{
+		//endscreen = true;
 		battlestart = false;
 		modelStack.PushMatrix();
 		modelStack.Translate(-100, 3, 17);

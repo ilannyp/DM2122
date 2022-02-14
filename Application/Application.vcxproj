@@ -171,6 +171,7 @@
     <ClCompile Include="Source\SceneText.cpp" />
     <ClCompile Include="Source\SceneTexture.cpp" />
     <ClCompile Include="Source\SceneUI.cpp" />
+    <ClCompile Include="Source\Scene_EndScreen.cpp" />
     <ClCompile Include="Source\shader.cpp" />
     <ClCompile Include="Source\SP.cpp" />
     <ClCompile Include="Source\SP_Start.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="Source\SceneText.h" />
     <ClInclude Include="Source\SceneTexture.h" />
     <ClInclude Include="Source\SceneUI.h" />
+    <ClInclude Include="Source\Scene_EndScreen.h" />
     <ClInclude Include="Source\SP.h" />
     <ClInclude Include="Source\SP_Start.h" />
     <ClInclude Include="Source\Utility.h" />

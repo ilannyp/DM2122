@@ -239,6 +239,8 @@ public:
 	std::string FPS;
 	std::string camerax;
 	std::string cameraz;
+	bool endscreen = false;
+
 };
 
 #endif
