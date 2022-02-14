@@ -1,4 +1,4 @@
-#include "SceneUI.h"
+#include "SP_Start.h"
 #include "GL\glew.h"
 #include "Application.h"
 #include "shader.hpp"
@@ -8,16 +8,16 @@
 #include "LoadTGA.h"
 
 
-SceneUI::SceneUI()
+SP_Start::SP_Start()
 {
 
 }
 
-SceneUI::~SceneUI()
+SP_Start::~SP_Start()
 {
 }
 
-void SceneUI::RenderMesh(Mesh* mesh, bool enableLight)
+void SP_Start::RenderMesh(Mesh* mesh, bool enableLight)
 {
 	Mtx44 MVP, modelView, modelView_inverse_transpose;
 
@@ -58,62 +58,8 @@ void SceneUI::RenderMesh(Mesh* mesh, bool enableLight)
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 }
-void SceneUI::RenderSkybox()
-{
-	const float OFFSET = 499;
 
-	modelStack.PushMatrix();
-	//to do: transformation code here
-	modelStack.Translate(0, 0, -OFFSET);
-	modelStack.Rotate(0, 0, 0, 1);
-	modelStack.Scale(1000, 1000, 1000);
-	RenderMesh(meshList[GEO_FRONT], false);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	//to do: transformation code here
-	modelStack.Translate(-OFFSET, 0, 0);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(1000, 1000, 1000);
-	RenderMesh(meshList[GEO_LEFT], false);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	//to do: transformation code here
-	modelStack.Translate(OFFSET, 0, 0.25);
-	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Scale(1000, 1000, 1000);
-	RenderMesh(meshList[GEO_RIGHT], false);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	//to do: transformation code here
-	modelStack.Translate(0, 0, OFFSET);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(1000, 1000, 1000);
-	RenderMesh(meshList[GEO_BACK], false);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	//to do: transformation code here
-	modelStack.Translate(0, OFFSET, 0);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Rotate(90, 0, 0, 1);
-	modelStack.Scale(1000, 1000, 1000);
-	RenderMesh(meshList[GEO_TOP], false);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	//to do: transformation code here
-	modelStack.Translate(0, -OFFSET, 0);
-	modelStack.Rotate(-90, 1, 0, 0);
-	modelStack.Rotate(-90, 0, 0, 1);
-	modelStack.Scale(1000, 1000, 1000);
-	RenderMesh(meshList[GEO_BOTTOM], false);
-	modelStack.PopMatrix();
-}
-
-void SceneUI::RenderText(Mesh* mesh, std::string text, Color color)
+void SP_Start::RenderText(Mesh* mesh, std::string text, Color color)
 {
 
 	if (!mesh || mesh->textureID <= 0) //Proper error check
@@ -141,7 +87,7 @@ void SceneUI::RenderText(Mesh* mesh, std::string text, Color color)
 
 
 
-void SceneUI::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y)
+void SP_Start::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y)
 {
 	if (!mesh || mesh->textureID <= 0) //Proper error check
 		return;
@@ -181,7 +127,7 @@ void SceneUI::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, floa
 	glEnable(GL_DEPTH_TEST); //uncomment for RenderTextOnScreen
 }
 
-void SceneUI::RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey)
+void SP_Start::RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey)
 {
 	glDisable(GL_DEPTH_TEST);
 	Mtx44 ortho;
@@ -201,7 +147,8 @@ void SceneUI::RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey)
 	modelStack.PopMatrix();
 	glEnable(GL_DEPTH_TEST);
 }
-void SceneUI::Init()
+
+void SP_Start::Init()
 {
 
 
@@ -279,63 +226,24 @@ void SceneUI::Init()
 	// Generate a default VAO for now
 	glGenVertexArrays(1, &m_vertexArrayID);
 	glBindVertexArray(m_vertexArrayID);	
-	rotateAngle = 0;
+	
 	for (int i = 0; i < NUM_GEOMETRY; ++i)
 	{
 		meshList[i] = nullptr;
 	}
 
-	meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
-	meshList[GEO_SPHERE] = MeshBuilder::GenerateSphere("sphere", Color(1, 0.4, 0), 10, 20, 1.f);	
-
+	
 	meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("sphere", Color(1, 0.4, 0), 10, 20, 1.f);
 
 	meshList[GEO_QUAD] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
-	meshList[GEO_QUAD]->textureID = LoadTGA("Image//color.tga");
+	meshList[GEO_QUAD]->textureID = LoadTGA("Image//Start.tga");
 
-	meshList[GEO_CUBE] = MeshBuilder::GenerateCube("cube", Color(1, 1, 1), 1.f);
-	meshList[GEO_CUBE]->textureID = LoadTGA("Image//color.tga");
-
-	meshList[GEO_FRONT] = MeshBuilder::GenerateQuad("front", Color(1, 1, 1), 1.f);
-	meshList[GEO_FRONT]->textureID = LoadTGA("Image//front.tga");
-
-	meshList[GEO_LEFT] = MeshBuilder::GenerateQuad("left", Color(1, 1, 1), 1.f);
-	meshList[GEO_LEFT]->textureID = LoadTGA("Image//left.tga");
-
-	meshList[GEO_RIGHT] = MeshBuilder::GenerateQuad("right", Color(1, 1, 1), 1.f);
-	meshList[GEO_RIGHT]->textureID = LoadTGA("Image//right.tga");
-
-	meshList[GEO_TOP] = MeshBuilder::GenerateQuad("top", Color(1, 1, 1), 1.f);
-	meshList[GEO_TOP]->textureID = LoadTGA("Image//top.tga");
-
-	meshList[GEO_BOTTOM] = MeshBuilder::GenerateQuad("bottom", Color(1, 1, 1), 1.f);
-	meshList[GEO_BOTTOM]->textureID = LoadTGA("Image//bottom.tga");
-
-	meshList[GEO_BACK] = MeshBuilder::GenerateQuad("back", Color(1, 1, 1), 1.f);
-	meshList[GEO_BACK]->textureID = LoadTGA("Image//back.tga");
+	
 
 	meshList[GEO_BLEND] = MeshBuilder::GenerateQuad("blend", Color(1, 1, 1), 1.f);
 	meshList[GEO_BLEND]->textureID = LoadTGA("Image//NYP.tga");
 
-	//meshList[GEO_MODEL1] = MeshBuilder::GenerateOBJ("model1", "OBJ//chair.obj");
-	//meshList[GEO_MODEL1]->textureID = LoadTGA("Image//chair.tga");
-
-	//meshList[GEO_MODEL2] = MeshBuilder::GenerateOBJ("model2", "OBJ//doorman.obj");
-	//meshList[GEO_MODEL2]->textureID = LoadTGA("Image//doorman.tga");
-
-	//meshList[GEO_MODEL3] = MeshBuilder::GenerateOBJ("model3", "OBJ//dartboard.obj");
-	//meshList[GEO_MODEL3]->textureID = LoadTGA("Image//dartboard.tga");
-
-	//meshList[GEO_MODEL4] = MeshBuilder::GenerateOBJ("model4", "OBJ//shoe.obj");
-	//meshList[GEO_MODEL4]->textureID = LoadTGA("Image//shoe.tga");
-
-	//meshList[GEO_MODEL5] = MeshBuilder::GenerateOBJ("model5", "OBJ//winebottle.obj");
-	//meshList[GEO_MODEL5]->textureID = LoadTGA("Image//winebottle.tga");
-	//
-	//meshList[GEO_MODEL7] = MeshBuilder::GenerateOBJMTL("model7", "OBJ//house_type01.obj", "OBJ//house_type01.mtl");
-	//
-	//meshList[GEO_MODEL8] = MeshBuilder::GenerateOBJMTL("model7", "OBJ//cottage_obj.obj", "OBJ//cottage_obj.mtl"); //cottage_diffuse
-	//meshList[GEO_MODEL8]->textureID = LoadTGA("Image//cottage_diffuse.tga");
+	
 
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16,16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//comicsans.tga");
@@ -354,67 +262,17 @@ void SceneUI::Init()
 
 }
 
-void SceneUI::Update(double dt)
+void SP_Start::Update(double dt)
 {
 
-	if (Application::IsKeyPressed('1'))
-	{
-		glEnable(GL_CULL_FACE);
-	}
-	if (Application::IsKeyPressed('2'))
-	{
-		glDisable(GL_CULL_FACE);
-	}
-	if (Application::IsKeyPressed('3'))
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //default fill mode
-	}
-	if (Application::IsKeyPressed('4'))
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
-	}
-	if (Application::IsKeyPressed('I'))
-		light[0].position.z -= (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('K'))
-		light[0].position.z += (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('J'))
-		light[0].position.x -= (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('L'))
-		light[0].position.x += (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('O'))
-		light[0].position.y -= (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('P'))
-		light[0].position.y += (float)(LSPEED * dt);
-
-	if (Application::IsKeyPressed('5'))
-	{
-		
-		light[0].type = Light::LIGHT_POINT;
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
-
-	}
-	else if (Application::IsKeyPressed('6'))
-	{
-		light[0].type = Light::LIGHT_DIRECTIONAL;
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
-		//to do: switch light type to DIRECTIONAL and pass the information to shader
-	}
-	else if (Application::IsKeyPressed('7'))
-	{
-		light[0].type = Light::LIGHT_SPOT;
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
-		//to do: switch light type to SPOT and pass the information to shader
-	}
+	
 
 	//Mouse Inputs
 	static bool bLButtonState = false;
 	if (!bLButtonState && Application::IsMousePressed(0))
 	{
 		bLButtonState = true;
-		std::cout << "LBUTTON DOWN" << std::endl;
+		//std::cout << "LBUTTON DOWN" << std::endl;
 		//Converting Viewport space to UI space
 		double x, y;
 		double BUTTON_LEFT;
@@ -423,9 +281,9 @@ void SceneUI::Update(double dt)
 		unsigned h = Application::GetWindowHeight();
 		float posX = x/w*80; //convert (0,800) to (0,80)
 		float posY = 60-(y/h*60); //convert (600,0) to (0,60)
-		std::cout << "cursorX:" << x << " , cursorY:" << y << std::endl;
-		std::cout << "posX:" << posX << " , posY:" << posY << std::endl;
-		if (posX > 30 && posX < 50  && posY > 25 && posY < 35)
+		/*std::cout << "cursorX:" << x << " , cursorY:" << y << std::endl;
+		std::cout << "posX:" << posX << " , posY:" << posY << std::endl;*/
+		if (posX > 18 && posX < 60  && posY > 20 && posY < 40)
 		{
 			std::cout << "Hit!" << std::endl;
 			//trigger user action or function
@@ -438,27 +296,17 @@ void SceneUI::Update(double dt)
 	else if (bLButtonState && !Application::IsMousePressed(0))
 	{
 		bLButtonState = false;
-		std::cout << "LBUTTON UP" << std::endl;
+		//std::cout << "LBUTTON UP" << std::endl;
 	}
-	static bool bRButtonState = false;
-	if (!bRButtonState && Application::IsMousePressed(1))
-	{
-		bRButtonState = true;
-		std::cout << "RBUTTON DOWN" << std::endl;
-	}
-	else if (bRButtonState && !Application::IsMousePressed(1))
-	{
-		bRButtonState = false;
-		std::cout << "RBUTTON UP" << std::endl;
-	}
+	
 
-	rotateAngle += (float)(20 * dt);
+	
 	camera.Update(dt);
 	FPS = std::to_string(1.f / dt);
 }
 
 
-void SceneUI::Render()
+void SP_Start::Render()
 {
 	// Render VBO here
 	//Clear color buffer every frame
@@ -492,114 +340,25 @@ void SceneUI::Render()
 	}
 	//**************************************************************************************************************
 
-	RenderMesh(meshList[GEO_AXES], false);
-	modelStack.PushMatrix();
-	modelStack.Translate(light[0].position.x, light[0].position.y, light[0].position.z);
-	RenderMesh(meshList[GEO_LIGHTBALL], false);
-	modelStack.PopMatrix();
-
-	RenderSkybox();
-
-
-	//modelStack.PushMatrix();
-	////to do: transformation code here
-	//modelStack.Translate(0, 0, 0);
-	//modelStack.Rotate(270, 1, 0, 0);
-	//modelStack.Scale(250, 250, 250);
-	//RenderMesh(meshList[GEO_QUAD], false);
-	//modelStack.PopMatrix();
-
-
-	//modelStack.PushMatrix();
-	////to do: transformation code here
-	//modelStack.Translate(0, 0, 0);
-	//modelStack.Rotate(0, 1, 0, 0);
-	//modelStack.Scale(50, 50, 50);
-	//RenderMesh(meshList[GEO_CUBE], false);
-	//modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 60, -100);
-	modelStack.Rotate(90,1,0,0);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(100, 100, 100);
-	RenderMesh(meshList[GEO_BLEND], false);
-	modelStack.PopMatrix();
-
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 0);
-	modelStack.Rotate(-90, 1, 0, 0);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(100, 100, 100);
-	RenderMesh(meshList[GEO_QUAD], true);
-	modelStack.PopMatrix();
-
-	//modelStack.PushMatrix();
-	//modelStack.Translate(0, 2, 5);
-	//modelStack.Rotate(0, 0, 0, 1);
-	//modelStack.Scale(0.2, 0.2, 0.2);
-	//RenderMesh(meshList[GEO_MODEL1], true);
-	//modelStack.PopMatrix();
-
-	//modelStack.PushMatrix();
-	//modelStack.Translate(10, 0, 0);
-	//modelStack.Rotate(0, 0, 0, 1);
-	//RenderMesh(meshList[GEO_MODEL2], true);
-	//modelStack.PopMatrix();
-
-	//modelStack.PushMatrix();
-	//modelStack.Translate(12, 0, 0);
-	//modelStack.Rotate(0, 0, 0, 1);
-	//RenderMesh(meshList[GEO_MODEL3], true);
-	//modelStack.PopMatrix();
-
-	//modelStack.PushMatrix();
-	//modelStack.Translate(8, 0, 0);
-	//modelStack.Rotate(0, 0, 0, 1);
-	//RenderMesh(meshList[GEO_MODEL4], true);
-	//modelStack.PopMatrix();
-
-	//modelStack.PushMatrix();
-	//modelStack.Translate(16, 0, 0);
-	//modelStack.Rotate(0, 0, 0, 1);
-	//RenderMesh(meshList[GEO_MODEL5], true);
-	//modelStack.PopMatrix();
-
-	//modelStack.PushMatrix();
-	//modelStack.Translate(-5, 0, 0);
-	//modelStack.Rotate(0, 0, 0, 1);
-	//modelStack.Scale(15, 15, 15);
-	//RenderMesh(meshList[GEO_MODEL7], true);
-	//modelStack.PopMatrix();
-
-	//modelStack.PushMatrix();
-	//modelStack.Translate(-15, 0, -12);
-	//modelStack.Rotate(0, 0, 0, 1);
-	//modelStack.Scale(1, 1, 1);
-	//RenderMesh(meshList[GEO_MODEL8], true);
-	//modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 3, 0);
-	modelStack.Rotate(0, 0, 0, 1);
-	modelStack.Scale(1,1,1);
-	RenderText(meshList[GEO_TEXT], "hello world", Color(0, 1, 0));
-	modelStack.PopMatrix();
-
-	
-	RenderMeshOnScreen(meshList[GEO_QUAD], 40, 30, 20, 10);
 	
 	
 
 
-	//No transform needed
-	RenderTextOnScreen(meshList[GEO_TEXT], "hello screen", Color(0, 1, 0), 4, 0, 3);
-	RenderTextOnScreen(meshList[GEO_TEXT], FPS , Color(0, 1, 0), 4, 15, 0);
-	RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 1, 0), 4, 0, 0);
+	
+
+	
+	RenderMeshOnScreen(meshList[GEO_QUAD], 40, 30, 50, 60);
+	
+	
+
+
+	////No transform needed
+	//RenderTextOnScreen(meshList[GEO_TEXT], "hello screen", Color(0, 1, 0), 4, 0, 3);
+	//RenderTextOnScreen(meshList[GEO_TEXT], FPS , Color(0, 1, 0), 4, 15, 0);
+	//RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 1, 0), 4, 0, 0);
 }
 
-void SceneUI::Exit()
+void SP_Start::Exit()
 {
 	// Cleanup VBO here
 	for (int i = 0; i < NUM_GEOMETRY; ++i)

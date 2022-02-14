@@ -10,8 +10,8 @@
 //Include the standard C++ headers
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "SceneUI.h"
+#include "SP_Start.h"
 #include "Assignment2.h"
 
 
@@ -128,7 +128,7 @@ void Application::Run()
 {
 	//Main Loop
 	
-	Scene *scene1 = new SceneUI();
+	Scene *scene1 = new SP_Start();
 	Scene* scene2 = new Assignment2();
 	Scene *scene = scene1;
 	scene1->Init();
