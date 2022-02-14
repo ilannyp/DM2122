@@ -129,7 +129,8 @@ void Application::Run()
 	//Main Loop
 	
 	Scene *scene1 = new SP_Start();
-	Scene* scene2 = new SP();
+	Scene *scene2 = new SP();
+	 
 	Scene *scene = scene1;
 	scene1->Init();
 	scene2->Init();
@@ -137,9 +138,7 @@ void Application::Run()
 	m_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
 	while (!glfwWindowShouldClose(m_window) && !IsKeyPressed(VK_ESCAPE))
 	{
-		if (IsKeyPressed(VK_F1))
-			scene = scene1;
-		else if (IsKeyPressed(VK_F2))
+		if (IsKeyPressed(VK_RETURN))
 			scene = scene2;
 		scene->Update(m_timer.getElapsedTime());
 		scene->Render();

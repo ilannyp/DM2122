@@ -236,7 +236,7 @@ void SP_Start::Init()
 	meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("sphere", Color(1, 0.4, 0), 10, 20, 1.f);
 
 	meshList[GEO_QUAD] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
-	meshList[GEO_QUAD]->textureID = LoadTGA("Image//Start.tga");
+	meshList[GEO_QUAD]->textureID = LoadTGA("Image//Press_Enter.tga");
 
 	
 
@@ -244,6 +244,7 @@ void SP_Start::Init()
 	meshList[GEO_BLEND]->textureID = LoadTGA("Image//NYP.tga");
 
 	
+
 
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16,16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//comicsans.tga");
@@ -264,42 +265,6 @@ void SP_Start::Init()
 
 void SP_Start::Update(double dt)
 {
-
-	
-
-	//Mouse Inputs
-	static bool bLButtonState = false;
-	if (!bLButtonState && Application::IsMousePressed(0))
-	{
-		bLButtonState = true;
-		//std::cout << "LBUTTON DOWN" << std::endl;
-		//Converting Viewport space to UI space
-		double x, y;
-		double BUTTON_LEFT;
-		Application::GetCursorPos(&x, &y);
-		unsigned w = Application::GetWindowWidth();
-		unsigned h = Application::GetWindowHeight();
-		float posX = x/w*80; //convert (0,800) to (0,80)
-		float posY = 60-(y/h*60); //convert (600,0) to (0,60)
-		/*std::cout << "cursorX:" << x << " , cursorY:" << y << std::endl;
-		std::cout << "posX:" << posX << " , posY:" << posY << std::endl;*/
-		if (posX > 18 && posX < 60  && posY > 20 && posY < 40)
-		{
-			std::cout << "Hit!" << std::endl;
-			//trigger user action or function
-		}
-		else
-		{
-			std::cout << "Miss!" << std::endl;
-		}
-	}
-	else if (bLButtonState && !Application::IsMousePressed(0))
-	{
-		bLButtonState = false;
-		//std::cout << "LBUTTON UP" << std::endl;
-	}
-	
-
 	
 	camera.Update(dt);
 	FPS = std::to_string(1.f / dt);
