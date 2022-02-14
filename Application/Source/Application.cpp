@@ -12,7 +12,7 @@
 #include <stdlib.h>
 
 #include "SceneUI.h"
-#include "SP.h"
+#include "Assignment2.h"
 
 
 GLFWwindow* m_window;
@@ -129,7 +129,7 @@ void Application::Run()
 	//Main Loop
 	
 	Scene *scene1 = new SceneUI();
-	Scene* scene2 = new SP();
+	Scene* scene2 = new Assignment2();
 	Scene *scene = scene1;
 	scene1->Init();
 	scene2->Init();
