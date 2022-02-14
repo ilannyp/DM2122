@@ -31,7 +31,7 @@ void Camera3::Update(double dt)
 	Vector3 temp;
 	Vector3 view = (target - position).Normalized();
 	Vector3 right = view.Cross(up);
-
+	
 
 	
 	if(Application::IsKeyPressed(VK_RIGHT))

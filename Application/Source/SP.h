@@ -109,6 +109,10 @@ class SP : public Scene
 	};
 	
 private:
+	//sp stuff
+	bool tut_text=true;
+
+	//-------------------------------------//
 	float rotateAngle;
 	float translateX = 1;
 	float translateZ = 1;
