@@ -1,4 +1,4 @@
-#include "SP.h"
+#include "Scene_LV3.h"
 #include "GL\glew.h"
 #include "Application.h"
 #include "shader.hpp"
@@ -8,18 +8,18 @@
 #include "LoadTGA.h"
 
 
-SP::SP()
+Scene_LV3::Scene_LV3()
 {
 
 }
 
-SP::~SP()
+Scene_LV3::~Scene_LV3()
 {
 }
 
 
 
-void SP::RenderMesh(Mesh* mesh, bool enableLight)
+void Scene_LV3::RenderMesh(Mesh* mesh, bool enableLight)
 {
 	Mtx44 MVP, modelView, modelView_inverse_transpose;
 
@@ -60,7 +60,7 @@ void SP::RenderMesh(Mesh* mesh, bool enableLight)
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 }
-void SP::RenderSkybox()
+void Scene_LV3::RenderSkybox()
 {
 	const float OFFSET = 499;
 
@@ -118,7 +118,7 @@ void SP::RenderSkybox()
 	modelStack.PopMatrix();
 }
 
-void SP::RenderScammer()
+void Scene_LV3::RenderScammer()
 {
 	modelStack.PushMatrix();
 	modelStack.Translate(0, 0, 30);
@@ -136,7 +136,7 @@ void SP::RenderScammer()
 	RenderText(meshList[GEO_TEXT],"Press E to interact",Color(0,1,0) );
 	modelStack.PopMatrix();
 }
-void SP::RenderFloor()
+void Scene_LV3::RenderFloor()
 {
 	modelStack.PushMatrix();
 	modelStack.Translate(0, 0, 0);
@@ -147,7 +147,7 @@ void SP::RenderFloor()
 	modelStack.PopMatrix();
 }
 
-void SP::RenderRightSide()
+void Scene_LV3::RenderRightSide()
 {
 	//right side
 	modelStack.PushMatrix();
@@ -171,7 +171,7 @@ void SP::RenderRightSide()
 	RenderMesh(meshList[GEO_GRAVE], true);
 	modelStack.PopMatrix();
 }
-void SP::RenderLeftSide()
+void Scene_LV3::RenderLeftSide()
 {
 	//left side
 	modelStack.PushMatrix();
@@ -225,7 +225,7 @@ void SP::RenderLeftSide()
 	RenderMesh(meshList[GEO_LANTERN], true);
 	modelStack.PopMatrix();
 }
-void SP::RenderBackSide()
+void Scene_LV3::RenderBackSide()
 {
 	//back side
 	modelStack.PushMatrix();
@@ -235,7 +235,7 @@ void SP::RenderBackSide()
 	RenderMesh(meshList[GEO_TALLROCK], true);
 	modelStack.PopMatrix();
 }
-void SP::RenderFrontSide()
+void Scene_LV3::RenderFrontSide()
 {
 	//in front
 	modelStack.PushMatrix();
@@ -281,7 +281,7 @@ void SP::RenderFrontSide()
 	modelStack.PopMatrix();
 
 }
-void SP::RenderRoads()
+void Scene_LV3::RenderRoads()
 {
 	//roads
 	modelStack.PushMatrix();
@@ -341,7 +341,7 @@ void SP::RenderRoads()
 	RenderMesh(meshList[GEO_ROAD], true);
 	modelStack.PopMatrix();
 }
-void SP::RenderBullet()
+void Scene_LV3::RenderBullet()
 {
 	modelStack.PushMatrix();
 	modelStack.Translate(bullet.x, 1, bullet.z);
@@ -393,7 +393,7 @@ void SP::RenderBullet()
 	modelStack.PopMatrix();
 
 }
-void SP::RenderLamps()
+void Scene_LV3::RenderLamps()
 {
 	//my lamps
 	modelStack.PushMatrix();
@@ -453,7 +453,7 @@ void SP::RenderLamps()
 	modelStack.PopMatrix();
 
 }
-void SP::RenderText(Mesh* mesh, std::string text, Color color)
+void Scene_LV3::RenderText(Mesh* mesh, std::string text, Color color)
 {
 
 	if (!mesh || mesh->textureID <= 0) //Proper error check
@@ -481,7 +481,7 @@ void SP::RenderText(Mesh* mesh, std::string text, Color color)
 
 
 
-void SP::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y)
+void Scene_LV3::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y)
 {
 	if (!mesh || mesh->textureID <= 0) //Proper error check
 		return;
@@ -523,7 +523,7 @@ void SP::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float siz
 
 
 
-void SP::Init()
+void Scene_LV3::Init()
 {
 
 
@@ -787,7 +787,7 @@ void SP::Init()
 	}
 }
 
-void SP::Update(double dt)
+void Scene_LV3::Update(double dt)
 {
 	Vector3 scammerpos = scammer_pos - camera.position;
 	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
@@ -987,7 +987,7 @@ void SP::Update(double dt)
 }
 
 
-void SP::Render()
+void Scene_LV3::Render()
 {
 	// Render VBO here
 	//Clear color buffer every frame
@@ -1128,7 +1128,7 @@ void SP::Render()
 
 }
 
-void SP::Exit()
+void Scene_LV3::Exit()
 {
 	// Cleanup VBO here
 	for (int i = 0; i < NUM_GEOMETRY; ++i)

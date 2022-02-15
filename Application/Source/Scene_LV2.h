@@ -1,5 +1,5 @@
-#ifndef SP_H
-#define SP_H
+#ifndef Scene_LV2_H
+#define Scene_LV2_H
 #pragma once
 #include "Scene.h"
 #include "Camera3.h"
@@ -9,7 +9,7 @@
 #include "Light.h"
 
 
-class SP : public Scene
+class Scene_LV2 : public Scene
 {
 	enum UNIFORM_TYPE
 	{
@@ -169,8 +169,8 @@ private:
 	Camera2 benchcamera;
 	MS modelStack, viewStack, projectionStack;
 public:
-	SP();
-	~SP();
+	Scene_LV2();
+	~Scene_LV2();
 	
 
 	virtual void Init();
