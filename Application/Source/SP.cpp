@@ -128,13 +128,15 @@ void SP::RenderScammer()
 	RenderMesh(meshList[GEO_HORNET], true);
 	modelStack.PopMatrix();
 
-	
-	modelStack.PushMatrix();
-	modelStack.Translate(3, 5, 30);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(0.5, 0.5, 0.5);
-	RenderText(meshList[GEO_TEXT],"Press E to interact",Color(0,1,0) );
-	modelStack.PopMatrix();
+	if (scammaer_talk == true)
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(3, 5, 30);
+		modelStack.Rotate(180, 0, 1, 0);
+		modelStack.Scale(0.5, 0.5, 0.5);
+		RenderText(meshList[GEO_TEXT],"Press E to interact",Color(0,1,0) );
+		modelStack.PopMatrix();
+	}
 }
 void SP::RenderFloor()
 {
@@ -859,7 +861,10 @@ void SP::Update(double dt)
 
 	if (scammerdis<25)
 	{
+		if(!scammaer_talk==Application::IsKeyPressed('E'))
+		{
 
+		}
 	}
 	/**********************************************************************************************************/
 	

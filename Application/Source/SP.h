@@ -112,7 +112,7 @@ class SP : public Scene
 	
 private:
 	//sp stuff
-	bool tut_text=true;
+	bool tut_text=true,scammaer_talk=false;
 	Vector3 scammer_pos = Vector3(0, 0, 0);
 	//-------------------------------------//
 	float rotateAngle;
