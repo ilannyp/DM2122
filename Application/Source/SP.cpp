@@ -153,6 +153,13 @@ void SP::RenderRightSide()
 	modelStack.Scale(10, 7, 10);
 	RenderMesh(meshList[GEO_GRAVE], true);
 	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-24, 0, 73);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(10, 10, 10);
+	RenderMesh(meshList[GEO_LANTERN], true);
+	modelStack.PopMatrix();
 }
 void SP::RenderLeftSide()
 {
@@ -201,18 +208,13 @@ void SP::RenderLeftSide()
 	modelStack.PopMatrix();
 
 
-	modelStack.PushMatrix();
-	modelStack.Translate(-24, 0, 73);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 10, 10);
-	RenderMesh(meshList[GEO_LANTERN], true);
-	modelStack.PopMatrix();
+
 }
 void SP::RenderBackSide()
 {
 	//back side
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -35);
+	modelStack.Translate(0, 0, -105);
 	modelStack.Rotate(180, 0, 1, 0);
 	modelStack.Scale(50, 50, 50);
 	RenderMesh(meshList[GEO_TALLROCK], true);
@@ -687,12 +689,7 @@ void SP::Init()
 
 		meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("sphere", Color(1, 1, 1), 10, 20, 1.f);		//light for lamppost
 
-
-
 		meshList[GEO_HORNET] = MeshBuilder::GenerateOBJMTL("hornet", "OBJ//zombie.obj", "OBJ//zombie.mtl");
-
-
-
 
 		meshList[GEO_ROCKS] = MeshBuilder::GenerateOBJMTL("rocks", "OBJ//rocks.obj", "OBJ//rocks.mtl");
 		meshList[GEO_ROCKS]->textureID = LoadTGA("Image//rockwall.tga");

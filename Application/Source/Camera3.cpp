@@ -77,9 +77,9 @@ void Camera3::Update(double dt)
 	if(Application::IsKeyPressed('W'))
 	{
 		temp = position + view * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z < -14) && !(temp.x > 18) && !(temp.x < -103) && 
-			!(temp.z > 103) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72) && 
-			!(temp.z < 74 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.x <= -33) && 
+		if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
+			!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
+			!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
 			!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 84))
 		{
 			position += view * ZOOM_SPEED * static_cast<float>(dt);
@@ -91,9 +91,9 @@ void Camera3::Update(double dt)
 	if(Application::IsKeyPressed('S'))
 	{
 		temp = position - view * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z < -14) && !(temp.x > 18) && !(temp.x < -103) &&
-			!(temp.z > 103) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72) &&
-			!(temp.z < 74 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.x <= -33) &&
+		if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
+			!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
+			!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
 			!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 84))
 		{
 			position -= view * ZOOM_SPEED * static_cast<float>(dt);
@@ -105,9 +105,9 @@ void Camera3::Update(double dt)
 	if (Application::IsKeyPressed('A'))
 	{
 		temp = position - right * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z < -14) && !(temp.x > 18) && !(temp.x < -103) &&
-			!(temp.z > 103) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72) &&
-			!(temp.z < 74 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.x <= -33) &&
+		if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
+			!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
+			!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
 			!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 84))
 		{
 			position -= right * ZOOM_SPEED * static_cast<float>(dt);
@@ -119,9 +119,9 @@ void Camera3::Update(double dt)
 	if (Application::IsKeyPressed('D'))
 	{
 		temp = position + right * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z < -14) && !(temp.x > 18) && !(temp.x < -103) &&
-			!(temp.z > 103) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72) &&
-			!(temp.z < 74 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.x <= -33) &&
+		if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
+			!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
+			!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
 			!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 84))
 		{
 			position += right * ZOOM_SPEED * static_cast<float>(dt);
