@@ -122,19 +122,17 @@ void SP::RenderScammer()
 {
 	modelStack.PushMatrix();
 	modelStack.Translate(0, 0, 30);
+	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
 	modelStack.Rotate(180, 0, 1, 0);
 	modelStack.Scale(5, 5, 5);
 	RenderMesh(meshList[GEO_HORNET], true);
 	modelStack.PopMatrix();
 
 	
-}
-void SP::RenderScammer_E()
-{
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 30);
+	modelStack.Translate(3, 5, 30);
 	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(5, 5, 5);
+	modelStack.Scale(0.5, 0.5, 0.5);
 	RenderText(meshList[GEO_TEXT],"Press E to interact",Color(0,1,0) );
 	modelStack.PopMatrix();
 }
@@ -791,6 +789,8 @@ void SP::Init()
 
 void SP::Update(double dt)
 {
+	Vector3 scammerpos = scammer_pos - camera.position;
+	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
 
 	if (Application::IsKeyPressed('1'))
 	{
@@ -856,8 +856,8 @@ void SP::Update(double dt)
 	{
 		tut_text = false;
 	}
-	//Jump
-	if (Application::IsKeyPressed(VK_SPACE))
+
+	if (scammerdis<25)
 	{
 
 	}

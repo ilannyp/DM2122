@@ -113,7 +113,7 @@ class SP : public Scene
 private:
 	//sp stuff
 	bool tut_text=true;
-
+	Vector3 scammer_pos = Vector3(0, 0, 0);
 	//-------------------------------------//
 	float rotateAngle;
 	float translateX = 1;
@@ -150,7 +150,6 @@ private:
 	void RenderMesh(Mesh* mesh, bool enableLight);
 	void RenderSkybox();
 	void RenderScammer();
-	void RenderScammer_E();
 	void RenderFloor();
 	void RenderRightSide();
 	void RenderLeftSide();
