@@ -148,8 +148,9 @@ private:
 
 
 	//sp stuff
-	bool tut_text = true;
-
+	bool tut_text=true,scammaer_talk=false;
+	Vector3 scammer_pos = Vector3(0, 0, 30);
+	std::string scammer_text;
 	//-------------------------------------//
 	float rotateAngle;
 	float translateX = 1;
