@@ -21,6 +21,7 @@ class SP : public Scene
 		U_MATERIAL_SPECULAR,
 		U_MATERIAL_SHININESS,
 
+		//light0
 		U_LIGHT0_POSITION,
 		U_LIGHT0_COLOR,
 		U_LIGHT0_POWER,
@@ -33,6 +34,7 @@ class SP : public Scene
 		U_LIGHT0_COSINNER,
 		U_LIGHT0_EXPONENT,
 
+		//light1
 		U_LIGHT1_POSITION,
 		U_LIGHT1_COLOR,
 		U_LIGHT1_POWER,
@@ -64,19 +66,14 @@ class SP : public Scene
 		GEO_CUBE,
 		GEO_CIRCLE,
 		GEO_SPHERE,
-		GEO_BODY,
-		GEO_SPHERE2,
 		GEO_LAMPLIGHT,
 		GEO_LIGHTBALL,
 		GEO_CYLINDER,
 		GEO_CAPE,
 		GEO_CONE,
 		GEO_HEMISPHERE,
-		GEO_HEMISPHERE2,
-		GEO_HEMISPHERE3,
 		GEO_TORUS,
 		GEO_HALFTORUS,
-		GEO_SWORD,
 		GEO_LEFT,
 		GEO_RIGHT,
 		GEO_TOP,
@@ -88,11 +85,9 @@ class SP : public Scene
 	//*********obj models*********
 		GEO_HOLLOW,
 		GEO_HORNET,
-		GEO_BENCH,
 		GEO_ROCKS,
 		GEO_TALLROCK,
 		GEO_STONEWALL,
-		GEO_BROKENBENCH,
 		GEO_STONEWALLDAMAGED,
 		GEO_CRYPT,
 		GEO_ROAD,
@@ -101,9 +96,16 @@ class SP : public Scene
 		GEO_GRAVE,
 		GEO_LANTERN,
 		GEO_BULLET,
-		GEO_FIREBASKET,
 		GEO_TEXT,
 		GEO_TEXT2,
+
+
+
+		//**Scammer**
+		GEO_SCAMMER,
+
+
+
 		NUM_GEOMETRY,
 		
 	};
@@ -121,90 +123,19 @@ private:
 	float LSPEED = 10.f;
 
 
-	int spellbodyUp = 0;
-	int spellheadrotate = 1;
-	int spelllegrotate = 1;
-	int spellarmrotate = 1;
-
-	int spellcaperotate = 1;
-	int spellcaperotate2 = 1;
-	int spellcaperotate3 = 1;
-	int spellcaperotate4 = 1;
-	int spellcaperotate5 = 1;
-	int spellcaperotate6 = 1;
-
-	int reversespellcaperotate = 1;
-	int reversespellcaperotate2 = 1;
-	int reversespellcaperotate3 = 1;
-	int reversespellcaperotate4 = 1;
-	int reversespellcaperotate5 = 1;
-	int reversespellcaperotate6 = 1;
-
-	int spellcapetranslateZ = 0;
-	int spellcapetranslateX = 0;
-	int spellcapetranslateY = 0;
-
-	int spellswordtranslate = 0;
-
-	int spellarmtranslateX = 0;
-	int spelllegTranslateY = 0;
-	int spellarmTranslateZ = 0;
-	int spelllegTranslateZ = 0;
 
 
-	int swordTranslateX = 0;
-	int swordTranslateY = 0;
-	int swordTranslateZ = 0;
-	int armTranslateX = 0;
-	int armTranslateY = 0;
-	int armTranslateZ = 0;
-	int firstlegRotate = 1;
-	int secondlegRotate = 1;
-	int reverseRotate = 1;
-	int reverseRotateLeg = 1;
-	int reverseRotateLeg2 = -1;
-	int reverseRotateLeg3 = 1;
-	int reverseRotateLeg4 = -1;
-	int rotateBody = 1;
-	int swordRotate = 1;
-	int swordRotate2 = 1;
-	int spellx = 1;
-	int spelly = -40;
-	int spellz = 20;
-	float timer;
-	//for bench
-	int isonbench = 0;
-	bool issitting = false;
-	bool isclosetobench = false;
-	bool benchinteract = false;
-	bool benchcam;
-	int benchposx = 0;
-	int benchposz = 0;
 	
 	
-	//for corpse npc
-	bool isclosetonpc = false;
-	bool npcinteract = false;
-	int npcx = 0;
-	int npcz = 0;
-
-	int characterRotate;
-	//Interaction for battle
-	bool isclosetobasket;
-	bool basketinteract;
-	int basketx;
-	int basketz;
-	int playerhealth = 20;
-	int enemyhealth = 100;
-	int enemyx = 0;
-	int enemyz = 0;
+	int playerhealth = 20;//slight change to make it into currency
+	int enemyz = 0;//i assume this is where the arrow line -irfan
 	bool battlestart = false;
 	bool win = false;
 	bool die = false;
 	bool hit = false;
-	int npchealth;
+
 	
-	int translatebasketz = 0;
+	
 
 	Vector3 bullet;
 	Vector3 bullet2;
@@ -215,9 +146,20 @@ private:
 	Vector3 bullet7;
 	Vector3 bullet8;
 	Vector3 spell;
-	Light light[3];
+	Light light[2];
 	void RenderMesh(Mesh* mesh, bool enableLight);
 	void RenderSkybox();
+	void RenderScammer();
+	void RenderScammer_E();
+	void RenderFloor();
+	void RenderRightSide();
+	void RenderLeftSide();
+	void RenderBackSide();
+	void RenderFrontSide();
+	void RenderRoads();
+	void RenderBullet();
+	void RenderLamps();
+
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
 	unsigned m_vertexArrayID;
@@ -230,7 +172,7 @@ private:
 public:
 	SP();
 	~SP();
-
+	
 
 	virtual void Init();
 	virtual void Update(double dt);
@@ -240,6 +182,7 @@ public:
 	std::string camerax;
 	std::string cameraz;
 	bool endscreen = false;
+	
 
 };
 

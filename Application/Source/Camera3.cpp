@@ -66,8 +66,6 @@ void Camera3::Update(double dt)
 	if(Application::IsKeyPressed(VK_UP))
 	{
 		float pitch = CAMERA_SPEED * static_cast<float>(dt);
-		Vector3 view = (target - position).Normalized();
-		Vector3 right = view.Cross(up);
 		right.y = 0;
 		right.Normalize();
 		up = right.Cross(view).Normalized();
