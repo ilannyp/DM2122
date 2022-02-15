@@ -404,7 +404,10 @@ void SP::Init()
 
 	meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
 	meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
-
+	//-----------------------------------------------------------------------
+	//SP
+	/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
+	meshList[GEO_SCAMMER]->textureID = LoadTGA("Image//scammer.tga");*/
 	//An array of 3 vectors which represents the colors of the 3 vertices
 
 	Mtx44 projection;
@@ -654,7 +657,7 @@ void SP::Update(double dt)
 	}
 
 	/*******************************************************************************************************/
-	//boundary check
+	//tutorial boundary check
 	if (camera.position.x > -15 && camera.position.x<26 && camera.position.z>-14 && camera.position.z < 103)
 	{
 		tut_text = true;
@@ -663,7 +666,11 @@ void SP::Update(double dt)
 	{
 		tut_text = false;
 	}
+	//Jump
+	if (Application::IsKeyPressed(VK_SPACE))
+	{
 
+	}
 	/**********************************************************************************************************/
 	//making character move with camera
 	if (camera.target.z - camera.position.z >= 0 && camera.target.x - camera.position.x <= 0) 
@@ -2141,16 +2148,20 @@ void SP::Render()
 		RenderText(meshList[GEO_TEXT], "Press 'R' to restart", Color(0, 0, 1));
 		modelStack.PopMatrix();
 	}
-
+	//----------------------------sp--------------------------------------
 	if (tut_text==true)
 	{
 		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 30);
 		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0, 1, 0), 2, 25, 28);
 	}
-
-
-
-
+	//modelStack.PushMatrix();
+	////scale, translate, rotate
+	//modelStack.Translate(0, 3, 18);
+	//modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Scale(5, 5, 5);
+	//RenderMesh(meshList[GEO_SCAMMER], true);
+	//modelStack.PopMatrix();
+	//----------------------------sp--------------------------------------
 	RenderTextOnScreen(meshList[GEO_TEXT], camerax , Color(0, 1, 0), 2, 6, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "X:", Color(0, 1, 0), 2, 0, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], cameraz, Color(0, 1, 0), 2, 6, 2);

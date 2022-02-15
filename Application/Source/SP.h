@@ -84,6 +84,8 @@ class SP : public Scene
 		GEO_FRONT,
 		GEO_BACK,
 		GEO_BLEND,
+		//**********SP************
+		GEO_SCAMMER,
 
 	//*********obj models*********
 		GEO_HOLLOW,
