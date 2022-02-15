@@ -2061,8 +2061,8 @@ void SP::Render()
 	}
 	if (isclosetonpc && npcinteract)
 	{
-		RenderTextOnScreen(meshList[GEO_TEXT2], "Corpse: man im dead. go get", Color(0, 1, 0), 3, 0, 15);
-		RenderTextOnScreen(meshList[GEO_TEXT2], "        revenge for me.", Color(0, 1, 0), 3, 0, 11);
+		RenderTextOnScreen(meshList[GEO_TEXT2], "Corpse: someone scammed and stabbed me.", Color(0, 1, 0), 3, 0, 15);
+		RenderTextOnScreen(meshList[GEO_TEXT2], "        pls help me get revenge.", Color(0, 1, 0), 3, 0, 11);
 	}
 	else
 	{
