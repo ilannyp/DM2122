@@ -118,26 +118,7 @@ void SP::RenderSkybox()
 	modelStack.PopMatrix();
 }
 
-void SP::RenderScammer()
-{
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 30);
-	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(5, 5, 5);
-	RenderMesh(meshList[GEO_HORNET], true);
-	modelStack.PopMatrix();
 
-	if (scammaer_talk == true)
-	{
-		modelStack.PushMatrix();
-		modelStack.Translate(3, 5, 30);
-		modelStack.Rotate(180, 0, 1, 0);
-		modelStack.Scale(0.5, 0.5, 0.5);
-		RenderText(meshList[GEO_TEXT],"Press E to interact",Color(0,1,0) );
-		modelStack.PopMatrix();
-	}
-}
 void SP::RenderFloor()
 {
 	modelStack.PushMatrix();
@@ -858,13 +839,35 @@ void SP::Update(double dt)
 	{
 		tut_text = false;
 	}
-
-	if (scammerdis<25)
+	static bool scammaer_talk = false;
+	static int count = 0;
+	if (Application::IsKeyPressed('E'))
 	{
-		if(!scammaer_talk==Application::IsKeyPressed('E'))
+		scammaer_talk = true;
+	}
+	else if (!Application::IsKeyPressed('E'))
+	{
+		scammaer_talk = false;
+	}
+	if (scammerdis<=10)
+	{
+		if (scammaer_talk)
 		{
-
+			count++;
 		}
+		if(count>=1)
+		{
+			//talk text
+			scammer_text = "Give me 5 gold and i'll give you head";
+		}
+		else
+		{
+			scammer_text = "Press E to talk";
+		}
+	}
+	else
+	{
+		scammer_text = " ";
 	}
 	/**********************************************************************************************************/
 	
@@ -990,7 +993,19 @@ void SP::Update(double dt)
 	
 	cameraz = std::to_string(camera.position.z);
 }
+void SP::RenderScammer()
+{
+	modelStack.PushMatrix();
+	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
+	//modelStack.Translate(0, 0, 30);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(5, 5, 5);
+	RenderMesh(meshList[GEO_HORNET], true);
+	modelStack.PopMatrix();
 
+	//RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
+	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);
+}
 
 void SP::Render()
 {
