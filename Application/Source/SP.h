@@ -83,6 +83,7 @@ class SP : public Scene
 		GEO_BLEND,
 		//**********SP************
 		GEO_SCAMMER,
+		GEO_COIN,
 
 	//*********obj models*********
 		GEO_HOLLOW,
@@ -112,8 +113,9 @@ class SP : public Scene
 	
 private:
 	//sp stuff
-	bool tut_text=true;
-	Vector3 scammer_pos = Vector3(0, 0, 0);
+	bool tut_text=true,scammaer_talk=false;
+	Vector3 scammer_pos = Vector3(0, 0, 30);
+	std::string scammer_text;
 	//-------------------------------------//
 	float rotateAngle;
 	float translateX = 1;
