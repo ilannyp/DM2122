@@ -712,6 +712,8 @@ void SP::Init()
 
 		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
+
+		//meshList[GEO_COIN] = MeshBuilder::GenerateOBJMTL("coin", "OBJ//coin.obj", "OBJ//coin.mtl");
 		//-----------------------------------------------------------------------
 		//SP
 		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
@@ -763,9 +765,9 @@ void SP::Init()
 
 
 
-		//**Scammer**
+		//sp
 		meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scammer", "OBJ//basicCharacter.obj");
-
+		
 
 	}
 }
@@ -1002,6 +1004,14 @@ void SP::RenderScammer()
 	modelStack.Scale(5, 5, 5);
 	RenderMesh(meshList[GEO_HORNET], true);
 	modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(5, 0, 30);
+	////modelStack.Translate(0, 0, 30);
+	//modelStack.Rotate(180, 0, 1, 0);
+	//modelStack.Scale(5, 5, 5);
+	//RenderMesh(meshList[GEO_COIN], true);
+	//modelStack.PopMatrix();
 
 	//RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);

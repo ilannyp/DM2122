@@ -83,6 +83,7 @@ class SP : public Scene
 		GEO_BLEND,
 		//**********SP************
 		GEO_SCAMMER,
+		GEO_COIN,
 
 	//*********obj models*********
 		GEO_HOLLOW,
