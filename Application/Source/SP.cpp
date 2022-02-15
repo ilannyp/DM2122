@@ -700,7 +700,7 @@ void SP::Init()
 		meshList[GEO_HORNET] = MeshBuilder::GenerateOBJMTL("hornet", "OBJ//zombie.obj", "OBJ//zombie.mtl");
 
 
-	
+
 
 		meshList[GEO_ROCKS] = MeshBuilder::GenerateOBJMTL("rocks", "OBJ//rocks.obj", "OBJ//rocks.mtl");
 		meshList[GEO_ROCKS]->textureID = LoadTGA("Image//rockwall.tga");
@@ -729,64 +729,64 @@ void SP::Init()
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 		meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
 
-	meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
-	meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
-	//-----------------------------------------------------------------------
-	//SP
-	/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
-	meshList[GEO_SCAMMER]->textureID = LoadTGA("Image//scammer.tga");*/
-	//An array of 3 vectors which represents the colors of the 3 vertices
+		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
+		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
+		//-----------------------------------------------------------------------
+		//SP
+		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
+		meshList[GEO_SCAMMER]->textureID = LoadTGA("Image//scammer.tga");*/
+		//An array of 3 vectors which represents the colors of the 3 vertices
 
-	Mtx44 projection;
-	projection.SetToPerspective(45.f, 4.f / 3.f, 0.1f, 1000.f);
-	projectionStack.LoadMatrix(projection);
-	
-	
-	Mesh::SetMaterialLoc(m_parameters[U_MATERIAL_AMBIENT],
-		m_parameters[U_MATERIAL_DIFFUSE],
-		m_parameters[U_MATERIAL_SPECULAR],
-		m_parameters[U_MATERIAL_SHININESS]);
-
-	
-	
-	
-		
-
-	enemyz = 25;
-	bullet.x = -65;
-	bullet.z = enemyz;
-
-	bullet2.x = -85;
-	bullet2.z = enemyz;
-
-	bullet3.x = -45;
-	bullet3.z = enemyz;
-
-	bullet4.x = -35;
-	bullet4.z = enemyz;
-
-	bullet5.x = -55;
-	bullet5.z = enemyz;
-		
-	bullet6.x = -95;
-	bullet6.z = enemyz;
-
-	bullet7.x = -50;
-	bullet7.z = enemyz;
-
-	bullet8.x = -70;
-	bullet8.z = enemyz;
-	
-	
-	
-	
+		Mtx44 projection;
+		projection.SetToPerspective(45.f, 4.f / 3.f, 0.1f, 1000.f);
+		projectionStack.LoadMatrix(projection);
 
 
-	//**Scammer**
-	meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scammer", "OBJ//basicCharacter.obj");
+		Mesh::SetMaterialLoc(m_parameters[U_MATERIAL_AMBIENT],
+			m_parameters[U_MATERIAL_DIFFUSE],
+			m_parameters[U_MATERIAL_SPECULAR],
+			m_parameters[U_MATERIAL_SHININESS]);
 
 
 
+
+
+
+		enemyz = 25;
+		bullet.x = -65;
+		bullet.z = enemyz;
+
+		bullet2.x = -85;
+		bullet2.z = enemyz;
+
+		bullet3.x = -45;
+		bullet3.z = enemyz;
+
+		bullet4.x = -35;
+		bullet4.z = enemyz;
+
+		bullet5.x = -55;
+		bullet5.z = enemyz;
+
+		bullet6.x = -95;
+		bullet6.z = enemyz;
+
+		bullet7.x = -50;
+		bullet7.z = enemyz;
+
+		bullet8.x = -70;
+		bullet8.z = enemyz;
+
+
+
+
+
+
+		//**Scammer**
+		meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scammer", "OBJ//basicCharacter.obj");
+
+
+	}
 }
 
 void SP::Update(double dt)
@@ -862,16 +862,7 @@ void SP::Update(double dt)
 
 	}
 	/**********************************************************************************************************/
-	//making character move with camera
-	if (camera.target.z - camera.position.z >= 0 && camera.target.x - camera.position.x <= 0) 
-	{
-		characterRotate = 180 + Math::rotateAngle(camera.target.z - camera.position.z, camera.target.x - camera.position.x);
-	}
-
-	else if (camera.target.z - camera.position.z >= 0 && camera.target.x - camera.position.x >= 0)
-	{
-		characterRotate = 360 - Math::rotateAngle(camera.target.z - camera.position.z, camera.target.x - camera.position.x);
-	}
+	
 
 
 	

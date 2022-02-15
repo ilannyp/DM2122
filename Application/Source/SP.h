@@ -103,8 +103,6 @@ class SP : public Scene
 
 
 
-		//**Scammer**
-		GEO_SCAMMER,
 
 
 
