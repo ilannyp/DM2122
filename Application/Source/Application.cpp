@@ -10,7 +10,7 @@
 //Include the standard C++ headers
 #include <stdio.h>
 #include <stdlib.h>
-#include "SceneUI.h"
+#include "SceneLight2.h" //-for test
 
 #include "SP_Start.h"
 #include "SP.h"

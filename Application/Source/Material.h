@@ -28,13 +28,10 @@ struct Material
 	Component kSpecular;
 	float kShininess;
 	unsigned size; //remember to initialize to 0
-	Material() {
-		kAmbient.Set(0.4f, 0.4f, 0.4f);
-		kDiffuse.Set(0.6f, 0.6f, 0.6f);
-		kSpecular.Set(0.3f, 0.3f, 0.3f);
-		kShininess = 1.f;
-		size = 0;
-	};
+	Material() : kAmbient(0.4f, 0.4f, 0.4f), kDiffuse(0.6f, 0.6f, 0.6f), kSpecular(0.3f, 0.3f, 0.3f), kShininess(1.f), size(0)
+	{
+
+	}
 	Material& operator=(const Material& rhs)
 	{
 		kAmbient = rhs.kAmbient;

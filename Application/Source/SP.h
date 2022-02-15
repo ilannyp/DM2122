@@ -11,6 +11,57 @@
 
 class SP : public Scene
 {
+	enum GEOMETRY_TYPE
+	{
+		GEO_TRIANGLE_1 = 0,
+		GEO_AXES,
+		GEO_QUAD,
+		GEO_CUBE,
+		GEO_CIRCLE,
+		GEO_SPHERE,
+		GEO_LAMPLIGHT,
+		GEO_LIGHTBALL,
+		GEO_CYLINDER,
+		GEO_CAPE,
+		GEO_CONE,
+		GEO_HEMISPHERE,
+		GEO_TORUS,
+		GEO_HALFTORUS,
+		GEO_LEFT,
+		GEO_RIGHT,
+		GEO_TOP,
+		GEO_BOTTOM,
+		GEO_FRONT,
+		GEO_BACK,
+		GEO_BLEND,
+		//**********SP************
+		GEO_SCAMMER,
+
+		//*********obj models*********
+		GEO_HOLLOW,
+		GEO_HORNET,
+		GEO_ROCKS,
+		GEO_TALLROCK,
+		GEO_STONEWALL,
+		GEO_STONEWALLDAMAGED,
+		GEO_CRYPT,
+		GEO_ROAD,
+		GEO_DEBRIS,
+		GEO_LAMP,
+		GEO_GRAVE,
+		GEO_LANTERN,
+		GEO_BULLET,
+		GEO_TEXT,
+		GEO_TEXT2,
+
+
+
+
+
+
+		NUM_GEOMETRY,
+
+	};
 	enum UNIFORM_TYPE
 	{
 		U_MVP = 0,
@@ -20,6 +71,9 @@ class SP : public Scene
 		U_MATERIAL_DIFFUSE,
 		U_MATERIAL_SPECULAR,
 		U_MATERIAL_SHININESS,
+		U_LIGHTENABLED,
+		U_NUMLIGHTS,
+
 
 		//light0
 		U_LIGHT0_POSITION,
@@ -49,8 +103,8 @@ class SP : public Scene
 
 		U_COLOR_TEXTURE_ENABLED,
 		U_COLOR_TEXTURE,
-		U_LIGHTENABLED,
-		U_NUMLIGHTS,
+		
+		
 		U_TEXT_ENABLED,
 		U_TEXT_COLOR,
 		U_TOTAL,
@@ -58,96 +112,23 @@ class SP : public Scene
 
 
 	};
-	enum GEOMETRY_TYPE
-	{
-		GEO_TRIANGLE_1 = 0,
-		GEO_AXES,
-		GEO_QUAD,
-		GEO_CUBE,
-		GEO_CIRCLE,
-		GEO_SPHERE,
-		GEO_LAMPLIGHT,
-		GEO_LIGHTBALL,
-		GEO_CYLINDER,
-		GEO_CAPE,
-		GEO_CONE,
-		GEO_HEMISPHERE,
-		GEO_TORUS,
-		GEO_HALFTORUS,
-		GEO_LEFT,
-		GEO_RIGHT,
-		GEO_TOP,
-		GEO_BOTTOM,
-		GEO_FRONT,
-		GEO_BACK,
-		GEO_BLEND,
-		//**********SP************
-		GEO_SCAMMER,
-
-	//*********obj models*********
-		GEO_HOLLOW,
-		GEO_HORNET,
-		GEO_ROCKS,
-		GEO_TALLROCK,
-		GEO_STONEWALL,
-		GEO_STONEWALLDAMAGED,
-		GEO_CRYPT,
-		GEO_ROAD,
-		GEO_DEBRIS,
-		GEO_LAMP,
-		GEO_GRAVE,
-		GEO_LANTERN,
-		GEO_BULLET,
-		GEO_TEXT,
-		GEO_TEXT2,
-
-
-
-
-
-
-		NUM_GEOMETRY,
-		
-	};
+	
 	
 private:
-	//sp stuff
-	bool tut_text=true;
-
-	//-------------------------------------//
-	float rotateAngle;
-	float translateX = 1;
-	float translateZ = 1;
-	float translateY;
-	float scaleAll;
-	float LSPEED = 10.f;
-
-
-
-
-	
-	
-	int playerhealth = 20;//slight change to make it into currency
-	int enemyz = 0;//i assume this is where the arrow line -irfan
-	bool battlestart = false;
-	bool win = false;
-	bool die = false;
-	bool hit = false;
-
-	
-	
-
-	Vector3 bullet;
-	Vector3 bullet2;
-	Vector3 bullet3;
-	Vector3 bullet4;
-	Vector3 bullet5;
-	Vector3 bullet6;
-	Vector3 bullet7;
-	Vector3 bullet8;
-	Vector3 spell;
-	Light light[2];
 	void RenderMesh(Mesh* mesh, bool enableLight);
+	unsigned m_vertexArrayID;
+	Mesh* meshList[NUM_GEOMETRY];
+
+
+	unsigned m_programID;
+	unsigned m_parameters[U_TOTAL];
+
+
+	Camera3 camera;
+	MS modelStack, viewStack, projectionStack;
+	Light light[2];
+
+	
 	void RenderSkybox();
 	void RenderScammer();
 	void RenderScammer_E();
@@ -162,13 +143,49 @@ private:
 
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
-	unsigned m_vertexArrayID;
-	unsigned m_programID;
-	unsigned m_parameters[U_TOTAL];
-	Mesh* meshList[NUM_GEOMETRY];
-	Camera3 camera;
-	Camera2 benchcamera;
-	MS modelStack, viewStack, projectionStack;
+	
+
+
+
+	//sp stuff
+	bool tut_text = true;
+
+	//-------------------------------------//
+	float rotateAngle;
+	float translateX = 1;
+	float translateZ = 1;
+	float translateY;
+	float scaleAll;
+	float LSPEED = 10.f;
+
+
+
+
+
+
+	int playerhealth = 20;//slight change to make it into currency
+	int enemyz = 0;//i assume this is where the arrow line -irfan
+	bool battlestart = false;
+	bool win = false;
+	bool die = false;
+	bool hit = false;
+
+		
+
+
+	Vector3 bullet;
+	Vector3 bullet2;
+	Vector3 bullet3;
+	Vector3 bullet4;
+	Vector3 bullet5;
+	Vector3 bullet6;
+	Vector3 bullet7;
+	Vector3 bullet8;
+	
+
+	
+	
+	
 public:
 	SP();
 	~SP();

@@ -6,7 +6,7 @@
 #include "MeshBuilder.h"
 #include "Utility.h"
 #include "LoadTGA.h"
-
+#include "Light.h"
 
 SP::SP()
 {
@@ -480,9 +480,6 @@ void SP::RenderText(Mesh* mesh, std::string text, Color color)
 	glUniform1i(m_parameters[U_TEXT_ENABLED], 0);
 	//glEnable(GL_DEPTH_TEST); //uncomment for RenderTextOnScreen
 }
-
-
-
 void SP::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y)
 {
 	if (!mesh || mesh->textureID <= 0) //Proper error check
@@ -531,27 +528,84 @@ void SP::Init()
 
 	// Set background colour to light purple
 	glClearColor(0.5f, 0.0f, 0.7f, 0.0f);
+
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
+
 	glEnable(GL_CULL_FACE);
+
+	//Default to fill mode
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+
 	// Enable blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	// Generate a default VAO for now
+	glGenVertexArrays(1, &m_vertexArrayID);
+	glBindVertexArray(m_vertexArrayID);
+
+
 	camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
 
-	m_programID = LoadShaders("Shader//Texture.vertexshader", "Shader//Text.fragmentshader");
-	m_parameters[U_MVP] = glGetUniformLocation(m_programID, "MVP");
-	m_parameters[U_MODELVIEW] = glGetUniformLocation(m_programID, "MV");
+	m_programID                                 = LoadShaders("Shader//Texture.vertexshader", "Shader//Text.fragmentshader");
+	// Get a handle for our "colorTexture" uniform
+	m_parameters[U_COLOR_TEXTURE_ENABLED]       = glGetUniformLocation(m_programID, "colorTextureEnabled");
+	m_parameters[U_COLOR_TEXTURE]               = glGetUniformLocation(m_programID, "colorTexture");
+	m_parameters[U_MVP]                         = glGetUniformLocation(m_programID, "MVP");
+	m_parameters[U_MODELVIEW]                   = glGetUniformLocation(m_programID, "MV");
 	m_parameters[U_MODELVIEW_INVERSE_TRANSPOSE] = glGetUniformLocation(m_programID, "MV_inverse_transpose");
-	m_parameters[U_MATERIAL_AMBIENT] = glGetUniformLocation(m_programID, "material.kAmbient");
-	m_parameters[U_MATERIAL_DIFFUSE] = glGetUniformLocation(m_programID, "material.kDiffuse");
-	m_parameters[U_MATERIAL_SPECULAR] = glGetUniformLocation(m_programID, "material.kSpecular");
-	m_parameters[U_MATERIAL_SHININESS] = glGetUniformLocation(m_programID, "material.kShininess");
+	m_parameters[U_MATERIAL_AMBIENT]            = glGetUniformLocation(m_programID, "material.kAmbient");
+	m_parameters[U_MATERIAL_DIFFUSE]            = glGetUniformLocation(m_programID, "material.kDiffuse");
+	m_parameters[U_MATERIAL_SPECULAR]           = glGetUniformLocation(m_programID, "material.kSpecular");
+	m_parameters[U_MATERIAL_SHININESS]          = glGetUniformLocation(m_programID, "material.kShininess");
+	Mesh::SetMaterialLoc(m_parameters[U_MATERIAL_AMBIENT], m_parameters[U_MATERIAL_DIFFUSE], m_parameters[U_MATERIAL_SPECULAR], m_parameters[U_MATERIAL_SHININESS]);
+
+
+	//light0 -
+	m_parameters[U_LIGHT0_POSITION]      = glGetUniformLocation(m_programID, "lights[0].position_cameraspace");
+	m_parameters[U_LIGHT0_COLOR]         = glGetUniformLocation(m_programID, "lights[0].color");
+	m_parameters[U_LIGHT0_POWER]         = glGetUniformLocation(m_programID, "lights[0].power");
+	m_parameters[U_LIGHT0_KC]            = glGetUniformLocation(m_programID, "lights[0].kC");
+	m_parameters[U_LIGHT0_KL]            = glGetUniformLocation(m_programID, "lights[0].kL");
+	m_parameters[U_LIGHT0_KQ]            = glGetUniformLocation(m_programID, "lights[0].kQ");
+	m_parameters[U_LIGHTENABLED]         = glGetUniformLocation(m_programID, "lightEnabled");
+	m_parameters[U_LIGHT0_TYPE]          = glGetUniformLocation(m_programID, "lights[0].type");
+	m_parameters[U_LIGHT0_SPOTDIRECTION] = glGetUniformLocation(m_programID, "lights[0].spotDirection");
+	m_parameters[U_LIGHT0_COSCUTOFF]     = glGetUniformLocation(m_programID, "lights[0].cosCutoff");
+	m_parameters[U_LIGHT0_COSINNER]      = glGetUniformLocation(m_programID, "lights[0].cosInner");
+	m_parameters[U_LIGHT0_EXPONENT]      = glGetUniformLocation(m_programID, "lights[0].exponent");
+
+	//light1 -
+	m_parameters[U_LIGHT1_POSITION]      = glGetUniformLocation(m_programID, "lights[1].position_cameraspace");
+	m_parameters[U_LIGHT1_COLOR]         = glGetUniformLocation(m_programID, "lights[1].color");
+	m_parameters[U_LIGHT1_POWER]         = glGetUniformLocation(m_programID, "lights[1].power");
+	m_parameters[U_LIGHT1_KC]            = glGetUniformLocation(m_programID, "lights[1].kC");
+	m_parameters[U_LIGHT1_KL]            = glGetUniformLocation(m_programID, "lights[1].kL");
+	m_parameters[U_LIGHT1_KQ]            = glGetUniformLocation(m_programID, "lights[1].kQ");
+	m_parameters[U_LIGHTENABLED]         = glGetUniformLocation(m_programID, "lightEnabled");
+	m_parameters[U_LIGHT1_TYPE]          = glGetUniformLocation(m_programID, "lights[1].type");
+	m_parameters[U_LIGHT1_SPOTDIRECTION] = glGetUniformLocation(m_programID, "lights[1].spotDirection");
+	m_parameters[U_LIGHT1_COSCUTOFF]     = glGetUniformLocation(m_programID, "lights[1].cosCutoff");
+	m_parameters[U_LIGHT1_COSINNER]      = glGetUniformLocation(m_programID, "lights[1].cosInner");
+	m_parameters[U_LIGHT1_EXPONENT]      = glGetUniformLocation(m_programID, "lights[1].exponent");
+
+
+
+	// Get a handle for our "textColor" uniform
+	m_parameters[U_NUMLIGHTS] = glGetUniformLocation(m_programID, "numLights");
+	m_parameters[U_TEXT_ENABLED] = glGetUniformLocation(m_programID, "textEnabled");
+	m_parameters[U_TEXT_COLOR] = glGetUniformLocation(m_programID, "textColor");
+	glUseProgram(m_programID);
+
+
 
 	//Replace previous code
-	light[0].type = Light::LIGHT_SPOT;
+	glUniform1i(m_parameters[U_NUMLIGHTS], 2);
+	light[0].type = Light::LIGHT_DIRECTIONAL;
 	light[0].position.Set(-100, 20, 25);
-	light[0].color.Set(1, 1, 1);
+	light[0].color.Set(0.9, 1, 0.8);
 	light[0].power = 1;
 	light[0].kC = 1.f;
 	light[0].kL = 0.01f;
@@ -562,62 +616,21 @@ void SP::Init()
 	light[0].spotDirection.Set(0.f, 1.f, 0.f);
 
 
-	m_parameters[U_LIGHT0_POSITION] = glGetUniformLocation(m_programID, "lights[0].position_cameraspace");
-	m_parameters[U_LIGHT0_COLOR] = glGetUniformLocation(m_programID, "lights[0].color");
-	m_parameters[U_LIGHT0_POWER] = glGetUniformLocation(m_programID, "lights[0].power");
-	m_parameters[U_LIGHT0_KC] = glGetUniformLocation(m_programID, "lights[0].kC");
-	m_parameters[U_LIGHT0_KL] = glGetUniformLocation(m_programID, "lights[0].kL");
-	m_parameters[U_LIGHT0_KQ] = glGetUniformLocation(m_programID, "lights[0].kQ");
-	m_parameters[U_LIGHT0_TYPE] = glGetUniformLocation(m_programID, "lights[0].type");
-	m_parameters[U_LIGHT0_SPOTDIRECTION] = glGetUniformLocation(m_programID, "lights[0].spotDirection");
-	m_parameters[U_LIGHT0_COSCUTOFF] = glGetUniformLocation(m_programID, "lights[0].cosCutoff");
-	m_parameters[U_LIGHT0_COSINNER] = glGetUniformLocation(m_programID, "lights[0].cosInner");
-	m_parameters[U_LIGHT0_EXPONENT] = glGetUniformLocation(m_programID, "lights[0].exponent");
-
-	//m_parameters[U_LIGHTENABLED] = glGetUniformLocation(m_programID, "lightEnabled");
-	//m_parameters[U_NUMLIGHTS] = glGetUniformLocation(m_programID, "numLights");
-
-	light[1].type = Light::LIGHT_POINT;
-	light[1].position.Set(10, 8, 20);
-	light[1].color.Set(1, 1, 1);
-	light[1].power = 0.8;
+	light[1].type = Light::LIGHT_DIRECTIONAL;
+	light[1].position.Set(9.9f,8.5f, 20.f);
+	light[1].color.Set(0.4, 0.9, 0.7);
+	light[1].power = 1;
 	light[1].kC = 1.f;
 	light[1].kL = 0.01f;
 	light[1].kQ = 0.001f;
-	light[1].cosCutoff = cos(Math::DegreeToRadian(45));
+	light[1].cosCutoff = cos(Math::DegreeToRadian(15));
 	light[1].cosInner = cos(Math::DegreeToRadian(30));
 	light[1].exponent = 3.f;
 	light[1].spotDirection.Set(0.f, 1.f, 0.f);
 
 
-	m_parameters[U_LIGHT1_POSITION] = glGetUniformLocation(m_programID, "lights[1].position_cameraspace");
-	m_parameters[U_LIGHT1_COLOR] = glGetUniformLocation(m_programID, "lights[1].color");
-	m_parameters[U_LIGHT1_POWER] = glGetUniformLocation(m_programID, "lights[1].power");
-	m_parameters[U_LIGHT1_KC] = glGetUniformLocation(m_programID, "lights[1].kC");
-	m_parameters[U_LIGHT1_KL] = glGetUniformLocation(m_programID, "lights[1].kL");
-	m_parameters[U_LIGHT1_KQ] = glGetUniformLocation(m_programID, "lights[1].kQ");
-	m_parameters[U_LIGHT1_TYPE] = glGetUniformLocation(m_programID, "lights[1].type");
-	m_parameters[U_LIGHT1_SPOTDIRECTION] = glGetUniformLocation(m_programID, "lights[1].spotDirection");
-	m_parameters[U_LIGHT1_COSCUTOFF] = glGetUniformLocation(m_programID, "lights[1].cosCutoff");
-	m_parameters[U_LIGHT1_COSINNER] = glGetUniformLocation(m_programID, "lights[1].cosInner");
-	m_parameters[U_LIGHT1_EXPONENT] = glGetUniformLocation(m_programID, "lights[1].exponent");
-
-	m_parameters[U_LIGHTENABLED] = glGetUniformLocation(m_programID, "lightEnabled");
-	m_parameters[U_NUMLIGHTS] = glGetUniformLocation(m_programID, "numLights");
-
-
-	// Get a handle for our "colorTexture" uniform
-	m_parameters[U_COLOR_TEXTURE_ENABLED] = glGetUniformLocation(m_programID, "colorTextureEnabled");
-	m_parameters[U_COLOR_TEXTURE] = glGetUniformLocation(m_programID, "colorTexture");
-
-	// Get a handle for our "textColor" uniform
-	m_parameters[U_TEXT_ENABLED] = glGetUniformLocation(m_programID, "textEnabled");
-	m_parameters[U_TEXT_COLOR] = glGetUniformLocation(m_programID, "textColor");
-	glUseProgram(m_programID);
-
 	// Make sure you pass uniform parameters after glUseProgram()
-	// Make sure you pass uniform parameters after glUseProgram()
-	glUniform1i(m_parameters[U_NUMLIGHTS], 2);
+	
 	glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
 	glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
 	glUniform1f(m_parameters[U_LIGHT0_POWER], light[0].power);
@@ -638,14 +651,12 @@ void SP::Init()
 	glUniform1f(m_parameters[U_LIGHT1_COSINNER], light[1].cosInner);
 	glUniform1f(m_parameters[U_LIGHT1_EXPONENT], light[1].exponent);
 
-	// Generate a default VAO for now
-	glGenVertexArrays(1, &m_vertexArrayID);
-	glBindVertexArray(m_vertexArrayID);	
+	
 	rotateAngle = 0;
-	for (int i = 0; i < NUM_GEOMETRY; ++i)
+	/*for (int i = 0; i < NUM_GEOMETRY; ++i)
 	{
 		meshList[i] = nullptr;
-	}
+	}*/
 
 	{
 		meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
@@ -742,11 +753,7 @@ void SP::Init()
 		projectionStack.LoadMatrix(projection);
 
 
-		Mesh::SetMaterialLoc(m_parameters[U_MATERIAL_AMBIENT],
-			m_parameters[U_MATERIAL_DIFFUSE],
-			m_parameters[U_MATERIAL_SPECULAR],
-			m_parameters[U_MATERIAL_SHININESS]);
-
+	
 
 
 
@@ -792,6 +799,7 @@ void SP::Init()
 void SP::Update(double dt)
 {
 
+	
 	if (Application::IsKeyPressed('1'))
 	{
 		glEnable(GL_CULL_FACE);
@@ -819,30 +827,23 @@ void SP::Update(double dt)
 	if (Application::IsKeyPressed('O'))
 		light[0].position.y -= (float)(LSPEED * dt);
 	if (Application::IsKeyPressed('P'))
-		light[0].position.y += (float)(LSPEED * dt);
-
-	if (Application::IsKeyPressed('5'))
 	{
-		
-		light[0].type = Light::LIGHT_POINT;
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
-
+		light[0].position.y += (float)(LSPEED * dt);
 	}
-	else if (Application::IsKeyPressed('6'))
+		
+
+	
+	if (Application::IsKeyPressed(VK_RETURN))
 	{
 		light[0].type = Light::LIGHT_DIRECTIONAL;
+		light[0].position.Set(0, 42, -40);
+		light[0].power = 0.1f;
+
 		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
 		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
 		//to do: switch light type to DIRECTIONAL and pass the information to shader
 	}
-	else if (Application::IsKeyPressed('7'))
-	{
-		light[0].type = Light::LIGHT_SPOT;
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
-		//to do: switch light type to SPOT and pass the information to shader
-	}
+	
 
 	
 	
@@ -989,6 +990,8 @@ void SP::Update(double dt)
 
 void SP::Render()
 {
+
+	
 	// Render VBO here
 	//Clear color buffer every frame
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -1000,6 +1003,8 @@ void SP::Render()
 	modelStack.LoadIdentity();
 	Mtx44 MVP = projectionStack.Top() * viewStack.Top() * modelStack.Top();
 	glUniformMatrix4fv(m_parameters[U_MVP], 1, GL_FALSE, &MVP.a[0]); //update the shader with new MVP
+
+
 
 	if (light[0].type == Light::LIGHT_DIRECTIONAL)
 	{
@@ -1018,6 +1023,26 @@ void SP::Render()
 	{
 		Position lightPosition_cameraspace = viewStack.Top() * light[0].position;
 		glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightPosition_cameraspace.x);
+	}
+
+
+	if (light[1].type == Light::LIGHT_DIRECTIONAL)
+	{
+		Vector3 lightDir(light[1].position.x, light[1].position.y, light[1].position.z);
+		Vector3 lightDirection_cameraspace = viewStack.Top() * lightDir;
+		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightDirection_cameraspace.x);
+	}
+	else if (light[1].type == Light::LIGHT_SPOT)
+	{
+		Position lightPosition_cameraspace = viewStack.Top() * light[1].position;
+		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
+		Vector3 spotDirection_cameraspace = viewStack.Top() * light[1].spotDirection;
+		glUniform3fv(m_parameters[U_LIGHT1_SPOTDIRECTION], 1, &spotDirection_cameraspace.x);
+	}
+	else
+	{
+		Position lightPosition_cameraspace = viewStack.Top() * light[1].position;
+		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
 	}
 	//**************************************************************************************************************
 
