@@ -67,7 +67,7 @@ void SP::RenderSkybox()
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(0, 0, -OFFSET);
+	modelStack.Translate(0 + camera.position.x, 0 + camera.position.y, -OFFSET + camera.position.z);
 	//modelStack.Rotate(180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_FRONT], false);
@@ -75,8 +75,17 @@ void SP::RenderSkybox()
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(-OFFSET, 0, 0);
+	modelStack.Translate(-OFFSET + camera.position.x, 0 + camera.position.y, 0 + camera.position.z);
 	modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Rotate(-180, 0, 0, 1);
+	modelStack.Scale(1000, 1000, 1000);
+	RenderMesh(meshList[GEO_RIGHT], false);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	//to do: transformation code here
+	modelStack.Translate(OFFSET + camera.position.x, 0 + camera.position.y, 0.25 + camera.position.z);
+	modelStack.Rotate(270, 0, 1, 0);
 	//modelStack.Rotate(180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_LEFT], false);
@@ -84,16 +93,7 @@ void SP::RenderSkybox()
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(OFFSET, 0, 0.25);
-	modelStack.Rotate(270, 0, 1, 0);
-	//modelStack.Rotate(180, 0, 0, 1);
-	modelStack.Scale(1000, 1000, 1000);
-	RenderMesh(meshList[GEO_RIGHT], false);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	//to do: transformation code here
-	modelStack.Translate(0, 0, OFFSET);
+	modelStack.Translate(0 + camera.position.x, 0 + camera.position.y, OFFSET + camera.position.z);
 	modelStack.Rotate(180, 0, 1, 0);
 	//modelStack.Rotate(180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
@@ -102,7 +102,7 @@ void SP::RenderSkybox()
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(0, OFFSET, 0);
+	modelStack.Translate(0 + camera.position.x, OFFSET + camera.position.y, 0 + camera.position.z);
 	modelStack.Rotate(90, 1, 0, 0);
 	modelStack.Rotate(270, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
@@ -111,7 +111,7 @@ void SP::RenderSkybox()
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(0, -OFFSET, 0);
+	modelStack.Translate(0 + camera.position.x, -OFFSET + camera.position.y, 0 + camera.position.z);
 	modelStack.Rotate(-90, 1, 0, 0);
 	modelStack.Rotate(-90, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
@@ -1095,7 +1095,7 @@ void SP::Render()
 
 	modelStack.PushMatrix();
 	modelStack.Translate(light[1].position.x, light[1].position.y, light[1].position.z);
-	RenderMesh(meshList[GEO_LIGHTBALL], false);
+	RenderMesh(meshList[GEO_LIGHTBALL], true);
 	modelStack.PopMatrix();
 
 	RenderSkybox();
