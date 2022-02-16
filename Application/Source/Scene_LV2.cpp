@@ -918,7 +918,7 @@ void Scene_LV2::Render()
 		modelStack.Scale(0.6, 0.6, 0.6);
 		RenderText(meshList[GEO_TEXT], "Press 'R' to restart", Color(0, 0, 1));
 		modelStack.PopMatrix();
-	}
+	
 	//----------------------------sp--------------------------------------
 	if (tut_text==true)
 	{

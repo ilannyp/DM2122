@@ -145,7 +145,6 @@ private:
 	void RenderRoads();
 	void RenderBullet();
 	void RenderLamps();
-
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
 	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
@@ -154,8 +153,11 @@ private:
 
 
 	//sp stuff
-	bool tut_text=true,scammaer_talk=false;
+	bool tut_text=true,scammaer_talk=false,coin1_enable=true;
 	Vector3 scammer_pos = Vector3(0, 0, 30);
+	Vector3 coin1_pos = Vector3(25, 0, 28);
+	Vector3 coin2_pos = Vector3(27, 0, 104);
+	Vector3 coin3_pos = Vector3(23, 0, -17);
 	std::string scammer_text;
 	//-------------------------------------//
 	float rotateAngle;

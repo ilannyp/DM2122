@@ -862,7 +862,12 @@ void SP::Update(double dt)
 {
 	Vector3 scammerpos = scammer_pos - camera.position;
 	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
-
+	Vector3 coin1pos = coin1_pos - camera.position;
+	float coin1dis = sqrt(pow(coin1pos.x, 2) + pow(coin1pos.y, 2) + pow(coin1pos.z, 2));
+	Vector3 coin2pos = coin2_pos - camera.position;
+	float coin2dis = sqrt(pow(coin2pos.x, 2) + pow(coin2pos.y, 2) + pow(coin2pos.z, 2));
+	Vector3 coin3pos = coin3_pos - camera.position;
+	float coin3dis = sqrt(pow(coin3pos.x, 2) + pow(coin3pos.y, 2) + pow(coin3pos.z, 2));
 	
 	if (Application::IsKeyPressed('1'))
 	{
@@ -913,7 +918,7 @@ void SP::Update(double dt)
 		tut_text = false;
 	}
 	static bool scammaer_talk = false;
-	static int count = 0;
+	static int scam_count = 0;
 	if (Application::IsKeyPressed('E'))
 	{
 		scammaer_talk = true;
@@ -926,9 +931,9 @@ void SP::Update(double dt)
 	{
 		if (scammaer_talk)
 		{
-			count++;
+			scam_count++;
 		}
-		if(count>=1)
+		if(scam_count >=1)
 		{
 			//talk text
 			scammer_text = "Give me 5 gold and i'll give you head";
@@ -942,6 +947,26 @@ void SP::Update(double dt)
 	{
 		scammer_text = " ";
 	}
+
+	static int coin1_count = 0;
+	if (coin1dis<=10)
+	{
+		std::cout << coin1_count << std::endl;
+		if (Application::IsKeyPressed('E'))
+		{
+			coin1_count++;
+		}
+
+		if (coin1_count>=1)
+		{
+			coin1_enable = false;
+		}
+		else
+		{
+			scammer_text = "Press E to collect";
+		}
+	}
+	//std::cout << coin1_count << std::endl;
 	/**********************************************************************************************************/
 	
 
@@ -1077,28 +1102,34 @@ void SP::RenderScammer()
 	RenderMesh(meshList[GEO_HORNET], true);
 	modelStack.PopMatrix();
 
-	//beside graveyard
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 28);
-	//modelStack.Translate(0, 0, 30);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(0.5, 0.5, 0.5);
-	RenderMesh(meshList[GEO_COIN], true);
-	modelStack.PopMatrix();
+	if (coin1_enable)
+	{
+		//beside graveyard
+		modelStack.PushMatrix();
+		//modelStack.Translate(25, 0, 28);
+		modelStack.Translate(coin1_pos.x, coin1_pos.y, coin1_pos.z);
+		modelStack.Rotate(90, 1, 0, 0);
+		modelStack.Scale(0.5, 0.5, 0.5);
+		RenderMesh(meshList[GEO_COIN], true);
+		modelStack.PopMatrix();
+	}
+	else
+	{
 
+	}
 	//corner near the exit
 	modelStack.PushMatrix();
-	modelStack.Translate(27, 0, 104);
-	//modelStack.Translate(0, 0, 30);
+	//modelStack.Translate(27, 0, 104);
+	modelStack.Translate(coin2_pos.x, coin2_pos.y, coin2_pos.z);
 	modelStack.Rotate(90, 1, 0, 0);
 	modelStack.Scale(0.5, 0.5, 0.5);
 	RenderMesh(meshList[GEO_COIN], true);
 	modelStack.PopMatrix();
 
-
+	//behind under rocks
 	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 28);
-	//modelStack.Translate(0, 0, 30);
+	//modelStack.Translate(23, 0, -17);
+	modelStack.Translate(coin3_pos.x, coin3_pos.y, coin3_pos.z);
 	modelStack.Rotate(90, 1, 0, 0);
 	modelStack.Scale(0.5, 0.5, 0.5);
 	RenderMesh(meshList[GEO_COIN], true);
