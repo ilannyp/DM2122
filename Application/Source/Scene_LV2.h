@@ -82,7 +82,7 @@ class Scene_LV2 : public Scene
 		GEO_BLEND,
 		//**********SP************
 		GEO_SCAMMER,
-
+		GEO_TUNNEL,
 	//*********obj models*********
 		GEO_HOLLOW,
 		GEO_HORNET,
@@ -159,6 +159,11 @@ private:
 
 	//**sp**
 	void RenderWall();
+	void RenderTunnel();
+	void RenderPavement();
+
+
+
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
 	unsigned m_vertexArrayID;
