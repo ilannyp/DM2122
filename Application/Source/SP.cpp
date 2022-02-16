@@ -18,7 +18,26 @@ SP::~SP()
 {
 }
 
-
+void SP::RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey)
+{
+	glDisable(GL_DEPTH_TEST);
+	Mtx44 ortho;
+	ortho.SetToOrtho(0, 80, 0, 60, -10, 10); //size of screen UI
+	projectionStack.PushMatrix();
+	projectionStack.LoadMatrix(ortho);
+	viewStack.PushMatrix();
+	viewStack.LoadIdentity(); //No need camera for ortho mode
+	modelStack.PushMatrix();
+	modelStack.LoadIdentity();
+	//to do: scale and translate accordingly
+	modelStack.Translate(x, y, 0);
+	modelStack.Scale(sizex, sizey, 1);
+	RenderMesh(mesh, false); //UI should not have light
+	projectionStack.PopMatrix();
+	viewStack.PopMatrix();
+	modelStack.PopMatrix();
+	glEnable(GL_DEPTH_TEST);
+}
 
 void SP::RenderMesh(Mesh* mesh, bool enableLight)
 {
@@ -162,6 +181,13 @@ void SP::RenderRightSide()
 	modelStack.Rotate(0, 0, 1, 0);
 	modelStack.Scale(10, 10, 10);
 	RenderMesh(meshList[GEO_LANTERN], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-100, 0, 22);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(1, 1, 1);
+	RenderMesh(meshList[GEO_TAXI], true);
 	modelStack.PopMatrix();
 }
 void SP::RenderLeftSide()
@@ -766,6 +792,18 @@ void SP::Init()
 
 		meshList[GEO_COIN] = MeshBuilder::GenerateOBJMTL("coin", "OBJ//coin.obj", "OBJ//coin.mtl");
 		meshList[GEO_COIN]->textureID = LoadTGA("Image//Coin_Gold_albedo.tga");
+
+		meshList[GEO_COIN_ICON] = MeshBuilder::GenerateQuad("coin_icon", Color(1, 1, 1), 1.f);
+		meshList[GEO_COIN_ICON]->textureID = LoadTGA("Image//coin_icon.tga");
+
+
+
+
+
+		meshList[GEO_TAXI] = MeshBuilder::GenerateOBJ("coin", "OBJ//Taxi2.obj");
+		meshList[GEO_TAXI]->textureID = LoadTGA("Image//taxi.tga");
+
+		
 		//-----------------------------------------------------------------------
 		//SP
 		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
@@ -824,7 +862,12 @@ void SP::Update(double dt)
 {
 	Vector3 scammerpos = scammer_pos - camera.position;
 	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
-
+	Vector3 coin1pos = coin1_pos - camera.position;
+	float coin1dis = sqrt(pow(coin1pos.x, 2) + pow(coin1pos.y, 2) + pow(coin1pos.z, 2));
+	Vector3 coin2pos = coin2_pos - camera.position;
+	float coin2dis = sqrt(pow(coin2pos.x, 2) + pow(coin2pos.y, 2) + pow(coin2pos.z, 2));
+	Vector3 coin3pos = coin3_pos - camera.position;
+	float coin3dis = sqrt(pow(coin3pos.x, 2) + pow(coin3pos.y, 2) + pow(coin3pos.z, 2));
 	
 	if (Application::IsKeyPressed('1'))
 	{
@@ -875,7 +918,7 @@ void SP::Update(double dt)
 		tut_text = false;
 	}
 	static bool scammaer_talk = false;
-	static int count = 0;
+	static int scam_count = 0;
 	if (Application::IsKeyPressed('E'))
 	{
 		scammaer_talk = true;
@@ -888,22 +931,96 @@ void SP::Update(double dt)
 	{
 		if (scammaer_talk)
 		{
-			count++;
+			scam_count++;
 		}
-		if(count>=1)
+		if(scam_count >=1)
 		{
 			//talk text
-			scammer_text = "Give me 5 gold and i'll give you head";
+			scammer_text = "Give me 400 gold and i'll give you head";
 		}
 		else
 		{
 			scammer_text = "Press E to talk";
 		}
+
+
 	}
 	else
 	{
 		scammer_text = " ";
 	}
+
+	static int coin1_count = 0;
+	if (coin1dis<=10)
+	{
+		std::cout << coin1_count << std::endl;
+		if (Application::IsKeyPressed('E'))
+		{
+			coin1_count+=1;
+		}
+
+		if (coin1_count>=1)
+		{
+			coin1_enable = false;
+		}
+		else
+		{
+			scammer_text = "Press E to collect";
+		}
+		if (Application::IsKeyPressed('E')&& coin1_count ==1)
+		{
+			Application::yourself.currency_added(100);
+
+		}
+	}
+
+	static int coin2_count = 0;
+	if (coin2dis <= 12)
+	{
+		//std::cout << coin1_count << std::endl;
+		if (Application::IsKeyPressed('E'))
+		{
+			coin2_count += 1;
+		}
+
+		if (coin2_count >= 1)
+		{
+			coin2_enable = false;
+		}
+		else
+		{
+			scammer_text = "Press E to collect";
+		}
+		if (Application::IsKeyPressed('E') && coin2_count == 1)
+		{
+			Application::yourself.currency_added(100);
+
+		}
+	}
+	static int coin3_count = 0;
+	if (coin3dis <= 10)
+	{
+		//std::cout << coin1_count << std::endl;
+		if (Application::IsKeyPressed('E'))
+		{
+			coin3_count += 1;
+		}
+
+		if (coin3_count >= 1)
+		{
+			coin3_enable = false;
+		}
+		else
+		{
+			scammer_text = "Press E to collect";
+		}
+		if (Application::IsKeyPressed('E') && coin3_count == 1)
+		{
+			Application::yourself.currency_added(100);
+
+		}
+	}
+	//std::cout << coin1_count << std::endl;
 	/**********************************************************************************************************/
 	
 
@@ -972,20 +1089,20 @@ void SP::Update(double dt)
 		|| ((bullet7.x + 2) > camera.position.x && (bullet7.x - 2) < camera.position.x && (bullet7.z + 4) > camera.position.z && (bullet7.z - 2) < camera.position.z)
 		|| ((bullet8.x + 2) > camera.position.x && (bullet8.x - 2) < camera.position.x && (bullet8.z + 4) > camera.position.z && (bullet8.z - 2) < camera.position.z))
 	{
-		yourself.set_currency(yourself.get_currency() - 1);
+		//yourself.set_currency(yourself.get_currency() - 1);
+		Application::yourself.set_currency(Application::yourself.get_currency() - 1);
 	}
-	if (yourself.get_currency() <= 0)
+	if (Application::yourself.get_currency() <= 0)
 	{
 		camera.Init(Vector3(-96, 3, 30), Vector3(-96, 3, 0), Vector3(0, 1, 0));
-		die = true;
-	
+		Application::yourself.set_die();
 	}
 
 	
 	if (Application::IsKeyPressed('R'))
 	{
 		camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
-		yourself.set_currency(100);
+		Application::yourself.set_currency(100);
 		battlestart = false;
 		die = false;
 		win = false;
@@ -1038,32 +1155,51 @@ void SP::RenderScammer()
 	RenderMesh(meshList[GEO_HORNET], true);
 	modelStack.PopMatrix();
 
-	//beside graveyard
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 28);
-	//modelStack.Translate(0, 0, 30);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(0.5, 0.5, 0.5);
-	RenderMesh(meshList[GEO_COIN], true);
-	modelStack.PopMatrix();
+	if (coin1_enable)
+	{
+		//beside graveyard
+		modelStack.PushMatrix();
+		//modelStack.Translate(25, 0, 28);
+		modelStack.Translate(coin1_pos.x, coin1_pos.y, coin1_pos.z);
+		modelStack.Rotate(90, 1, 0, 0);
+		modelStack.Scale(0.5, 0.5, 0.5);
+		RenderMesh(meshList[GEO_COIN], true);
+		modelStack.PopMatrix();
+	}
+	else
+	{
+		
+	}
+	if (coin2_enable)
+	{
+		//corner near the exit
+		modelStack.PushMatrix();
+		//modelStack.Translate(27, 0, 104);
+		modelStack.Translate(coin2_pos.x, coin2_pos.y, coin2_pos.z);
+		modelStack.Rotate(90, 1, 0, 0);
+		modelStack.Scale(0.5, 0.5, 0.5);
+		RenderMesh(meshList[GEO_COIN], true);
+		modelStack.PopMatrix();
+	}
+	else
+	{
 
-	//corner near the exit
-	modelStack.PushMatrix();
-	modelStack.Translate(27, 0, 104);
-	//modelStack.Translate(0, 0, 30);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(0.5, 0.5, 0.5);
-	RenderMesh(meshList[GEO_COIN], true);
-	modelStack.PopMatrix();
+	}
+	if (coin3_enable)
+	{
+		//behind under rocks
+		modelStack.PushMatrix();
+		//modelStack.Translate(23, 0, -17);
+		modelStack.Translate(coin3_pos.x, coin3_pos.y, coin3_pos.z);
+		modelStack.Rotate(90, 1, 0, 0);
+		modelStack.Scale(0.5, 0.5, 0.5);
+		RenderMesh(meshList[GEO_COIN], true);
+		modelStack.PopMatrix();
+	}
+	else
+	{
 
-
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 28);
-	//modelStack.Translate(0, 0, 30);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(0.5, 0.5, 0.5);
-	RenderMesh(meshList[GEO_COIN], true);
-	modelStack.PopMatrix();
+	}
 
 	//RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
 	
@@ -1230,13 +1366,14 @@ void SP::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
 
 
-	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(yourself.get_currency()), Color(0, 1, 0), 2, 15, 50);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
+	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
+	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
+	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
 
 
 
-	//RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
-	//RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);
+	/*RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);*/
 	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);
 
 

@@ -6,6 +6,8 @@
 #include "MeshBuilder.h"
 #include "Utility.h"
 #include "LoadTGA.h"
+#include "SP.h"
+#include "Player.h"
 
 
 Scene_LV2::Scene_LV2()
@@ -17,6 +19,26 @@ Scene_LV2::~Scene_LV2()
 {
 }
 
+void Scene_LV2::RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey)
+{
+	glDisable(GL_DEPTH_TEST);
+	Mtx44 ortho;
+	ortho.SetToOrtho(0, 80, 0, 60, -10, 10); //size of screen UI
+	projectionStack.PushMatrix();
+	projectionStack.LoadMatrix(ortho);
+	viewStack.PushMatrix();
+	viewStack.LoadIdentity(); //No need camera for ortho mode
+	modelStack.PushMatrix();
+	modelStack.LoadIdentity();
+	//to do: scale and translate accordingly
+	modelStack.Translate(x, y, 0);
+	modelStack.Scale(sizex, sizey, 1);
+	RenderMesh(mesh, false); //UI should not have light
+	projectionStack.PopMatrix();
+	viewStack.PopMatrix();
+	modelStack.PopMatrix();
+	glEnable(GL_DEPTH_TEST);
+}
 
 
 void Scene_LV2::RenderMesh(Mesh* mesh, bool enableLight)
@@ -793,6 +815,9 @@ void Scene_LV2::Init()
 
 		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
+
+		meshList[GEO_COIN_ICON] = MeshBuilder::GenerateQuad("coin_icon", Color(1, 1, 1), 1.f);
+		meshList[GEO_COIN_ICON]->textureID = LoadTGA("Image//coin_icon.tga");
 		//-----------------------------------------------------------------------
 		//SP
 		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
@@ -960,9 +985,43 @@ void Scene_LV2::Render()
 
 	
 
+		modelStack.PushMatrix();
+		modelStack.Translate(-102, 1, 17);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(0.6, 0.6, 0.6);
+		RenderText(meshList[GEO_TEXT], "Press 'R' to restart", Color(0, 0, 1));
+		modelStack.PopMatrix();
+	
+	//----------------------------sp--------------------------------------
+	if (tut_text==true)
+	{
+		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
+		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0, 1, 0), 2, 25, 53);
+	}
+	//modelStack.PushMatrix();
+	////scale, translate, rotate
+	//modelStack.Translate(0, 3, 18);
+	//modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Scale(5, 5, 5);
+	//RenderMesh(meshList[GEO_SCAMMER], true);
+	//modelStack.PopMatrix();
+	//----------------------------sp--------------------------------------
+	
+	
+	//UI
+	RenderTextOnScreen(meshList[GEO_TEXT], camerax , Color(0, 1, 0), 2, 6, 0);
+	RenderTextOnScreen(meshList[GEO_TEXT], "X:", Color(0, 1, 0), 2, 0, 0);
+	RenderTextOnScreen(meshList[GEO_TEXT], cameraz, Color(0, 1, 0), 2, 6, 2);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Z:", Color(0, 1, 0), 2, 0, 2);
+	RenderTextOnScreen(meshList[GEO_TEXT], FPS, Color(0, 1, 0), 2, 47, 0);
+	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
 
+	/*RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);*/
 
-
+	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
+	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
+	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
 	
 
 }

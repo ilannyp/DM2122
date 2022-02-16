@@ -6,9 +6,11 @@
 #include "Mesh.h"
 #include "MatrixStack.h"
 #include "Light.h"
+#include "SP.h"
+#include "Player.h"
 
 
-class Scene_LV2 : public Scene
+class Scene_LV2 : public Scene , public SP
 {
 	enum UNIFORM_TYPE
 	{
@@ -82,6 +84,8 @@ class Scene_LV2 : public Scene
 		GEO_BLEND,
 		//**********SP************
 		GEO_SCAMMER,
+		GEO_COIN_ICON,
+
 		GEO_TUNNEL,
 	//*********obj models*********
 		GEO_HOLLOW,
@@ -172,6 +176,7 @@ private:
 	Mesh* meshList[NUM_GEOMETRY];
 	Camera_SP_LVL2 camera;
 	MS modelStack, viewStack, projectionStack;
+
 public:
 	Scene_LV2();
 	~Scene_LV2();
@@ -186,7 +191,7 @@ public:
 	std::string cameraz;
 	bool endscreen = false;
 	
-
+	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
 };
 
 #endif
