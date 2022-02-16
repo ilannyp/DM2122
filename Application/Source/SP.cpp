@@ -936,12 +936,14 @@ void SP::Update(double dt)
 		if(scam_count >=1)
 		{
 			//talk text
-			scammer_text = "Give me 5 gold and i'll give you head";
+			scammer_text = "Give me 400 gold and i'll give you head";
 		}
 		else
 		{
 			scammer_text = "Press E to talk";
 		}
+
+
 	}
 	else
 	{
@@ -954,7 +956,7 @@ void SP::Update(double dt)
 		std::cout << coin1_count << std::endl;
 		if (Application::IsKeyPressed('E'))
 		{
-			coin1_count++;
+			coin1_count+=1;
 		}
 
 		if (coin1_count>=1)
@@ -964,6 +966,58 @@ void SP::Update(double dt)
 		else
 		{
 			scammer_text = "Press E to collect";
+		}
+		if (Application::IsKeyPressed('E')&& coin1_count ==1)
+		{
+			Application::yourself.currency_added(100);
+
+		}
+	}
+
+	static int coin2_count = 0;
+	if (coin2dis <= 12)
+	{
+		//std::cout << coin1_count << std::endl;
+		if (Application::IsKeyPressed('E'))
+		{
+			coin2_count += 1;
+		}
+
+		if (coin2_count >= 1)
+		{
+			coin2_enable = false;
+		}
+		else
+		{
+			scammer_text = "Press E to collect";
+		}
+		if (Application::IsKeyPressed('E') && coin2_count == 1)
+		{
+			Application::yourself.currency_added(100);
+
+		}
+	}
+	static int coin3_count = 0;
+	if (coin3dis <= 10)
+	{
+		//std::cout << coin1_count << std::endl;
+		if (Application::IsKeyPressed('E'))
+		{
+			coin3_count += 1;
+		}
+
+		if (coin3_count >= 1)
+		{
+			coin3_enable = false;
+		}
+		else
+		{
+			scammer_text = "Press E to collect";
+		}
+		if (Application::IsKeyPressed('E') && coin3_count == 1)
+		{
+			Application::yourself.currency_added(100);
+
 		}
 	}
 	//std::cout << coin1_count << std::endl;
@@ -1114,25 +1168,38 @@ void SP::RenderScammer()
 	}
 	else
 	{
+		
+	}
+	if (coin2_enable)
+	{
+		//corner near the exit
+		modelStack.PushMatrix();
+		//modelStack.Translate(27, 0, 104);
+		modelStack.Translate(coin2_pos.x, coin2_pos.y, coin2_pos.z);
+		modelStack.Rotate(90, 1, 0, 0);
+		modelStack.Scale(0.5, 0.5, 0.5);
+		RenderMesh(meshList[GEO_COIN], true);
+		modelStack.PopMatrix();
+	}
+	else
+	{
 
 	}
-	//corner near the exit
-	modelStack.PushMatrix();
-	//modelStack.Translate(27, 0, 104);
-	modelStack.Translate(coin2_pos.x, coin2_pos.y, coin2_pos.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(0.5, 0.5, 0.5);
-	RenderMesh(meshList[GEO_COIN], true);
-	modelStack.PopMatrix();
+	if (coin3_enable)
+	{
+		//behind under rocks
+		modelStack.PushMatrix();
+		//modelStack.Translate(23, 0, -17);
+		modelStack.Translate(coin3_pos.x, coin3_pos.y, coin3_pos.z);
+		modelStack.Rotate(90, 1, 0, 0);
+		modelStack.Scale(0.5, 0.5, 0.5);
+		RenderMesh(meshList[GEO_COIN], true);
+		modelStack.PopMatrix();
+	}
+	else
+	{
 
-	//behind under rocks
-	modelStack.PushMatrix();
-	//modelStack.Translate(23, 0, -17);
-	modelStack.Translate(coin3_pos.x, coin3_pos.y, coin3_pos.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(0.5, 0.5, 0.5);
-	RenderMesh(meshList[GEO_COIN], true);
-	modelStack.PopMatrix();
+	}
 
 	//RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
 	

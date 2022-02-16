@@ -153,7 +153,7 @@ private:
 
 
 	//sp stuff
-	bool tut_text=true,scammaer_talk=false,coin1_enable=true;
+	bool tut_text=true,scammaer_talk=false,coin1_enable=true, coin2_enable=true, coin3_enable = true;
 	Vector3 scammer_pos = Vector3(0, 0, 30);
 	Vector3 coin1_pos = Vector3(25, 0, 28);
 	Vector3 coin2_pos = Vector3(27, 0, 104);
@@ -199,7 +199,7 @@ public:
 	~SP();
 	
 
-	//Player yourself;
+	Player yourself;
 	virtual void Init();
 	virtual void Update(double dt);
 	virtual void Render();
