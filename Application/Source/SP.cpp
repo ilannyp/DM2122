@@ -648,7 +648,7 @@ void SP::Init()
 		meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
 
 		meshList[GEO_QUAD] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
-		meshList[GEO_QUAD]->textureID = LoadTGA("Image//Stone_Floor.tga");
+		meshList[GEO_QUAD]->textureID = LoadTGA("Image//floor.tga");
 
 		meshList[GEO_CUBE] = MeshBuilder::GenerateCube("cube", Color(1, 1, 1), 1.f);
 		meshList[GEO_CUBE]->textureID = LoadTGA("Image//color.tga");
