@@ -160,7 +160,11 @@ void Application::Run()
 			scene->Init();
 		}
 
-
+		if (yourself.get_life_status() == false)
+		{
+			scene = scene3;
+			scene->Init();
+		}
 
 
 

@@ -1041,8 +1041,7 @@ void SP::Update(double dt)
 	if (Application::yourself.get_currency() <= 0)
 	{
 		camera.Init(Vector3(-96, 3, 30), Vector3(-96, 3, 0), Vector3(0, 1, 0));
-		die = true;
-	
+		Application::yourself.set_die();
 	}
 
 	
