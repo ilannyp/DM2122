@@ -182,6 +182,13 @@ void SP::RenderRightSide()
 	modelStack.Scale(10, 10, 10);
 	RenderMesh(meshList[GEO_LANTERN], true);
 	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-100, 0, 22);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(1, 1, 1);
+	RenderMesh(meshList[GEO_TAXI], true);
+	modelStack.PopMatrix();
 }
 void SP::RenderLeftSide()
 {
