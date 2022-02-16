@@ -7,6 +7,7 @@
 #include "Mesh.h"
 #include "MatrixStack.h"
 #include "Light.h"
+#include "Player.h"
 
 
 class SP : public Scene
@@ -36,7 +37,7 @@ class SP : public Scene
 		GEO_BLEND,
 		//**********SP************
 		GEO_SCAMMER,
-
+		GEO_COIN,
 		//*********obj models*********
 		GEO_HOLLOW,
 		GEO_HORNET,
@@ -183,7 +184,7 @@ private:
 	Vector3 bullet8;
 	
 
-	
+	Player yourself;
 	
 	
 public:

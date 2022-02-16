@@ -3,6 +3,7 @@
 Player::Player()
 {
 	currency = 100;
+	alive = true;
 }
 
 Player::~Player()
@@ -27,4 +28,19 @@ void Player::currency_deducted(int x)
 void Player::currency_added(int x)
 {
 	currency = currency + x;
+}
+
+void Player::set_alive()
+{
+	alive = true;
+}
+
+void Player::set_die()
+{
+	alive = false;
+}
+
+bool Player::get_life_status()
+{
+	return alive;
 }

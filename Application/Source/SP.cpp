@@ -745,7 +745,8 @@ void SP::Init()
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
 	}
 
-		//meshList[GEO_COIN] = MeshBuilder::GenerateOBJMTL("coin", "OBJ//coin.obj", "OBJ//coin.mtl");
+		meshList[GEO_COIN] = MeshBuilder::GenerateOBJMTL("coin", "OBJ//coin.obj", "OBJ//coin.mtl");
+		meshList[GEO_COIN]->textureID = LoadTGA("Image//Coin_Gold_albedo.tga");
 		//-----------------------------------------------------------------------
 		//SP
 		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
@@ -758,7 +759,7 @@ void SP::Init()
 
 
 	
-
+		Player yourself;
 
 
 
@@ -1008,6 +1009,27 @@ void SP::Update(double dt)
 	
 	cameraz = std::to_string(camera.position.z);
 }
+void SP::RenderScammer()
+{
+	modelStack.PushMatrix();
+	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
+	//modelStack.Translate(0, 0, 30);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(5, 5, 5);
+	RenderMesh(meshList[GEO_HORNET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(25, 0, 28);
+	//modelStack.Translate(0, 0, 30);
+	modelStack.Rotate(90, 1, 0, 0);
+	modelStack.Scale(0.5, 0.5, 0.5);
+	RenderMesh(meshList[GEO_COIN], true);
+	modelStack.PopMatrix();
+
+	//RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
+	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);
+}
 
 void SP::Render()
 {
@@ -1169,8 +1191,10 @@ void SP::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], FPS, Color(0, 1, 0), 2, 47, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
 
-	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);
+	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(yourself.get_currency()), Color(0, 1, 0), 2, 15, 50);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
+
+
 
 }
 
