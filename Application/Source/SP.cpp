@@ -119,27 +119,6 @@ void SP::RenderSkybox()
 	modelStack.PopMatrix();
 }
 
-void SP::RenderScammer()
-{
-	modelStack.PushMatrix();
-	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
-	//modelStack.Translate(0, 0, 30);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(5, 5, 5);
-	RenderMesh(meshList[GEO_HORNET], true);
-	modelStack.PopMatrix();
-
-	//modelStack.PushMatrix();
-	//modelStack.Translate(5, 0, 30);
-	////modelStack.Translate(0, 0, 30);
-	//modelStack.Rotate(180, 0, 1, 0);
-	//modelStack.Scale(5, 5, 5);
-	//RenderMesh(meshList[GEO_COIN], true);
-	//modelStack.PopMatrix();
-
-	//RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
-	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);
-}
 
 
 void SP::RenderFloor()
