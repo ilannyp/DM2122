@@ -735,7 +735,7 @@ void SP::Init()
 
 
 	
-
+		Player yourself;
 
 
 
@@ -1176,8 +1176,10 @@ void SP::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], FPS, Color(0, 1, 0), 2, 47, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
 
-	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);
+	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(yourself.get_currency()), Color(0, 1, 0), 2, 15, 50);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
+
+
 
 }
 

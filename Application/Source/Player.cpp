@@ -4,7 +4,6 @@ Player::Player()
 {
 	currency = 100;
 	alive = true;
-	gold = 0;
 }
 
 Player::~Player()
@@ -44,24 +43,4 @@ void Player::set_die()
 bool Player::get_life_status()
 {
 	return alive;
-}
-
-int Player::get_gold()
-{
-	return gold;
-}
-
-void Player::set_gold(int x)
-{
-	gold = x;
-}
-
-void Player::gold_deducted(int x)
-{
-	gold = gold - x;
-}
-
-void Player::gold_added(int x)
-{
-	gold = gold + x;
 }

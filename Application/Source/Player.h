@@ -4,7 +4,6 @@ class Player
 private:
 	int currency;
 	bool alive;
-	int gold;
 
 public:
 	Player();
@@ -21,10 +20,5 @@ public:
 
 	bool get_life_status();
 
-	int get_gold();
-	void set_gold(int x);
-
-	void gold_deducted(int x);
-	void gold_added(int x);
 };
 

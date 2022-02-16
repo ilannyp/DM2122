@@ -7,6 +7,7 @@
 #include "Mesh.h"
 #include "MatrixStack.h"
 #include "Light.h"
+#include "Player.h"
 
 
 class SP : public Scene
@@ -184,7 +185,7 @@ private:
 	Vector3 bullet8;
 	
 
-	
+	Player yourself;
 	
 	
 public:
