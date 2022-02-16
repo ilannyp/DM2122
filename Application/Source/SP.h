@@ -38,6 +38,7 @@ class SP : public Scene
 		//**********SP************
 		GEO_SCAMMER,
 		GEO_COIN,
+		GEO_COIN_ICON,
 		//*********obj models*********
 		GEO_HOLLOW,
 		GEO_HORNET,
@@ -143,6 +144,7 @@ private:
 
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
+	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
 	
 
 
@@ -184,7 +186,6 @@ private:
 	Vector3 bullet8;
 	
 
-	Player yourself;
 	
 	
 public:
@@ -192,6 +193,7 @@ public:
 	~SP();
 	
 
+	//Player yourself;
 	virtual void Init();
 	virtual void Update(double dt);
 	virtual void Render();

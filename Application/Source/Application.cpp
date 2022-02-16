@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Scene_LV2.h" //-for test
-
 #include "SP_Start.h"
 #include "SP.h"
 #include "Scene_EndScreen.h"
@@ -21,6 +20,7 @@ const unsigned char FPS = 60; // FPS of this game
 const unsigned int frameTime = 1000 / FPS; // time for each frame
 unsigned Application::m_width;
 unsigned Application::m_height;
+Player Application::yourself;
 
 void resize_callback(GLFWwindow* window, int w, int h)
 {

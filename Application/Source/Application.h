@@ -3,7 +3,7 @@
 #define APPLICATION_H
 
 #include "timer.h"
-
+#include "Player.h"
 class Application
 {
 public:
@@ -19,6 +19,7 @@ public:
 	void Run();
 	void Exit();
 	static bool IsKeyPressed(unsigned short key);
+	static Player yourself;
 
 private:
 
