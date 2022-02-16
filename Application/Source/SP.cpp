@@ -68,7 +68,7 @@ void SP::RenderSkybox()
 	modelStack.PushMatrix();
 	//to do: transformation code here
 	modelStack.Translate(0, 0, -OFFSET);
-	modelStack.Rotate(180, 0, 0, 1);
+	//modelStack.Rotate(180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_FRONT], false);
 	modelStack.PopMatrix();
@@ -77,7 +77,7 @@ void SP::RenderSkybox()
 	//to do: transformation code here
 	modelStack.Translate(-OFFSET, 0, 0);
 	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Rotate(180, 0, 0, 1);
+	//modelStack.Rotate(180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_LEFT], false);
 	modelStack.PopMatrix();
@@ -86,7 +86,7 @@ void SP::RenderSkybox()
 	//to do: transformation code here
 	modelStack.Translate(OFFSET, 0, 0.25);
 	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Rotate(180, 0, 0, 1);
+	//modelStack.Rotate(180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_RIGHT], false);
 	modelStack.PopMatrix();
@@ -95,7 +95,7 @@ void SP::RenderSkybox()
 	//to do: transformation code here
 	modelStack.Translate(0, 0, OFFSET);
 	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Rotate(180, 0, 0, 1);
+	//modelStack.Rotate(180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_BACK], false);
 	modelStack.PopMatrix();
@@ -104,7 +104,7 @@ void SP::RenderSkybox()
 	//to do: transformation code here
 	modelStack.Translate(0, OFFSET, 0);
 	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Rotate(180, 0, 0, 1);
+	modelStack.Rotate(270, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_TOP], false);
 	modelStack.PopMatrix();
