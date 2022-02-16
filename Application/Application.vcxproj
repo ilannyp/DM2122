@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Boundary.cpp" />
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Assignment1.cpp" />
     <ClCompile Include="Source\Assignment2.cpp" />
@@ -182,6 +183,7 @@
     <ClCompile Include="Source\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Boundary.h" />
     <ClInclude Include="Source\Application.h" />
     <ClInclude Include="Source\Assignment1.h" />
     <ClInclude Include="Source\Assignment2.h" />

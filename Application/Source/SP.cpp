@@ -8,6 +8,7 @@
 #include "LoadTGA.h"
 #include "Light.h"
 
+
 SP::SP()
 {
 
@@ -932,9 +933,9 @@ void SP::Update(double dt)
 		|| ((bullet7.x + 2) > camera.position.x && (bullet7.x - 2) < camera.position.x && (bullet7.z + 4) > camera.position.z && (bullet7.z - 2) < camera.position.z)
 		|| ((bullet8.x + 2) > camera.position.x && (bullet8.x - 2) < camera.position.x && (bullet8.z + 4) > camera.position.z && (bullet8.z - 2) < camera.position.z))
 	{
-		playerhealth -= (1 * dt);
+		yourself.set_currency(yourself.get_currency() - 1);
 	}
-	if (playerhealth <= 0)
+	if (yourself.get_currency() <= 0)
 	{
 		camera.Init(Vector3(-96, 3, 30), Vector3(-96, 3, 0), Vector3(0, 1, 0));
 		die = true;
@@ -945,7 +946,7 @@ void SP::Update(double dt)
 	if (Application::IsKeyPressed('R'))
 	{
 		camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
-		playerhealth = 20;
+		yourself.set_currency(100);
 		battlestart = false;
 		die = false;
 		win = false;

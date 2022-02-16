@@ -34,6 +34,7 @@
     <ClCompile Include="Source\SP_Start.cpp" />
     <ClCompile Include="Source\Utility.cpp" />
     <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Boundary.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h" />
@@ -71,5 +72,6 @@
     <ClInclude Include="Source\Scene4.h" />
     <ClInclude Include="Source\shader.hpp" />
     <ClInclude Include="Source\Player.h" />
+    <ClInclude Include="Boundary.h" />
   </ItemGroup>
 </Project>
