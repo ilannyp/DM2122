@@ -10,7 +10,7 @@
 //Include the standard C++ headers
 #include <stdio.h>
 #include <stdlib.h>
-#include "SceneLight2.h" //-for test
+#include "Scene_LV2.h" //-for test
 
 #include "SP_Start.h"
 #include "SP.h"
@@ -117,7 +117,7 @@ void Application::Init()
 	//Initialize GLEW
 	GLenum err = glewInit();
 
-	//If GLEW hasn't initialized
+	//If GLEW hasn't initialized	
 	if (err != GLEW_OK) 
 	{
 		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
@@ -132,7 +132,9 @@ void Application::Run()
 	Scene *scene1 = new SP_Start();
 	Scene *scene2 = new SP();
 	Scene *scene3 = new Scene_EndScreen();
-	 
+	Scene* scene4 = new Scene_LV2();
+
+
 	Scene *scene = scene1;
 	scene1->Init();
 	scene2->Init();
@@ -142,18 +144,22 @@ void Application::Run()
 	while (!glfwWindowShouldClose(m_window) && !IsKeyPressed(VK_ESCAPE))
 	{
 		if (IsKeyPressed(VK_RETURN))
+		{
 			scene = scene2;
-		scene->Update(m_timer.getElapsedTime());
-		scene->Render();
-		//Swap buffers
-		glfwSwapBuffers(m_window);
-		//Get and organize events, like keyboard and mouse input, window resizing, etc...
-		glfwPollEvents();
-        m_timer.waitUntil(frameTime);       // Frame rate limiter. Limits each frame to a specified time in ms.
-
+			scene->Init();
+		}
 		if (IsKeyPressed(VK_F3))
 		//if (endscreen == true)
+			
+		{
 			scene = scene3;
+			scene->Init();
+		}
+		if (IsKeyPressed(VK_F4))
+		{
+			scene = scene4;
+			scene->Init();
+		}
 		scene->Update(m_timer.getElapsedTime());
 		scene->Render();
 		//Swap buffers
@@ -161,6 +167,8 @@ void Application::Run()
 		//Get and organize events, like keyboard and mouse input, window resizing, etc...
 		glfwPollEvents();
 		m_timer.waitUntil(frameTime);       // Frame rate limiter. Limits each frame to a specified time in ms.
+
+
 
 	} //Check if the ESC key had been pressed or if the window had been closed
 	scene1->Exit();

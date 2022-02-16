@@ -60,6 +60,7 @@ void SP::RenderMesh(Mesh* mesh, bool enableLight)
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 }
+
 void SP::RenderSkybox()
 {
 	const float OFFSET = 499;
@@ -116,6 +117,28 @@ void SP::RenderSkybox()
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_BOTTOM], false);
 	modelStack.PopMatrix();
+}
+
+void SP::RenderScammer()
+{
+	modelStack.PushMatrix();
+	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
+	//modelStack.Translate(0, 0, 30);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(5, 5, 5);
+	RenderMesh(meshList[GEO_HORNET], true);
+	modelStack.PopMatrix();
+
+	//modelStack.PushMatrix();
+	//modelStack.Translate(5, 0, 30);
+	////modelStack.Translate(0, 0, 30);
+	//modelStack.Rotate(180, 0, 1, 0);
+	//modelStack.Scale(5, 5, 5);
+	//RenderMesh(meshList[GEO_COIN], true);
+	//modelStack.PopMatrix();
+
+	//RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
+	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);
 }
 
 
@@ -586,7 +609,7 @@ void SP::Init()
 
 	//Replace previous code
 	glUniform1i(m_parameters[U_NUMLIGHTS], 2);
-	light[0].type = Light::LIGHT_DIRECTIONAL;
+	light[0].type = Light::LIGHT_SPOT;
 	light[0].position.Set(-100, 20, 25);
 	light[0].color.Set(0.9, 1, 0.8);
 	light[0].power = 1;
@@ -599,7 +622,7 @@ void SP::Init()
 	light[0].spotDirection.Set(0.f, 1.f, 0.f);
 
 
-	light[1].type = Light::LIGHT_DIRECTIONAL;
+	light[1].type = Light::LIGHT_POINT;
 	light[1].position.Set(9.9f,8.5f, 20.f);
 	light[1].color.Set(0.4, 0.9, 0.7);
 	light[1].power = 1;
@@ -720,6 +743,7 @@ void SP::Init()
 
 		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
+	}
 
 		//meshList[GEO_COIN] = MeshBuilder::GenerateOBJMTL("coin", "OBJ//coin.obj", "OBJ//coin.mtl");
 		//-----------------------------------------------------------------------
@@ -773,7 +797,7 @@ void SP::Init()
 		meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scammer", "OBJ//basicCharacter.obj");
 		
 
-	}
+	
 }
 
 void SP::Update(double dt)
@@ -815,16 +839,7 @@ void SP::Update(double dt)
 		
 
 	
-	if (Application::IsKeyPressed(VK_RETURN))
-	{
-		light[0].type = Light::LIGHT_DIRECTIONAL;
-		light[0].position.Set(0, 42, -40);
-		light[0].power = 0.1f;
-
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
-		//to do: switch light type to DIRECTIONAL and pass the information to shader
-	}
+	
 	
 
 	
@@ -992,27 +1007,6 @@ void SP::Update(double dt)
 	camerax = std::to_string(camera.position.x);
 	
 	cameraz = std::to_string(camera.position.z);
-}
-void SP::RenderScammer()
-{
-	modelStack.PushMatrix();
-	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
-	//modelStack.Translate(0, 0, 30);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(5, 5, 5);
-	RenderMesh(meshList[GEO_HORNET], true);
-	modelStack.PopMatrix();
-
-	//modelStack.PushMatrix();
-	//modelStack.Translate(5, 0, 30);
-	////modelStack.Translate(0, 0, 30);
-	//modelStack.Rotate(180, 0, 1, 0);
-	//modelStack.Scale(5, 5, 5);
-	//RenderMesh(meshList[GEO_COIN], true);
-	//modelStack.PopMatrix();
-
-	//RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
-	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);
 }
 
 void SP::Render()
