@@ -104,7 +104,7 @@ void SP::RenderSkybox()
 	//to do: transformation code here
 	modelStack.Translate(0, OFFSET, 0);
 	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Rotate(270, 0, 0, 1);
+	modelStack.Rotate(180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_TOP], false);
 	modelStack.PopMatrix();
@@ -653,22 +653,22 @@ void SP::Init()
 		meshList[GEO_CUBE]->textureID = LoadTGA("Image//color.tga");
 
 		meshList[GEO_FRONT] = MeshBuilder::GenerateQuad("front", Color(1, 1, 1), 1.f);
-		meshList[GEO_FRONT]->textureID = LoadTGA("Image//space_ft.tga");
+		meshList[GEO_FRONT]->textureID = LoadTGA("Image//miramar_ft.tga");
 
 		meshList[GEO_LEFT] = MeshBuilder::GenerateQuad("left", Color(1, 1, 1), 1.f);
-		meshList[GEO_LEFT]->textureID = LoadTGA("Image//space_lf.tga");
+		meshList[GEO_LEFT]->textureID = LoadTGA("Image//miramar_lf.tga");
 
 		meshList[GEO_RIGHT] = MeshBuilder::GenerateQuad("right", Color(1, 1, 1), 1.f);
-		meshList[GEO_RIGHT]->textureID = LoadTGA("Image//space_rt.tga");
+		meshList[GEO_RIGHT]->textureID = LoadTGA("Image//miramar_rt.tga");
 
 		meshList[GEO_TOP] = MeshBuilder::GenerateQuad("top", Color(1, 1, 1), 1.f);
-		meshList[GEO_TOP]->textureID = LoadTGA("Image//space_up.tga");
+		meshList[GEO_TOP]->textureID = LoadTGA("Image//miramar_up.tga");
 
 		meshList[GEO_BOTTOM] = MeshBuilder::GenerateQuad("bottom", Color(1, 1, 1), 1.f);
-		meshList[GEO_BOTTOM]->textureID = LoadTGA("Image//space_dn.tga");
+		meshList[GEO_BOTTOM]->textureID = LoadTGA("Image//miramar_dn.tga");
 
 		meshList[GEO_BACK] = MeshBuilder::GenerateQuad("back", Color(1, 1, 1), 1.f);
-		meshList[GEO_BACK]->textureID = LoadTGA("Image//space_bk.tga");
+		meshList[GEO_BACK]->textureID = LoadTGA("Image//miramar_bk.tga");
 
 		meshList[GEO_BLEND] = MeshBuilder::GenerateQuad("blend", Color(1, 1, 1), 1.f);
 		meshList[GEO_BLEND]->textureID = LoadTGA("Image//Grimm.tga");
