@@ -795,6 +795,15 @@ void SP::Init()
 
 		meshList[GEO_COIN_ICON] = MeshBuilder::GenerateQuad("coin_icon", Color(1, 1, 1), 1.f);
 		meshList[GEO_COIN_ICON]->textureID = LoadTGA("Image//coin_icon.tga");
+
+
+
+
+
+		meshList[GEO_TAXI] = MeshBuilder::GenerateOBJ("coin", "OBJ//Taxi2.obj");
+		meshList[GEO_TAXI]->textureID = LoadTGA("Image//taxi.tga");
+
+		
 		//-----------------------------------------------------------------------
 		//SP
 		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");

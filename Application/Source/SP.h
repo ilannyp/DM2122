@@ -39,6 +39,10 @@ class SP : public Scene
 		GEO_SCAMMER,
 		GEO_COIN,
 		GEO_COIN_ICON,
+
+
+
+		GEO_TAXI,
 		//*********obj models*********
 		GEO_HOLLOW,
 		GEO_HORNET,

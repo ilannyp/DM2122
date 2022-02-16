@@ -912,7 +912,7 @@ void Scene_LV2::Render()
 
 	
 
-
+	{
 		modelStack.Translate(-102, 1, 17);
 		modelStack.Rotate(0, 0, 1, 0);
 		modelStack.Scale(0.6, 0.6, 0.6);
