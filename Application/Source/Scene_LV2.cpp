@@ -88,42 +88,42 @@ void Scene_LV2::RenderSkybox()
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(0, 0, -OFFSET);
-	modelStack.Rotate(180, 0, 0, 1);
+	modelStack.Translate(0 + camera.position.x, 0 + camera.position.y, -OFFSET + camera.position.z);
+	//modelStack.Rotate(180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_FRONT], false);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(-OFFSET, 0, 0);
+	modelStack.Translate(-OFFSET + camera.position.x, 0 + camera.position.y, 0 + camera.position.z);
 	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Rotate(180, 0, 0, 1);
-	modelStack.Scale(1000, 1000, 1000);
-	RenderMesh(meshList[GEO_LEFT], false);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	//to do: transformation code here
-	modelStack.Translate(OFFSET, 0, 0.25);
-	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Rotate(180, 0, 0, 1);
+	//modelStack.Rotate(-180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_RIGHT], false);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(0, 0, OFFSET);
+	modelStack.Translate(OFFSET + camera.position.x, 0 + camera.position.y, 0.25 + camera.position.z);
+	modelStack.Rotate(270, 0, 1, 0);
+	//modelStack.Rotate(180, 0, 0, 1);
+	modelStack.Scale(1000, 1000, 1000);
+	RenderMesh(meshList[GEO_LEFT], false);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	//to do: transformation code here
+	modelStack.Translate(0 + camera.position.x, 0 + camera.position.y, OFFSET + camera.position.z);
 	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Rotate(180, 0, 0, 1);
+	//modelStack.Rotate(180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_BACK], false);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(0, OFFSET, 0);
+	modelStack.Translate(0 + camera.position.x, OFFSET + camera.position.y, 0 + camera.position.z);
 	modelStack.Rotate(90, 1, 0, 0);
 	modelStack.Rotate(270, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
@@ -132,30 +132,11 @@ void Scene_LV2::RenderSkybox()
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(0, -OFFSET, 0);
+	modelStack.Translate(0 + camera.position.x, -OFFSET + camera.position.y, 0 + camera.position.z);
 	modelStack.Rotate(-90, 1, 0, 0);
 	modelStack.Rotate(-90, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_BOTTOM], false);
-	modelStack.PopMatrix();
-}
-
-void Scene_LV2::RenderScammer()
-{
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 30);
-	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(5, 5, 5);
-	RenderMesh(meshList[GEO_HORNET], true);
-	modelStack.PopMatrix();
-
-	
-	modelStack.PushMatrix();
-	modelStack.Translate(3, 5, 30);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(0.5, 0.5, 0.5);
-	RenderText(meshList[GEO_TEXT],"Press E to interact",Color(0,1,0) );
 	modelStack.PopMatrix();
 }
 void Scene_LV2::RenderFloor()
@@ -168,7 +149,6 @@ void Scene_LV2::RenderFloor()
 	RenderMesh(meshList[GEO_QUAD], true);
 	modelStack.PopMatrix();
 }
-
 void Scene_LV2::RenderRightSide()
 {
 	//right side
@@ -475,6 +455,23 @@ void Scene_LV2::RenderLamps()
 	modelStack.PopMatrix();
 
 }
+void Scene_LV2::RenderWall()
+{
+	modelStack.PushMatrix();
+	modelStack.Translate(40, 1, 80);
+	modelStack.Scale(5, 5, 200);
+	RenderMesh(meshList[GEO_CUBE], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(0, 1, 108);
+	modelStack.Scale(100, 5, 5);
+	RenderMesh(meshList[GEO_CUBE], true);
+	modelStack.PopMatrix();
+}
+
+
+
 void Scene_LV2::RenderText(Mesh* mesh, std::string text, Color color)
 {
 
@@ -500,9 +497,6 @@ void Scene_LV2::RenderText(Mesh* mesh, std::string text, Color color)
 	glUniform1i(m_parameters[U_TEXT_ENABLED], 0);
 	//glEnable(GL_DEPTH_TEST); //uncomment for RenderTextOnScreen
 }
-
-
-
 void Scene_LV2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y)
 {
 	if (!mesh || mesh->textureID <= 0) //Proper error check
@@ -677,22 +671,22 @@ void Scene_LV2::Init()
 		meshList[GEO_CUBE]->textureID = LoadTGA("Image//color.tga");
 
 		meshList[GEO_FRONT] = MeshBuilder::GenerateQuad("front", Color(1, 1, 1), 1.f);
-		meshList[GEO_FRONT]->textureID = LoadTGA("Image//space_ft.tga");
+		meshList[GEO_FRONT]->textureID = LoadTGA("Image//miramar_ft.tga");
 
 		meshList[GEO_LEFT] = MeshBuilder::GenerateQuad("left", Color(1, 1, 1), 1.f);
-		meshList[GEO_LEFT]->textureID = LoadTGA("Image//space_lf.tga");
+		meshList[GEO_LEFT]->textureID = LoadTGA("Image//miramar_lf.tga");
 
 		meshList[GEO_RIGHT] = MeshBuilder::GenerateQuad("right", Color(1, 1, 1), 1.f);
-		meshList[GEO_RIGHT]->textureID = LoadTGA("Image//space_rt.tga");
+		meshList[GEO_RIGHT]->textureID = LoadTGA("Image//miramar_rt.tga");
 
 		meshList[GEO_TOP] = MeshBuilder::GenerateQuad("top", Color(1, 1, 1), 1.f);
-		meshList[GEO_TOP]->textureID = LoadTGA("Image//space_up.tga");
+		meshList[GEO_TOP]->textureID = LoadTGA("Image//miramar_up.tga");
 
 		meshList[GEO_BOTTOM] = MeshBuilder::GenerateQuad("bottom", Color(1, 1, 1), 1.f);
-		meshList[GEO_BOTTOM]->textureID = LoadTGA("Image//space_dn.tga");
+		meshList[GEO_BOTTOM]->textureID = LoadTGA("Image//miramar_dn.tga");
 
 		meshList[GEO_BACK] = MeshBuilder::GenerateQuad("back", Color(1, 1, 1), 1.f);
-		meshList[GEO_BACK]->textureID = LoadTGA("Image//space_bk.tga");
+		meshList[GEO_BACK]->textureID = LoadTGA("Image//miramar_bk.tga");
 
 		meshList[GEO_BLEND] = MeshBuilder::GenerateQuad("blend", Color(1, 1, 1), 1.f);
 		meshList[GEO_BLEND]->textureID = LoadTGA("Image//Grimm.tga");
@@ -814,9 +808,7 @@ void Scene_LV2::Init()
 
 void Scene_LV2::Update(double dt)
 {
-	Vector3 scammerpos = scammer_pos - camera.position;
-	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
-
+	
 	if (Application::IsKeyPressed('1'))
 	{
 		glEnable(GL_CULL_FACE);
@@ -833,171 +825,10 @@ void Scene_LV2::Update(double dt)
 	{
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
 	}
-	if (Application::IsKeyPressed('I'))
-		light[0].position.z -= (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('K'))
-		light[0].position.z += (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('J'))
-		light[0].position.x -= (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('L'))
-		light[0].position.x += (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('O'))
-		light[0].position.y -= (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('P'))
-		light[0].position.y += (float)(LSPEED * dt);
-
-	if (Application::IsKeyPressed('5'))
-	{
-		
-		light[0].type = Light::LIGHT_POINT;
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
-
-	}
-	else if (Application::IsKeyPressed('6'))
-	{
-		light[0].type = Light::LIGHT_DIRECTIONAL;
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
-		//to do: switch light type to DIRECTIONAL and pass the information to shader
-	}
-	else if (Application::IsKeyPressed('7'))
-	{
-		light[0].type = Light::LIGHT_SPOT;
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
-		//to do: switch light type to SPOT and pass the information to shader
-	}
-
-	
-	
-	/*******************************************************************************************************/
-	//tutorial boundary check
-	if (camera.position.x > -15 && camera.position.x<26 && camera.position.z>-14 && camera.position.z < 103)
-	{
-		tut_text = true;
-	}
-	else
-	{
-		tut_text = false;
-	}
-
-	if (scammerdis<25)
-	{
-
-	}
-	/**********************************************************************************************************/
-	
-
-
-	
 	
 
 	
-	// 3rd interaction : fighting
-	if (camera.position.x <= -9 && camera.position.z >= 72)
-	{
-		battlestart = true;
-	}
-	if(battlestart)
-	{
-		bullet.z += (float)(60 * dt);
-		bullet2.z += (float)(120 * dt);
-		bullet3.z += (float)(50 * dt);
-		bullet4.z += (float)(70 * dt);
-		bullet5.z += (float)(100 * dt);
-		bullet6.z += (float)(30 * dt);
-		bullet7.z += (float)(90 * dt);
-		bullet8.z += (float)(100 * dt);
-
-		if (bullet.z > 112)
-		{
-			bullet.z = enemyz;
-		}
-		if (bullet2.z > 112)
-		{
-			bullet2.z = enemyz;
-		}
-		if (bullet3.z > 112)
-		{
-			bullet3.z = enemyz;
-		}
-		if (bullet4.z > 112)
-		{
-			bullet4.z = enemyz;
-		}
-		if (bullet5.z > 112)
-		{
-			bullet5.z = enemyz;
-		}
-		if (bullet6.z > 112)
-		{
-			bullet6.z = enemyz;
-		}
-		if (bullet7.z > 112)
-		{
-			bullet7.z = enemyz;
-		}
-
-		if (bullet8.z > 112)
-		{
-			bullet8.z = enemyz;
-		}
-	}
-
-	if (((bullet.x + 2) > camera.position.x && (bullet.x - 2) < camera.position.x && (bullet.z + 4) > camera.position.z && (bullet.z - 2) < camera.position.z)
-		|| ((bullet2.x + 2) > camera.position.x && (bullet2.x - 2) < camera.position.x && (bullet2.z + 4) > camera.position.z && (bullet2.z - 2) < camera.position.z)
-		|| ((bullet3.x + 2) > camera.position.x && (bullet3.x - 2) < camera.position.x && (bullet3.z + 4) > camera.position.z && (bullet3.z - 2) < camera.position.z)
-		|| ((bullet4.x + 2) > camera.position.x && (bullet4.x - 2) < camera.position.x && (bullet4.z + 4) > camera.position.z && (bullet4.z - 2) < camera.position.z)
-		|| ((bullet5.x + 2) > camera.position.x && (bullet5.x - 2) < camera.position.x && (bullet5.z + 4) > camera.position.z && (bullet5.z - 2) < camera.position.z)
-		|| ((bullet6.x + 2) > camera.position.x && (bullet6.x - 2) < camera.position.x && (bullet6.z + 4) > camera.position.z && (bullet6.z - 2) < camera.position.z)
-		|| ((bullet7.x + 2) > camera.position.x && (bullet7.x - 2) < camera.position.x && (bullet7.z + 4) > camera.position.z && (bullet7.z - 2) < camera.position.z)
-		|| ((bullet8.x + 2) > camera.position.x && (bullet8.x - 2) < camera.position.x && (bullet8.z + 4) > camera.position.z && (bullet8.z - 2) < camera.position.z))
-	{
-		playerhealth -= (1 * dt);
-	}
-	if (playerhealth <= 0)
-	{
-		camera.Init(Vector3(-96, 3, 30), Vector3(-96, 3, 0), Vector3(0, 1, 0));
-		die = true;
 	
-	}
-
-	
-	if (Application::IsKeyPressed('R'))
-	{
-		camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
-		playerhealth = 20;
-		battlestart = false;
-		die = false;
-		win = false;
-
-	}
-	if (battlestart == false)
-	{
-		
-		enemyz = 25;
-		bullet.x = -65;
-		bullet.z = enemyz;
-
-		bullet2.x = -85;
-		bullet2.z = enemyz;
-
-		bullet3.x = -45;
-		bullet3.z = enemyz;
-
-		bullet4.x = -35;
-		bullet4.z = enemyz;
-
-		bullet5.x = -55;
-		bullet5.z = enemyz;
-
-		bullet6.x = -95;
-		bullet6.z = enemyz - 40;
-
-		bullet7.x = -50;
-		bullet7.z = enemyz;
-	}
 	
 	
 
@@ -1007,7 +838,6 @@ void Scene_LV2::Update(double dt)
 	camera.Update(dt);
 	FPS = std::to_string(1.f / dt);
 	camerax = std::to_string(camera.position.x);
-	
 	cameraz = std::to_string(camera.position.z);
 }
 
@@ -1047,7 +877,7 @@ void Scene_LV2::Render()
 	//**************************************************************************************************************
 
 
-	modelStack.PushMatrix();
+	/*modelStack.PushMatrix();
 	modelStack.Translate(light[0].position.x, light[0].position.y, light[0].position.z);
 	RenderMesh(meshList[GEO_LIGHTBALL], false);
 	modelStack.PopMatrix();
@@ -1055,13 +885,13 @@ void Scene_LV2::Render()
 	modelStack.PushMatrix();
 	modelStack.Translate(light[1].position.x, light[1].position.y, light[1].position.z);
 	RenderMesh(meshList[GEO_LIGHTBALL], false);
-	modelStack.PopMatrix();
+	modelStack.PopMatrix();*/
 
 	RenderSkybox();
 
 	RenderFloor();
 	
-	RenderScammer();
+	/*RenderScammer();
 
 	RenderRightSide();
 	
@@ -1076,47 +906,12 @@ void Scene_LV2::Render()
 	RenderBullet();
 
 	RenderLamps();
-	
-	
-
-
+	*/
+	RenderWall();
 	
 
+	
 
-
-	if (die)
-	{
-		//endscreen = true;
-		if (true)
-		{
-			Application::IsKeyPressed(VK_F3) == true;
-		}
-		battlestart = false;
-		modelStack.PushMatrix();
-		modelStack.Translate(-100, 3, 17);
-		modelStack.Rotate(0, 0, 1, 0);
-		modelStack.Scale(1, 1, 1);
-		RenderText(meshList[GEO_TEXT], "You Died!", Color(1, 0, 0));
-		modelStack.PopMatrix();
-		modelStack.PushMatrix();
-
-		modelStack.Translate(-102, 1, 17);
-		modelStack.Rotate(0, 0, 1, 0);
-		modelStack.Scale(0.6, 0.6, 0.6);
-		RenderText(meshList[GEO_TEXT], "Press 'R' to restart", Color(1, 0, 0));
-		modelStack.PopMatrix();
-	}
-	if (win)
-	{
-		//endscreen = true;
-		battlestart = false;
-		modelStack.PushMatrix();
-		modelStack.Translate(-100, 3, 17);
-		modelStack.Rotate(0, 0, 1, 0);
-		modelStack.Scale(1, 1, 1);
-		RenderText(meshList[GEO_TEXT], "You Win!", Color(0, 0, 1));
-		modelStack.PopMatrix();
-		modelStack.PushMatrix();
 
 		modelStack.Translate(-102, 1, 17);
 		modelStack.Rotate(0, 0, 1, 0);

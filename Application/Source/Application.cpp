@@ -137,8 +137,7 @@ void Application::Run()
 
 	Scene *scene = scene1;
 	scene1->Init();
-	scene2->Init();
-	scene3->Init();
+
 
 	m_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
 	while (!glfwWindowShouldClose(m_window) && !IsKeyPressed(VK_ESCAPE))
@@ -160,6 +159,31 @@ void Application::Run()
 			scene = scene4;
 			scene->Init();
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		scene->Update(m_timer.getElapsedTime());
 		scene->Render();
 		//Swap buffers

@@ -2,8 +2,7 @@
 #define Scene_LV2_H
 #pragma once
 #include "Scene.h"
-#include "Camera3.h"
-#include "Camera2.h"
+#include "Camera_SP_LVL2.h"
 #include "Mesh.h"
 #include "MatrixStack.h"
 #include "Light.h"
@@ -152,7 +151,6 @@ private:
 	Light light[2];
 	void RenderMesh(Mesh* mesh, bool enableLight);
 	void RenderSkybox();
-	void RenderScammer();
 	void RenderFloor();
 	void RenderRightSide();
 	void RenderLeftSide();
@@ -162,14 +160,15 @@ private:
 	void RenderBullet();
 	void RenderLamps();
 
+	//**sp**
+	void RenderWall();
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
 	unsigned m_vertexArrayID;
 	unsigned m_programID;
 	unsigned m_parameters[U_TOTAL];
 	Mesh* meshList[NUM_GEOMETRY];
-	Camera3 camera;
-	Camera2 benchcamera;
+	Camera_SP_LVL2 camera;
 	MS modelStack, viewStack, projectionStack;
 
 public:

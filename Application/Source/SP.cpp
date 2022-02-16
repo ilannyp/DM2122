@@ -201,6 +201,14 @@ void SP::RenderLeftSide()
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
+	modelStack.Translate(30, 0, -60);
+	modelStack.Rotate(270, 0, 1, 0);
+	modelStack.Rotate(10, 0, 1, 0);
+	modelStack.Scale(100, 40, 40);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
 	modelStack.Translate(24, 0, -18);
 	modelStack.Rotate(95, 0, 1, 0);
 	modelStack.Scale(30, 30, 30);
@@ -236,10 +244,17 @@ void SP::RenderBackSide()
 {
 	//back side
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -105);
+	modelStack.Translate(0, 0, -81);
 	modelStack.Rotate(180, 0, 1, 0);
 	modelStack.Scale(50, 50, 50);
 	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-63, 0, -59);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(108, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALL], true);
 	modelStack.PopMatrix();
 }
 void SP::RenderFrontSide()
@@ -283,6 +298,30 @@ void SP::RenderFrontSide()
 	modelStack.PushMatrix();
 	modelStack.Translate(-70, 0, 20);
 	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(100, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALL], true);
+	modelStack.PopMatrix();
+
+	//gold area wall connecting rock and horizontal wall
+	modelStack.PushMatrix();
+	modelStack.Translate(-15.4, -0.1, -14);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(20, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
+	modelStack.PopMatrix();
+
+	//gold area horizontal wall near rock
+	modelStack.PushMatrix();
+	modelStack.Translate(-70, 0, -19);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(100, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALL], true);
+	modelStack.PopMatrix();
+
+	//gold area vertical wall near rock
+	modelStack.PushMatrix();
+	modelStack.Translate(-100, 0, -18);
+	modelStack.Rotate(90, 0, 1, 0);
 	modelStack.Scale(100, 10, 10);
 	RenderMesh(meshList[GEO_STONEWALL], true);
 	modelStack.PopMatrix();
@@ -667,7 +706,7 @@ void SP::Init()
 		meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
 
 		meshList[GEO_QUAD] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
-		meshList[GEO_QUAD]->textureID = LoadTGA("Image//Stone_Floor.tga");
+		meshList[GEO_QUAD]->textureID = LoadTGA("Image//floor.tga");
 
 		meshList[GEO_CUBE] = MeshBuilder::GenerateCube("cube", Color(1, 1, 1), 1.f);
 		meshList[GEO_CUBE]->textureID = LoadTGA("Image//color.tga");
