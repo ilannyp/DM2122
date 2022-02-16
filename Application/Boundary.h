@@ -29,6 +29,8 @@ public:
 	void setCameraZTail(int CameraZTail);
 	int getCameraZTail(void);
 
+	void collision();
+
 	
 };
 
