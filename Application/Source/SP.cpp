@@ -60,6 +60,7 @@ void SP::RenderMesh(Mesh* mesh, bool enableLight)
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 }
+
 void SP::RenderSkybox()
 {
 	const float OFFSET = 499;
@@ -117,6 +118,7 @@ void SP::RenderSkybox()
 	RenderMesh(meshList[GEO_BOTTOM], false);
 	modelStack.PopMatrix();
 }
+
 
 
 void SP::RenderFloor()
@@ -586,7 +588,7 @@ void SP::Init()
 
 	//Replace previous code
 	glUniform1i(m_parameters[U_NUMLIGHTS], 2);
-	light[0].type = Light::LIGHT_DIRECTIONAL;
+	light[0].type = Light::LIGHT_SPOT;
 	light[0].position.Set(-100, 20, 25);
 	light[0].color.Set(0.9, 1, 0.8);
 	light[0].power = 1;
@@ -599,7 +601,7 @@ void SP::Init()
 	light[0].spotDirection.Set(0.f, 1.f, 0.f);
 
 
-	light[1].type = Light::LIGHT_DIRECTIONAL;
+	light[1].type = Light::LIGHT_POINT;
 	light[1].position.Set(9.9f,8.5f, 20.f);
 	light[1].color.Set(0.4, 0.9, 0.7);
 	light[1].power = 1;
@@ -720,6 +722,7 @@ void SP::Init()
 
 		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
+	}
 
 		meshList[GEO_COIN] = MeshBuilder::GenerateOBJMTL("coin", "OBJ//coin.obj", "OBJ//coin.mtl");
 		meshList[GEO_COIN]->textureID = LoadTGA("Image//Coin_Gold_albedo.tga");
@@ -774,7 +777,7 @@ void SP::Init()
 		meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scammer", "OBJ//basicCharacter.obj");
 		
 
-	}
+	
 }
 
 void SP::Update(double dt)
@@ -816,16 +819,7 @@ void SP::Update(double dt)
 		
 
 	
-	if (Application::IsKeyPressed(VK_RETURN))
-	{
-		light[0].type = Light::LIGHT_DIRECTIONAL;
-		light[0].position.Set(0, 42, -40);
-		light[0].power = 0.1f;
-
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
-		//to do: switch light type to DIRECTIONAL and pass the information to shader
-	}
+	
 	
 
 	

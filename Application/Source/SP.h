@@ -132,7 +132,6 @@ private:
 	
 	void RenderSkybox();
 	void RenderScammer();
-	void RenderScammer_E();
 	void RenderFloor();
 	void RenderRightSide();
 	void RenderLeftSide();
