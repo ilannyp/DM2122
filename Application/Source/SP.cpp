@@ -182,6 +182,14 @@ void SP::RenderLeftSide()
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
+	modelStack.Translate(30, 0, -60);
+	modelStack.Rotate(270, 0, 1, 0);
+	modelStack.Rotate(10, 0, 1, 0);
+	modelStack.Scale(100, 40, 40);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
 	modelStack.Translate(24, 0, -18);
 	modelStack.Rotate(95, 0, 1, 0);
 	modelStack.Scale(30, 30, 30);
@@ -217,10 +225,17 @@ void SP::RenderBackSide()
 {
 	//back side
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -105);
+	modelStack.Translate(0, 0, -81);
 	modelStack.Rotate(180, 0, 1, 0);
 	modelStack.Scale(50, 50, 50);
 	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-63, 0, -59);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(108, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALL], true);
 	modelStack.PopMatrix();
 }
 void SP::RenderFrontSide()
@@ -264,6 +279,30 @@ void SP::RenderFrontSide()
 	modelStack.PushMatrix();
 	modelStack.Translate(-70, 0, 20);
 	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(100, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALL], true);
+	modelStack.PopMatrix();
+
+	//gold area wall connecting rock and horizontal wall
+	modelStack.PushMatrix();
+	modelStack.Translate(-15.4, -0.1, -14);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(20, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
+	modelStack.PopMatrix();
+
+	//gold area horizontal wall near rock
+	modelStack.PushMatrix();
+	modelStack.Translate(-70, 0, -19);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(100, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALL], true);
+	modelStack.PopMatrix();
+
+	//gold area vertical wall near rock
+	modelStack.PushMatrix();
+	modelStack.Translate(-100, 0, -18);
+	modelStack.Rotate(90, 0, 1, 0);
 	modelStack.Scale(100, 10, 10);
 	RenderMesh(meshList[GEO_STONEWALL], true);
 	modelStack.PopMatrix();
@@ -1196,8 +1235,8 @@ void SP::Render()
 
 
 
-	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);
+	//RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
+	//RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);
 	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);
 
 

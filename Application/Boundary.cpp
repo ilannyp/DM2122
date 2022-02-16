@@ -73,3 +73,7 @@ int Boundary::getCameraZTail(void)
 {
     return cameraZTail;
 }
+
+void Boundary::collision()
+{
+}
