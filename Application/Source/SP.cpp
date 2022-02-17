@@ -859,6 +859,7 @@ void SP::Init()
 
 void SP::Update(double dt)
 {
+
 	Vector3 scammerpos = scammer_pos - camera.position;
 	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
 	Vector3 coin1pos = coin1_pos - camera.position;
@@ -918,6 +919,7 @@ void SP::Update(double dt)
 	}
 	static bool scammaer_talk = false;
 	static int scam_count = 0;
+	static int buy = 0;
 	if (Application::IsKeyPressed('E'))
 	{
 		scammaer_talk = true;
@@ -932,16 +934,28 @@ void SP::Update(double dt)
 		{
 			scam_count++;
 		}
-		if(scam_count >=1)
+		if(buy==0&& scam_count >=1)
 		{
 			//talk text
-			scammer_text = "Give me 400 gold and i'll give you head";
+			scammer_text = "Give me 300 gold and i'll give you a prize";
+			if (Application::yourself.get_currency() > 300 && Application::IsKeyPressed('E'))
+			{
+				buy = 1;
+				scam_count = 0;
+				//scammer_text = "Press E to talk";
+				Application::yourself.currency_deducted(300);
+			}
 		}
 		else
 		{
 			scammer_text = "Press E to talk";
 		}
-
+		if (buy == 1 )
+		{
+			scammer_text = "Thank you bye bye";
+		}
+		
+		std::cout << scam_count << std::endl;
 
 	}
 	else
