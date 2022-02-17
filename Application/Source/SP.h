@@ -158,6 +158,7 @@ private:
 	Vector3 coin1_pos = Vector3(25, 0, 28);
 	Vector3 coin2_pos = Vector3(27, 0, 104);
 	Vector3 coin3_pos = Vector3(23, 0, -17);
+	Vector3 cab_pos = Vector3(-100, 0, 22);
 	std::string scammer_text;
 	//-------------------------------------//
 	float rotateAngle;
@@ -204,6 +205,7 @@ public:
 	virtual void Update(double dt);
 	virtual void Render();
 	virtual void Exit();
+	float cabTP();
 	std::string FPS;
 	std::string camerax;
 	std::string cameraz;

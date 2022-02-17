@@ -184,7 +184,8 @@ void SP::RenderRightSide()
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(-100, 0, 22);
+	modelStack.Translate(cab_pos.x, cab_pos.y, cab_pos.z);
+	//modelStack.Translate(-100, 0, 22);
 	modelStack.Rotate(180, 0, 1, 0);
 	modelStack.Scale(1, 1, 1);
 	RenderMesh(meshList[GEO_TAXI], true);
@@ -869,6 +870,7 @@ void SP::Update(double dt)
 	Vector3 coin3pos = coin3_pos - camera.position;
 	float coin3dis = sqrt(pow(coin3pos.x, 2) + pow(coin3pos.y, 2) + pow(coin3pos.z, 2));
 	
+	
 	if (Application::IsKeyPressed('1'))
 	{
 		glEnable(GL_CULL_FACE);
@@ -1033,6 +1035,11 @@ void SP::Update(double dt)
 
 		}
 	}
+	if (cabTP() <= 10)
+	{
+		scammer_text = "Press E to ride";
+	}
+	
 	//std::cout << coin1_count << std::endl;
 	/**********************************************************************************************************/
 	
@@ -1392,6 +1399,13 @@ void SP::Render()
 
 }
 
+float SP::cabTP()
+{
+	Vector3 cabpos = cab_pos - camera.position;
+	float cabdis = sqrt(pow(cabpos.x, 2) + pow(cabpos.y, 2) + pow(cabpos.z, 2));
+
+	return cabdis;
+}
 void SP::Exit()
 {
 	// Cleanup VBO here
@@ -1405,5 +1419,6 @@ void SP::Exit()
 	glDeleteVertexArrays(1, &m_vertexArrayID);
 	glDeleteProgram(m_programID);
 }
+
 
 
