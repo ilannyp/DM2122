@@ -4,6 +4,7 @@ Player::Player()
 {
 	currency = 100;
 	alive = true;
+	in_cab = false;
 }
 
 Player::~Player()
@@ -43,4 +44,21 @@ void Player::set_die()
 bool Player::get_life_status()
 {
 	return alive;
+}
+
+void Player::set_in_cab(bool x)
+{
+	if (x == true)
+	{
+		in_cab = true;
+	}
+	else
+	{
+		in_cab = false;
+	}
+}
+
+bool Player::get_in_cab()
+{
+	return in_cab;
 }

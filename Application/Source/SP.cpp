@@ -1035,9 +1035,20 @@ void SP::Update(double dt)
 
 		}
 	}
-	if (cabTP() <= 10)
+	/*if (cabTP() <= 10)
 	{
 		scammer_text = "Press E to ride";
+	}*/
+	if ((Application::yourself.get_in_cab() == false) && (cabTP() <= 10))
+	{
+		if (Application::IsKeyPressed('E'))
+		{
+			Application::yourself.set_in_cab(true);
+		}
+		else
+		{
+			scammer_text = "Press E to ride";
+		}
 	}
 	
 	//std::cout << coin1_count << std::endl;

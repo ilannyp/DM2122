@@ -210,7 +210,6 @@ public:
 	std::string camerax;
 	std::string cameraz;
 	bool endscreen = false;
-	
 
 };
 

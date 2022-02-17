@@ -4,6 +4,7 @@ class Player
 private:
 	int currency;
 	bool alive;
+	bool in_cab;
 
 public:
 	Player();
@@ -19,6 +20,9 @@ public:
 	void set_die();
 
 	bool get_life_status();
+
+	void set_in_cab(bool x);
+	bool get_in_cab();
 
 };
 

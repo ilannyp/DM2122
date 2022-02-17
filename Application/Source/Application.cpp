@@ -156,11 +156,11 @@ void Application::Run()
 			scene = scene3;
 			scene->Init();
 		}
-		if (IsKeyPressed(VK_F4))
+		if (yourself.get_in_cab() == true)
 		{
-
 			scene = scene4;
 			scene->Init();
+			yourself.set_in_cab(false);
 		}
 
 		if (yourself.get_life_status() == false)
