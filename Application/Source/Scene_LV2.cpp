@@ -538,6 +538,7 @@ void Scene_LV2::RenderNPC()
 {
 	modelStack.PushMatrix();
 	modelStack.Translate(translatenpc, 1.8f, 42.f);
+	
 	modelStack.Scale(2, 2.5, 1);
 	RenderMesh(meshList[GEO_TORSO], true);
 	//head
@@ -907,9 +908,10 @@ void Scene_LV2::Init()
 
 
 
-		//**Scammer**
-		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scammer", "OBJ//basicCharacter.obj");*/
-
+		interactnpc1 = false;
+		npc1x = translatenpc;
+		npc1z = 42;
+		
 
 	}
 }
@@ -934,15 +936,53 @@ void Scene_LV2::Update(double dt)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
 	}
 	
+	if(!interactnpc1)
+	{
+		translatenpc += (float)(30 * dt * dir1);
+		if (translatenpc > 20)
+			dir1 = -1;
+		else if (translatenpc < -20)
+			dir1 = 1;
+	}
+	npc1x = translatenpc;
 
-	translatenpc += (float)(30 * dt * dir1);
-	if (translatenpc > 20)
-		dir1 = -1;
-	else if (translatenpc < -20)
-		dir1 = 1;
+
+	if ( (camera.position.x > npc1x - 2 && camera.position.x < npc1x + 2) && (camera.position.z > npc1z - 1 && camera.position.z < npc1z + 1) && !interactnpc1)
+	{
+		interactnpc1 = true;
+		std::cout << "kena";
+
+	}
 	
 	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	

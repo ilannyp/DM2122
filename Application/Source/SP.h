@@ -143,7 +143,7 @@ private:
 	void RenderLeftSide();
 	void RenderBackSide();
 	void RenderFrontSide();
-	void RenderRoads();
+	void RenderPath();
 	void RenderBullet();
 	void RenderLamps();
 	void RenderText(Mesh* mesh, std::string text, Color color);

@@ -124,9 +124,11 @@ private:
 	//sp stuff
 	bool tut_text=true;
 	Vector3 scammer_pos = Vector3(0, 0, 0);
-
+	
 	//movin npc
 	float translatenpc;
+	float npc1x;
+	float npc1z;
 	int dir1 = 1;
 
 	//-------------------------------------//
@@ -149,8 +151,8 @@ private:
 	bool die = false;
 	bool hit = false;
 
-	
-	
+	bool interactnpc1;
+	int intnpc1;
 
 	Vector3 bullet;
 	Vector3 bullet2;
