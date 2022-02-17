@@ -851,8 +851,7 @@ void SP::Init()
 
 
 
-		//sp
-		meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scammer", "OBJ//basicCharacter.obj");
+		
 		
 
 	

@@ -22,6 +22,8 @@ unsigned Application::m_width;
 unsigned Application::m_height;
 Player Application::yourself;
 
+
+
 void resize_callback(GLFWwindow* window, int w, int h)
 {
 	Application::m_width = w;
@@ -156,6 +158,7 @@ void Application::Run()
 		}
 		if (IsKeyPressed(VK_F4))
 		{
+
 			scene = scene4;
 			scene->Init();
 		}
@@ -165,22 +168,6 @@ void Application::Run()
 			scene = scene3;
 			scene->Init();
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

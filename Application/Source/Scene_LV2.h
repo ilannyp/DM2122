@@ -85,8 +85,15 @@ class Scene_LV2 : public Scene , public SP
 		//**********SP************
 		GEO_SCAMMER,
 		GEO_COIN_ICON,
-
 		GEO_TUNNEL,
+
+
+
+
+
+		//***ownbuildscsammer***
+		GEO_HEAD,
+		GEO_TORSO,
 	//*********obj models*********
 		GEO_HOLLOW,
 		GEO_HORNET,
@@ -117,6 +124,11 @@ private:
 	//sp stuff
 	bool tut_text=true;
 	Vector3 scammer_pos = Vector3(0, 0, 0);
+
+	//movin npc
+	float translatenpc;
+	int dir1 = 1;
+
 	//-------------------------------------//
 	float rotateAngle;
 	float translateX = 1;
@@ -165,7 +177,9 @@ private:
 	void RenderWall();
 	void RenderTunnel();
 	void RenderPavement();
-
+	void RenderNPC();
+	
+	
 
 
 	void RenderText(Mesh* mesh, std::string text, Color color);

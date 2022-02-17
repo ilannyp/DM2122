@@ -475,7 +475,6 @@ void Scene_LV2::RenderWall()
 	RenderMesh(meshList[GEO_CUBE], true);
 	modelStack.PopMatrix();
 }
-
 void Scene_LV2::RenderTunnel()
 {
 	
@@ -523,7 +522,6 @@ void Scene_LV2::RenderTunnel()
 	modelStack.PopMatrix();
 
 }
-
 void Scene_LV2::RenderPavement()
 {
 	modelStack.PushMatrix();
@@ -536,6 +534,24 @@ void Scene_LV2::RenderPavement()
 
 	//lightpole here
 }
+void Scene_LV2::RenderNPC()
+{
+	modelStack.PushMatrix();
+	modelStack.Translate(translatenpc, 1.8f, 42.f);
+	modelStack.Scale(2, 2.5, 1);
+	RenderMesh(meshList[GEO_TORSO], true);
+	//head
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(0.f, 0.75f, 0.f);
+		modelStack.Scale(0.5, 0.5, 1);
+		RenderMesh(meshList[GEO_HEAD], true);
+		modelStack.PopMatrix();
+	}
+	modelStack.PopMatrix();
+}
+
+
 
 
 
@@ -609,7 +625,7 @@ void Scene_LV2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, fl
 void Scene_LV2::Init()
 {
 
-
+	
 	// Set background colour to light purple
 	glClearColor(0.5f, 0.0f, 0.7f, 0.0f);
 	// Enable depth test
@@ -761,6 +777,8 @@ void Scene_LV2::Init()
 		meshList[GEO_TUNNEL] = MeshBuilder::GenerateQuad("tunnel", Color(1, 1, 1), 1.f);
 		meshList[GEO_TUNNEL]->textureID = LoadTGA("Image//tunnel.tga");
 
+
+
 		meshList[GEO_SPHERE] = MeshBuilder::GenerateSphere("sphere", Color(0, 0, 0), 10, 20, 1.f);			//limbs
 
 		meshList[GEO_LAMPLIGHT] = MeshBuilder::GenerateSphere("sphere", Color(0.4, 0.4, 0.4), 10, 20, 1.f);			//limbs
@@ -810,6 +828,8 @@ void Scene_LV2::Init()
 
 		meshList[GEO_BULLET] = MeshBuilder::GenerateOBJMTL("bullet", "OBJ//ironFenceBar.obj", "OBJ//ironFenceBar.mtl");
 
+		
+
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 		meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
 
@@ -821,8 +841,26 @@ void Scene_LV2::Init()
 		//-----------------------------------------------------------------------
 		//SP
 		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
-		meshList[GEO_SCAMMER]->textureID = LoadTGA("Image//scammer.tga");*/
-		//An array of 3 vectors which represents the colors of the 3 vertices
+		meshList[GEO_SCAMMER]->textureID = LoadTGA("Image//scammer.tga");
+		*/
+		//***myownscammerfornow***
+		meshList[GEO_HEAD] = MeshBuilder::GenerateCube("cube", Color(1, 0, 0), 1.f);
+		meshList[GEO_TORSO] = MeshBuilder::GenerateCube("cube", Color(0, 0, 1), 1.f);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		Mtx44 projection;
 		projection.SetToPerspective(45.f, 4.f / 3.f, 0.1f, 1000.f);
@@ -870,7 +908,7 @@ void Scene_LV2::Init()
 
 
 		//**Scammer**
-		meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scammer", "OBJ//basicCharacter.obj");
+		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scammer", "OBJ//basicCharacter.obj");*/
 
 
 	}
@@ -897,7 +935,11 @@ void Scene_LV2::Update(double dt)
 	}
 	
 
-	
+	translatenpc += (float)(30 * dt * dir1);
+	if (translatenpc > 20)
+		dir1 = -1;
+	else if (translatenpc < -20)
+		dir1 = 1;
 	
 	
 	
@@ -964,8 +1006,8 @@ void Scene_LV2::Render()
 	RenderPavement();
 	
 	
-	/*RenderScammer();
-
+	RenderNPC();
+	/*
 	RenderRightSide();
 	
 	RenderLeftSide();
@@ -1039,5 +1081,7 @@ void Scene_LV2::Exit()
 	glDeleteVertexArrays(1, &m_vertexArrayID);
 	glDeleteProgram(m_programID);
 }
+
+
 
 
