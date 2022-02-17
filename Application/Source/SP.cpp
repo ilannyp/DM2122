@@ -334,7 +334,7 @@ void SP::RenderFrontSide()
 	modelStack.PopMatrix();
 
 }
-void SP::RenderRoads()
+void SP::RenderPath()
 {
 	//roads
 	modelStack.PushMatrix();
@@ -1301,7 +1301,7 @@ void SP::Render()
 	
 	RenderFrontSide();
 
-	RenderRoads();
+	RenderPath();
 
 	RenderBullet();
 
