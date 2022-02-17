@@ -861,7 +861,6 @@ void SP::Init()
 
 void SP::Update(double dt)
 {
-
 	Vector3 scammerpos = scammer_pos - camera.position;
 	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
 	Vector3 coin1pos = coin1_pos - camera.position;
@@ -948,6 +947,8 @@ void SP::Update(double dt)
 				//scammer_text = "Press E to talk";
 				Application::yourself.currency_deducted(300);
 				Application::yourself.set_first_scammed(true);
+
+
 			}
 		}
 		else
@@ -1181,13 +1182,16 @@ void SP::Update(double dt)
 }
 void SP::RenderScammer()
 {
-	modelStack.PushMatrix();
-	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
-	//modelStack.Translate(0, 0, 30);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(5, 5, 5);
-	RenderMesh(meshList[GEO_HORNET], true);
-	modelStack.PopMatrix();
+	if (Application::yourself.get_first_scammed() == false)
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
+		//modelStack.Translate(0, 0, 30);
+		modelStack.Rotate(90, 0, 1, 0);
+		modelStack.Scale(5, 5, 5);
+		RenderMesh(meshList[GEO_HORNET], true);
+		modelStack.PopMatrix();
+	}
 
 	if (coin1_enable)
 	{
