@@ -797,7 +797,8 @@ void SP::Init()
 		meshList[GEO_COIN_ICON] = MeshBuilder::GenerateQuad("coin_icon", Color(1, 1, 1), 1.f);
 		meshList[GEO_COIN_ICON]->textureID = LoadTGA("Image//coin_icon.tga");
 
-
+		meshList[GEO_BLOOD] = MeshBuilder::GenerateQuad("blood_gui", Color(1, 1, 1), 1.f);
+		meshList[GEO_BLOOD]->textureID = LoadTGA("Image//Blood.tga");
 
 
 
@@ -1122,6 +1123,7 @@ void SP::Update(double dt)
 	{
 		//yourself.set_currency(yourself.get_currency() - 1);
 		Application::yourself.set_currency(Application::yourself.get_currency() - 1);
+		blood_ui = true;
 	}
 	if (Application::yourself.get_currency() <= 0)
 	{
@@ -1373,6 +1375,16 @@ void SP::Render()
 		modelStack.PopMatrix();
 	}
 	//----------------------------sp--------------------------------------
+	if (blood_ui)
+	{
+		int i;
+		for (i = 0; i < 10; i++)
+		{
+			RenderMeshOnScreen(meshList[GEO_BLOOD], 40, 30, 85, 65);
+		}
+		i = 0;
+		blood_ui = false;
+	}
 	if (tut_text==true)
 	{
 		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
@@ -1399,13 +1411,13 @@ void SP::Render()
 
 	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
 	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
-	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
 
 
 
 	/*RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
 	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);*/
 	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);
+	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
 
 
 }
