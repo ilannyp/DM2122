@@ -947,6 +947,7 @@ void SP::Update(double dt)
 				scam_count = 0;
 				//scammer_text = "Press E to talk";
 				Application::yourself.currency_deducted(300);
+				Application::yourself.set_first_scammed(true);
 			}
 		}
 		else
@@ -1183,7 +1184,7 @@ void SP::RenderScammer()
 	modelStack.PushMatrix();
 	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
 	//modelStack.Translate(0, 0, 30);
-	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Rotate(90, 0, 1, 0);
 	modelStack.Scale(5, 5, 5);
 	RenderMesh(meshList[GEO_HORNET], true);
 	modelStack.PopMatrix();

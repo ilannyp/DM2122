@@ -76,59 +76,127 @@ void Camera3::Update(double dt)
 	}
 	if(Application::IsKeyPressed('W'))
 	{
-		temp = position + view * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
-			!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
-			!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
-			!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 84))
+		if (Application::yourself.get_first_scammed() == false)
 		{
-			position += view * ZOOM_SPEED * static_cast<float>(dt);
-			position.y = 3;
-			target = position + view;
+			temp = position + view * ZOOM_SPEED * static_cast<float>(dt);
+			if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
+				!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
+				!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33)
+				&& !(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 50))
+			{
+				position += view * ZOOM_SPEED * static_cast<float>(dt);
+				position.y = 3;
+				target = position + view;
+			}
+			temp = position;
 		}
-		temp = position;
+		else
+		{
+			temp = position + view * ZOOM_SPEED * static_cast<float>(dt);
+			if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
+				!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
+				!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33)
+				&& !(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 84))
+			{
+				position += view * ZOOM_SPEED * static_cast<float>(dt);
+				position.y = 3;
+				target = position + view;
+			}
+			temp = position;
+		}
 	}	
 	if(Application::IsKeyPressed('S'))
 	{
-		temp = position - view * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
-			!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
-			!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
-			!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 84))
+		if (Application::yourself.get_first_scammed() == false)
 		{
-			position -= view * ZOOM_SPEED * static_cast<float>(dt);
-			position.y = 3;
-			target = position + view;
+			temp = position - view * ZOOM_SPEED * static_cast<float>(dt);
+			if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
+				!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
+				!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
+				!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 50))
+			{
+				position -= view * ZOOM_SPEED * static_cast<float>(dt);
+				position.y = 3;
+				target = position + view;
+			}
+			temp = position;
 		}
-		temp = position;
+		else
+		{
+			temp = position - view * ZOOM_SPEED * static_cast<float>(dt);
+			if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
+				!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
+				!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
+				!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 84))
+			{
+				position -= view * ZOOM_SPEED * static_cast<float>(dt);
+				position.y = 3;
+				target = position + view;
+			}
+			temp = position;
+		}
 	}
 	if (Application::IsKeyPressed('A'))
 	{
-		temp = position - right * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
-			!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
-			!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
-			!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 84))
+		if (Application::yourself.get_first_scammed() == false)
 		{
-			position -= right * ZOOM_SPEED * static_cast<float>(dt);
-			position.y = 3;
-			target = position + view;
+			temp = position - right * ZOOM_SPEED * static_cast<float>(dt);
+			if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
+				!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
+				!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
+				!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 50))
+			{
+				position -= right * ZOOM_SPEED * static_cast<float>(dt);
+				position.y = 3;
+				target = position + view;
+			}
+			temp = position;
 		}
-		temp = position;
+		else
+		{
+			temp = position - right * ZOOM_SPEED * static_cast<float>(dt);
+			if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
+				!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
+				!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
+				!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 84))
+			{
+				position -= right * ZOOM_SPEED * static_cast<float>(dt);
+				position.y = 3;
+				target = position + view;
+			}
+			temp = position;
+		}
 	}
 	if (Application::IsKeyPressed('D'))
 	{
-		temp = position + right * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
-			!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
-			!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
-			!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 84))
+		if (Application::yourself.get_first_scammed() == false)
 		{
-			position += right * ZOOM_SPEED * static_cast<float>(dt);
-			position.y = 3;
-			target = position + view;
+			temp = position + right * ZOOM_SPEED * static_cast<float>(dt);
+			if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
+				!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
+				!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
+				!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 50))
+			{
+				position += right * ZOOM_SPEED * static_cast<float>(dt);
+				position.y = 3;
+				target = position + view;
+			}
+			temp = position;
 		}
-		temp = position;
+		else
+		{
+			temp = position + right * ZOOM_SPEED * static_cast<float>(dt);
+			if (!(temp.z < -60 /*back*/) && !(temp.x > 18 /*utmost left*/) && !(temp.x < -103/*utmost right*/) &&
+				!(temp.z > 103/*utmost front*/) && !(temp.x < -7 && temp.x >= -34 && temp.z < 72 && temp.z > -25/*wall on the right from origin*/) &&
+				!(temp.z < 74 && temp.z > -25 && temp.x >= -32 && temp.x < -7) && !(temp.z <= 17 && temp.z > -25 && temp.x <= -33) &&
+				!(temp.x <= -13 && temp.x >= -17 && temp.z <= 103 && temp.z >= 84))
+			{
+				position += right * ZOOM_SPEED * static_cast<float>(dt);
+				position.y = 3;
+				target = position + view;
+			}
+			temp = position;
+		}
 	}
 
 	if(Application::IsKeyPressed('R'))
