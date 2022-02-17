@@ -5,7 +5,7 @@ Player::Player()
 	currency = 100;
 	alive = true;
 	in_cab = false;
-	first_scammed = true;
+	first_scammed = false;
 }
 
 Player::~Player()
