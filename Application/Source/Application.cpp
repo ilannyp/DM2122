@@ -130,16 +130,16 @@ void Application::Init()
 void Application::Run()
 {
 	//Main Loop
-	
+	SP cab;
 	Scene *scene1 = new SP_Start();
 	Scene *scene2 = new SP();
 	Scene *scene3 = new Scene_EndScreen();
-	Scene* scene4 = new Scene_LV2();
+	Scene *scene4 = new Scene_LV2();
 
 
 	Scene *scene = scene1;
 	scene1->Init();
-
+	std::cout << cab.cabTP()<<std::endl;
 
 	m_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
 	while (!glfwWindowShouldClose(m_window) && !IsKeyPressed(VK_ESCAPE))
@@ -156,11 +156,11 @@ void Application::Run()
 			scene = scene3;
 			scene->Init();
 		}
-		if (IsKeyPressed(VK_F4))
+		if (yourself.get_in_cab() == true)
 		{
-
 			scene = scene4;
 			scene->Init();
+			yourself.set_in_cab(false);
 		}
 
 		if (yourself.get_life_status() == false)
@@ -168,7 +168,16 @@ void Application::Run()
 			scene = scene3;
 			scene->Init();
 		}
-
+		if (cab.cabTP() <= 10)
+		{
+			std::cout << "inside \n";
+			if (IsKeyPressed('E'))
+			{
+				std::cout << "to level 2 \n";
+				scene = scene4;
+				scene->Init();
+			}
+		}
 
 
 
