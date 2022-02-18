@@ -461,7 +461,7 @@ void Scene_LV2::RenderWall()
 	
 	modelStack.PushMatrix();
 	modelStack.Translate(40, 1, 0);
-	modelStack.Scale(5, 8, 300);
+	modelStack.Scale(5, 33, 550);
 	RenderMesh(meshList[GEO_CUBE], true);
 	modelStack.PopMatrix();
 
@@ -470,7 +470,7 @@ void Scene_LV2::RenderWall()
 	//end wall
 	modelStack.PushMatrix();
 	modelStack.Translate(0, 1, 140);
-	modelStack.Scale(100, 8, 5);
+	modelStack.Scale(100, 33, 5);
 	RenderMesh(meshList[GEO_CUBE], true);
 	modelStack.PopMatrix();
 
@@ -478,14 +478,14 @@ void Scene_LV2::RenderWall()
 	//right wall
 	modelStack.PushMatrix();
 	modelStack.Translate(-40, 1, 0);
-	modelStack.Scale(5, 8, 300);
+	modelStack.Scale(5, 33, 550);
 	RenderMesh(meshList[GEO_CUBE], true);
 	modelStack.PopMatrix();
 
 	//spawn wall
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 1, -150);
-	modelStack.Scale(100, 8, 5);
+	modelStack.Translate(0, 1, -250);
+	modelStack.Scale(100, 33, 5);
 	RenderMesh(meshList[GEO_CUBE], true);
 	modelStack.PopMatrix();
 }
@@ -494,8 +494,8 @@ void Scene_LV2::RenderTunnel()
 	//left side
 	modelStack.PushMatrix();
 	modelStack.Rotate(-90, 0, 1, 0);
-	modelStack.Translate(-80.f, 2.f, -37.4f);
-	modelStack.Scale(10, 10, 1);
+	modelStack.Translate(-180.f, 2.f, -37.4f);
+	modelStack.Scale(19, 27, 1);
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.1
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.2
@@ -505,13 +505,13 @@ void Scene_LV2::RenderTunnel()
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.4
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.5
-	modelStack.Translate(2.f, 0.f, 0.1f);
+	modelStack.Translate(1.4f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//2.1
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//2.2
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//2.3
-	modelStack.Translate(2.f, 0.f, 0.1f);
+	modelStack.Translate(1.3f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.1
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.2
@@ -521,7 +521,7 @@ void Scene_LV2::RenderTunnel()
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.4
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.5
-	modelStack.Translate(2.f, 0.f, 0.1f);
+	modelStack.Translate(1.3f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//4.1
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//4.2
@@ -543,8 +543,8 @@ void Scene_LV2::RenderTunnel()
 	//right side
 	modelStack.PushMatrix();
 	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Translate(80.f, 2.f, -37.3f);
-	modelStack.Scale(10, 10, 1);
+	modelStack.Translate(180.f, 2.f, -37.3f);
+	modelStack.Scale(19, 27, 1);
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.1
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.2
@@ -554,13 +554,13 @@ void Scene_LV2::RenderTunnel()
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.4
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.5
-	modelStack.Translate(-2.f, 0.f, 0.1f);
+	modelStack.Translate(-1.4f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//2.1
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//2.2
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//2.3
-	modelStack.Translate(-2.f, 0.f, 0.1f);
+	modelStack.Translate(-1.3f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.1
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.2
@@ -570,7 +570,7 @@ void Scene_LV2::RenderTunnel()
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.4
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.5
-	modelStack.Translate(-2.f, 0.f, 0.1f);
+	modelStack.Translate(-1.3f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//4.1
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//4.2
@@ -597,12 +597,12 @@ void Scene_LV2::RenderTunnel()
 void Scene_LV2::RenderPavement()
 {
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -47);
+	modelStack.Translate(0, 0, -122);
 	modelStack.Scale(50, 1, 10);
 	RenderMesh(meshList[GEO_CUBE], true);
-	modelStack.Translate(0.f, 0.f, 3.2f);
+	modelStack.Translate(0.f, 0.f, 4.9f);
 	RenderMesh(meshList[GEO_CUBE], true);
-	modelStack.Translate(0.f, 0.f, 4.5f);
+	modelStack.Translate(0.f, 0.f, 7.0f);
 	RenderMesh(meshList[GEO_CUBE], true);
 	modelStack.PopMatrix();
 
@@ -610,8 +610,10 @@ void Scene_LV2::RenderPavement()
 }
 void Scene_LV2::RenderNPC()
 {
+
+	//npc1
 	modelStack.PushMatrix();
-	modelStack.Translate(translatenpc, 1.8f, -47.f);
+	modelStack.Translate(translatenpc, 1.8f, npc1z);
 	
 	modelStack.Scale(2, 2.5, 1);
 	RenderMesh(meshList[GEO_TORSO], true);
@@ -624,6 +626,62 @@ void Scene_LV2::RenderNPC()
 		modelStack.PopMatrix();
 	}
 	modelStack.PopMatrix();
+
+	//npc2
+	modelStack.PushMatrix();
+	modelStack.Translate(translatenpc2, 1.8f, npc2z);
+
+	modelStack.Scale(2, 2.5, 1);
+	RenderMesh(meshList[GEO_TORSO], true);
+	//head
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(0.f, 0.75f, 0.f);
+		modelStack.Scale(0.5, 0.5, 1);
+		RenderMesh(meshList[GEO_HEAD], true);
+		modelStack.PopMatrix();
+	}
+	modelStack.PopMatrix();
+
+	//npc3
+	modelStack.PushMatrix();
+	modelStack.Translate(translatenpc3, 1.8f, npc3z);
+
+	modelStack.Scale(2, 2.5, 1);
+	RenderMesh(meshList[GEO_TORSO], true);
+	//head
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(0.f, 0.75f, 0.f);
+		modelStack.Scale(0.5, 0.5, 1);
+		RenderMesh(meshList[GEO_HEAD], true);
+		modelStack.PopMatrix();
+	}
+	modelStack.PopMatrix();
+
+	//npc 4
+	modelStack.PushMatrix();
+	modelStack.Translate(translatenpc4, 1.8f, npc4z);
+
+	modelStack.Scale(2, 2.5, 1);
+	RenderMesh(meshList[GEO_TORSO], true);
+	//head
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(0.f, 0.75f, 0.f);
+		modelStack.Scale(0.5, 0.5, 1);
+		RenderMesh(meshList[GEO_HEAD], true);
+		modelStack.PopMatrix();
+	}
+	modelStack.PopMatrix();
+
+
+
+
+
+
+
+
 }
 
 
@@ -709,7 +767,7 @@ void Scene_LV2::Init()
 	// Enable blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	camera.Init(Vector3(0, 3, -139), Vector3(0, 3, 10), Vector3(0, 1, 0));
+	camera.Init(Vector3(0, 3, -220), Vector3(0, 3, 10), Vector3(0, 1, 0));
 
 	m_programID = LoadShaders("Shader//Texture.vertexshader", "Shader//Text.fragmentshader");
 	m_parameters[U_MVP] = glGetUniformLocation(m_programID, "MVP");
@@ -984,7 +1042,20 @@ void Scene_LV2::Init()
 
 		interactnpc1 = false;
 		npc1x = translatenpc;
-		npc1z = 42;
+		npc1z = -122;
+
+		interactnpc2 = false;
+		npc2x = translatenpc2 = 0;
+		npc2z = -73;
+
+		interactnpc3 = false;
+		npc3x = translatenpc3 = 0;
+		npc3z = -3.f;
+
+		interactnpc4 = false;
+		npc4x = translatenpc4 = 0;
+		npc4z = -3.f;
+	
 		
 
 	}
@@ -1009,25 +1080,79 @@ void Scene_LV2::Update(double dt)
 	{
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
 	}
+	npc1x = translatenpc;
+	npc2x = translatenpc2;
+	npc3x = translatenpc3;
+	npc4x = translatenpc4;
+
 	
 	if(!interactnpc1)
 	{
 		translatenpc += (float)(30 * dt * dir1);
-		if (translatenpc > 20)
+		if (translatenpc > 24)
 			dir1 = -1;
-		else if (translatenpc < -20)
+		else if (translatenpc < -24)
 			dir1 = 1;
 	}
-	npc1x = translatenpc;
+
+	if (!interactnpc2)
+	{
+		translatenpc2 += (float)(50 * dt * dir2);
+		if (translatenpc2 > 24)
+			dir2 = -1;
+		else if (translatenpc2 < -24)
+			dir2 = 1;
+	}
+	if (!interactnpc3)
+	{
+		translatenpc3 += (float)(50 * dt * dir3);
+		if (translatenpc3 > 24)
+			dir3 = -1;
+		else if (translatenpc3 < 0)
+			dir3 = 1;
+	}
+
+	if (!interactnpc4)
+	{
+		translatenpc4 += (float)(50 * dt * dir4);
+		if (translatenpc4 > 1)
+			dir4 = -1;
+		else if (translatenpc4 < -24)
+			dir4 = 1;
+	}
 
 
-	if ( (camera.position.x > npc1x - 2 && camera.position.x < npc1x + 2) && (camera.position.z > npc1z - 1 && camera.position.z < npc1z + 1) && !interactnpc1)
+	
+
+
+	if ( (camera.position.x > npc1x - 4 && camera.position.x < npc1x + 4) && (camera.position.z > npc1z - 4 && camera.position.z < npc1z + 4) && !interactnpc1)
 	{
 		interactnpc1 = true;
-		std::cout << "kena";
+		std::cout << "kena npc 1";
 
 	}
-	
+
+	if ((camera.position.x > npc2x - 4 && camera.position.x < npc2x + 4) && (camera.position.z > npc2z - 4 && camera.position.z < npc2z + 4) && !interactnpc2)
+	{
+		interactnpc2 = true;
+		std::cout << "kena npc 2";
+
+	}
+
+
+	if ((camera.position.x > npc3x - 4 && camera.position.x < npc3x + 4) && (camera.position.z > npc3z - 4 && camera.position.z < npc3z + 4) && !interactnpc3)
+	{
+		interactnpc3 = true;
+		std::cout << "kena npc 3";
+
+	}
+
+	if ((camera.position.x > npc4x - 4 && camera.position.x < npc4x + 4) && (camera.position.z > npc4z - 4 && camera.position.z < npc4z + 4) && !interactnpc4)
+	{
+		interactnpc4 = true;
+		std::cout << "kena npc 4";
+
+	}
 	
 
 
