@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Scene_LV2.h" //-for test
+#include "Scene_LV3.h"
 #include "SP_Start.h"
 #include "SP.h"
 #include "Scene_EndScreen.h"
@@ -135,11 +136,12 @@ void Application::Run()
 	Scene *scene2 = new SP();
 	Scene *scene3 = new Scene_EndScreen();
 	Scene *scene4 = new Scene_LV2();
+	Scene* scene5 = new Scene_LV3();
 
 
 	Scene *scene = scene1;
 	scene1->Init();
-	std::cout << cab.cabTP()<<std::endl;
+	//std::cout << cab.cabTP()<<std::endl;
 
 	m_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
 	while (!glfwWindowShouldClose(m_window) && !IsKeyPressed(VK_ESCAPE))
@@ -165,13 +167,12 @@ void Application::Run()
 			scene = scene2;
 			scene->Init();
 		}
-		if (yourself.get_coin1_enabled())
-		{
-
-			//std::cout << "asd" << std::endl;
-		}
-		//std::cout << "asd" << std::endl;
 		if (IsKeyPressed(VK_F3))		
+		{
+			scene = scene3;
+			scene->Init();
+		}
+		if (yourself.get_life_status() == false)
 		{
 			scene = scene3;
 			scene->Init();
@@ -183,12 +184,10 @@ void Application::Run()
 			scene->Init();
 			yourself.set_in_cab(false);
 		}
-
-		if (yourself.get_life_status() == false)
+		if (IsKeyPressed(VK_F4))
 		{
 			scene = scene3;
 			scene->Init();
-			die_screen_once = true;
 		}
 		if (cab.cabTP() <= 10)
 		{
@@ -200,6 +199,7 @@ void Application::Run()
 				scene->Init();
 			}
 		}
+
 
 
 
@@ -245,9 +245,13 @@ void Application::Run()
 	scene1->Exit();
 	scene2->Exit();
 	scene3->Exit();
+	scene4->Exit();
+	scene5->Exit();
 	delete scene1;
 	delete scene2;
 	delete scene3;
+	delete scene4;
+	delete scene5;
 
 }
 
