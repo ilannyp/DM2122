@@ -227,13 +227,86 @@ void Scene_LV3::RenderLeftSide()
 }
 void Scene_LV3::RenderBackSide()
 {
-	//back side
+	//front
 	modelStack.PushMatrix();
 	modelStack.Translate(0, 0, -35);
 	modelStack.Rotate(180, 0, 1, 0);
 	modelStack.Scale(50, 50, 50);
 	RenderMesh(meshList[GEO_TALLROCK], true);
 	modelStack.PopMatrix();
+<<<<<<< Updated upstream
+=======
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-29, 0, -75);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(70, 20, 70);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-80, 0, -61);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(80, 60, 60);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+	
+	modelStack.PushMatrix();
+	modelStack.Translate(-100, 0, -20);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(80, 20, 80);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+	//left
+	modelStack.PushMatrix();
+	modelStack.Translate(-80, 0, -61);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(80, 60, 60);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-110, 0, 48);
+	modelStack.Rotate(270, 0, 1, 0);
+	modelStack.Scale(80, 20, 60);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-97, 0, 95);
+	modelStack.Rotate(270, 0, 1, 0);
+	modelStack.Scale(80, 20, 60);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+	//back
+	modelStack.PushMatrix();
+	modelStack.Translate(-40, 0, 110);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(80, 70, 80);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(15, 0, 100);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(80, 35, 80);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-63, 0, -59);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(108, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALL], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-100, 0, -43);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(108, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALL], true);
+	modelStack.PopMatrix();
+>>>>>>> Stashed changes
 }
 void Scene_LV3::RenderFrontSide()
 {
@@ -535,7 +608,17 @@ void Scene_LV3::Init()
 	// Enable blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+<<<<<<< Updated upstream
 	camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
+=======
+
+	// Generate a default VAO for now
+	glGenVertexArrays(1, &m_vertexArrayID);
+	glBindVertexArray(m_vertexArrayID);
+
+
+	camera.Init(Vector3(-6, 3, 63), Vector3(-33, 3, -32), Vector3(0, 1, 0));
+>>>>>>> Stashed changes
 
 	m_programID = LoadShaders("Shader//Texture.vertexshader", "Shader//Text.fragmentshader");
 	m_parameters[U_MVP] = glGetUniformLocation(m_programID, "MVP");
@@ -548,8 +631,13 @@ void Scene_LV3::Init()
 
 	//Replace previous code
 	light[0].type = Light::LIGHT_SPOT;
+<<<<<<< Updated upstream
 	light[0].position.Set(-100, 20, 25);
 	light[0].color.Set(1, 1, 1);
+=======
+	light[0].position.Set(-40, 60, 25);
+	light[0].color.Set(0.9, 1, 0.8);
+>>>>>>> Stashed changes
 	light[0].power = 1;
 	light[0].kC = 1.f;
 	light[0].kL = 0.01f;
@@ -559,6 +647,7 @@ void Scene_LV3::Init()
 	light[0].exponent = 3.f;
 	light[0].spotDirection.Set(0.f, 1.f, 0.f);
 
+<<<<<<< Updated upstream
 
 	m_parameters[U_LIGHT0_POSITION] = glGetUniformLocation(m_programID, "lights[0].position_cameraspace");
 	m_parameters[U_LIGHT0_COLOR] = glGetUniformLocation(m_programID, "lights[0].color");
@@ -579,6 +668,13 @@ void Scene_LV3::Init()
 	light[1].position.Set(10, 8, 20);
 	light[1].color.Set(1, 1, 1);
 	light[1].power = 0.8;
+=======
+	
+	light[1].type = Light::LIGHT_POINT;
+	light[1].position.Set(22.f,60.f,5.f);
+	light[1].color.Set(0.4, 0.9, 0.7);
+	light[1].power = 1;
+>>>>>>> Stashed changes
 	light[1].kC = 1.f;
 	light[1].kL = 0.01f;
 	light[1].kQ = 0.001f;
@@ -636,6 +732,7 @@ void Scene_LV3::Init()
 	glUniform1f(m_parameters[U_LIGHT1_COSINNER], light[1].cosInner);
 	glUniform1f(m_parameters[U_LIGHT1_EXPONENT], light[1].exponent);
 
+<<<<<<< Updated upstream
 	// Generate a default VAO for now
 	glGenVertexArrays(1, &m_vertexArrayID);
 	glBindVertexArray(m_vertexArrayID);	
@@ -644,6 +741,9 @@ void Scene_LV3::Init()
 	{
 		meshList[i] = nullptr;
 	}
+=======
+	rotateAngle = 0;
+>>>>>>> Stashed changes
 
 	{
 		meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
@@ -729,16 +829,35 @@ void Scene_LV3::Init()
 
 		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
+<<<<<<< Updated upstream
 		//-----------------------------------------------------------------------
 		//SP
 		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
 		meshList[GEO_SCAMMER]->textureID = LoadTGA("Image//scammer.tga");*/
-		//An array of 3 vectors which represents the colors of the 3 vertices
+=======
+	}
 
+		meshList[GEO_COIN] = MeshBuilder::GenerateOBJMTL("coin", "OBJ//coin.obj", "OBJ//coin.mtl");
+		meshList[GEO_COIN]->textureID = LoadTGA("Image//Coin_Gold_albedo.tga");
+
+		meshList[GEO_COIN_ICON] = MeshBuilder::GenerateQuad("coin_icon", Color(1, 1, 1), 1.f);
+		meshList[GEO_COIN_ICON]->textureID = LoadTGA("Image//coin_icon.tga");
+
+		meshList[GEO_BLOOD] = MeshBuilder::GenerateQuad("blood_gui", Color(1, 1, 1), 1.f);
+		meshList[GEO_BLOOD]->textureID = LoadTGA("Image//Blood.tga");
+
+
+
+		meshList[GEO_TAXI] = MeshBuilder::GenerateOBJ("coin", "OBJ//Taxi2.obj");
+		meshList[GEO_TAXI]->textureID = LoadTGA("Image//taxi.tga");
+
+>>>>>>> Stashed changes
+		//An array of 3 vectors which represents the colors of the 3 vertices
 		Mtx44 projection;
 		projection.SetToPerspective(45.f, 4.f / 3.f, 0.1f, 1000.f);
 		projectionStack.LoadMatrix(projection);
 
+<<<<<<< Updated upstream
 
 		Mesh::SetMaterialLoc(m_parameters[U_MATERIAL_AMBIENT],
 			m_parameters[U_MATERIAL_DIFFUSE],
@@ -746,9 +865,9 @@ void Scene_LV3::Init()
 			m_parameters[U_MATERIAL_SHININESS]);
 
 
-
-
-
+=======
+		Player yourself;
+>>>>>>> Stashed changes
 
 		enemyz = 25;
 		bullet.x = -65;
@@ -774,6 +893,7 @@ void Scene_LV3::Init()
 
 		bullet8.x = -70;
 		bullet8.z = enemyz;
+<<<<<<< Updated upstream
 
 
 
@@ -785,6 +905,8 @@ void Scene_LV3::Init()
 
 
 	}
+=======
+>>>>>>> Stashed changes
 }
 
 void Scene_LV3::Update(double dt)
@@ -824,6 +946,7 @@ void Scene_LV3::Update(double dt)
 	if (Application::IsKeyPressed('5'))
 	{
 		
+<<<<<<< Updated upstream
 		light[0].type = Light::LIGHT_POINT;
 		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
 		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
@@ -846,6 +969,8 @@ void Scene_LV3::Update(double dt)
 
 	
 	
+=======
+>>>>>>> Stashed changes
 	/*******************************************************************************************************/
 	//tutorial boundary check
 	if (camera.position.x > -15 && camera.position.x<26 && camera.position.z>-14 && camera.position.z < 103)
@@ -856,6 +981,7 @@ void Scene_LV3::Update(double dt)
 	{
 		tut_text = false;
 	}
+<<<<<<< Updated upstream
 
 	if (scammerdis<25)
 	{
@@ -938,6 +1064,10 @@ void Scene_LV3::Update(double dt)
 	
 	}
 
+=======
+	
+	/**********************************************************************************************************/
+>>>>>>> Stashed changes
 	
 	if (Application::IsKeyPressed('R'))
 	{
@@ -985,7 +1115,21 @@ void Scene_LV3::Update(double dt)
 	
 	cameraz = std::to_string(camera.position.z);
 }
+<<<<<<< Updated upstream
 
+=======
+void Scene_LV3::RenderScammer()
+{
+	modelStack.PushMatrix();
+	//modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
+	modelStack.Translate(-33, 0, -32);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(5, 5, 5);
+	RenderMesh(meshList[GEO_HORNET], true);
+	modelStack.PopMatrix();
+
+}
+>>>>>>> Stashed changes
 
 void Scene_LV3::Render()
 {
@@ -1038,18 +1182,28 @@ void Scene_LV3::Render()
 	
 	RenderScammer();
 
+<<<<<<< Updated upstream
 	RenderRightSide();
 	
+=======
+>>>>>>> Stashed changes
 	RenderLeftSide();
 
 	RenderBackSide();
 	
 	RenderFrontSide();
 
+<<<<<<< Updated upstream
 	RenderRoads();
+=======
+	//RenderRightSide();
+
+	//RenderPath();
+>>>>>>> Stashed changes
 
 	RenderBullet();
 
+<<<<<<< Updated upstream
 	RenderLamps();
 	
 	
@@ -1058,6 +1212,9 @@ void Scene_LV3::Render()
 	
 
 
+=======
+	//RenderLamps();
+>>>>>>> Stashed changes
 
 	if (die)
 	{
@@ -1105,16 +1262,7 @@ void Scene_LV3::Render()
 		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
 		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0, 1, 0), 2, 25, 53);
 	}
-	//modelStack.PushMatrix();
-	////scale, translate, rotate
-	//modelStack.Translate(0, 3, 18);
-	//modelStack.Rotate(90, 0, 1, 0);
-	//modelStack.Scale(5, 5, 5);
-	//RenderMesh(meshList[GEO_SCAMMER], true);
-	//modelStack.PopMatrix();
 	//----------------------------sp--------------------------------------
-	
-	
 	//UI
 	RenderTextOnScreen(meshList[GEO_TEXT], camerax , Color(0, 1, 0), 2, 6, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "X:", Color(0, 1, 0), 2, 0, 0);
@@ -1123,8 +1271,18 @@ void Scene_LV3::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], FPS, Color(0, 1, 0), 2, 47, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
 
+<<<<<<< Updated upstream
 	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
 	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);
+=======
+
+	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
+	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
+	/*RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);*/
+	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);
+	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
+>>>>>>> Stashed changes
 
 }
 
@@ -1140,6 +1298,10 @@ void Scene_LV3::Exit()
 	}
 	glDeleteVertexArrays(1, &m_vertexArrayID);
 	glDeleteProgram(m_programID);
+<<<<<<< Updated upstream
 }
 
 
+=======
+}
+>>>>>>> Stashed changes
