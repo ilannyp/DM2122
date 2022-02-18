@@ -5,6 +5,7 @@ private:
 	int currency;
 	bool alive;
 	bool in_cab;
+	bool first_scammed;
 
 public:
 	Player();
@@ -24,5 +25,7 @@ public:
 	void set_in_cab(bool x);
 	bool get_in_cab();
 
+	void set_first_scammed(bool x);
+	bool get_first_scammed();
 };
 

@@ -17,6 +17,8 @@ Scene_EndScreen::~Scene_EndScreen()
 {
 }
 
+
+
 void Scene_EndScreen::RenderMesh(Mesh* mesh, bool enableLight)
 {
 	Mtx44 MVP, modelView, modelView_inverse_transpose;
@@ -206,7 +208,7 @@ void Scene_EndScreen::Init()
 
 
 	// Set background colour to light purple
-	glClearColor(0.5f, 0.0f, 0.7f, 0.0f);
+	glClearColor(0.f, 0.0f, 0.f, 0.0f);
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
@@ -339,6 +341,9 @@ void Scene_EndScreen::Init()
 	//
 	//meshList[GEO_MODEL8] = MeshBuilder::GenerateOBJMTL("model7", "OBJ//cottage_obj.obj", "OBJ//cottage_obj.mtl"); //cottage_diffuse
 	//meshList[GEO_MODEL8]->textureID = LoadTGA("Image//cottage_diffuse.tga");
+
+	meshList[GEO_BLOOD] = MeshBuilder::GenerateQuad("blood_gui", Color(1, 1, 1), 1.f);
+	meshList[GEO_BLOOD]->textureID = LoadTGA("Image//Blood.tga");
 
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16,16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//comicsans.tga");
@@ -601,7 +606,9 @@ void Scene_EndScreen::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], "You Win", Color(0, 1, 0), 4, 25, 25);*/
 
 	modelStack.PushMatrix();
-	RenderMesh(meshList[GEO_GAMEOVER], false);
+	//RenderMesh(meshList[GEO_GAMEOVER], false);
+	RenderMeshOnScreen(meshList[GEO_GAMEOVER], 40, 30, 30, 30);
+	RenderMeshOnScreen(meshList[GEO_BLOOD], 40, 30, 90, 90);
 	modelStack.PopMatrix();
 
 	/*

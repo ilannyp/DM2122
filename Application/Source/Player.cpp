@@ -5,6 +5,7 @@ Player::Player()
 	currency = 100;
 	alive = true;
 	in_cab = false;
+	first_scammed = false;
 }
 
 Player::~Player()
@@ -61,4 +62,21 @@ void Player::set_in_cab(bool x)
 bool Player::get_in_cab()
 {
 	return in_cab;
+}
+
+void Player::set_first_scammed(bool x)
+{ 
+	if (x == true)
+	{
+		first_scammed = true;
+	}
+	else
+	{
+		first_scammed = false;
+	}
+}
+
+bool Player::get_first_scammed()
+{
+	return first_scammed;
 }

@@ -108,6 +108,19 @@ class SP : public Scene
 		U_LIGHT1_COSINNER,
 		U_LIGHT1_EXPONENT,
 
+		//light2
+		U_LIGHT2_POSITION,
+		U_LIGHT2_COLOR,
+		U_LIGHT2_POWER,
+		U_LIGHT2_KC,
+		U_LIGHT2_KL,
+		U_LIGHT2_KQ,
+		U_LIGHT2_TYPE,
+		U_LIGHT2_SPOTDIRECTION,
+		U_LIGHT2_COSCUTOFF,
+		U_LIGHT2_COSINNER,
+		U_LIGHT2_EXPONENT,
+
 		U_COLOR_TEXTURE_ENABLED,
 		U_COLOR_TEXTURE,
 		
@@ -133,7 +146,7 @@ private:
 
 	Camera3 camera;
 	MS modelStack, viewStack, projectionStack;
-	Light light[2];
+	Light light[3];
 
 	
 	void RenderSkybox();
@@ -155,7 +168,7 @@ private:
 
 	//sp stuff
 	bool tut_text=true,scammaer_talk=false,coin1_enable=true, coin2_enable=true, coin3_enable = true,blood_ui=false;
-	Vector3 scammer_pos = Vector3(0, 0, 30);
+	Vector3 scammer_pos = Vector3(-19, 0, 81);
 	Vector3 coin1_pos = Vector3(25, 0, 28);
 	Vector3 coin2_pos = Vector3(27, 0, 104);
 	Vector3 coin3_pos = Vector3(23, 0, -17);
