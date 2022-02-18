@@ -2,15 +2,73 @@
 #define Scene_LV3_H
 #pragma once
 #include "Scene.h"
-#include "Camera3.h"
+#include "Camera_SP_LVL3.h"
 #include "Camera2.h"
 #include "Mesh.h"
 #include "MatrixStack.h"
 #include "Light.h"
+#include "Player.h"
 
 
 class Scene_LV3 : public Scene
 {
+	enum GEOMETRY_TYPE
+	{
+		GEO_TRIANGLE_1 = 0,
+		GEO_AXES,
+		GEO_QUAD,
+		GEO_CUBE,
+		GEO_CIRCLE,
+		GEO_SPHERE,
+		GEO_LAMPLIGHT,
+		GEO_LIGHTBALL,
+		GEO_CYLINDER,
+		GEO_CAPE,
+		GEO_CONE,
+		GEO_HEMISPHERE,
+		GEO_TORUS,
+		GEO_HALFTORUS,
+		GEO_LEFT,
+		GEO_RIGHT,
+		GEO_TOP,
+		GEO_BOTTOM,
+		GEO_FRONT,
+		GEO_BACK,
+		GEO_BLEND,
+		//**********SP************
+		GEO_SCAMMER,
+		GEO_BLOOD,
+		GEO_COIN,
+		GEO_COIN_ICON,
+
+
+
+		GEO_TAXI,
+		//*********obj models*********
+		GEO_HOLLOW,
+		GEO_HORNET,
+		GEO_ROCKS,
+		GEO_TALLROCK,
+		GEO_STONEWALL,
+		GEO_STONEWALLDAMAGED,
+		GEO_CRYPT,
+		GEO_ROAD,
+		GEO_DEBRIS,
+		GEO_LAMP,
+		GEO_GRAVE,
+		GEO_LANTERN,
+		GEO_BULLET,
+		GEO_TEXT,
+		GEO_TEXT2,
+
+
+
+
+
+
+		NUM_GEOMETRY,
+
+	};
 	enum UNIFORM_TYPE
 	{
 		U_MVP = 0,
@@ -20,6 +78,9 @@ class Scene_LV3 : public Scene
 		U_MATERIAL_DIFFUSE,
 		U_MATERIAL_SPECULAR,
 		U_MATERIAL_SHININESS,
+		U_LIGHTENABLED,
+		U_NUMLIGHTS,
+
 
 		//light0
 		U_LIGHT0_POSITION,
@@ -49,8 +110,8 @@ class Scene_LV3 : public Scene
 
 		U_COLOR_TEXTURE_ENABLED,
 		U_COLOR_TEXTURE,
-		U_LIGHTENABLED,
-		U_NUMLIGHTS,
+		
+		
 		U_TEXT_ENABLED,
 		U_TEXT_COLOR,
 		U_TOTAL,
@@ -58,62 +119,48 @@ class Scene_LV3 : public Scene
 
 
 	};
-	enum GEOMETRY_TYPE
-	{
-		GEO_TRIANGLE_1 = 0,
-		GEO_AXES,
-		GEO_QUAD,
-		GEO_CUBE,
-		GEO_CIRCLE,
-		GEO_SPHERE,
-		GEO_LAMPLIGHT,
-		GEO_LIGHTBALL,
-		GEO_CYLINDER,
-		GEO_CAPE,
-		GEO_CONE,
-		GEO_HEMISPHERE,
-		GEO_TORUS,
-		GEO_HALFTORUS,
-		GEO_LEFT,
-		GEO_RIGHT,
-		GEO_TOP,
-		GEO_BOTTOM,
-		GEO_FRONT,
-		GEO_BACK,
-		GEO_BLEND,
-		//**********SP************
-		GEO_SCAMMER,
-
-	//*********obj models*********
-		GEO_HOLLOW,
-		GEO_HORNET,
-		GEO_ROCKS,
-		GEO_TALLROCK,
-		GEO_STONEWALL,
-		GEO_STONEWALLDAMAGED,
-		GEO_CRYPT,
-		GEO_ROAD,
-		GEO_DEBRIS,
-		GEO_LAMP,
-		GEO_GRAVE,
-		GEO_LANTERN,
-		GEO_BULLET,
-		GEO_TEXT,
-		GEO_TEXT2,
-
-
-
-
-
-
-		NUM_GEOMETRY,
-		
-	};
+	
 	
 private:
+	void RenderMesh(Mesh* mesh, bool enableLight);
+	unsigned m_vertexArrayID;
+	Mesh* meshList[NUM_GEOMETRY];
+
+
+	unsigned m_programID;
+	unsigned m_parameters[U_TOTAL];
+
+
+	Camera_SP_LVL3 camera;
+	MS modelStack, viewStack, projectionStack;
+	Light light[2];
+
+	
+	void RenderSkybox();
+	void RenderScammer();
+	void RenderFloor();
+	void RenderRightSide();
+	void RenderLeftSide();
+	void RenderBackSide();
+	void RenderFrontSide();
+	void RenderPath();
+	void RenderBullet();
+	void RenderLamps();
+	void RenderText(Mesh* mesh, std::string text, Color color);
+	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
+	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
+	
+
+
+
 	//sp stuff
-	bool tut_text=true;
-	Vector3 scammer_pos = Vector3(0, 0, 0);
+	bool tut_text=true,scammaer_talk=false,coin1_enable=true, coin2_enable=true, coin3_enable = true,blood_ui=false;
+	Vector3 scammer_pos = Vector3(-19, 0, 81);
+	Vector3 coin1_pos = Vector3(25, 0, 28);
+	Vector3 coin2_pos = Vector3(27, 0, 104);
+	Vector3 coin3_pos = Vector3(23, 0, -17);
+	Vector3 cab_pos = Vector3(-100, 0, 22);
+	std::string scammer_text;
 	//-------------------------------------//
 	float rotateAngle;
 	float translateX = 1;
@@ -125,8 +172,8 @@ private:
 
 
 
-	
-	
+
+
 	int playerhealth = 20;//slight change to make it into currency
 	int enemyz = 0;//i assume this is where the arrow line -irfan
 	bool battlestart = false;
@@ -134,8 +181,8 @@ private:
 	bool die = false;
 	bool hit = false;
 
-	
-	
+		
+
 
 	Vector3 bullet;
 	Vector3 bullet2;
@@ -145,43 +192,25 @@ private:
 	Vector3 bullet6;
 	Vector3 bullet7;
 	Vector3 bullet8;
-	Vector3 spell;
-	Light light[2];
-	void RenderMesh(Mesh* mesh, bool enableLight);
-	void RenderSkybox();
-	void RenderScammer();
-	void RenderFloor();
-	void RenderRightSide();
-	void RenderLeftSide();
-	void RenderBackSide();
-	void RenderFrontSide();
-	void RenderRoads();
-	void RenderBullet();
-	void RenderLamps();
+	
 
-	void RenderText(Mesh* mesh, std::string text, Color color);
-	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
-	unsigned m_vertexArrayID;
-	unsigned m_programID;
-	unsigned m_parameters[U_TOTAL];
-	Mesh* meshList[NUM_GEOMETRY];
-	Camera3 camera;
-	Camera2 benchcamera;
-	MS modelStack, viewStack, projectionStack;
+	
+	
 public:
 	Scene_LV3();
 	~Scene_LV3();
 	
 
+	Player yourself;
 	virtual void Init();
 	virtual void Update(double dt);
 	virtual void Render();
 	virtual void Exit();
+	float cabTP();
 	std::string FPS;
 	std::string camerax;
 	std::string cameraz;
 	bool endscreen = false;
-	
 
 };
 
