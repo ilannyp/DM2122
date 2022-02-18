@@ -76,47 +76,47 @@ void Camera_SP_LVL3::Update(double dt)
 	}
 	if(Application::IsKeyPressed('W'))
 	{
+		temp = position + view * ZOOM_SPEED * static_cast<float>(dt);
+		if (!(temp.z < -40 /*back*/) && !(temp.z > 64 /*back*/) && !(temp.x > 9 /*utmost left*/) && !(temp.x < -60/*utmost right*/))
+		{
 			position += view * ZOOM_SPEED * static_cast<float>(dt);
 			position.y = 3;
 			target = position + view;
-		//temp = position + view * ZOOM_SPEED * static_cast<float>(dt);
-		//if (!(temp.z > 132 /*back*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
-		//{
-		//}
-		//temp = position;
+		}
+		temp = position;
 	}	
 	if(Application::IsKeyPressed('S'))
 	{
+		temp = position - view * ZOOM_SPEED * static_cast<float>(dt);
+		if (!(temp.z < -40 /*back*/) && !(temp.z > 64 /*back*/) && !(temp.x > 9 /*utmost left*/) && !(temp.x < -60/*utmost right*/))
+		{
 			position -= view * ZOOM_SPEED * static_cast<float>(dt);
 			position.y = 3;
 			target = position + view;
-		//temp = position - view * ZOOM_SPEED * static_cast<float>(dt);
-		//if (!(temp.z > 132 /*back*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
-		//{
-		//}
-		//temp = position;
+		}
+		temp = position;
 	}
 	if (Application::IsKeyPressed('A'))
 	{
+		temp = position - right * ZOOM_SPEED * static_cast<float>(dt);
+		if (!(temp.z < -40 /*back*/) && !(temp.z > 64 /*back*/) && !(temp.x > 9 /*utmost left*/) && !(temp.x < -60/*utmost right*/))
+		{
 			position -= right * ZOOM_SPEED * static_cast<float>(dt);
 			position.y = 3;
 			target = position + view;
-		//temp = position - right * ZOOM_SPEED * static_cast<float>(dt);
-		//if (!(temp.z > 132 /*back*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
-		//{
-		//}
-		//temp = position;
+		}
+		temp = position;
 	}
 	if (Application::IsKeyPressed('D'))
 	{
+		temp = position + right * ZOOM_SPEED * static_cast<float>(dt);
+		if (!(temp.z < -40 /*back*/) && !(temp.z > 64 /*back*/) && !(temp.x > 9 /*utmost left*/) && !(temp.x < -60/*utmost right*/))
+		{
 			position += right * ZOOM_SPEED * static_cast<float>(dt);
 			position.y = 3;
 			target = position + view;
-		//temp = position + right * ZOOM_SPEED * static_cast<float>(dt);
-		//if (!(temp.z > 132 /*back*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
-		//{
-		//}
-		//temp = position;
+		}
+		temp = position;
 	}
 
 	if(Application::IsKeyPressed('R'))
