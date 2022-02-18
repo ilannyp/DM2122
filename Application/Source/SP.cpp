@@ -661,6 +661,16 @@ void SP::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float siz
 void SP::Init()
 {
 
+	Application::yourself.set_currency(1);
+	Application::yourself.set_alive();
+	Application::yourself.set_in_cab(false);
+	Application::yourself.set_first_scammed(false);
+	Application::yourself.set_coin1_enabled(false);
+	Application::yourself.set_coin2_enabled(false);
+	Application::yourself.set_coin3_enabled(false);
+	Application::yourself.set_coin1_obtained(false);
+	Application::yourself.set_coin2_obtained(false);
+	Application::yourself.set_coin3_obtained(false);
 
 	// Set background colour to light purple
 	glClearColor(0.5f, 0.0f, 0.7f, 0.0f);
@@ -1050,7 +1060,7 @@ void SP::Update(double dt)
 		{
 			scam_count++;
 		}
-		if(buy==0&& scam_count >=1)
+		if(Application::yourself.get_first_scammed() == false)
 		{
 			//talk text
 			scammer_text = "Give me 300 gold and i'll give you a prize";
@@ -1069,7 +1079,7 @@ void SP::Update(double dt)
 		{
 			scammer_text = "Press E to talk";
 		}
-		if (buy == 1 )
+		if (Application::yourself.get_first_scammed() == true)
 		{
 			scammer_text = "Thank you bye bye";
 		}
@@ -1082,73 +1092,81 @@ void SP::Update(double dt)
 		scammer_text = " ";
 	}
 
-	static int coin1_count = 0;
+
 	if (coin1dis<=10)
 	{
-		std::cout << coin1_count << std::endl;
 		if (Application::IsKeyPressed('E'))
 		{
-			coin1_count+=1;
+			Application::yourself.set_coin1_obtained(true);
 		}
 
-		if (coin1_count>=1)
+		if (Application::yourself.get_coin1_obtained() == true)
 		{
-			coin1_enable = false;
+			Application::yourself.set_coin1_enabled(true);
 		}
 		else
 		{
 			scammer_text = "Press E to collect";
 		}
-		if (Application::IsKeyPressed('E')&& coin1_count ==1)
+		if (Application::IsKeyPressed('E') && Application::yourself.get_coin1_obtained() == true)
 		{
-			Application::yourself.currency_added(100);
+			if (Application::yourself.get_currency_added_from_C1() == false)
+			{
+				Application::yourself.currency_added(100);
+				Application::yourself.set_currency_added_from_C1(true);
+			}
 
 		}
 	}
 
-	static int coin2_count = 0;
 	if (coin2dis <= 12)
 	{
-		//std::cout << coin1_count << std::endl;
 		if (Application::IsKeyPressed('E'))
 		{
-			coin2_count += 1;
+			Application::yourself.set_coin2_obtained(true);
 		}
 
-		if (coin2_count >= 1)
+		if (Application::yourself.get_coin2_obtained() == true)
 		{
-			coin2_enable = false;
+			Application::yourself.set_coin2_enabled(true);
 		}
 		else
 		{
 			scammer_text = "Press E to collect";
 		}
-		if (Application::IsKeyPressed('E') && coin2_count == 1)
+		if (Application::IsKeyPressed('E') && Application::yourself.get_coin2_obtained() == true)
 		{
-			Application::yourself.currency_added(100);
+			if (Application::yourself.get_currency_added_from_C2() == false)
+			{
+				Application::yourself.currency_added(100);
+				Application::yourself.set_currency_added_from_C2(true);
+			}
 
 		}
 	}
-	static int coin3_count = 0;
+	
 	if (coin3dis <= 10)
 	{
-		//std::cout << coin1_count << std::endl;
 		if (Application::IsKeyPressed('E'))
 		{
-			coin3_count += 1;
+			Application::yourself.set_coin3_obtained(true);
 		}
 
-		if (coin3_count >= 1)
+		if (Application::yourself.get_coin3_obtained() == true)
 		{
-			coin3_enable = false;
+			Application::yourself.set_coin3_enabled(true);
 		}
 		else
 		{
 			scammer_text = "Press E to collect";
 		}
-		if (Application::IsKeyPressed('E') && coin3_count == 1)
+		if (Application::IsKeyPressed('E') && Application::yourself.get_coin3_obtained() == true)
 		{
-			Application::yourself.currency_added(100);
+			if (Application::yourself.get_currency_added_from_C3() == false)
+			{
+				Application::yourself.currency_added(100);
+				Application::yourself.set_currency_added_from_C3(true);
+			}
 
 		}
 	}
@@ -1307,7 +1325,7 @@ void SP::RenderScammer()
 		modelStack.PopMatrix();
 	}
 
-	if (coin1_enable)
+	if (Application::yourself.get_coin1_enabled() == false)
 	{
 		//beside graveyard
 		modelStack.PushMatrix();
@@ -1322,7 +1340,7 @@ void SP::RenderScammer()
 	{
 		
 	}
-	if (coin2_enable)
+	if (Application::yourself.get_coin2_enabled() == false)
 	{
 		//corner near the exit
 		modelStack.PushMatrix();
@@ -1337,7 +1355,7 @@ void SP::RenderScammer()
 	{
 
 	}
-	if (coin3_enable)
+	if (Application::yourself.get_coin3_enabled() == false)
 	{
 		//behind under rocks
 		modelStack.PushMatrix();

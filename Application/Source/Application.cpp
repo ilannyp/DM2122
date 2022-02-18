@@ -148,9 +148,31 @@ void Application::Run()
 	{
 		if (IsKeyPressed(VK_RETURN))
 		{
+			yourself.set_currency(1);
+			yourself.set_alive();
+			yourself.set_in_cab(false);
+			yourself.set_first_scammed(false);
+			yourself.set_coin1_enabled(false);
+			yourself.set_coin2_enabled(false);
+			yourself.set_coin3_enabled(false);
+			yourself.set_coin1_obtained(false);
+			yourself.set_coin2_obtained(false);
+			yourself.set_coin3_obtained(false);
+			yourself.set_currency_added_from_C1(false);
+			yourself.set_currency_added_from_C2(false);
+			yourself.set_currency_added_from_C3(false);
+
+			std::cout << yourself.get_coin1_enabled() << std::endl;
+			std::cout << yourself.get_coin1_obtained() << std::endl;
 			scene = scene2;
 			scene->Init();
 		}
+		if (yourself.get_coin1_enabled())
+		{
+
+			//std::cout << "asd" << std::endl;
+		}
+		//std::cout << "asd" << std::endl;
 		if (IsKeyPressed(VK_F3))		
 		{
 			scene = scene3;
@@ -161,6 +183,26 @@ void Application::Run()
 			scene = scene3;
 			scene->Init();
 			die_screen_once = true;
+			if (IsKeyPressed('V'))
+			{
+				yourself.set_alive();
+				yourself.set_currency(1);
+				scene = scene2;
+				scene->Init();
+				//yourself.total_reset();
+				//yourself.set_currency(1);
+				/*yourself.set_in_cab(false);
+				yourself.set_first_scammed(false);
+				yourself.set_coin1_enabled(false);
+				yourself.set_coin2_enabled(false);
+				yourself.set_coin3_enabled(false);
+				yourself.set_coin1_obtained(false);
+				yourself.set_coin2_obtained(false);
+				yourself.set_coin3_obtained(false);
+
+				std::cout << yourself.get_coin1_enabled() << std::endl;
+				std::cout << yourself.get_coin1_obtained() << std::endl;*/
+			}
 		}
 		if (yourself.get_in_cab() == true)
 		{
