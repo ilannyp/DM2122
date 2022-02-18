@@ -36,7 +36,7 @@
     <ClCompile Include="Boundary.cpp" />
     <ClCompile Include="Source\Camera_SP_LVL2.cpp" />
     <ClCompile Include="Source\Camera_SP_LVL3.cpp" />
-    <ClCompile Include="Source\Scene_LV3.cpp" />
+    <ClCompile Include="Source\SP_3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h" />
@@ -76,6 +76,6 @@
     <ClInclude Include="Boundary.h" />
     <ClInclude Include="Source\Camera_SP_LVL2.h" />
     <ClInclude Include="Source\Camera_SP_LVL3.h" />
-    <ClInclude Include="Source\Scene_LV3.h" />
+    <ClInclude Include="Source\SP_3.h" />
   </ItemGroup>
 </Project>
