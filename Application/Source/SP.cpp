@@ -394,6 +394,90 @@ void SP::RenderPath()
 	modelStack.Scale(20, 5, 5);
 	RenderMesh(meshList[GEO_ROAD], true);
 	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(0, 0, -8);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(20, 5, 5);
+	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(0, 0, -20);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(20, 5, 5);
+	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(0, 0, -32);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(20, 5, 5);
+	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(0, 0, -41);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(20, 5, 5);
+	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-7, 0, -44);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(20, 5, 5);
+	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-19, 0, -44);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(20, 5, 5);
+	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-31, 0, -44);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(20, 5, 5);
+	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-43, 0, -44);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(20, 5, 5);
+	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-55, 0, -44);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(20, 5, 5);
+	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-67, 0, -44);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(20, 5, 5);
+	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-79, 0, -44);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(20, 5, 5);
+	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-91, 0, -44);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(20, 5, 5);
+	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.PopMatrix();
 }
 void SP::RenderBullet()
 {
@@ -598,8 +682,7 @@ void SP::Init()
 	glGenVertexArrays(1, &m_vertexArrayID);
 	glBindVertexArray(m_vertexArrayID);
 
-
-	camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
+	camera.Init(Vector3(-90, 3, -44), Vector3(0, 3, -44), Vector3(0, 1, 0));
 
 	m_programID                                 = LoadShaders("Shader//Texture.vertexshader", "Shader//Text.fragmentshader");
 	// Get a handle for our "colorTexture" uniform
