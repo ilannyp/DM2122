@@ -76,6 +76,7 @@ class Scene_EndScreen : public Scene
 		GEO_MODEL6,
 		GEO_MODEL7,
 		GEO_MODEL8,
+		GEO_BLOOD,
 		GEO_TEXT,
 		NUM_GEOMETRY,
 		

@@ -108,6 +108,19 @@ class SP : public Scene
 		U_LIGHT1_COSINNER,
 		U_LIGHT1_EXPONENT,
 
+		//light2
+		U_LIGHT2_POSITION,
+		U_LIGHT2_COLOR,
+		U_LIGHT2_POWER,
+		U_LIGHT2_KC,
+		U_LIGHT2_KL,
+		U_LIGHT2_KQ,
+		U_LIGHT2_TYPE,
+		U_LIGHT2_SPOTDIRECTION,
+		U_LIGHT2_COSCUTOFF,
+		U_LIGHT2_COSINNER,
+		U_LIGHT2_EXPONENT,
+
 		U_COLOR_TEXTURE_ENABLED,
 		U_COLOR_TEXTURE,
 		
@@ -133,7 +146,7 @@ private:
 
 	Camera3 camera;
 	MS modelStack, viewStack, projectionStack;
-	Light light[2];
+	Light light[3];
 
 	
 	void RenderSkybox();

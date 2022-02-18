@@ -163,10 +163,11 @@ void Application::Run()
 			yourself.set_in_cab(false);
 		}
 
-		if (yourself.get_life_status() == false)
+		if (yourself.get_life_status() == false && die_screen_once == false)
 		{
 			scene = scene3;
 			scene->Init();
+			die_screen_once = true;
 		}
 		if (cab.cabTP() <= 10)
 		{

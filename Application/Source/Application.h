@@ -20,6 +20,7 @@ public:
 	void Exit();
 	static bool IsKeyPressed(unsigned short key);
 	static Player yourself;
+	bool die_screen_once = false;
 
 private:
 
