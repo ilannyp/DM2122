@@ -184,6 +184,31 @@ void Application::Run()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+		//debug
+		if (IsKeyPressed(VK_F9))
+			
+
+		{
+			scene = scene4;
+			scene->Init();
+		}
+
+
+
+
+
 		scene->Update(m_timer.getElapsedTime());
 		scene->Render();
 		//Swap buffers

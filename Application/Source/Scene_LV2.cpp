@@ -457,78 +457,152 @@ void Scene_LV2::RenderLamps()
 }
 void Scene_LV2::RenderWall()
 {
+	//left wall
+	
 	modelStack.PushMatrix();
-	modelStack.Translate(40, 1, 80);
-	modelStack.Scale(5, 5, 200);
+	modelStack.Translate(40, 1, 0);
+	modelStack.Scale(5, 8, 300);
 	RenderMesh(meshList[GEO_CUBE], true);
 	modelStack.PopMatrix();
 
+
+
+	//end wall
 	modelStack.PushMatrix();
 	modelStack.Translate(0, 1, 140);
-	modelStack.Scale(100, 5, 5);
+	modelStack.Scale(100, 8, 5);
 	RenderMesh(meshList[GEO_CUBE], true);
 	modelStack.PopMatrix();
 
+
+	//right wall
 	modelStack.PushMatrix();
-	modelStack.Translate(-40, 1, 80);
-	modelStack.Scale(5, 5, 200);
+	modelStack.Translate(-40, 1, 0);
+	modelStack.Scale(5, 8, 300);
+	RenderMesh(meshList[GEO_CUBE], true);
+	modelStack.PopMatrix();
+
+	//spawn wall
+	modelStack.PushMatrix();
+	modelStack.Translate(0, 1, -150);
+	modelStack.Scale(100, 8, 5);
 	RenderMesh(meshList[GEO_CUBE], true);
 	modelStack.PopMatrix();
 }
 void Scene_LV2::RenderTunnel()
 {
-	
+	//left side
 	modelStack.PushMatrix();
 	modelStack.Rotate(-90, 0, 1, 0);
-	modelStack.Translate(19.f, 2.f, -37.4f);
+	modelStack.Translate(-80.f, 2.f, -37.4f);
 	modelStack.Scale(10, 10, 1);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(0.7f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(0.7f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(1.9f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(0.7f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(0.7f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(0.7f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(0.7f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
+	RenderMesh(meshList[GEO_TUNNEL], false);//1.1
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//1.2
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//1.3
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//1.4
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//1.5
+	modelStack.Translate(2.f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//2.1
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//2.2
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//2.3
+	modelStack.Translate(2.f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//3.1
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//3.2
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//3.3
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//3.4
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//3.5
+	modelStack.Translate(2.f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.1
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.2
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.3
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.4
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.5
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.6
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.7
+	modelStack.Translate(0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.8
 	modelStack.PopMatrix();
 
 
+	//right side
 	modelStack.PushMatrix();
 	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Translate(-19,2,-37.4f);
+	modelStack.Translate(80.f, 2.f, -37.3f);
 	modelStack.Scale(10, 10, 1);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(-0.7f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(-0.7f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(-1.9f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(-0.7f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(-0.7f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(-0.7f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
-	modelStack.Translate(-0.7f, 0.f, 0.1f);
-	RenderMesh(meshList[GEO_TUNNEL], false);
+	RenderMesh(meshList[GEO_TUNNEL], false);//1.1
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//1.2
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//1.3
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//1.4
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//1.5
+	modelStack.Translate(-2.f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//2.1
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//2.2
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//2.3
+	modelStack.Translate(-2.f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//3.1
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//3.2
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//3.3
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//3.4
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//3.5
+	modelStack.Translate(-2.f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.1
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.2
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.3
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.4
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.5
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.6
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.7
+	modelStack.Translate(-0.6f, 0.f, 0.1f);
+	RenderMesh(meshList[GEO_TUNNEL], false);//4.8
+
 	modelStack.PopMatrix();
+
+
+	
+	
 
 }
 void Scene_LV2::RenderPavement()
 {
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 42);
+	modelStack.Translate(0, 0, -47);
 	modelStack.Scale(50, 1, 10);
 	RenderMesh(meshList[GEO_CUBE], true);
-	modelStack.Translate(0.f, 0.f, 4.6f);
+	modelStack.Translate(0.f, 0.f, 3.2f);
+	RenderMesh(meshList[GEO_CUBE], true);
+	modelStack.Translate(0.f, 0.f, 4.5f);
 	RenderMesh(meshList[GEO_CUBE], true);
 	modelStack.PopMatrix();
 
@@ -537,7 +611,7 @@ void Scene_LV2::RenderPavement()
 void Scene_LV2::RenderNPC()
 {
 	modelStack.PushMatrix();
-	modelStack.Translate(translatenpc, 1.8f, 42.f);
+	modelStack.Translate(translatenpc, 1.8f, -47.f);
 	
 	modelStack.Scale(2, 2.5, 1);
 	RenderMesh(meshList[GEO_TORSO], true);
@@ -556,7 +630,7 @@ void Scene_LV2::RenderNPC()
 
 
 
-void Scene_LV2::RenderText(Mesh* mesh, std::string text, Color color)
+void Scene_LV2::RenderText(Mesh * mesh, std::string text, Color color)
 {
 
 	if (!mesh || mesh->textureID <= 0) //Proper error check
@@ -635,7 +709,7 @@ void Scene_LV2::Init()
 	// Enable blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
+	camera.Init(Vector3(0, 3, -139), Vector3(0, 3, 10), Vector3(0, 1, 0));
 
 	m_programID = LoadShaders("Shader//Texture.vertexshader", "Shader//Text.fragmentshader");
 	m_parameters[U_MVP] = glGetUniformLocation(m_programID, "MVP");
