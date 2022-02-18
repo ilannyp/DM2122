@@ -24,17 +24,17 @@ void Camera_SP_LVL3::Init(const Vector3& pos, const Vector3& target, const Vecto
 
 void Camera_SP_LVL3::Update(double dt)
 {
-	
+
 	static const float CAMERA_SPEED = 80.f;
 	static const float ZOOM_SPEED = 20.f;
 
 	Vector3 temp;
 	Vector3 view = (target - position).Normalized();
 	Vector3 right = view.Cross(up);
-	
 
-	
-	if(Application::IsKeyPressed(VK_RIGHT))
+
+
+	if (Application::IsKeyPressed(VK_RIGHT))
 	{
 		float yaw = -CAMERA_SPEED * static_cast<float>(dt);
 		Mtx44 rotation;
@@ -43,7 +43,7 @@ void Camera_SP_LVL3::Update(double dt)
 		view = rotation * view;
 		target = position + view;
 	}
-	if(Application::IsKeyPressed(VK_LEFT))
+	if (Application::IsKeyPressed(VK_LEFT))
 	{
 		float yaw = CAMERA_SPEED * static_cast<float>(dt);
 		Mtx44 rotation;
@@ -52,7 +52,7 @@ void Camera_SP_LVL3::Update(double dt)
 		view = rotation * view;
 		target = position + view;
 	}
-	if(Application::IsKeyPressed(VK_DOWN))
+	if (Application::IsKeyPressed(VK_DOWN))
 	{
 		float pitch = -CAMERA_SPEED * static_cast<float>(dt);
 		right.y = 0;
@@ -63,7 +63,7 @@ void Camera_SP_LVL3::Update(double dt)
 		view = rotation * view;
 		target = position + view;
 	}
-	if(Application::IsKeyPressed(VK_UP))
+	if (Application::IsKeyPressed(VK_UP))
 	{
 		float pitch = CAMERA_SPEED * static_cast<float>(dt);
 		right.y = 0;
@@ -74,9 +74,8 @@ void Camera_SP_LVL3::Update(double dt)
 		view = rotation * view;
 		target = position + view;
 	}
-	if(Application::IsKeyPressed('W'))
+	if (Application::IsKeyPressed('W'))
 	{
-<<<<<<< HEAD
 		temp = position + view * ZOOM_SPEED * static_cast<float>(dt);
 		if (!(temp.z < -40 /*back*/) && !(temp.z > 64 /*back*/) && !(temp.x > 9 /*utmost left*/) && !(temp.x < -60/*utmost right*/))
 		{
@@ -85,8 +84,8 @@ void Camera_SP_LVL3::Update(double dt)
 			target = position + view;
 		}
 		temp = position;
-	}	
-	if(Application::IsKeyPressed('S'))
+	}
+	if (Application::IsKeyPressed('S'))
 	{
 		temp = position - view * ZOOM_SPEED * static_cast<float>(dt);
 		if (!(temp.z < -40 /*back*/) && !(temp.z > 64 /*back*/) && !(temp.x > 9 /*utmost left*/) && !(temp.x < -60/*utmost right*/))
@@ -118,21 +117,20 @@ void Camera_SP_LVL3::Update(double dt)
 			target = position + view;
 		}
 		temp = position;
-=======
-			position += view * ZOOM_SPEED * static_cast<float>(dt);
-			position.y = 3;
-			target = position + view;
+		position += view * ZOOM_SPEED * static_cast<float>(dt);
+		position.y = 3;
+		target = position + view;
 		//temp = position + view * ZOOM_SPEED * static_cast<float>(dt);
 		//if (!(temp.z > 132 /*back*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
 		//{
 		//}
 		//temp = position;
-	}	
-	if(Application::IsKeyPressed('S'))
+	}
+	if (Application::IsKeyPressed('S'))
 	{
-			position -= view * ZOOM_SPEED * static_cast<float>(dt);
-			position.y = 3;
-			target = position + view;
+		position -= view * ZOOM_SPEED * static_cast<float>(dt);
+		position.y = 3;
+		target = position + view;
 		//temp = position - view * ZOOM_SPEED * static_cast<float>(dt);
 		//if (!(temp.z > 132 /*back*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
 		//{
@@ -141,9 +139,9 @@ void Camera_SP_LVL3::Update(double dt)
 	}
 	if (Application::IsKeyPressed('A'))
 	{
-			position -= right * ZOOM_SPEED * static_cast<float>(dt);
-			position.y = 3;
-			target = position + view;
+		position -= right * ZOOM_SPEED * static_cast<float>(dt);
+		position.y = 3;
+		target = position + view;
 		//temp = position - right * ZOOM_SPEED * static_cast<float>(dt);
 		//if (!(temp.z > 132 /*back*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
 		//{
@@ -152,18 +150,17 @@ void Camera_SP_LVL3::Update(double dt)
 	}
 	if (Application::IsKeyPressed('D'))
 	{
-			position += right * ZOOM_SPEED * static_cast<float>(dt);
-			position.y = 3;
-			target = position + view;
+		position += right * ZOOM_SPEED * static_cast<float>(dt);
+		position.y = 3;
+		target = position + view;
 		//temp = position + right * ZOOM_SPEED * static_cast<float>(dt);
 		//if (!(temp.z > 132 /*back*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
 		//{
 		//}
 		//temp = position;
->>>>>>> parent of 107cf31 (Revert "Mini lvl 3 update")
 	}
 
-	if(Application::IsKeyPressed('R'))
+	if (Application::IsKeyPressed('R'))
 	{
 		Reset();
 	}
