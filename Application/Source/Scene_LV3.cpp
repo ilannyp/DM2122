@@ -6,6 +6,7 @@
 #include "MeshBuilder.h"
 #include "Utility.h"
 #include "LoadTGA.h"
+#include "Light.h"
 
 
 Scene_LV3::Scene_LV3()
@@ -17,7 +18,26 @@ Scene_LV3::~Scene_LV3()
 {
 }
 
-
+void Scene_LV3::RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey)
+{
+	glDisable(GL_DEPTH_TEST);
+	Mtx44 ortho;
+	ortho.SetToOrtho(0, 80, 0, 60, -10, 10); //size of screen UI
+	projectionStack.PushMatrix();
+	projectionStack.LoadMatrix(ortho);
+	viewStack.PushMatrix();
+	viewStack.LoadIdentity(); //No need camera for ortho mode
+	modelStack.PushMatrix();
+	modelStack.LoadIdentity();
+	//to do: scale and translate accordingly
+	modelStack.Translate(x, y, 0);
+	modelStack.Scale(sizex, sizey, 1);
+	RenderMesh(mesh, false); //UI should not have light
+	projectionStack.PopMatrix();
+	viewStack.PopMatrix();
+	modelStack.PopMatrix();
+	glEnable(GL_DEPTH_TEST);
+}
 
 void Scene_LV3::RenderMesh(Mesh* mesh, bool enableLight)
 {
@@ -60,48 +80,49 @@ void Scene_LV3::RenderMesh(Mesh* mesh, bool enableLight)
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 }
+
 void Scene_LV3::RenderSkybox()
 {
 	const float OFFSET = 499;
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(0, 0, -OFFSET);
-	modelStack.Rotate(180, 0, 0, 1);
+	modelStack.Translate(0 + camera.position.x, 0 + camera.position.y, -OFFSET + camera.position.z);
+	//modelStack.Rotate(180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_FRONT], false);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(-OFFSET, 0, 0);
+	modelStack.Translate(-OFFSET + camera.position.x, 0 + camera.position.y, 0 + camera.position.z);
 	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Rotate(180, 0, 0, 1);
-	modelStack.Scale(1000, 1000, 1000);
-	RenderMesh(meshList[GEO_LEFT], false);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	//to do: transformation code here
-	modelStack.Translate(OFFSET, 0, 0.25);
-	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Rotate(180, 0, 0, 1);
+	//modelStack.Rotate(-180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_RIGHT], false);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(0, 0, OFFSET);
+	modelStack.Translate(OFFSET + camera.position.x, 0 + camera.position.y, 0.25 + camera.position.z);
+	modelStack.Rotate(270, 0, 1, 0);
+	//modelStack.Rotate(180, 0, 0, 1);
+	modelStack.Scale(1000, 1000, 1000);
+	RenderMesh(meshList[GEO_LEFT], false);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	//to do: transformation code here
+	modelStack.Translate(0 + camera.position.x, 0 + camera.position.y, OFFSET + camera.position.z);
 	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Rotate(180, 0, 0, 1);
+	//modelStack.Rotate(180, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_BACK], false);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(0, OFFSET, 0);
+	modelStack.Translate(0 + camera.position.x, OFFSET + camera.position.y, 0 + camera.position.z);
 	modelStack.Rotate(90, 1, 0, 0);
 	modelStack.Rotate(270, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
@@ -110,7 +131,7 @@ void Scene_LV3::RenderSkybox()
 
 	modelStack.PushMatrix();
 	//to do: transformation code here
-	modelStack.Translate(0, -OFFSET, 0);
+	modelStack.Translate(0 + camera.position.x, -OFFSET + camera.position.y, 0 + camera.position.z);
 	modelStack.Rotate(-90, 1, 0, 0);
 	modelStack.Rotate(-90, 0, 0, 1);
 	modelStack.Scale(1000, 1000, 1000);
@@ -118,24 +139,8 @@ void Scene_LV3::RenderSkybox()
 	modelStack.PopMatrix();
 }
 
-void Scene_LV3::RenderScammer()
-{
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 30);
-	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(5, 5, 5);
-	RenderMesh(meshList[GEO_HORNET], true);
-	modelStack.PopMatrix();
 
-	
-	modelStack.PushMatrix();
-	modelStack.Translate(3, 5, 30);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(0.5, 0.5, 0.5);
-	RenderText(meshList[GEO_TEXT],"Press E to interact",Color(0,1,0) );
-	modelStack.PopMatrix();
-}
+
 void Scene_LV3::RenderFloor()
 {
 	modelStack.PushMatrix();
@@ -170,6 +175,21 @@ void Scene_LV3::RenderRightSide()
 	modelStack.Scale(10, 7, 10);
 	RenderMesh(meshList[GEO_GRAVE], true);
 	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-24, 0, 73);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(10, 10, 10);
+	RenderMesh(meshList[GEO_LANTERN], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(cab_pos.x, cab_pos.y, cab_pos.z);
+	//modelStack.Translate(-100, 0, 22);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(1, 1, 1);
+	RenderMesh(meshList[GEO_TAXI], true);
+	modelStack.PopMatrix();
 }
 void Scene_LV3::RenderLeftSide()
 {
@@ -189,50 +209,36 @@ void Scene_LV3::RenderLeftSide()
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
+	modelStack.Translate(30, 0, -60);
+	modelStack.Rotate(270, 0, 1, 0);
+	modelStack.Rotate(10, 0, 1, 0);
+	modelStack.Scale(100, 40, 40);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
 	modelStack.Translate(24, 0, -18);
 	modelStack.Rotate(95, 0, 1, 0);
 	modelStack.Scale(30, 30, 30);
 	RenderMesh(meshList[GEO_DEBRIS], true);
 	modelStack.PopMatrix();
 
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 55);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 7, 10);
-	RenderMesh(meshList[GEO_CRYPT], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 35);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 7, 10);
-	RenderMesh(meshList[GEO_CRYPT], true);
-	modelStack.PopMatrix();
-
-
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 45);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 10, 10);
-	RenderMesh(meshList[GEO_LAMP], true);
-	modelStack.PopMatrix();
-
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-24, 0, 73);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 10, 10);
-	RenderMesh(meshList[GEO_LANTERN], true);
-	modelStack.PopMatrix();
 }
 void Scene_LV3::RenderBackSide()
 {
 	//back side
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -35);
+	modelStack.Translate(0, 0, -81);
 	modelStack.Rotate(180, 0, 1, 0);
 	modelStack.Scale(50, 50, 50);
 	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-63, 0, -59);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(108, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALL], true);
 	modelStack.PopMatrix();
 }
 void Scene_LV3::RenderFrontSide()
@@ -259,29 +265,15 @@ void Scene_LV3::RenderFrontSide()
 	RenderMesh(meshList[GEO_STONEWALL], true);
 	modelStack.PopMatrix();
 
-	modelStack.PushMatrix();
-	modelStack.Translate(-15, 0, 65);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-20, 0, 95);
-	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Scale(20, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
+	/*modelStack.PushMatrix();
 	modelStack.Translate(-70, 0, 20);
 	modelStack.Rotate(0, 0, 1, 0);
 	modelStack.Scale(100, 10, 10);
 	RenderMesh(meshList[GEO_STONEWALL], true);
-	modelStack.PopMatrix();
+	modelStack.PopMatrix();*/
 
 }
-void Scene_LV3::RenderRoads()
+void Scene_LV3::RenderPath()
 {
 	//roads
 	modelStack.PushMatrix();
@@ -478,9 +470,6 @@ void Scene_LV3::RenderText(Mesh* mesh, std::string text, Color color)
 	glUniform1i(m_parameters[U_TEXT_ENABLED], 0);
 	//glEnable(GL_DEPTH_TEST); //uncomment for RenderTextOnScreen
 }
-
-
-
 void Scene_LV3::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y)
 {
 	if (!mesh || mesh->textureID <= 0) //Proper error check
@@ -529,27 +518,84 @@ void Scene_LV3::Init()
 
 	// Set background colour to light purple
 	glClearColor(0.5f, 0.0f, 0.7f, 0.0f);
+
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
+
 	glEnable(GL_CULL_FACE);
+
+	//Default to fill mode
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+
 	// Enable blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	// Generate a default VAO for now
+	glGenVertexArrays(1, &m_vertexArrayID);
+	glBindVertexArray(m_vertexArrayID);
+
+
 	camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
 
-	m_programID = LoadShaders("Shader//Texture.vertexshader", "Shader//Text.fragmentshader");
-	m_parameters[U_MVP] = glGetUniformLocation(m_programID, "MVP");
-	m_parameters[U_MODELVIEW] = glGetUniformLocation(m_programID, "MV");
+	m_programID                                 = LoadShaders("Shader//Texture.vertexshader", "Shader//Text.fragmentshader");
+	// Get a handle for our "colorTexture" uniform
+	m_parameters[U_COLOR_TEXTURE_ENABLED]       = glGetUniformLocation(m_programID, "colorTextureEnabled");
+	m_parameters[U_COLOR_TEXTURE]               = glGetUniformLocation(m_programID, "colorTexture");
+	m_parameters[U_MVP]                         = glGetUniformLocation(m_programID, "MVP");
+	m_parameters[U_MODELVIEW]                   = glGetUniformLocation(m_programID, "MV");
 	m_parameters[U_MODELVIEW_INVERSE_TRANSPOSE] = glGetUniformLocation(m_programID, "MV_inverse_transpose");
-	m_parameters[U_MATERIAL_AMBIENT] = glGetUniformLocation(m_programID, "material.kAmbient");
-	m_parameters[U_MATERIAL_DIFFUSE] = glGetUniformLocation(m_programID, "material.kDiffuse");
-	m_parameters[U_MATERIAL_SPECULAR] = glGetUniformLocation(m_programID, "material.kSpecular");
-	m_parameters[U_MATERIAL_SHININESS] = glGetUniformLocation(m_programID, "material.kShininess");
+	m_parameters[U_MATERIAL_AMBIENT]            = glGetUniformLocation(m_programID, "material.kAmbient");
+	m_parameters[U_MATERIAL_DIFFUSE]            = glGetUniformLocation(m_programID, "material.kDiffuse");
+	m_parameters[U_MATERIAL_SPECULAR]           = glGetUniformLocation(m_programID, "material.kSpecular");
+	m_parameters[U_MATERIAL_SHININESS]          = glGetUniformLocation(m_programID, "material.kShininess");
+	Mesh::SetMaterialLoc(m_parameters[U_MATERIAL_AMBIENT], m_parameters[U_MATERIAL_DIFFUSE], m_parameters[U_MATERIAL_SPECULAR], m_parameters[U_MATERIAL_SHININESS]);
+
+
+	//light0 -
+	m_parameters[U_LIGHT0_POSITION]      = glGetUniformLocation(m_programID, "lights[0].position_cameraspace");
+	m_parameters[U_LIGHT0_COLOR]         = glGetUniformLocation(m_programID, "lights[0].color");
+	m_parameters[U_LIGHT0_POWER]         = glGetUniformLocation(m_programID, "lights[0].power");
+	m_parameters[U_LIGHT0_KC]            = glGetUniformLocation(m_programID, "lights[0].kC");
+	m_parameters[U_LIGHT0_KL]            = glGetUniformLocation(m_programID, "lights[0].kL");
+	m_parameters[U_LIGHT0_KQ]            = glGetUniformLocation(m_programID, "lights[0].kQ");
+	m_parameters[U_LIGHTENABLED]         = glGetUniformLocation(m_programID, "lightEnabled");
+	m_parameters[U_LIGHT0_TYPE]          = glGetUniformLocation(m_programID, "lights[0].type");
+	m_parameters[U_LIGHT0_SPOTDIRECTION] = glGetUniformLocation(m_programID, "lights[0].spotDirection");
+	m_parameters[U_LIGHT0_COSCUTOFF]     = glGetUniformLocation(m_programID, "lights[0].cosCutoff");
+	m_parameters[U_LIGHT0_COSINNER]      = glGetUniformLocation(m_programID, "lights[0].cosInner");
+	m_parameters[U_LIGHT0_EXPONENT]      = glGetUniformLocation(m_programID, "lights[0].exponent");
+
+	//light1 -
+	m_parameters[U_LIGHT1_POSITION]      = glGetUniformLocation(m_programID, "lights[1].position_cameraspace");
+	m_parameters[U_LIGHT1_COLOR]         = glGetUniformLocation(m_programID, "lights[1].color");
+	m_parameters[U_LIGHT1_POWER]         = glGetUniformLocation(m_programID, "lights[1].power");
+	m_parameters[U_LIGHT1_KC]            = glGetUniformLocation(m_programID, "lights[1].kC");
+	m_parameters[U_LIGHT1_KL]            = glGetUniformLocation(m_programID, "lights[1].kL");
+	m_parameters[U_LIGHT1_KQ]            = glGetUniformLocation(m_programID, "lights[1].kQ");
+	m_parameters[U_LIGHTENABLED]         = glGetUniformLocation(m_programID, "lightEnabled");
+	m_parameters[U_LIGHT1_TYPE]          = glGetUniformLocation(m_programID, "lights[1].type");
+	m_parameters[U_LIGHT1_SPOTDIRECTION] = glGetUniformLocation(m_programID, "lights[1].spotDirection");
+	m_parameters[U_LIGHT1_COSCUTOFF]     = glGetUniformLocation(m_programID, "lights[1].cosCutoff");
+	m_parameters[U_LIGHT1_COSINNER]      = glGetUniformLocation(m_programID, "lights[1].cosInner");
+	m_parameters[U_LIGHT1_EXPONENT]      = glGetUniformLocation(m_programID, "lights[1].exponent");
+
+
+
+	// Get a handle for our "textColor" uniform
+	m_parameters[U_NUMLIGHTS] = glGetUniformLocation(m_programID, "numLights");
+	m_parameters[U_TEXT_ENABLED] = glGetUniformLocation(m_programID, "textEnabled");
+	m_parameters[U_TEXT_COLOR] = glGetUniformLocation(m_programID, "textColor");
+	glUseProgram(m_programID);
+
+
 
 	//Replace previous code
+	glUniform1i(m_parameters[U_NUMLIGHTS], 2);
 	light[0].type = Light::LIGHT_SPOT;
 	light[0].position.Set(-100, 20, 25);
-	light[0].color.Set(1, 1, 1);
+	light[0].color.Set(0.9, 1, 0.8);
 	light[0].power = 1;
 	light[0].kC = 1.f;
 	light[0].kL = 0.01f;
@@ -560,62 +606,21 @@ void Scene_LV3::Init()
 	light[0].spotDirection.Set(0.f, 1.f, 0.f);
 
 
-	m_parameters[U_LIGHT0_POSITION] = glGetUniformLocation(m_programID, "lights[0].position_cameraspace");
-	m_parameters[U_LIGHT0_COLOR] = glGetUniformLocation(m_programID, "lights[0].color");
-	m_parameters[U_LIGHT0_POWER] = glGetUniformLocation(m_programID, "lights[0].power");
-	m_parameters[U_LIGHT0_KC] = glGetUniformLocation(m_programID, "lights[0].kC");
-	m_parameters[U_LIGHT0_KL] = glGetUniformLocation(m_programID, "lights[0].kL");
-	m_parameters[U_LIGHT0_KQ] = glGetUniformLocation(m_programID, "lights[0].kQ");
-	m_parameters[U_LIGHT0_TYPE] = glGetUniformLocation(m_programID, "lights[0].type");
-	m_parameters[U_LIGHT0_SPOTDIRECTION] = glGetUniformLocation(m_programID, "lights[0].spotDirection");
-	m_parameters[U_LIGHT0_COSCUTOFF] = glGetUniformLocation(m_programID, "lights[0].cosCutoff");
-	m_parameters[U_LIGHT0_COSINNER] = glGetUniformLocation(m_programID, "lights[0].cosInner");
-	m_parameters[U_LIGHT0_EXPONENT] = glGetUniformLocation(m_programID, "lights[0].exponent");
-
-	//m_parameters[U_LIGHTENABLED] = glGetUniformLocation(m_programID, "lightEnabled");
-	//m_parameters[U_NUMLIGHTS] = glGetUniformLocation(m_programID, "numLights");
-
 	light[1].type = Light::LIGHT_POINT;
-	light[1].position.Set(10, 8, 20);
-	light[1].color.Set(1, 1, 1);
-	light[1].power = 0.8;
+	light[1].position.Set(9.9f,8.5f, 20.f);
+	light[1].color.Set(0.4, 0.9, 0.7);
+	light[1].power = 1;
 	light[1].kC = 1.f;
 	light[1].kL = 0.01f;
 	light[1].kQ = 0.001f;
-	light[1].cosCutoff = cos(Math::DegreeToRadian(45));
+	light[1].cosCutoff = cos(Math::DegreeToRadian(15));
 	light[1].cosInner = cos(Math::DegreeToRadian(30));
 	light[1].exponent = 3.f;
 	light[1].spotDirection.Set(0.f, 1.f, 0.f);
 
 
-	m_parameters[U_LIGHT1_POSITION] = glGetUniformLocation(m_programID, "lights[1].position_cameraspace");
-	m_parameters[U_LIGHT1_COLOR] = glGetUniformLocation(m_programID, "lights[1].color");
-	m_parameters[U_LIGHT1_POWER] = glGetUniformLocation(m_programID, "lights[1].power");
-	m_parameters[U_LIGHT1_KC] = glGetUniformLocation(m_programID, "lights[1].kC");
-	m_parameters[U_LIGHT1_KL] = glGetUniformLocation(m_programID, "lights[1].kL");
-	m_parameters[U_LIGHT1_KQ] = glGetUniformLocation(m_programID, "lights[1].kQ");
-	m_parameters[U_LIGHT1_TYPE] = glGetUniformLocation(m_programID, "lights[1].type");
-	m_parameters[U_LIGHT1_SPOTDIRECTION] = glGetUniformLocation(m_programID, "lights[1].spotDirection");
-	m_parameters[U_LIGHT1_COSCUTOFF] = glGetUniformLocation(m_programID, "lights[1].cosCutoff");
-	m_parameters[U_LIGHT1_COSINNER] = glGetUniformLocation(m_programID, "lights[1].cosInner");
-	m_parameters[U_LIGHT1_EXPONENT] = glGetUniformLocation(m_programID, "lights[1].exponent");
-
-	m_parameters[U_LIGHTENABLED] = glGetUniformLocation(m_programID, "lightEnabled");
-	m_parameters[U_NUMLIGHTS] = glGetUniformLocation(m_programID, "numLights");
-
-
-	// Get a handle for our "colorTexture" uniform
-	m_parameters[U_COLOR_TEXTURE_ENABLED] = glGetUniformLocation(m_programID, "colorTextureEnabled");
-	m_parameters[U_COLOR_TEXTURE] = glGetUniformLocation(m_programID, "colorTexture");
-
-	// Get a handle for our "textColor" uniform
-	m_parameters[U_TEXT_ENABLED] = glGetUniformLocation(m_programID, "textEnabled");
-	m_parameters[U_TEXT_COLOR] = glGetUniformLocation(m_programID, "textColor");
-	glUseProgram(m_programID);
-
 	// Make sure you pass uniform parameters after glUseProgram()
-	// Make sure you pass uniform parameters after glUseProgram()
-	glUniform1i(m_parameters[U_NUMLIGHTS], 2);
+	
 	glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
 	glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
 	glUniform1f(m_parameters[U_LIGHT0_POWER], light[0].power);
@@ -636,41 +641,39 @@ void Scene_LV3::Init()
 	glUniform1f(m_parameters[U_LIGHT1_COSINNER], light[1].cosInner);
 	glUniform1f(m_parameters[U_LIGHT1_EXPONENT], light[1].exponent);
 
-	// Generate a default VAO for now
-	glGenVertexArrays(1, &m_vertexArrayID);
-	glBindVertexArray(m_vertexArrayID);	
+	
 	rotateAngle = 0;
-	for (int i = 0; i < NUM_GEOMETRY; ++i)
+	/*for (int i = 0; i < NUM_GEOMETRY; ++i)
 	{
 		meshList[i] = nullptr;
-	}
+	}*/
 
 	{
 		meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
 
 		meshList[GEO_QUAD] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
-		meshList[GEO_QUAD]->textureID = LoadTGA("Image//Stone_Floor.tga");
+		meshList[GEO_QUAD]->textureID = LoadTGA("Image//floor.tga");
 
 		meshList[GEO_CUBE] = MeshBuilder::GenerateCube("cube", Color(1, 1, 1), 1.f);
 		meshList[GEO_CUBE]->textureID = LoadTGA("Image//color.tga");
 
 		meshList[GEO_FRONT] = MeshBuilder::GenerateQuad("front", Color(1, 1, 1), 1.f);
-		meshList[GEO_FRONT]->textureID = LoadTGA("Image//space_ft.tga");
+		meshList[GEO_FRONT]->textureID = LoadTGA("Image//miramar_ft.tga");
 
 		meshList[GEO_LEFT] = MeshBuilder::GenerateQuad("left", Color(1, 1, 1), 1.f);
-		meshList[GEO_LEFT]->textureID = LoadTGA("Image//space_lf.tga");
+		meshList[GEO_LEFT]->textureID = LoadTGA("Image//miramar_lf.tga");
 
 		meshList[GEO_RIGHT] = MeshBuilder::GenerateQuad("right", Color(1, 1, 1), 1.f);
-		meshList[GEO_RIGHT]->textureID = LoadTGA("Image//space_rt.tga");
+		meshList[GEO_RIGHT]->textureID = LoadTGA("Image//miramar_rt.tga");
 
 		meshList[GEO_TOP] = MeshBuilder::GenerateQuad("top", Color(1, 1, 1), 1.f);
-		meshList[GEO_TOP]->textureID = LoadTGA("Image//space_up.tga");
+		meshList[GEO_TOP]->textureID = LoadTGA("Image//miramar_up.tga");
 
 		meshList[GEO_BOTTOM] = MeshBuilder::GenerateQuad("bottom", Color(1, 1, 1), 1.f);
-		meshList[GEO_BOTTOM]->textureID = LoadTGA("Image//space_dn.tga");
+		meshList[GEO_BOTTOM]->textureID = LoadTGA("Image//miramar_dn.tga");
 
 		meshList[GEO_BACK] = MeshBuilder::GenerateQuad("back", Color(1, 1, 1), 1.f);
-		meshList[GEO_BACK]->textureID = LoadTGA("Image//space_bk.tga");
+		meshList[GEO_BACK]->textureID = LoadTGA("Image//miramar_bk.tga");
 
 		meshList[GEO_BLEND] = MeshBuilder::GenerateQuad("blend", Color(1, 1, 1), 1.f);
 		meshList[GEO_BLEND]->textureID = LoadTGA("Image//Grimm.tga");
@@ -693,12 +696,7 @@ void Scene_LV3::Init()
 
 		meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("sphere", Color(1, 1, 1), 10, 20, 1.f);		//light for lamppost
 
-
-
 		meshList[GEO_HORNET] = MeshBuilder::GenerateOBJMTL("hornet", "OBJ//zombie.obj", "OBJ//zombie.mtl");
-
-
-
 
 		meshList[GEO_ROCKS] = MeshBuilder::GenerateOBJMTL("rocks", "OBJ//rocks.obj", "OBJ//rocks.mtl");
 		meshList[GEO_ROCKS]->textureID = LoadTGA("Image//rockwall.tga");
@@ -729,6 +727,23 @@ void Scene_LV3::Init()
 
 		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
+	}
+
+		meshList[GEO_COIN] = MeshBuilder::GenerateOBJMTL("coin", "OBJ//coin.obj", "OBJ//coin.mtl");
+		meshList[GEO_COIN]->textureID = LoadTGA("Image//Coin_Gold_albedo.tga");
+
+		meshList[GEO_COIN_ICON] = MeshBuilder::GenerateQuad("coin_icon", Color(1, 1, 1), 1.f);
+		meshList[GEO_COIN_ICON]->textureID = LoadTGA("Image//coin_icon.tga");
+
+		meshList[GEO_BLOOD] = MeshBuilder::GenerateQuad("blood_gui", Color(1, 1, 1), 1.f);
+		meshList[GEO_BLOOD]->textureID = LoadTGA("Image//Blood.tga");
+
+
+
+		meshList[GEO_TAXI] = MeshBuilder::GenerateOBJ("coin", "OBJ//Taxi2.obj");
+		meshList[GEO_TAXI]->textureID = LoadTGA("Image//taxi.tga");
+
+		
 		//-----------------------------------------------------------------------
 		//SP
 		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
@@ -740,12 +755,8 @@ void Scene_LV3::Init()
 		projectionStack.LoadMatrix(projection);
 
 
-		Mesh::SetMaterialLoc(m_parameters[U_MATERIAL_AMBIENT],
-			m_parameters[U_MATERIAL_DIFFUSE],
-			m_parameters[U_MATERIAL_SPECULAR],
-			m_parameters[U_MATERIAL_SHININESS]);
-
-
+	
+		Player yourself;
 
 
 
@@ -780,18 +791,24 @@ void Scene_LV3::Init()
 
 
 
-		//**Scammer**
-		meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scammer", "OBJ//basicCharacter.obj");
+		
+		
 
-
-	}
+	
 }
 
 void Scene_LV3::Update(double dt)
 {
 	Vector3 scammerpos = scammer_pos - camera.position;
 	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
-
+	Vector3 coin1pos = coin1_pos - camera.position;
+	float coin1dis = sqrt(pow(coin1pos.x, 2) + pow(coin1pos.y, 2) + pow(coin1pos.z, 2));
+	Vector3 coin2pos = coin2_pos - camera.position;
+	float coin2dis = sqrt(pow(coin2pos.x, 2) + pow(coin2pos.y, 2) + pow(coin2pos.z, 2));
+	Vector3 coin3pos = coin3_pos - camera.position;
+	float coin3dis = sqrt(pow(coin3pos.x, 2) + pow(coin3pos.y, 2) + pow(coin3pos.z, 2));
+	
+	
 	if (Application::IsKeyPressed('1'))
 	{
 		glEnable(GL_CULL_FACE);
@@ -819,30 +836,14 @@ void Scene_LV3::Update(double dt)
 	if (Application::IsKeyPressed('O'))
 		light[0].position.y -= (float)(LSPEED * dt);
 	if (Application::IsKeyPressed('P'))
+	{
 		light[0].position.y += (float)(LSPEED * dt);
-
-	if (Application::IsKeyPressed('5'))
-	{
+	}
 		
-		light[0].type = Light::LIGHT_POINT;
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
 
-	}
-	else if (Application::IsKeyPressed('6'))
-	{
-		light[0].type = Light::LIGHT_DIRECTIONAL;
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
-		//to do: switch light type to DIRECTIONAL and pass the information to shader
-	}
-	else if (Application::IsKeyPressed('7'))
-	{
-		light[0].type = Light::LIGHT_SPOT;
-		glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
-		glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
-		//to do: switch light type to SPOT and pass the information to shader
-	}
+	
+	
+	
 
 	
 	
@@ -856,127 +857,35 @@ void Scene_LV3::Update(double dt)
 	{
 		tut_text = false;
 	}
-
-	if (scammerdis<25)
+	/*if (cabTP() <= 10)
 	{
-
+		scammer_text = "Press E to ride";
+	}*/
+	if ((Application::yourself.get_in_cab() == false) && (cabTP() <= 10))
+	{
+		if (Application::IsKeyPressed('E'))
+		{
+			Application::yourself.set_in_cab(true);
+		}
+		else
+		{
+			scammer_text = "Press E to ride";
+		}
 	}
+	
+	//std::cout << coin1_count << std::endl;
 	/**********************************************************************************************************/
-	
-
-
-	
-	
-
-	
-	// 3rd interaction : fighting
-	if (camera.position.x <= -9 && camera.position.z >= 72)
-	{
-		battlestart = true;
-	}
-	if(battlestart)
-	{
-		bullet.z += (float)(60 * dt);
-		bullet2.z += (float)(120 * dt);
-		bullet3.z += (float)(50 * dt);
-		bullet4.z += (float)(70 * dt);
-		bullet5.z += (float)(100 * dt);
-		bullet6.z += (float)(30 * dt);
-		bullet7.z += (float)(90 * dt);
-		bullet8.z += (float)(100 * dt);
-
-		if (bullet.z > 112)
-		{
-			bullet.z = enemyz;
-		}
-		if (bullet2.z > 112)
-		{
-			bullet2.z = enemyz;
-		}
-		if (bullet3.z > 112)
-		{
-			bullet3.z = enemyz;
-		}
-		if (bullet4.z > 112)
-		{
-			bullet4.z = enemyz;
-		}
-		if (bullet5.z > 112)
-		{
-			bullet5.z = enemyz;
-		}
-		if (bullet6.z > 112)
-		{
-			bullet6.z = enemyz;
-		}
-		if (bullet7.z > 112)
-		{
-			bullet7.z = enemyz;
-		}
-
-		if (bullet8.z > 112)
-		{
-			bullet8.z = enemyz;
-		}
-	}
-
-	if (((bullet.x + 2) > camera.position.x && (bullet.x - 2) < camera.position.x && (bullet.z + 4) > camera.position.z && (bullet.z - 2) < camera.position.z)
-		|| ((bullet2.x + 2) > camera.position.x && (bullet2.x - 2) < camera.position.x && (bullet2.z + 4) > camera.position.z && (bullet2.z - 2) < camera.position.z)
-		|| ((bullet3.x + 2) > camera.position.x && (bullet3.x - 2) < camera.position.x && (bullet3.z + 4) > camera.position.z && (bullet3.z - 2) < camera.position.z)
-		|| ((bullet4.x + 2) > camera.position.x && (bullet4.x - 2) < camera.position.x && (bullet4.z + 4) > camera.position.z && (bullet4.z - 2) < camera.position.z)
-		|| ((bullet5.x + 2) > camera.position.x && (bullet5.x - 2) < camera.position.x && (bullet5.z + 4) > camera.position.z && (bullet5.z - 2) < camera.position.z)
-		|| ((bullet6.x + 2) > camera.position.x && (bullet6.x - 2) < camera.position.x && (bullet6.z + 4) > camera.position.z && (bullet6.z - 2) < camera.position.z)
-		|| ((bullet7.x + 2) > camera.position.x && (bullet7.x - 2) < camera.position.x && (bullet7.z + 4) > camera.position.z && (bullet7.z - 2) < camera.position.z)
-		|| ((bullet8.x + 2) > camera.position.x && (bullet8.x - 2) < camera.position.x && (bullet8.z + 4) > camera.position.z && (bullet8.z - 2) < camera.position.z))
-	{
-		playerhealth -= (1 * dt);
-	}
-	if (playerhealth <= 0)
-	{
-		camera.Init(Vector3(-96, 3, 30), Vector3(-96, 3, 0), Vector3(0, 1, 0));
-		die = true;
-	
-	}
 
 	
 	if (Application::IsKeyPressed('R'))
 	{
 		camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
-		playerhealth = 20;
+		Application::yourself.set_currency(100);
 		battlestart = false;
 		die = false;
 		win = false;
 
 	}
-	if (battlestart == false)
-	{
-		
-		enemyz = 25;
-		bullet.x = -65;
-		bullet.z = enemyz;
-
-		bullet2.x = -85;
-		bullet2.z = enemyz;
-
-		bullet3.x = -45;
-		bullet3.z = enemyz;
-
-		bullet4.x = -35;
-		bullet4.z = enemyz;
-
-		bullet5.x = -55;
-		bullet5.z = enemyz;
-
-		bullet6.x = -95;
-		bullet6.z = enemyz - 40;
-
-		bullet7.x = -50;
-		bullet7.z = enemyz;
-	}
-	
-	
-
-
 	
 	rotateAngle += (float)(20 * dt);
 	camera.Update(dt);
@@ -985,10 +894,70 @@ void Scene_LV3::Update(double dt)
 	
 	cameraz = std::to_string(camera.position.z);
 }
+void Scene_LV3::RenderScammer()
+{
+	modelStack.PushMatrix();
+	//modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
+	modelStack.Translate(-40, 0, 0);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(5, 5, 5);
+	RenderMesh(meshList[GEO_HORNET], true);
+	modelStack.PopMatrix();
 
+	//if (coin1_enable)
+	//{
+	//	//beside graveyard
+	//	modelStack.PushMatrix();
+	//	//modelStack.Translate(25, 0, 28);
+	//	modelStack.Translate(coin1_pos.x, coin1_pos.y, coin1_pos.z);
+	//	modelStack.Rotate(90, 1, 0, 0);
+	//	modelStack.Scale(0.5, 0.5, 0.5);
+	//	RenderMesh(meshList[GEO_COIN], true);
+	//	modelStack.PopMatrix();
+	//}
+	//else
+	//{
+	//	
+	//}
+	//if (coin2_enable)
+	//{
+	//	//corner near the exit
+	//	modelStack.PushMatrix();
+	//	//modelStack.Translate(27, 0, 104);
+	//	modelStack.Translate(coin2_pos.x, coin2_pos.y, coin2_pos.z);
+	//	modelStack.Rotate(90, 1, 0, 0);
+	//	modelStack.Scale(0.5, 0.5, 0.5);
+	//	RenderMesh(meshList[GEO_COIN], true);
+	//	modelStack.PopMatrix();
+	//}
+	//else
+	//{
+
+	//}
+	//if (coin3_enable)
+	//{
+	//	//behind under rocks
+	//	modelStack.PushMatrix();
+	//	//modelStack.Translate(23, 0, -17);
+	//	modelStack.Translate(coin3_pos.x, coin3_pos.y, coin3_pos.z);
+	//	modelStack.Rotate(90, 1, 0, 0);
+	//	modelStack.Scale(0.5, 0.5, 0.5);
+	//	RenderMesh(meshList[GEO_COIN], true);
+	//	modelStack.PopMatrix();
+	//}
+	//else
+	//{
+
+	//}
+
+	//RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
+	
+}
 
 void Scene_LV3::Render()
 {
+
+	
 	// Render VBO here
 	//Clear color buffer every frame
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -1000,6 +969,8 @@ void Scene_LV3::Render()
 	modelStack.LoadIdentity();
 	Mtx44 MVP = projectionStack.Top() * viewStack.Top() * modelStack.Top();
 	glUniformMatrix4fv(m_parameters[U_MVP], 1, GL_FALSE, &MVP.a[0]); //update the shader with new MVP
+
+
 
 	if (light[0].type == Light::LIGHT_DIRECTIONAL)
 	{
@@ -1019,6 +990,26 @@ void Scene_LV3::Render()
 		Position lightPosition_cameraspace = viewStack.Top() * light[0].position;
 		glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightPosition_cameraspace.x);
 	}
+
+
+	if (light[1].type == Light::LIGHT_DIRECTIONAL)
+	{
+		Vector3 lightDir(light[1].position.x, light[1].position.y, light[1].position.z);
+		Vector3 lightDirection_cameraspace = viewStack.Top() * lightDir;
+		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightDirection_cameraspace.x);
+	}
+	else if (light[1].type == Light::LIGHT_SPOT)
+	{
+		Position lightPosition_cameraspace = viewStack.Top() * light[1].position;
+		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
+		Vector3 spotDirection_cameraspace = viewStack.Top() * light[1].spotDirection;
+		glUniform3fv(m_parameters[U_LIGHT1_SPOTDIRECTION], 1, &spotDirection_cameraspace.x);
+	}
+	else
+	{
+		Position lightPosition_cameraspace = viewStack.Top() * light[1].position;
+		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
+	}
 	//**************************************************************************************************************
 
 
@@ -1029,7 +1020,7 @@ void Scene_LV3::Render()
 
 	modelStack.PushMatrix();
 	modelStack.Translate(light[1].position.x, light[1].position.y, light[1].position.z);
-	RenderMesh(meshList[GEO_LIGHTBALL], false);
+	RenderMesh(meshList[GEO_LIGHTBALL], true);
 	modelStack.PopMatrix();
 
 	RenderSkybox();
@@ -1038,7 +1029,7 @@ void Scene_LV3::Render()
 	
 	RenderScammer();
 
-	RenderRightSide();
+	//RenderRightSide();
 	
 	RenderLeftSide();
 
@@ -1046,11 +1037,11 @@ void Scene_LV3::Render()
 	
 	RenderFrontSide();
 
-	RenderRoads();
+	//RenderPath();
 
-	RenderBullet();
+	//RenderBullet();
 
-	RenderLamps();
+	//RenderLamps();
 	
 	
 
@@ -1100,6 +1091,16 @@ void Scene_LV3::Render()
 		modelStack.PopMatrix();
 	}
 	//----------------------------sp--------------------------------------
+	if (blood_ui)
+	{
+		int i;
+		for (i = 0; i < 10; i++)
+		{
+			RenderMeshOnScreen(meshList[GEO_BLOOD], 40, 30, 85, 65);
+		}
+		i = 0;
+		blood_ui = false;
+	}
 	if (tut_text==true)
 	{
 		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
@@ -1123,11 +1124,27 @@ void Scene_LV3::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], FPS, Color(0, 1, 0), 2, 47, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
 
-	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);
+
+	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
+	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
+
+
+
+	/*RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);*/
+	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);
+	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
+
 
 }
 
+float Scene_LV3::cabTP()
+{
+	Vector3 cabpos = cab_pos - camera.position;
+	float cabdis = sqrt(pow(cabpos.x, 2) + pow(cabpos.y, 2) + pow(cabpos.z, 2));
+
+	return cabdis;
+}
 void Scene_LV3::Exit()
 {
 	// Cleanup VBO here
@@ -1141,5 +1158,6 @@ void Scene_LV3::Exit()
 	glDeleteVertexArrays(1, &m_vertexArrayID);
 	glDeleteProgram(m_programID);
 }
+
 
 
