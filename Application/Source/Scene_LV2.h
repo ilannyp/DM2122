@@ -131,6 +131,21 @@ private:
 	float npc1z;
 	int dir1 = 1;
 
+	float translatenpc2;
+	float npc2x;
+	float npc2z;
+	int dir2 = 1;
+
+	float translatenpc3;
+	float npc3x;
+	float npc3z;
+	int dir3 = 1;
+
+	float translatenpc4;
+	float npc4x;
+	float npc4z;
+	int dir4 = 1;
+
 	//-------------------------------------//
 	float rotateAngle;
 	float translateX = 1;
@@ -145,14 +160,26 @@ private:
 	
 	
 	int playerhealth = 20;//slight change to make it into currency
-	int enemyz = 0;//i assume this is where the arrow line -irfan
+	int enemyz = 0;//i assume this is where the arrow line
 	bool battlestart = false;
 	bool win = false;
 	bool die = false;
 	bool hit = false;
 
+	//npc spawn
 	bool interactnpc1;
 	int intnpc1;
+	bool interactnpc2;
+	int intnpc2;
+	bool interactnpc3;
+	int intnpc3;
+	bool interactnpc4;
+	int intnpc4;
+
+
+
+
+
 
 	Vector3 bullet;
 	Vector3 bullet2;
