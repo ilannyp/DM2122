@@ -68,7 +68,7 @@ void SP::RenderMesh(Mesh* mesh, bool enableLight)
 		glUniform1i(m_parameters[U_COLOR_TEXTURE_ENABLED], 1);
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, mesh->textureID);
-		glUniform1i(m_parameters[U_COLOR_TEXTURE],0);
+		glUniform1i(m_parameters[U_COLOR_TEXTURE], 0);
 	}
 	else
 	{
@@ -694,47 +694,47 @@ void SP::Init()
 
 	camera.Init(Vector3(-90, 3, -44), Vector3(0, 3, -44), Vector3(0, 1, 0));
 
-	m_programID                                 = LoadShaders("Shader//Texture.vertexshader", "Shader//Text.fragmentshader");
+	m_programID = LoadShaders("Shader//Texture.vertexshader", "Shader//Text.fragmentshader");
 	// Get a handle for our "colorTexture" uniform
-	m_parameters[U_COLOR_TEXTURE_ENABLED]       = glGetUniformLocation(m_programID, "colorTextureEnabled");
-	m_parameters[U_COLOR_TEXTURE]               = glGetUniformLocation(m_programID, "colorTexture");
-	m_parameters[U_MVP]                         = glGetUniformLocation(m_programID, "MVP");
-	m_parameters[U_MODELVIEW]                   = glGetUniformLocation(m_programID, "MV");
+	m_parameters[U_COLOR_TEXTURE_ENABLED] = glGetUniformLocation(m_programID, "colorTextureEnabled");
+	m_parameters[U_COLOR_TEXTURE] = glGetUniformLocation(m_programID, "colorTexture");
+	m_parameters[U_MVP] = glGetUniformLocation(m_programID, "MVP");
+	m_parameters[U_MODELVIEW] = glGetUniformLocation(m_programID, "MV");
 	m_parameters[U_MODELVIEW_INVERSE_TRANSPOSE] = glGetUniformLocation(m_programID, "MV_inverse_transpose");
-	m_parameters[U_MATERIAL_AMBIENT]            = glGetUniformLocation(m_programID, "material.kAmbient");
-	m_parameters[U_MATERIAL_DIFFUSE]            = glGetUniformLocation(m_programID, "material.kDiffuse");
-	m_parameters[U_MATERIAL_SPECULAR]           = glGetUniformLocation(m_programID, "material.kSpecular");
-	m_parameters[U_MATERIAL_SHININESS]          = glGetUniformLocation(m_programID, "material.kShininess");
+	m_parameters[U_MATERIAL_AMBIENT] = glGetUniformLocation(m_programID, "material.kAmbient");
+	m_parameters[U_MATERIAL_DIFFUSE] = glGetUniformLocation(m_programID, "material.kDiffuse");
+	m_parameters[U_MATERIAL_SPECULAR] = glGetUniformLocation(m_programID, "material.kSpecular");
+	m_parameters[U_MATERIAL_SHININESS] = glGetUniformLocation(m_programID, "material.kShininess");
 	Mesh::SetMaterialLoc(m_parameters[U_MATERIAL_AMBIENT], m_parameters[U_MATERIAL_DIFFUSE], m_parameters[U_MATERIAL_SPECULAR], m_parameters[U_MATERIAL_SHININESS]);
 
 
 	//light0 -
-	m_parameters[U_LIGHT0_POSITION]      = glGetUniformLocation(m_programID, "lights[0].position_cameraspace");
-	m_parameters[U_LIGHT0_COLOR]         = glGetUniformLocation(m_programID, "lights[0].color");
-	m_parameters[U_LIGHT0_POWER]         = glGetUniformLocation(m_programID, "lights[0].power");
-	m_parameters[U_LIGHT0_KC]            = glGetUniformLocation(m_programID, "lights[0].kC");
-	m_parameters[U_LIGHT0_KL]            = glGetUniformLocation(m_programID, "lights[0].kL");
-	m_parameters[U_LIGHT0_KQ]            = glGetUniformLocation(m_programID, "lights[0].kQ");
-	m_parameters[U_LIGHTENABLED]         = glGetUniformLocation(m_programID, "lightEnabled");
-	m_parameters[U_LIGHT0_TYPE]          = glGetUniformLocation(m_programID, "lights[0].type");
+	m_parameters[U_LIGHT0_POSITION] = glGetUniformLocation(m_programID, "lights[0].position_cameraspace");
+	m_parameters[U_LIGHT0_COLOR] = glGetUniformLocation(m_programID, "lights[0].color");
+	m_parameters[U_LIGHT0_POWER] = glGetUniformLocation(m_programID, "lights[0].power");
+	m_parameters[U_LIGHT0_KC] = glGetUniformLocation(m_programID, "lights[0].kC");
+	m_parameters[U_LIGHT0_KL] = glGetUniformLocation(m_programID, "lights[0].kL");
+	m_parameters[U_LIGHT0_KQ] = glGetUniformLocation(m_programID, "lights[0].kQ");
+	m_parameters[U_LIGHTENABLED] = glGetUniformLocation(m_programID, "lightEnabled");
+	m_parameters[U_LIGHT0_TYPE] = glGetUniformLocation(m_programID, "lights[0].type");
 	m_parameters[U_LIGHT0_SPOTDIRECTION] = glGetUniformLocation(m_programID, "lights[0].spotDirection");
-	m_parameters[U_LIGHT0_COSCUTOFF]     = glGetUniformLocation(m_programID, "lights[0].cosCutoff");
-	m_parameters[U_LIGHT0_COSINNER]      = glGetUniformLocation(m_programID, "lights[0].cosInner");
-	m_parameters[U_LIGHT0_EXPONENT]      = glGetUniformLocation(m_programID, "lights[0].exponent");
+	m_parameters[U_LIGHT0_COSCUTOFF] = glGetUniformLocation(m_programID, "lights[0].cosCutoff");
+	m_parameters[U_LIGHT0_COSINNER] = glGetUniformLocation(m_programID, "lights[0].cosInner");
+	m_parameters[U_LIGHT0_EXPONENT] = glGetUniformLocation(m_programID, "lights[0].exponent");
 
 	//light1 -
-	m_parameters[U_LIGHT1_POSITION]      = glGetUniformLocation(m_programID, "lights[1].position_cameraspace");
-	m_parameters[U_LIGHT1_COLOR]         = glGetUniformLocation(m_programID, "lights[1].color");
-	m_parameters[U_LIGHT1_POWER]         = glGetUniformLocation(m_programID, "lights[1].power");
-	m_parameters[U_LIGHT1_KC]            = glGetUniformLocation(m_programID, "lights[1].kC");
-	m_parameters[U_LIGHT1_KL]            = glGetUniformLocation(m_programID, "lights[1].kL");
-	m_parameters[U_LIGHT1_KQ]            = glGetUniformLocation(m_programID, "lights[1].kQ");
-	m_parameters[U_LIGHTENABLED]         = glGetUniformLocation(m_programID, "lightEnabled");
-	m_parameters[U_LIGHT1_TYPE]          = glGetUniformLocation(m_programID, "lights[1].type");
+	m_parameters[U_LIGHT1_POSITION] = glGetUniformLocation(m_programID, "lights[1].position_cameraspace");
+	m_parameters[U_LIGHT1_COLOR] = glGetUniformLocation(m_programID, "lights[1].color");
+	m_parameters[U_LIGHT1_POWER] = glGetUniformLocation(m_programID, "lights[1].power");
+	m_parameters[U_LIGHT1_KC] = glGetUniformLocation(m_programID, "lights[1].kC");
+	m_parameters[U_LIGHT1_KL] = glGetUniformLocation(m_programID, "lights[1].kL");
+	m_parameters[U_LIGHT1_KQ] = glGetUniformLocation(m_programID, "lights[1].kQ");
+	m_parameters[U_LIGHTENABLED] = glGetUniformLocation(m_programID, "lightEnabled");
+	m_parameters[U_LIGHT1_TYPE] = glGetUniformLocation(m_programID, "lights[1].type");
 	m_parameters[U_LIGHT1_SPOTDIRECTION] = glGetUniformLocation(m_programID, "lights[1].spotDirection");
-	m_parameters[U_LIGHT1_COSCUTOFF]     = glGetUniformLocation(m_programID, "lights[1].cosCutoff");
-	m_parameters[U_LIGHT1_COSINNER]      = glGetUniformLocation(m_programID, "lights[1].cosInner");
-	m_parameters[U_LIGHT1_EXPONENT]      = glGetUniformLocation(m_programID, "lights[1].exponent");
+	m_parameters[U_LIGHT1_COSCUTOFF] = glGetUniformLocation(m_programID, "lights[1].cosCutoff");
+	m_parameters[U_LIGHT1_COSINNER] = glGetUniformLocation(m_programID, "lights[1].cosInner");
+	m_parameters[U_LIGHT1_EXPONENT] = glGetUniformLocation(m_programID, "lights[1].exponent");
 
 	//light2 -
 	m_parameters[U_LIGHT2_POSITION] = glGetUniformLocation(m_programID, "lights[2].position_cameraspace");
@@ -774,7 +774,7 @@ void SP::Init()
 
 
 	light[1].type = Light::LIGHT_POINT;
-	light[1].position.Set(9.9f,8.5f, 20.f);
+	light[1].position.Set(9.9f, 8.5f, 20.f);
 	light[1].color.Set(0.4, 0.9, 0.7);
 	light[1].power = 1;
 	light[1].kC = 1.f;
@@ -799,7 +799,7 @@ void SP::Init()
 
 
 	// Make sure you pass uniform parameters after glUseProgram()
-	
+
 	glUniform1i(m_parameters[U_LIGHT0_TYPE], light[0].type);
 	glUniform3fv(m_parameters[U_LIGHT0_COLOR], 1, &light[0].color.r);
 	glUniform1f(m_parameters[U_LIGHT0_POWER], light[0].power);
@@ -830,7 +830,7 @@ void SP::Init()
 	glUniform1f(m_parameters[U_LIGHT2_COSINNER], light[2].cosInner);
 	glUniform1f(m_parameters[U_LIGHT2_EXPONENT], light[2].exponent);
 
-	
+
 	rotateAngle = 0;
 	/*for (int i = 0; i < NUM_GEOMETRY; ++i)
 	{
@@ -918,69 +918,69 @@ void SP::Init()
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
 	}
 
-		meshList[GEO_COIN] = MeshBuilder::GenerateOBJMTL("coin", "OBJ//coin.obj", "OBJ//coin.mtl");
-		meshList[GEO_COIN]->textureID = LoadTGA("Image//Coin_Gold_albedo.tga");
+	meshList[GEO_COIN] = MeshBuilder::GenerateOBJMTL("coin", "OBJ//coin.obj", "OBJ//coin.mtl");
+	meshList[GEO_COIN]->textureID = LoadTGA("Image//Coin_Gold_albedo.tga");
 
-		meshList[GEO_COIN_ICON] = MeshBuilder::GenerateQuad("coin_icon", Color(1, 1, 1), 1.f);
-		meshList[GEO_COIN_ICON]->textureID = LoadTGA("Image//coin_icon.tga");
+	meshList[GEO_COIN_ICON] = MeshBuilder::GenerateQuad("coin_icon", Color(1, 1, 1), 1.f);
+	meshList[GEO_COIN_ICON]->textureID = LoadTGA("Image//coin_icon.tga");
 
-		meshList[GEO_BLOOD] = MeshBuilder::GenerateQuad("blood_gui", Color(1, 1, 1), 1.f);
-		meshList[GEO_BLOOD]->textureID = LoadTGA("Image//Blood.tga");
-
-
-
-		meshList[GEO_TAXI] = MeshBuilder::GenerateOBJ("coin", "OBJ//Taxi2.obj");
-		meshList[GEO_TAXI]->textureID = LoadTGA("Image//taxi.tga");
-
-		
-		//-----------------------------------------------------------------------
-		//SP
-		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
-		meshList[GEO_SCAMMER]->textureID = LoadTGA("Image//scammer.tga");*/
-		//An array of 3 vectors which represents the colors of the 3 vertices
-
-		Mtx44 projection;
-		projection.SetToPerspective(45.f, 4.f / 3.f, 0.1f, 1000.f);
-		projectionStack.LoadMatrix(projection);
+	meshList[GEO_BLOOD] = MeshBuilder::GenerateQuad("blood_gui", Color(1, 1, 1), 1.f);
+	meshList[GEO_BLOOD]->textureID = LoadTGA("Image//Blood.tga");
 
 
-	
-		//Player yourself;
 
-		enemyz = 25;
-		bullet.x = -65;
-		bullet.z = enemyz;
-
-		bullet2.x = -85;
-		bullet2.z = enemyz;
-
-		bullet3.x = -45;
-		bullet3.z = enemyz;
-
-		bullet4.x = -35;
-		bullet4.z = enemyz;
-
-		bullet5.x = -55;
-		bullet5.z = enemyz;
-
-		bullet6.x = -95;
-		bullet6.z = enemyz;
-
-		bullet7.x = -50;
-		bullet7.z = enemyz;
-
-		bullet8.x = -70;
-		bullet8.z = enemyz;
+	meshList[GEO_TAXI] = MeshBuilder::GenerateOBJ("coin", "OBJ//Taxi2.obj");
+	meshList[GEO_TAXI]->textureID = LoadTGA("Image//taxi.tga");
 
 
+	//-----------------------------------------------------------------------
+	//SP
+	/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
+	meshList[GEO_SCAMMER]->textureID = LoadTGA("Image//scammer.tga");*/
+	//An array of 3 vectors which represents the colors of the 3 vertices
+
+	Mtx44 projection;
+	projection.SetToPerspective(45.f, 4.f / 3.f, 0.1f, 1000.f);
+	projectionStack.LoadMatrix(projection);
+
+
+
+	//Player yourself;
+
+	enemyz = 25;
+	bullet.x = -65;
+	bullet.z = enemyz;
+
+	bullet2.x = -85;
+	bullet2.z = enemyz;
+
+	bullet3.x = -45;
+	bullet3.z = enemyz;
+
+	bullet4.x = -35;
+	bullet4.z = enemyz;
+
+	bullet5.x = -55;
+	bullet5.z = enemyz;
+
+	bullet6.x = -95;
+	bullet6.z = enemyz;
+
+	bullet7.x = -50;
+	bullet7.z = enemyz;
+
+	bullet8.x = -70;
+	bullet8.z = enemyz;
 
 
 
 
-		
-		
 
-	
+
+
+
+
+
 }
 
 void SP::Update(double dt)
@@ -993,8 +993,8 @@ void SP::Update(double dt)
 	float coin2dis = sqrt(pow(coin2pos.x, 2) + pow(coin2pos.y, 2) + pow(coin2pos.z, 2));
 	Vector3 coin3pos = coin3_pos - camera.position;
 	float coin3dis = sqrt(pow(coin3pos.x, 2) + pow(coin3pos.y, 2) + pow(coin3pos.z, 2));
-	
-	
+
+
 	if (Application::IsKeyPressed('1'))
 	{
 		glEnable(GL_CULL_FACE);
@@ -1025,14 +1025,14 @@ void SP::Update(double dt)
 	{
 		light[0].position.y += (float)(LSPEED * dt);
 	}
-		
 
-	
-	
-	
 
-	
-	
+
+
+
+
+
+
 	/*******************************************************************************************************/
 	//tutorial boundary check
 	if (camera.position.x > -15 && camera.position.x<26 && camera.position.z>-14 && camera.position.z < 103)
@@ -1054,13 +1054,13 @@ void SP::Update(double dt)
 	{
 		scammaer_talk = false;
 	}
-	if (scammerdis<=10)
+	if (scammerdis <= 10)
 	{
 		if (scammaer_talk)
 		{
 			scam_count++;
 		}
-		if(Application::yourself.get_first_scammed() == false)
+		if (Application::yourself.get_first_scammed() == false)
 		{
 			//talk text
 			scammer_text = "Give me 300 gold and i'll give you a prize";
@@ -1083,7 +1083,7 @@ void SP::Update(double dt)
 		{
 			scammer_text = "Thank you bye bye";
 		}
-		
+
 		std::cout << scam_count << std::endl;
 
 	}
@@ -1093,7 +1093,7 @@ void SP::Update(double dt)
 	}
 
 
-	if (coin1dis<=10)
+	if (coin1dis <= 10)
 	{
 		if (Application::IsKeyPressed('E'))
 		{
@@ -1144,7 +1144,7 @@ void SP::Update(double dt)
 
 		}
 	}
-	
+
 	if (coin3dis <= 10)
 	{
 		if (Application::IsKeyPressed('E'))
@@ -1185,22 +1185,22 @@ void SP::Update(double dt)
 			scammer_text = "Press E to ride";
 		}
 	}
-	
+
 	//std::cout << coin1_count << std::endl;
 	/**********************************************************************************************************/
-	
 
 
-	
-	
 
-	
+
+
+
+
 	// 3rd interaction : fighting
 	if (camera.position.x <= -9 && camera.position.z >= 72)
 	{
 		battlestart = true;
 	}
-	if(battlestart)
+	if (battlestart)
 	{
 		bullet.z += (float)(60 * dt);
 		bullet2.z += (float)(120 * dt);
@@ -1265,7 +1265,7 @@ void SP::Update(double dt)
 		Application::yourself.set_die();
 	}
 
-	
+
 	if (Application::IsKeyPressed('R'))
 	{
 		camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
@@ -1277,7 +1277,7 @@ void SP::Update(double dt)
 	}
 	if (battlestart == false)
 	{
-		
+
 		enemyz = 25;
 		bullet.x = -65;
 		bullet.z = enemyz;
@@ -1300,16 +1300,16 @@ void SP::Update(double dt)
 		bullet7.x = -50;
 		bullet7.z = enemyz;
 	}
-	
-	
 
 
-	
+
+
+
 	rotateAngle += (float)(20 * dt);
 	camera.Update(dt);
 	FPS = std::to_string(1.f / dt);
 	camerax = std::to_string(camera.position.x);
-	
+
 	cameraz = std::to_string(camera.position.z);
 }
 void SP::RenderScammer()
@@ -1338,7 +1338,7 @@ void SP::RenderScammer()
 	}
 	else
 	{
-		
+
 	}
 	if (Application::yourself.get_coin2_enabled() == false)
 	{
@@ -1372,13 +1372,13 @@ void SP::RenderScammer()
 	}
 
 	//RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
-	
+
 }
 
 void SP::Render()
 {
 
-	
+
 	// Render VBO here
 	//Clear color buffer every frame
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -1473,15 +1473,15 @@ void SP::Render()
 	RenderSkybox();
 
 	RenderFloor();
-	
+
 	RenderScammer();
 
 	RenderRightSide();
-	
+
 	RenderLeftSide();
 
 	RenderBackSide();
-	
+
 	RenderFrontSide();
 
 	RenderPath();
@@ -1489,11 +1489,11 @@ void SP::Render()
 	RenderBullet();
 
 	RenderLamps();
-	
-	
 
 
-	
+
+
+
 
 
 
@@ -1548,7 +1548,7 @@ void SP::Render()
 		i = 0;
 		blood_ui = false;
 	}
-	if (tut_text==true)
+	if (tut_text == true)
 	{
 		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
 		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0, 1, 0), 2, 25, 53);
@@ -1561,10 +1561,10 @@ void SP::Render()
 	//RenderMesh(meshList[GEO_SCAMMER], true);
 	//modelStack.PopMatrix();
 	//----------------------------sp--------------------------------------
-	
-	
+
+
 	//UI
-	RenderTextOnScreen(meshList[GEO_TEXT], camerax , Color(0, 1, 0), 2, 6, 0);
+	RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "X:", Color(0, 1, 0), 2, 0, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], cameraz, Color(0, 1, 0), 2, 6, 2);
 	RenderTextOnScreen(meshList[GEO_TEXT], "Z:", Color(0, 1, 0), 2, 0, 2);

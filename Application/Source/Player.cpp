@@ -67,7 +67,7 @@ bool Player::get_in_cab()
 }
 
 void Player::set_first_scammed(bool x)
-{ 
+{
 	if (x == true)
 	{
 		first_scammed = true;
@@ -132,9 +132,9 @@ bool Player::get_coin3_enabled()
 
 void Player::set_coin1_enabled(bool x)
 {
-	
+
 	coin1_enabled = x;
-	
+
 }
 
 void Player::set_coin2_enabled(bool x)
@@ -173,7 +173,7 @@ void Player::set_currency_added_from_C1(bool x)
 void Player::set_currency_added_from_C2(bool x)
 {
 	currency_added_from_C2 = x;
-	
+
 }
 
 void Player::set_currency_added_from_C3(bool x)
