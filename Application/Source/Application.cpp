@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Scene_LV2.h" //-for test
-#include "SP_3.h"
+#include "Scene_LV3.h"
 #include "SP_Start.h"
 #include "SP.h"
 #include "Scene_EndScreen.h"
@@ -136,7 +136,7 @@ void Application::Run()
 	Scene *scene2 = new SP();
 	Scene *scene3 = new Scene_EndScreen();
 	Scene *scene4 = new Scene_LV2();
-	Scene* scene5 = new SP_3();
+	Scene* scene5 = new Scene_LV3();
 
 
 	Scene *scene = scene1;
