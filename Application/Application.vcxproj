@@ -178,9 +178,9 @@
     <ClCompile Include="Source\SceneUI.cpp" />
     <ClCompile Include="Source\Scene_EndScreen.cpp" />
     <ClCompile Include="Source\Scene_LV2.cpp" />
-    <ClCompile Include="Source\Scene_LV3.cpp" />
     <ClCompile Include="Source\shader.cpp" />
     <ClCompile Include="Source\SP.cpp" />
+    <ClCompile Include="Source\SP_3.cpp" />
     <ClCompile Include="Source\SP_Start.cpp" />
     <ClCompile Include="Source\Utility.cpp" />
   </ItemGroup>
@@ -210,8 +210,8 @@
     <ClInclude Include="Source\SceneUI.h" />
     <ClInclude Include="Source\Scene_EndScreen.h" />
     <ClInclude Include="Source\Scene_LV2.h" />
-    <ClInclude Include="Source\Scene_LV3.h" />
     <ClInclude Include="Source\SP.h" />
+    <ClInclude Include="Source\SP_3.h" />
     <ClInclude Include="Source\SP_Start.h" />
     <ClInclude Include="Source\Utility.h" />
     <ClInclude Include="Source\Vertex.h" />

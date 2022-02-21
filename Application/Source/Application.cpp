@@ -13,6 +13,7 @@
 #include "SP_Start.h"
 #include "SP.h"
 #include "Scene_EndScreen.h"
+#include "SP_3.h"
 
 GLFWwindow* m_window;
 const unsigned char FPS = 60; // FPS of this game
@@ -134,6 +135,7 @@ void Application::Run()
 	Scene* scene2 = new SP();
 	Scene* scene3 = new Scene_EndScreen();
 	Scene* scene4 = new Scene_LV2();
+	Scene* scene5 = new SP_3();
 
 
 	Scene* scene = scene1;
@@ -199,6 +201,11 @@ void Application::Run()
 				scene->Init();
 			}
 		}
+		if (IsKeyPressed(VK_F4))
+		{
+			scene = scene5;
+			scene->Init();
+		}
 
 
 
@@ -244,9 +251,13 @@ void Application::Run()
 	scene1->Exit();
 	scene2->Exit();
 	scene3->Exit();
+	scene4->Exit();
+	scene5->Exit();
 	delete scene1;
 	delete scene2;
 	delete scene3;
+	delete scene4;
+	delete scene5;
 
 }
 
