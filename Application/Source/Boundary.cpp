@@ -74,15 +74,6 @@ int Boundary::getCameraZTail(void)
     return cameraZTail;
 }
 
-bool Boundary::NPCcollision(int objx, int objz)
+void Boundary::collision()
 {
-    if ((objx <= cameraXHead && objx >= cameraXTail && objz <= cameraZHead && objz >= cameraZTail))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-    return false;
 }
