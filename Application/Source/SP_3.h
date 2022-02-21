@@ -164,7 +164,7 @@ private:
 
 	//sp stuff
 	bool tut_text = true, scammaer_talk = false, coin1_enable = true, coin2_enable = true, coin3_enable = true, blood_ui = false;
-	Vector3 scammer_pos = Vector3(-19, 0, 81);
+	Vector3 scammer_pos = Vector3(-35, 0, -35);
 	Vector3 coin1_pos = Vector3(25, 0, 28);
 	Vector3 coin2_pos = Vector3(27, 0, 104);
 	Vector3 coin3_pos = Vector3(23, 0, -17);

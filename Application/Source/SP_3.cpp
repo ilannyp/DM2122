@@ -169,9 +169,8 @@ void SP_3::RenderLeftSide()
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(30, 0, -60);
-	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Rotate(10, 0, 1, 0);
+	modelStack.Translate(20, 0, -60);
+	modelStack.Rotate(-250, 0, 1, 0);
 	modelStack.Scale(100, 40, 40);
 	RenderMesh(meshList[GEO_TALLROCK], true);
 	modelStack.PopMatrix();
@@ -185,13 +184,56 @@ void SP_3::RenderLeftSide()
 }
 void SP_3::RenderBackSide()
 {
-	//back side
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -81);
+	modelStack.Translate(-29, 0, -75);
 	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(50, 50, 50);
+	modelStack.Scale(70, 20, 70);
 	RenderMesh(meshList[GEO_TALLROCK], true);
 	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-80, 0, -61);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(80, 60, 60);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-115, 0, -20);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(80, 20, 80);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-110, 0, 48);
+	modelStack.Rotate(270, 0, 1, 0);
+	modelStack.Scale(80, 20, 60);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-97, 0, 95);
+	modelStack.Rotate(270, 0, 1, 0);
+	modelStack.Scale(80, 20, 60);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+	//back
+	modelStack.PushMatrix();
+	modelStack.Translate(-40, 0, 110);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(80, 70, 80);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(15, 0, 100);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(80, 35, 80);
+	RenderMesh(meshList[GEO_TALLROCK], true);
+	modelStack.PopMatrix();
+
+
 
 	modelStack.PushMatrix();
 	modelStack.Translate(-63, 0, -59);
@@ -332,7 +374,7 @@ void SP_3::Init()
 	glGenVertexArrays(1, &m_vertexArrayID);
 	glBindVertexArray(m_vertexArrayID);
 
-	camera.Init(Vector3(-90, 3, -44), Vector3(0, 3, -44), Vector3(0, 1, 0));
+	camera.Init(Vector3(-35, 3, 35), Vector3(-35, 3, -35), Vector3(0, 1, 0));
 
 	m_programID = LoadShaders("Shader//Texture.vertexshader", "Shader//Text.fragmentshader");
 	// Get a handle for our "colorTexture" uniform
@@ -705,8 +747,7 @@ void SP_3::RenderScammer()
 {
 	modelStack.PushMatrix();
 	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
-	//modelStack.Translate(0, 0, 30);
-	modelStack.Rotate(90, 0, 1, 0);
+	//modelStack.Rotate(90, 0, 1, 0);
 	modelStack.Scale(5, 5, 5);
 	RenderMesh(meshList[GEO_HORNET], true);
 	modelStack.PopMatrix();
@@ -818,6 +859,7 @@ void SP_3::Render()
 	RenderBackSide();
 
 	RenderFrontSide();
+	
 
 	if (die)
 	{
