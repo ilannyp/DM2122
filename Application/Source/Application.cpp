@@ -160,9 +160,6 @@ void Application::Run()
 			yourself.set_currency_added_from_C1(false);
 			yourself.set_currency_added_from_C2(false);
 			yourself.set_currency_added_from_C3(false);
-
-			std::cout << yourself.get_coin1_enabled() << std::endl;
-			std::cout << yourself.get_coin1_obtained() << std::endl;
 			scene = scene2;
 			scene->Init();
 		}
