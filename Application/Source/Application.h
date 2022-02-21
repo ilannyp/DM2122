@@ -14,6 +14,7 @@ public:
 	static unsigned m_height;
 	Application();
 	~Application();
+	void variables();
 	void Init();
 	void Run();
 	void Exit();

@@ -74,6 +74,23 @@ Application::~Application()
 {
 }
 
+void Application::variables()
+{
+	yourself.set_currency(1);
+	yourself.set_alive();
+	yourself.set_in_cab(false);
+	yourself.set_first_scammed(false);
+	yourself.set_coin1_enabled(false);
+	yourself.set_coin2_enabled(false);
+	yourself.set_coin3_enabled(false);
+	yourself.set_coin1_obtained(false);
+	yourself.set_coin2_obtained(false);
+	yourself.set_coin3_obtained(false);
+	yourself.set_currency_added_from_C1(false);
+	yourself.set_currency_added_from_C2(false);
+	yourself.set_currency_added_from_C3(false);
+}
+
 
 
 void Application::Init()
@@ -147,19 +164,7 @@ void Application::Run()
 	{
 		if (IsKeyPressed(VK_RETURN))
 		{
-			yourself.set_currency(1);
-			yourself.set_alive();
-			yourself.set_in_cab(false);
-			yourself.set_first_scammed(false);
-			yourself.set_coin1_enabled(false);
-			yourself.set_coin2_enabled(false);
-			yourself.set_coin3_enabled(false);
-			yourself.set_coin1_obtained(false);
-			yourself.set_coin2_obtained(false);
-			yourself.set_coin3_obtained(false);
-			yourself.set_currency_added_from_C1(false);
-			yourself.set_currency_added_from_C2(false);
-			yourself.set_currency_added_from_C3(false);
+			variables();
 			scene = scene2;
 			scene->Init();
 		}
