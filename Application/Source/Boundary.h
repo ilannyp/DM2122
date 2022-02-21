@@ -29,7 +29,7 @@ public:
 	void setCameraZTail(int CameraZTail);
 	int getCameraZTail(void);
 
-	void collision();
+	bool NPCcollision(int objx, int objz);
 
 	
 };
