@@ -151,46 +151,6 @@ void SP_3::RenderFloor()
 	RenderMesh(meshList[GEO_QUAD], true);
 	modelStack.PopMatrix();
 }
-
-void SP_3::RenderRightSide()
-{
-	//right side
-	modelStack.PushMatrix();
-	modelStack.Translate(-30, 0, 0);
-	modelStack.Rotate(0, 0, 0, 1);
-	modelStack.Scale(50, 50, 50);
-	RenderMesh(meshList[GEO_ROCKS], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-20, 0, 35);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(60, 30, 30);
-	RenderMesh(meshList[GEO_TALLROCK], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-16, 0, 67);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 7, 10);
-	RenderMesh(meshList[GEO_GRAVE], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-24, 0, 73);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 10, 10);
-	RenderMesh(meshList[GEO_LANTERN], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(cab_pos.x, cab_pos.y, cab_pos.z);
-	//modelStack.Translate(-100, 0, 22);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(1, 1, 1);
-	RenderMesh(meshList[GEO_TAXI], true);
-	modelStack.PopMatrix();
-}
 void SP_3::RenderLeftSide()
 {
 	//left side
@@ -222,31 +182,6 @@ void SP_3::RenderLeftSide()
 	modelStack.Scale(30, 30, 30);
 	RenderMesh(meshList[GEO_DEBRIS], true);
 	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 55);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 7, 10);
-	RenderMesh(meshList[GEO_CRYPT], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 35);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 7, 10);
-	RenderMesh(meshList[GEO_CRYPT], true);
-	modelStack.PopMatrix();
-
-
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 45);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 10, 10);
-	RenderMesh(meshList[GEO_LAMP], true);
-	modelStack.PopMatrix();
-
-
-
 }
 void SP_3::RenderBackSide()
 {
@@ -262,6 +197,13 @@ void SP_3::RenderBackSide()
 	modelStack.Translate(-63, 0, -59);
 	modelStack.Rotate(0, 0, 1, 0);
 	modelStack.Scale(108, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALL], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-100, 0, -35);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(100, 10, 10);
 	RenderMesh(meshList[GEO_STONEWALL], true);
 	modelStack.PopMatrix();
 }
@@ -288,308 +230,6 @@ void SP_3::RenderFrontSide()
 	modelStack.Scale(100, 10, 10);
 	RenderMesh(meshList[GEO_STONEWALL], true);
 	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-15, 0, 65);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-20, 0, 95);
-	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Scale(20, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-70, 0, 20);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(100, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALL], true);
-	modelStack.PopMatrix();
-
-	//gold area wall connecting rock and horizontal wall
-	modelStack.PushMatrix();
-	modelStack.Translate(-15.4, -0.1, -14);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
-	modelStack.PopMatrix();
-
-	//gold area horizontal wall near rock
-	modelStack.PushMatrix();
-	modelStack.Translate(-70, 0, -19);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(100, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALL], true);
-	modelStack.PopMatrix();
-
-	//gold area vertical wall near rock
-	modelStack.PushMatrix();
-	modelStack.Translate(-100, 0, -18);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(100, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALL], true);
-	modelStack.PopMatrix();
-
-}
-void SP_3::RenderPath()
-{
-	//roads
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 4);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 18);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 32);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 46);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 60);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 74);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-6, 0, 74);
-	modelStack.Rotate(-160, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-10, 0, 78);
-	modelStack.Rotate(-160, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -8);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -20);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -32);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -41);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-7, 0, -44);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-19, 0, -44);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-31, 0, -44);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-43, 0, -44);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-55, 0, -44);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-67, 0, -44);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-79, 0, -44);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-91, 0, -44);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
-}
-void SP_3::RenderBullet()
-{
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet.x, 1, bullet.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet2.x, 1, bullet2.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet3.x, 1, bullet3.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet4.x, 1, bullet4.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet5.x, 1, bullet5.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet6.x, 1, bullet6.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet7.x, 1, bullet7.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-}
-void SP_3::RenderLamps()
-{
-	//my lamps
-	modelStack.PushMatrix();
-	{
-		modelStack.Translate(10, 1, 20);
-		modelStack.Scale(0.1, 0.1, 0.1);
-
-		//lamp base
-		modelStack.PushMatrix();
-		{
-
-			modelStack.Translate(0, -5, 0);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Scale(12, 12, 12);
-			RenderMesh(meshList[GEO_CONE], true);
-		}
-		modelStack.PopMatrix();
-
-		modelStack.Translate(0, 30, 0);
-		modelStack.Rotate(0, 0, 0, 1);
-		modelStack.Scale(4, 80, 4);
-		RenderMesh(meshList[GEO_CAPE], true);
-	}
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	{
-		modelStack.Translate(-11, 1, 67);
-		modelStack.Scale(0.1, 0.1, 0.1);
-
-		//lamp base
-		modelStack.PushMatrix();
-		{
-			modelStack.PushMatrix();
-			{
-				//light
-				modelStack.Translate(0, 75, 0);
-				modelStack.Scale(10, 10, 10);
-				RenderMesh(meshList[GEO_LAMPLIGHT], false);
-			}
-			modelStack.PopMatrix();
-
-			modelStack.Translate(0, -5, 0);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Scale(12, 12, 12);
-			RenderMesh(meshList[GEO_CONE], true);
-		}
-		modelStack.PopMatrix();
-
-		modelStack.Translate(0, 30, 0);
-		modelStack.Rotate(0, 0, 0, 1);
-		modelStack.Scale(4, 80, 4);
-		RenderMesh(meshList[GEO_CAPE], true);
-	}
-	modelStack.PopMatrix();
-
 }
 void SP_3::RenderText(Mesh* mesh, std::string text, Color color)
 {
@@ -761,20 +401,20 @@ void SP_3::Init()
 	//Replace previous code
 	glUniform1i(m_parameters[U_NUMLIGHTS], 3);
 	light[0].type = Light::LIGHT_SPOT;
-	light[0].position.Set(-100, 20, 25);
+	light[0].position.Set(-60.f, 60.f, 25.f);
 	light[0].color.Set(0.9, 1, 0.8);
 	light[0].power = 1;
 	light[0].kC = 1.f;
 	light[0].kL = 0.01f;
 	light[0].kQ = 0.001f;
-	light[0].cosCutoff = cos(Math::DegreeToRadian(45));
+	light[0].cosCutoff = cos(Math::DegreeToRadian(80));
 	light[0].cosInner = cos(Math::DegreeToRadian(30));
 	light[0].exponent = 3.f;
 	light[0].spotDirection.Set(0.f, 1.f, 0.f);
 
 
 	light[1].type = Light::LIGHT_POINT;
-	light[1].position.Set(9.9f, 8.5f, 20.f);
+	light[1].position.Set(9.9f, 60.f, 20.f);
 	light[1].color.Set(0.4, 0.9, 0.7);
 	light[1].power = 1;
 	light[1].kC = 1.f;
@@ -786,13 +426,13 @@ void SP_3::Init()
 	light[1].spotDirection.Set(0.f, 1.f, 0.f);
 
 	light[2].type = Light::LIGHT_SPOT;
-	light[2].position.Set(-19.0f, 15.0f, 82.0f);
+	light[2].position.Set(17.0f, 60.0f, -24.0f);
 	light[2].color.Set(0.4, 0.9, 0.7);
 	light[2].power = 1;
 	light[2].kC = 1.f;
 	light[2].kL = 0.01f;
 	light[2].kQ = 0.001f;
-	light[2].cosCutoff = cos(Math::DegreeToRadian(15));
+	light[2].cosCutoff = cos(Math::DegreeToRadian(80));
 	light[2].cosInner = cos(Math::DegreeToRadian(30));
 	light[2].exponent = 3.f;
 	light[2].spotDirection.Set(0.f, 1.f, 0.f);
@@ -1044,228 +684,6 @@ void SP_3::Update(double dt)
 		tut_text = false;
 	}
 	static bool scammaer_talk = false;
-	static int scam_count = 0;
-	static int buy = 0;
-	if (Application::IsKeyPressed('E'))
-	{
-		scammaer_talk = true;
-	}
-	else if (!Application::IsKeyPressed('E'))
-	{
-		scammaer_talk = false;
-	}
-	if (scammerdis <= 10)
-	{
-		if (scammaer_talk)
-		{
-			scam_count++;
-		}
-		if (Application::yourself.get_first_scammed() == false)
-		{
-			//talk text
-			scammer_text = "Give me 300 gold and i'll give you a prize";
-			if (Application::yourself.get_currency() > 300 && Application::IsKeyPressed('E'))
-			{
-				buy = 1;
-				scam_count = 0;
-				//scammer_text = "Press E to talk";
-				Application::yourself.currency_deducted(300);
-				Application::yourself.set_first_scammed(true);
-
-
-			}
-		}
-		else
-		{
-			scammer_text = "Press E to talk";
-		}
-		if (Application::yourself.get_first_scammed() == true)
-		{
-			scammer_text = "Thank you bye bye";
-		}
-
-		std::cout << scam_count << std::endl;
-
-	}
-	else
-	{
-		scammer_text = " ";
-	}
-
-
-	if (coin1dis <= 10)
-	{
-		if (Application::IsKeyPressed('E'))
-		{
-			Application::yourself.set_coin1_obtained(true);
-		}
-
-		if (Application::yourself.get_coin1_obtained() == true)
-		{
-			Application::yourself.set_coin1_enabled(true);
-		}
-		else
-		{
-			scammer_text = "Press E to collect";
-		}
-		if (Application::IsKeyPressed('E') && Application::yourself.get_coin1_obtained() == true)
-		{
-			if (Application::yourself.get_currency_added_from_C1() == false)
-			{
-				Application::yourself.currency_added(100);
-				Application::yourself.set_currency_added_from_C1(true);
-			}
-
-		}
-	}
-
-	if (coin2dis <= 12)
-	{
-		if (Application::IsKeyPressed('E'))
-		{
-			Application::yourself.set_coin2_obtained(true);
-		}
-
-		if (Application::yourself.get_coin2_obtained() == true)
-		{
-			Application::yourself.set_coin2_enabled(true);
-		}
-		else
-		{
-			scammer_text = "Press E to collect";
-		}
-		if (Application::IsKeyPressed('E') && Application::yourself.get_coin2_obtained() == true)
-		{
-			if (Application::yourself.get_currency_added_from_C2() == false)
-			{
-				Application::yourself.currency_added(100);
-				Application::yourself.set_currency_added_from_C2(true);
-			}
-
-		}
-	}
-
-	if (coin3dis <= 10)
-	{
-		if (Application::IsKeyPressed('E'))
-		{
-			Application::yourself.set_coin3_obtained(true);
-		}
-
-		if (Application::yourself.get_coin3_obtained() == true)
-		{
-			Application::yourself.set_coin3_enabled(true);
-		}
-		else
-		{
-			scammer_text = "Press E to collect";
-		}
-		if (Application::IsKeyPressed('E') && Application::yourself.get_coin3_obtained() == true)
-		{
-			if (Application::yourself.get_currency_added_from_C3() == false)
-			{
-				Application::yourself.currency_added(100);
-				Application::yourself.set_currency_added_from_C3(true);
-			}
-
-		}
-	}
-	/*if (cabTP() <= 10)
-	{
-		scammer_text = "Press E to ride";
-	}*/
-	if ((Application::yourself.get_in_cab() == false) && (cabTP() <= 10))
-	{
-		if (Application::IsKeyPressed('E'))
-		{
-			Application::yourself.set_in_cab(true);
-		}
-		else
-		{
-			scammer_text = "Press E to ride";
-		}
-	}
-
-	//std::cout << coin1_count << std::endl;
-	/**********************************************************************************************************/
-
-
-
-
-
-
-
-	// 3rd interaction : fighting
-	if (camera.position.x <= -9 && camera.position.z >= 72)
-	{
-		battlestart = true;
-	}
-	if (battlestart)
-	{
-		bullet.z += (float)(60 * dt);
-		bullet2.z += (float)(120 * dt);
-		bullet3.z += (float)(50 * dt);
-		bullet4.z += (float)(70 * dt);
-		bullet5.z += (float)(100 * dt);
-		bullet6.z += (float)(30 * dt);
-		bullet7.z += (float)(90 * dt);
-		bullet8.z += (float)(100 * dt);
-
-		if (bullet.z > 112)
-		{
-			bullet.z = enemyz;
-		}
-		if (bullet2.z > 112)
-		{
-			bullet2.z = enemyz;
-		}
-		if (bullet3.z > 112)
-		{
-			bullet3.z = enemyz;
-		}
-		if (bullet4.z > 112)
-		{
-			bullet4.z = enemyz;
-		}
-		if (bullet5.z > 112)
-		{
-			bullet5.z = enemyz;
-		}
-		if (bullet6.z > 112)
-		{
-			bullet6.z = enemyz;
-		}
-		if (bullet7.z > 112)
-		{
-			bullet7.z = enemyz;
-		}
-
-		if (bullet8.z > 112)
-		{
-			bullet8.z = enemyz;
-		}
-	}
-
-	if (((bullet.x + 2) > camera.position.x && (bullet.x - 2) < camera.position.x && (bullet.z + 4) > camera.position.z && (bullet.z - 2) < camera.position.z)
-		|| ((bullet2.x + 2) > camera.position.x && (bullet2.x - 2) < camera.position.x && (bullet2.z + 4) > camera.position.z && (bullet2.z - 2) < camera.position.z)
-		|| ((bullet3.x + 2) > camera.position.x && (bullet3.x - 2) < camera.position.x && (bullet3.z + 4) > camera.position.z && (bullet3.z - 2) < camera.position.z)
-		|| ((bullet4.x + 2) > camera.position.x && (bullet4.x - 2) < camera.position.x && (bullet4.z + 4) > camera.position.z && (bullet4.z - 2) < camera.position.z)
-		|| ((bullet5.x + 2) > camera.position.x && (bullet5.x - 2) < camera.position.x && (bullet5.z + 4) > camera.position.z && (bullet5.z - 2) < camera.position.z)
-		|| ((bullet6.x + 2) > camera.position.x && (bullet6.x - 2) < camera.position.x && (bullet6.z + 4) > camera.position.z && (bullet6.z - 2) < camera.position.z)
-		|| ((bullet7.x + 2) > camera.position.x && (bullet7.x - 2) < camera.position.x && (bullet7.z + 4) > camera.position.z && (bullet7.z - 2) < camera.position.z)
-		|| ((bullet8.x + 2) > camera.position.x && (bullet8.x - 2) < camera.position.x && (bullet8.z + 4) > camera.position.z && (bullet8.z - 2) < camera.position.z))
-	{
-		//yourself.set_currency(yourself.get_currency() - 1);
-		Application::yourself.set_currency(Application::yourself.get_currency() - 1);
-		blood_ui = true;
-	}
-	if (Application::yourself.get_currency() <= 0)
-	{
-		camera.Init(Vector3(-96, 3, 30), Vector3(-96, 3, 0), Vector3(0, 1, 0));
-		Application::yourself.set_die();
-	}
-
-
 	if (Application::IsKeyPressed('R'))
 	{
 		camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
@@ -1275,35 +693,6 @@ void SP_3::Update(double dt)
 		win = false;
 
 	}
-	if (battlestart == false)
-	{
-
-		enemyz = 25;
-		bullet.x = -65;
-		bullet.z = enemyz;
-
-		bullet2.x = -85;
-		bullet2.z = enemyz;
-
-		bullet3.x = -45;
-		bullet3.z = enemyz;
-
-		bullet4.x = -35;
-		bullet4.z = enemyz;
-
-		bullet5.x = -55;
-		bullet5.z = enemyz;
-
-		bullet6.x = -95;
-		bullet6.z = enemyz - 40;
-
-		bullet7.x = -50;
-		bullet7.z = enemyz;
-	}
-
-
-
-
 
 	rotateAngle += (float)(20 * dt);
 	camera.Update(dt);
@@ -1314,65 +703,13 @@ void SP_3::Update(double dt)
 }
 void SP_3::RenderScammer()
 {
-	if (Application::yourself.get_first_scammed() == false)
-	{
-		modelStack.PushMatrix();
-		modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
-		//modelStack.Translate(0, 0, 30);
-		modelStack.Rotate(90, 0, 1, 0);
-		modelStack.Scale(5, 5, 5);
-		RenderMesh(meshList[GEO_HORNET], true);
-		modelStack.PopMatrix();
-	}
-
-	if (Application::yourself.get_coin1_enabled() == false)
-	{
-		//beside graveyard
-		modelStack.PushMatrix();
-		//modelStack.Translate(25, 0, 28);
-		modelStack.Translate(coin1_pos.x, coin1_pos.y, coin1_pos.z);
-		modelStack.Rotate(90, 1, 0, 0);
-		modelStack.Scale(0.5, 0.5, 0.5);
-		RenderMesh(meshList[GEO_COIN], true);
-		modelStack.PopMatrix();
-	}
-	else
-	{
-
-	}
-	if (Application::yourself.get_coin2_enabled() == false)
-	{
-		//corner near the exit
-		modelStack.PushMatrix();
-		//modelStack.Translate(27, 0, 104);
-		modelStack.Translate(coin2_pos.x, coin2_pos.y, coin2_pos.z);
-		modelStack.Rotate(90, 1, 0, 0);
-		modelStack.Scale(0.5, 0.5, 0.5);
-		RenderMesh(meshList[GEO_COIN], true);
-		modelStack.PopMatrix();
-	}
-	else
-	{
-
-	}
-	if (Application::yourself.get_coin3_enabled() == false)
-	{
-		//behind under rocks
-		modelStack.PushMatrix();
-		//modelStack.Translate(23, 0, -17);
-		modelStack.Translate(coin3_pos.x, coin3_pos.y, coin3_pos.z);
-		modelStack.Rotate(90, 1, 0, 0);
-		modelStack.Scale(0.5, 0.5, 0.5);
-		RenderMesh(meshList[GEO_COIN], true);
-		modelStack.PopMatrix();
-	}
-	else
-	{
-
-	}
-
-	//RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
-
+	modelStack.PushMatrix();
+	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
+	//modelStack.Translate(0, 0, 30);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(5, 5, 5);
+	RenderMesh(meshList[GEO_HORNET], true);
+	modelStack.PopMatrix();
 }
 
 void SP_3::Render()
@@ -1476,26 +813,11 @@ void SP_3::Render()
 
 	RenderScammer();
 
-	RenderRightSide();
-
 	RenderLeftSide();
 
 	RenderBackSide();
 
 	RenderFrontSide();
-
-	//RenderPath();
-
-	RenderBullet();
-
-	//RenderLamps();
-
-
-
-
-
-
-
 
 	if (die)
 	{
@@ -1553,13 +875,6 @@ void SP_3::Render()
 		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
 		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0, 1, 0), 2, 25, 53);
 	}
-	//modelStack.PushMatrix();
-	////scale, translate, rotate
-	//modelStack.Translate(0, 3, 18);
-	//modelStack.Rotate(90, 0, 1, 0);
-	//modelStack.Scale(5, 5, 5);
-	//RenderMesh(meshList[GEO_SCAMMER], true);
-	//modelStack.PopMatrix();
 	//----------------------------sp--------------------------------------
 
 
@@ -1584,14 +899,6 @@ void SP_3::Render()
 
 
 }
-
-float SP_3::cabTP()
-{
-	Vector3 cabpos = cab_pos - camera.position;
-	float cabdis = sqrt(pow(cabpos.x, 2) + pow(cabpos.y, 2) + pow(cabpos.z, 2));
-
-	return cabdis;
-}
 void SP_3::Exit()
 {
 	// Cleanup VBO here
@@ -1605,6 +912,3 @@ void SP_3::Exit()
 	glDeleteVertexArrays(1, &m_vertexArrayID);
 	glDeleteProgram(m_programID);
 }
-
-
-
