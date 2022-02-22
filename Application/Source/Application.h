@@ -1,4 +1,3 @@
-
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
@@ -15,6 +14,7 @@ public:
 	static unsigned m_height;
 	Application();
 	~Application();
+	void variables();
 	void Init();
 	void Run();
 	void Exit();

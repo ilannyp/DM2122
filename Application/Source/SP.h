@@ -123,17 +123,17 @@ class SP : public Scene
 
 		U_COLOR_TEXTURE_ENABLED,
 		U_COLOR_TEXTURE,
-		
-		
+
+
 		U_TEXT_ENABLED,
 		U_TEXT_COLOR,
 		U_TOTAL,
-	
+
 
 
 	};
-	
-	
+
+
 private:
 	void RenderMesh(Mesh* mesh, bool enableLight);
 	unsigned m_vertexArrayID;
@@ -148,7 +148,7 @@ private:
 	MS modelStack, viewStack, projectionStack;
 	Light light[3];
 
-	
+
 	void RenderSkybox();
 	void RenderScammer();
 	void RenderFloor();
@@ -162,12 +162,12 @@ private:
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
 	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
-	
+
 
 
 
 	//sp stuff
-	bool tut_text=true,scammaer_talk=false,coin1_enable=true, coin2_enable=true, coin3_enable = true,blood_ui=false;
+	bool tut_text = true, scammaer_talk = false, coin1_enable = true, coin2_enable = true, coin3_enable = true, blood_ui = false;
 	Vector3 scammer_pos = Vector3(-19, 0, 81);
 	Vector3 coin1_pos = Vector3(25, 0, 28);
 	Vector3 coin2_pos = Vector3(27, 0, 104);
@@ -194,7 +194,7 @@ private:
 	bool die = false;
 	bool hit = false;
 
-		
+
 
 
 	Vector3 bullet;
@@ -205,14 +205,14 @@ private:
 	Vector3 bullet6;
 	Vector3 bullet7;
 	Vector3 bullet8;
-	
 
-	
-	
+
+
+
 public:
 	SP();
 	~SP();
-	
+
 
 	Player yourself;
 	virtual void Init();

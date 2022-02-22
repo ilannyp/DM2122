@@ -147,7 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Boundary.cpp" />
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Assignment1.cpp" />
     <ClCompile Include="Source\Assignment2.cpp" />
@@ -155,6 +154,7 @@
     <ClCompile Include="Source\Camera2.cpp" />
     <ClCompile Include="Source\Camera3.cpp" />
     <ClCompile Include="Source\Camera_SP_LVL2.cpp" />
+    <ClCompile Include="Source\Camera_SP_LVL3.cpp" />
     <ClCompile Include="Source\Camera_Start.cpp" />
     <ClCompile Include="Source\light.cpp" />
     <ClCompile Include="Source\LoadOBJ.cpp" />
@@ -177,14 +177,13 @@
     <ClCompile Include="Source\SceneUI.cpp" />
     <ClCompile Include="Source\Scene_EndScreen.cpp" />
     <ClCompile Include="Source\Scene_LV2.cpp" />
-    <ClCompile Include="Source\Scene_LV3.cpp" />
     <ClCompile Include="Source\shader.cpp" />
     <ClCompile Include="Source\SP.cpp" />
+    <ClCompile Include="Source\SP_3.cpp" />
     <ClCompile Include="Source\SP_Start.cpp" />
     <ClCompile Include="Source\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Boundary.h" />
     <ClInclude Include="Source\Application.h" />
     <ClInclude Include="Source\Assignment1.h" />
     <ClInclude Include="Source\Assignment2.h" />
@@ -192,6 +191,7 @@
     <ClInclude Include="Source\Camera2.h" />
     <ClInclude Include="Source\Camera3.h" />
     <ClInclude Include="Source\Camera_SP_LVL2.h" />
+    <ClInclude Include="Source\Camera_SP_LVL3.h" />
     <ClInclude Include="Source\Camera_Start.h" />
     <ClInclude Include="Source\Light.h" />
     <ClInclude Include="Source\LoadOBJ.h" />
@@ -208,8 +208,8 @@
     <ClInclude Include="Source\SceneUI.h" />
     <ClInclude Include="Source\Scene_EndScreen.h" />
     <ClInclude Include="Source\Scene_LV2.h" />
-    <ClInclude Include="Source\Scene_LV3.h" />
     <ClInclude Include="Source\SP.h" />
+    <ClInclude Include="Source\SP_3.h" />
     <ClInclude Include="Source\SP_Start.h" />
     <ClInclude Include="Source\Utility.h" />
     <ClInclude Include="Source\Vertex.h" />

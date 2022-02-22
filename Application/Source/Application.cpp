@@ -1,4 +1,3 @@
-
 #include "Application.h"
 
 //Include GLEW
@@ -14,6 +13,7 @@
 #include "SP_Start.h"
 #include "SP.h"
 #include "Scene_EndScreen.h"
+#include "SP_3.h"
 
 GLFWwindow* m_window;
 const unsigned char FPS = 60; // FPS of this game
@@ -63,7 +63,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 bool Application::IsKeyPressed(unsigned short key)
 {
-    return ((GetAsyncKeyState(key) & 0x8001) != 0);
+	return ((GetAsyncKeyState(key) & 0x8001) != 0);
 }
 
 Application::Application()
@@ -74,13 +74,30 @@ Application::~Application()
 {
 }
 
+void Application::variables()
+{
+	yourself.set_currency(1);
+	yourself.set_alive();
+	yourself.set_in_cab(false);
+	yourself.set_first_scammed(false);
+	yourself.set_coin1_enabled(false);
+	yourself.set_coin2_enabled(false);
+	yourself.set_coin3_enabled(false);
+	yourself.set_coin1_obtained(false);
+	yourself.set_coin2_obtained(false);
+	yourself.set_coin3_obtained(false);
+	yourself.set_currency_added_from_C1(false);
+	yourself.set_currency_added_from_C2(false);
+	yourself.set_currency_added_from_C3(false);
+}
+
 
 
 void Application::Init()
 {
 	//Set the error callback
 	glfwSetErrorCallback(error_callback);
-	
+
 	//Initialize GLFW
 	if (!glfwInit())
 	{
@@ -103,7 +120,7 @@ void Application::Init()
 	//If the window couldn't be created
 	if (!m_window)
 	{
-		fprintf( stderr, "Failed to open GLFW window.\n" );
+		fprintf(stderr, "Failed to open GLFW window.\n");
 		glfwTerminate();
 		exit(EXIT_FAILURE);
 	}
@@ -113,14 +130,14 @@ void Application::Init()
 
 	//Sets the key callback
 	glfwSetWindowSizeCallback(m_window, resize_callback);
-	
+
 
 	glewExperimental = true; // Needed for core profile
 	//Initialize GLEW
 	GLenum err = glewInit();
 
 	//If GLEW hasn't initialized	
-	if (err != GLEW_OK) 
+	if (err != GLEW_OK)
 	{
 		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
 		//return -1;
@@ -131,27 +148,33 @@ void Application::Run()
 {
 	//Main Loop
 	SP cab;
-	Scene *scene1 = new SP_Start();
-	Scene *scene2 = new SP();
-	Scene *scene3 = new Scene_EndScreen();
-	Scene *scene4 = new Scene_LV2();
+	Scene* scene1 = new SP_Start();
+	Scene* scene2 = new SP();
+	Scene* scene3 = new Scene_EndScreen();
+	Scene* scene4 = new Scene_LV2();
+	Scene* scene5 = new SP_3();
 
 
-	Scene *scene = scene1;
+	Scene* scene = scene1;
 	scene1->Init();
-	std::cout << cab.cabTP()<<std::endl;
+	std::cout << cab.cabTP() << std::endl;
 
 	m_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
 	while (!glfwWindowShouldClose(m_window) && !IsKeyPressed(VK_ESCAPE))
 	{
 		if (IsKeyPressed(VK_RETURN))
 		{
+			variables();
 			scene = scene2;
 			scene->Init();
 		}
+		if (yourself.get_coin1_enabled())
+		{
+
+			//std::cout << "asd" << std::endl;
+		}
+		//std::cout << "asd" << std::endl;
 		if (IsKeyPressed(VK_F3))
-		//if (endscreen == true)
-			
 		{
 			scene = scene3;
 			scene->Init();
@@ -168,6 +191,7 @@ void Application::Run()
 		{
 			scene = scene3;
 			scene->Init();
+			die_screen_once = true;
 		}
 		if (cab.cabTP() <= 10)
 		{
@@ -178,6 +202,11 @@ void Application::Run()
 				scene = scene4;
 				scene->Init();
 			}
+		}
+		if (IsKeyPressed(VK_F4))
+		{
+			scene = scene5;
+			scene->Init();
 		}
 
 		if (IsKeyPressed(VK_F9))
@@ -203,7 +232,7 @@ void Application::Run()
 
 		//debug
 		if (IsKeyPressed(VK_F9))
-			
+
 
 		{
 			scene = scene4;
@@ -228,9 +257,13 @@ void Application::Run()
 	scene1->Exit();
 	scene2->Exit();
 	scene3->Exit();
+	scene4->Exit();
+	scene5->Exit();
 	delete scene1;
 	delete scene2;
 	delete scene3;
+	delete scene4;
+	delete scene5;
 
 }
 

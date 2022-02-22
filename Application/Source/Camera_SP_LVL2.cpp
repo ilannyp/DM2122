@@ -77,7 +77,7 @@ void Camera_SP_LVL2::Update(double dt)
 	if(Application::IsKeyPressed('W'))
 	{
 		temp = position + view * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z > 132 /*back*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
+		if (!(temp.z > 132 /*front*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
 		{
 			position += view * ZOOM_SPEED * static_cast<float>(dt);
 			position.y = 3;
@@ -88,7 +88,7 @@ void Camera_SP_LVL2::Update(double dt)
 	if(Application::IsKeyPressed('S'))
 	{
 		temp = position - view * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z > 132 /*back*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
+		if (!(temp.z > 132 /*front*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
 		{
 			position -= view * ZOOM_SPEED * static_cast<float>(dt);
 			position.y = 3;
@@ -99,7 +99,7 @@ void Camera_SP_LVL2::Update(double dt)
 	if (Application::IsKeyPressed('A'))
 	{
 		temp = position - right * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z > 132 /*back*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
+		if (!(temp.z > 132 /*front*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
 		{
 			position -= right * ZOOM_SPEED * static_cast<float>(dt);
 			position.y = 3;
@@ -110,7 +110,7 @@ void Camera_SP_LVL2::Update(double dt)
 	if (Application::IsKeyPressed('D'))
 	{
 		temp = position + right * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z > 132 /*back*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
+		if (!(temp.z > 132 /*front*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
 		{
 			position += right * ZOOM_SPEED * static_cast<float>(dt);
 			position.y = 3;

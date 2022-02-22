@@ -319,8 +319,8 @@ void Scene_EndScreen::Init()
 	meshList[GEO_BLEND] = MeshBuilder::GenerateQuad("blend", Color(1, 1, 1), 1.f);
 	meshList[GEO_BLEND]->textureID = LoadTGA("Image//NYP.tga");
 
-	meshList[GEO_GAMEOVER] = MeshBuilder::GenerateQuad("game_over", Color(1, 1, 1), 1.f);
-	meshList[GEO_GAMEOVER]->textureID = LoadTGA("Image//game_over.tga");
+	meshList[GEO_GAMEOVER] = MeshBuilder::GenerateQuad("EndScreen", Color(1, 1, 1), 1.f);
+	meshList[GEO_GAMEOVER]->textureID = LoadTGA("Image//EndScreen.tga");
 
 	//meshList[GEO_MODEL1] = MeshBuilder::GenerateOBJ("model1", "OBJ//chair.obj");
 	//meshList[GEO_MODEL1]->textureID = LoadTGA("Image//chair.tga");
@@ -607,7 +607,7 @@ void Scene_EndScreen::Render()
 
 	modelStack.PushMatrix();
 	//RenderMesh(meshList[GEO_GAMEOVER], false);
-	RenderMeshOnScreen(meshList[GEO_GAMEOVER], 40, 30, 30, 30);
+	RenderMeshOnScreen(meshList[GEO_GAMEOVER], 40, 25, 90, 90);
 	RenderMeshOnScreen(meshList[GEO_BLOOD], 40, 30, 90, 90);
 	modelStack.PopMatrix();
 
