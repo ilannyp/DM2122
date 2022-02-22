@@ -180,7 +180,11 @@ void Application::Run()
 			}
 		}
 
-
+		if (IsKeyPressed(VK_F9))
+		{
+			scene = scene4;
+			scene->Init();
+		}
 
 
 

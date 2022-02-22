@@ -86,6 +86,7 @@ class Scene_LV2 : public Scene , public SP
 		GEO_SCAMMER,
 		GEO_COIN_ICON,
 		GEO_TUNNEL,
+		GEO_BLOOD,
 
 
 
@@ -94,6 +95,24 @@ class Scene_LV2 : public Scene , public SP
 		//***ownbuildscsammer***
 		GEO_HEAD,
 		GEO_TORSO,
+		//***questions
+		GEO_QUESTION1,
+		GEO_QUESTION1_WRONG,
+		GEO_QUESTION1_CORRECT,
+
+		GEO_QUESTION2,
+		GEO_QUESTION2_WRONG,
+		GEO_QUESTION2_CORRECT,
+
+		GEO_QUESTION3,
+		GEO_QUESTION3_WRONG,
+		GEO_QUESTION3_CORRECT,
+
+		GEO_QUESTION4,
+		GEO_QUESTION4_WRONG,
+		GEO_QUESTION4_CORRECT,
+
+
 	//*********obj models*********
 		GEO_HOLLOW,
 		GEO_HORNET,
@@ -176,20 +195,45 @@ private:
 	bool interactnpc4;
 	int intnpc4;
 
-
-
-
-
-
-	Vector3 bullet;
+	//bullets vectors
+	Vector3 bullet1;
 	Vector3 bullet2;
 	Vector3 bullet3;
 	Vector3 bullet4;
 	Vector3 bullet5;
+
 	Vector3 bullet6;
 	Vector3 bullet7;
 	Vector3 bullet8;
-	Vector3 spell;
+
+	Vector3 bullet9;
+	Vector3 bullet10;
+	Vector3 bullet11;
+	Vector3 bullet12;
+	Vector3 bullet13;
+
+
+	Vector3 bullet14;
+	Vector3 bullet15;
+	Vector3 bullet16;
+	Vector3 bullet17;
+	Vector3 bullet18;
+	Vector3 bullet19;
+	Vector3 bullet20;
+	Vector3 bullet21;
+
+
+		
+	Vector3 player;
+
+	//bullets translation
+	float translation_x_bullet;//speed 45
+	float translation_x_bullet_slow;//speed 10
+	float translation_x_bullet_fast;//speed 60
+	float translation_x_bullet_medium;//speed 30
+
+
+
 	Light light[2];
 	void RenderMesh(Mesh* mesh, bool enableLight);
 	void RenderSkybox();
@@ -199,17 +243,19 @@ private:
 	void RenderBackSide();
 	void RenderFrontSide();
 	void RenderRoads();
-	void RenderBullet();
 	void RenderLamps();
 
+	
 	//**sp**
 	void RenderWall();
 	void RenderTunnel();
 	void RenderPavement();
 	void RenderNPC();
-	
-	
-
+	void RenderBullets();
+	bool colisiondetectionbullets(Vector3 bullet, Vector3 player);
+	void RenderQuestion();
+	bool onpavement(int pavementint);
+	bool bloodui;
 
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);

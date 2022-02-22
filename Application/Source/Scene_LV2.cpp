@@ -39,8 +39,6 @@ void Scene_LV2::RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int size
 	modelStack.PopMatrix();
 	glEnable(GL_DEPTH_TEST);
 }
-
-
 void Scene_LV2::RenderMesh(Mesh* mesh, bool enableLight)
 {
 	Mtx44 MVP, modelView, modelView_inverse_transpose;
@@ -343,58 +341,6 @@ void Scene_LV2::RenderRoads()
 	RenderMesh(meshList[GEO_ROAD], true);
 	modelStack.PopMatrix();
 }
-void Scene_LV2::RenderBullet()
-{
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet.x, 1, bullet.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet2.x, 1, bullet2.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet3.x, 1, bullet3.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet4.x, 1, bullet4.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet5.x, 1, bullet5.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet6.x, 1, bullet6.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(bullet7.x, 1, bullet7.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
-	RenderMesh(meshList[GEO_BULLET], true);
-	modelStack.PopMatrix();
-
-}
 void Scene_LV2::RenderLamps()
 {
 	//my lamps
@@ -683,11 +629,241 @@ void Scene_LV2::RenderNPC()
 
 
 }
+void Scene_LV2::RenderBullets()
+{
+	//first bunch
+	{
+	//bullet1
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet1.x, bullet1.y, bullet1.z);
+	modelStack.Rotate(90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+	//bullet2
+	modelStack.PushMatrix();
+	modelStack.Translate(translation_x_bullet_fast, bullet2.y, bullet2.z);
+	modelStack.Rotate(90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+	//bullet3
+	modelStack.PushMatrix();
+	modelStack.Translate(-translation_x_bullet_medium, bullet3.y, bullet3.z);
+	modelStack.Rotate(-90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+	//bullet4
+	modelStack.PushMatrix();
+	modelStack.Translate(-translation_x_bullet_slow, bullet4.y, bullet4.z);
+	modelStack.Rotate(-90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+	//bullet5
+	modelStack.PushMatrix();
+	modelStack.Translate(translation_x_bullet, bullet5.y, bullet5.z);
+	modelStack.Rotate(90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+	}
+
+	//second bunch
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(translation_x_bullet_fast, bullet6.y, bullet6.z);
+		modelStack.Rotate(90, 0, 0, -1);
+		modelStack.Scale(20, 5, 10);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+		//bullet2
+		modelStack.PushMatrix();
+		modelStack.Translate(translation_x_bullet_medium, bullet7.y, bullet7.z);
+		modelStack.Rotate(90, 0, 0, -1);
+		modelStack.Scale(20, 5, 10);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+		//bullet3
+		modelStack.PushMatrix();
+		modelStack.Translate(-translation_x_bullet_fast, bullet8.y, bullet8.z);
+		modelStack.Rotate(-90, 0, 0, -1);
+		modelStack.Scale(20, 5, 10);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+	}
+	//third bunch
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(translation_x_bullet_fast, bullet9.y, bullet9.z);
+		modelStack.Rotate(90, 0, 0, -1);
+		modelStack.Scale(20, 5, 10);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+		
+		modelStack.PushMatrix();
+		modelStack.Translate(translation_x_bullet_medium, bullet10.y, bullet10.z);
+		modelStack.Rotate(90, 0, 0, -1);
+		modelStack.Scale(20, 5, 10);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+		
+		modelStack.PushMatrix();
+		modelStack.Translate(-translation_x_bullet_fast, bullet11.y, bullet11.z);
+		modelStack.Rotate(-90, 0, 0, -1);
+		modelStack.Scale(20, 5, 10);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+		
+		modelStack.PushMatrix();
+		modelStack.Translate(translation_x_bullet_medium, bullet12.y, bullet12.z);
+		modelStack.Rotate(90, 0, 0, -1);
+		modelStack.Scale(20, 5, 10);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+	
+		modelStack.PushMatrix();
+		modelStack.Translate(-translation_x_bullet_fast, bullet13.y, bullet13.z);
+		modelStack.Rotate(-90, 0, 0, -1);
+		modelStack.Scale(20, 5, 10);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+	}
+	//fourth bunch
+	modelStack.PushMatrix();
+	modelStack.Translate(translation_x_bullet_fast, bullet14.y, bullet14.z);
+	modelStack.Rotate(90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+	modelStack.PushMatrix();
+	modelStack.Translate(-translation_x_bullet_medium, bullet15.y, bullet15.z);
+	modelStack.Rotate(-90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+	modelStack.PushMatrix();
+	modelStack.Translate(translation_x_bullet, bullet16.y, bullet16.z);
+	modelStack.Rotate(90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+	modelStack.PushMatrix();
+	modelStack.Translate(-translation_x_bullet_slow, bullet17.y, bullet17.z);
+	modelStack.Rotate(-90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+	modelStack.PushMatrix();
+	modelStack.Translate(-translation_x_bullet_medium, bullet18.y, bullet18.z);
+	modelStack.Rotate(-90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+	modelStack.PushMatrix();
+	modelStack.Translate(-translation_x_bullet_fast, bullet19.y, bullet19.z);
+	modelStack.Rotate(-90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+	modelStack.PushMatrix();
+	modelStack.Translate(translation_x_bullet, bullet20.y, bullet20.z);
+	modelStack.Rotate(90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+	modelStack.PushMatrix();
+	modelStack.Translate(-translation_x_bullet_fast, bullet21.y, bullet21.z);
+	modelStack.Rotate(-90, 0, 0, -1);
+	modelStack.Scale(20, 5, 10);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+}
+bool Scene_LV2::colisiondetectionbullets(Vector3 bullet, Vector3 player)
+{
+
+	if ((player.x > bullet.x - 4 && player.x < bullet.x + 4) && (player.z > bullet.z - 4 && player.z < bullet.z + 4))
+	{
+		bloodui = true;
+		return true;
+
+	}
+	else
+	{
+		
+		return false;
+
+	}
+		
 
 
 
+	
+}
+void Scene_LV2::RenderQuestion()
+{
+	if (intnpc1 == 1 && onpavement(1))
+		RenderMeshOnScreen(meshList[GEO_QUESTION1], 40, 30, 45, 35);
+	else if (intnpc1 == 2 && onpavement(1))
+		RenderMeshOnScreen(meshList[GEO_QUESTION1_CORRECT], 40, 30, 45, 35);
+	else if (intnpc1 == 3 && onpavement(1))
+		RenderMeshOnScreen(meshList[GEO_QUESTION1_WRONG], 40, 30, 45, 35);
+
+	if (intnpc2 == 1 && onpavement(2))
+		RenderMeshOnScreen(meshList[GEO_QUESTION2], 40, 30, 45, 35);
+	else if (intnpc2 == 2 && onpavement(2))
+		RenderMeshOnScreen(meshList[GEO_QUESTION2_CORRECT], 40, 30, 45, 35);
+	else if (intnpc2 == 3 && onpavement(2))
+		RenderMeshOnScreen(meshList[GEO_QUESTION2_WRONG], 40, 30, 45, 35);
+
+	if (intnpc3 == 1 && onpavement(3))
+		RenderMeshOnScreen(meshList[GEO_QUESTION3], 40, 30, 45, 35);
+	else if (intnpc3 == 2 && onpavement(3))
+		RenderMeshOnScreen(meshList[GEO_QUESTION3_CORRECT], 40, 30, 45, 35);
+	else if (intnpc3 == 3 && onpavement(3))
+		RenderMeshOnScreen(meshList[GEO_QUESTION3_WRONG], 40, 30, 45, 35);
+
+	if (intnpc4 == 1 && onpavement(4))
+		RenderMeshOnScreen(meshList[GEO_QUESTION4], 40, 30, 45, 35);
+	else if (intnpc4 == 2 && onpavement(4))
+		RenderMeshOnScreen(meshList[GEO_QUESTION4_CORRECT], 40, 30, 45, 35);
+	else if (intnpc4== 3 && onpavement(4))
+		RenderMeshOnScreen(meshList[GEO_QUESTION4_WRONG], 40, 30, 45, 35);
 
 
+}
+bool Scene_LV2::onpavement(int pavementint)
+{
+	if ((player.x < 24 && player.x > -24) && (player.z < -117 && player.z > -126) && pavementint == 1)
+	{
+		std::cout << "onpavement1";
+		return true;
+
+	}
+	else if ((player.x < 24 && player.x > -24) && (player.z < -67 && player.z > -78) && pavementint ==2)
+	{
+		std::cout << "onpavement2";
+		return true;
+	}
+	else if ((player.x < 24 && player.x > 0) && (player.z < 2 && player.z > -8) && pavementint == 3)
+	{
+		std::cout << "onpavement3";
+		return true;
+	}
+	else if ((player.x < -1 && player.x > -24) && (player.z < 2 && player.z > -8) && pavementint == 4)
+	{
+		std::cout << "onpavement4";
+		return true;
+	}
+	else
+		return false;
+
+		
+
+
+	
+}
 void Scene_LV2::RenderText(Mesh * mesh, std::string text, Color color)
 {
 
@@ -752,9 +928,6 @@ void Scene_LV2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, fl
 	modelStack.PopMatrix();
 	glEnable(GL_DEPTH_TEST); //uncomment for RenderTextOnScreen
 }
-
-
-
 void Scene_LV2::Init()
 {
 
@@ -879,52 +1052,41 @@ void Scene_LV2::Init()
 
 	{
 		meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
-
 		meshList[GEO_QUAD] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
 		meshList[GEO_QUAD]->textureID = LoadTGA("Image//Stone_Floor.tga");
-
 		meshList[GEO_CUBE] = MeshBuilder::GenerateCube("cube", Color(1, 1, 1), 1.f);
 		meshList[GEO_CUBE]->textureID = LoadTGA("Image//color.tga");
+		meshList[GEO_SPHERE] = MeshBuilder::GenerateSphere("sphere", Color(0, 0, 0), 10, 20, 1.f);
+		meshList[GEO_CYLINDER] = MeshBuilder::GenerateCylinder("cylinder", Color(1, 1, 1), 20, 1.f, 1.f);
+		meshList[GEO_HEMISPHERE] = MeshBuilder::GenerateHemisphere("hemisphere", Color(1, 1, 1), 10, 20, 1.f);
+		meshList[GEO_TORUS] = MeshBuilder::GenerateTorus("torus", Color(0.3, 0.3, 0.3), 20, 20, 1.f, 0.5f);
+		meshList[GEO_HALFTORUS] = MeshBuilder::GenerateHalfTorus("quartertorus", Color(1, 1, 1), 10, 20, 1.f, 0.5f);
 
 		meshList[GEO_FRONT] = MeshBuilder::GenerateQuad("front", Color(1, 1, 1), 1.f);
 		meshList[GEO_FRONT]->textureID = LoadTGA("Image//miramar_ft.tga");
-
 		meshList[GEO_LEFT] = MeshBuilder::GenerateQuad("left", Color(1, 1, 1), 1.f);
 		meshList[GEO_LEFT]->textureID = LoadTGA("Image//miramar_lf.tga");
-
 		meshList[GEO_RIGHT] = MeshBuilder::GenerateQuad("right", Color(1, 1, 1), 1.f);
 		meshList[GEO_RIGHT]->textureID = LoadTGA("Image//miramar_rt.tga");
-
 		meshList[GEO_TOP] = MeshBuilder::GenerateQuad("top", Color(1, 1, 1), 1.f);
 		meshList[GEO_TOP]->textureID = LoadTGA("Image//miramar_up.tga");
-
 		meshList[GEO_BOTTOM] = MeshBuilder::GenerateQuad("bottom", Color(1, 1, 1), 1.f);
 		meshList[GEO_BOTTOM]->textureID = LoadTGA("Image//miramar_dn.tga");
-
 		meshList[GEO_BACK] = MeshBuilder::GenerateQuad("back", Color(1, 1, 1), 1.f);
 		meshList[GEO_BACK]->textureID = LoadTGA("Image//miramar_bk.tga");
 
 		meshList[GEO_BLEND] = MeshBuilder::GenerateQuad("blend", Color(1, 1, 1), 1.f);
 		meshList[GEO_BLEND]->textureID = LoadTGA("Image//Grimm.tga");
-
 		meshList[GEO_TUNNEL] = MeshBuilder::GenerateQuad("tunnel", Color(1, 1, 1), 1.f);
 		meshList[GEO_TUNNEL]->textureID = LoadTGA("Image//tunnel.tga");
 
 
 
-		meshList[GEO_SPHERE] = MeshBuilder::GenerateSphere("sphere", Color(0, 0, 0), 10, 20, 1.f);			//limbs
 
 		meshList[GEO_LAMPLIGHT] = MeshBuilder::GenerateSphere("sphere", Color(0.4, 0.4, 0.4), 10, 20, 1.f);			//limbs
-
-		meshList[GEO_CYLINDER] = MeshBuilder::GenerateCylinder("cylinder", Color(1, 1, 1), 20, 1.f, 1.f);		//base of head
-
-		meshList[GEO_HEMISPHERE] = MeshBuilder::GenerateHemisphere("hemisphere", Color(1, 1, 1), 10, 20, 1.f);  //ends of head
-
-		meshList[GEO_TORUS] = MeshBuilder::GenerateTorus("torus", Color(0.3, 0.3, 0.3), 20, 20, 1.f, 0.5f);			//cape head
-
 		meshList[GEO_CAPE] = MeshBuilder::GenerateCylinder("cylinder", Color(0.3, 0.3, 0.3), 20, 1.f, 1.f);		//base of head
 
-		meshList[GEO_HALFTORUS] = MeshBuilder::GenerateHalfTorus("quartertorus", Color(1, 1, 1), 10, 20, 1.f, 0.5f);   //horns
+
 
 		meshList[GEO_CONE] = MeshBuilder::GenerateCone("cone", Color(0.3, 0.3, 0.3), 20, 1.f, 1.f);   //cape end
 
@@ -941,31 +1103,20 @@ void Scene_LV2::Init()
 		meshList[GEO_ROCKS]->textureID = LoadTGA("Image//rockwall.tga");
 		meshList[GEO_TALLROCK] = MeshBuilder::GenerateOBJMTL("tallrock", "OBJ//rocksTall.obj", "OBJ//rocksTall.mtl");
 		meshList[GEO_TALLROCK]->textureID = LoadTGA("Image//rockwall.tga");
-
 		meshList[GEO_STONEWALL] = MeshBuilder::GenerateOBJMTL("stonewall", "OBJ//stoneWall.obj", "OBJ//stoneWall.mtl");
-
 		meshList[GEO_STONEWALLDAMAGED] = MeshBuilder::GenerateOBJMTL("stonewalldamaged", "OBJ//stoneWallDamaged.obj", "OBJ//stoneWallDamaged.mtl");
-
 		meshList[GEO_ROAD] = MeshBuilder::GenerateOBJMTL("road", "OBJ//road.obj", "OBJ//road.mtl");
-
 		meshList[GEO_CRYPT] = MeshBuilder::GenerateOBJMTL("crypt", "OBJ//crypt.obj", "OBJ//crypt.mtl");
-
 		meshList[GEO_DEBRIS] = MeshBuilder::GenerateOBJMTL("debris", "OBJ//debris.obj", "OBJ//debris.mtl");
 		meshList[GEO_DEBRIS]->textureID = LoadTGA("Image//rockwall.tga");
-
 		meshList[GEO_LAMP] = MeshBuilder::GenerateOBJMTL("debris", "OBJ//lightpostDouble.obj", "OBJ//lightpostDouble.mtl");
-
 		meshList[GEO_GRAVE] = MeshBuilder::GenerateOBJMTL("grave", "OBJ//grave.obj", "OBJ//grave.mtl");
-
 		meshList[GEO_LANTERN] = MeshBuilder::GenerateOBJMTL("lantern", "OBJ//lanternCandle.obj", "OBJ//lanternCandle.mtl");
-
 		meshList[GEO_BULLET] = MeshBuilder::GenerateOBJMTL("bullet", "OBJ//ironFenceBar.obj", "OBJ//ironFenceBar.mtl");
-
-		
+	}
 
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 		meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
-
 		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
 
@@ -980,8 +1131,48 @@ void Scene_LV2::Init()
 		meshList[GEO_HEAD] = MeshBuilder::GenerateCube("cube", Color(1, 0, 0), 1.f);
 		meshList[GEO_TORSO] = MeshBuilder::GenerateCube("cube", Color(0, 0, 1), 1.f);
 
+		//**questions & correct/wrong
+		meshList[GEO_QUESTION1] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
+		meshList[GEO_QUESTION1]->textureID = LoadTGA("Image//question_1.tga");
+
+		meshList[GEO_QUESTION1_CORRECT] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
+		meshList[GEO_QUESTION1_CORRECT]->textureID = LoadTGA("Image//question_1_correct.tga");
+
+		meshList[GEO_QUESTION1_WRONG] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
+		meshList[GEO_QUESTION1_WRONG]->textureID = LoadTGA("Image//question_1_wrong.tga");
+
+		meshList[GEO_QUESTION2] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
+		meshList[GEO_QUESTION2]->textureID = LoadTGA("Image//question_2.tga");
+
+		meshList[GEO_QUESTION2_CORRECT] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
+		meshList[GEO_QUESTION2_CORRECT]->textureID = LoadTGA("Image//question_2_correct.tga");
+
+		meshList[GEO_QUESTION2_WRONG] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
+		meshList[GEO_QUESTION2_WRONG]->textureID = LoadTGA("Image//question_2_wrong.tga");
 
 
+		meshList[GEO_QUESTION3] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
+		meshList[GEO_QUESTION3]->textureID = LoadTGA("Image//question_3.tga");
+
+		meshList[GEO_QUESTION3_CORRECT] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
+		meshList[GEO_QUESTION3_CORRECT]->textureID = LoadTGA("Image//question_3_correct.tga");
+
+		meshList[GEO_QUESTION3_WRONG] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
+		meshList[GEO_QUESTION3_WRONG]->textureID = LoadTGA("Image//question_3_wrong.tga");
+
+
+		meshList[GEO_QUESTION4] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
+		meshList[GEO_QUESTION4]->textureID = LoadTGA("Image//question_4.tga");
+
+		meshList[GEO_QUESTION4_CORRECT] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
+		meshList[GEO_QUESTION4_CORRECT]->textureID = LoadTGA("Image//question_4_correct.tga");
+
+		meshList[GEO_QUESTION4_WRONG] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
+		meshList[GEO_QUESTION4_WRONG]->textureID = LoadTGA("Image//question_4_wrong.tga");
+
+	
+		meshList[GEO_BLOOD] = MeshBuilder::GenerateQuad("blood_gui", Color(1, 1, 1), 1.f);
+		meshList[GEO_BLOOD]->textureID = LoadTGA("Image//Blood.tga");
 
 
 
@@ -1010,55 +1201,89 @@ void Scene_LV2::Init()
 
 
 
-		enemyz = 25;
-		bullet.x = -65;
-		bullet.z = enemyz;
-
-		bullet2.x = -85;
-		bullet2.z = enemyz;
-
-		bullet3.x = -45;
-		bullet3.z = enemyz;
-
-		bullet4.x = -35;
-		bullet4.z = enemyz;
-
-		bullet5.x = -55;
-		bullet5.z = enemyz;
-
-		bullet6.x = -95;
-		bullet6.z = enemyz;
-
-		bullet7.x = -50;
-		bullet7.z = enemyz;
-
-		bullet8.x = -70;
-		bullet8.z = enemyz;
-
-
-
-
-
-
+		//npc
 		interactnpc1 = false;
+		intnpc1 = 0;
 		npc1x = translatenpc;
 		npc1z = -122;
 
 		interactnpc2 = false;
+		intnpc2 = 0;
 		npc2x = translatenpc2 = 0;
 		npc2z = -73;
 
 		interactnpc3 = false;
+		intnpc3 = 0;
 		npc3x = translatenpc3 = 0;
 		npc3z = -3.f;
 
 		interactnpc4 = false;
+		intnpc4 = 0;
 		npc4x = translatenpc4 = 0;
 		npc4z = -3.f;
-	
+		//player vector set
+		player.x = camera.position.x;
+		player.y = camera.position.y;
+		player.z = camera.position.z;
+
+		//translation for bullets
+		translation_x_bullet = -38;
+		//bullets vectors
 		
 
-	}
+		//first bunch
+		bullet1.x = 0;
+		bullet1.y = 2;
+		bullet1.z = -180;
+		bullet2.y = 2;
+		bullet2.z = -168;
+		bullet3.y = 2;
+		bullet3.z = -157;
+		bullet4.y = 2;
+		bullet4.z = -145;
+		bullet5.y = 2;
+		bullet5.z = -134;
+
+		//second bunch
+		bullet6.y = 2;
+		bullet6.z = -107;
+		bullet7.y = 2;
+		bullet7.z = -96;
+		bullet8.y = 2;
+		bullet8.z = -84;
+		
+		//third bunch
+		bullet9.y = 2;
+		bullet9.z = -60;
+		bullet10.y = 2;
+		bullet10.z = -49;
+		bullet11.y = 2;
+		bullet11.z = -37;
+		bullet12.y = 2;
+		bullet12.z = -26;
+		bullet13.y = 2;
+		bullet13.z = -14;
+
+		//fourth bunch
+		bullet14.y = 2;
+		bullet14.z = 9;
+		bullet15.y = 2;
+		bullet15.z = 21;
+		bullet16.y = 2;
+		bullet16.z = 33;
+		bullet17.y = 2;
+		bullet17.z = 44;
+		bullet18.y = 2;
+		bullet18.z = 55;
+		bullet19.y = 2;
+		bullet19.z = 67;
+		bullet20.y = 2;
+		bullet20.z = 78;
+		bullet21.y = 2;
+		bullet21.z = 90;
+
+		bloodui = false;
+	
 }
 
 void Scene_LV2::Update(double dt)
@@ -1084,6 +1309,9 @@ void Scene_LV2::Update(double dt)
 	npc2x = translatenpc2;
 	npc3x = translatenpc3;
 	npc4x = translatenpc4;
+
+	bullet1.x = translation_x_bullet;
+	bullet5.x = translation_x_bullet;
 
 	
 	if(!interactnpc1)
@@ -1128,14 +1356,16 @@ void Scene_LV2::Update(double dt)
 	if ( (camera.position.x > npc1x - 4 && camera.position.x < npc1x + 4) && (camera.position.z > npc1z - 4 && camera.position.z < npc1z + 4) && !interactnpc1)
 	{
 		interactnpc1 = true;
-		std::cout << "kena npc 1";
+		
+		intnpc1 = 1;
 
 	}
 
 	if ((camera.position.x > npc2x - 4 && camera.position.x < npc2x + 4) && (camera.position.z > npc2z - 4 && camera.position.z < npc2z + 4) && !interactnpc2)
 	{
 		interactnpc2 = true;
-		std::cout << "kena npc 2";
+		
+		intnpc2 = 1;
 
 	}
 
@@ -1143,34 +1373,239 @@ void Scene_LV2::Update(double dt)
 	if ((camera.position.x > npc3x - 4 && camera.position.x < npc3x + 4) && (camera.position.z > npc3z - 4 && camera.position.z < npc3z + 4) && !interactnpc3)
 	{
 		interactnpc3 = true;
-		std::cout << "kena npc 3";
+		
+		intnpc3 = 1;
 
 	}
 
 	if ((camera.position.x > npc4x - 4 && camera.position.x < npc4x + 4) && (camera.position.z > npc4z - 4 && camera.position.z < npc4z + 4) && !interactnpc4)
 	{
 		interactnpc4 = true;
-		std::cout << "kena npc 4";
+	
+		intnpc4 = 1;
 
 	}
 	
+	//player vector set
+	player.x = camera.position.x;
+	player.y = camera.position.y;
+	player.z = camera.position.z;
+
+	//bullets translation
+	translation_x_bullet += (float)(45 * dt);
+	if (translation_x_bullet > 38)
+		translation_x_bullet = -38;
+
+	translation_x_bullet_slow += (float)(10 * dt);
+	if (translation_x_bullet_slow > 38)
+		translation_x_bullet_slow = -38;
+	translation_x_bullet_fast += (float)(60 * dt);
+	if (translation_x_bullet_fast > 38)
+		translation_x_bullet_fast = -38;
+	translation_x_bullet_medium += (float)(30 * dt);
+	if (translation_x_bullet_medium > 38)
+		translation_x_bullet_medium = -38;
+
+
+
+	bullet1.x = translation_x_bullet;
+	bullet2.x = translation_x_bullet_fast;
+	bullet3.x = translation_x_bullet_medium;
+	bullet4.x = translation_x_bullet_slow;
+	bullet5.x = translation_x_bullet;
+
+	bullet6.x = translation_x_bullet_fast;
+	bullet7.x = translation_x_bullet_medium;
+	bullet8.x = -translation_x_bullet_fast;
+
+	bullet9.x = translation_x_bullet_fast;
+	bullet10.x = translation_x_bullet_medium;
+	bullet11.x = -translation_x_bullet_fast;
+	bullet12.x = translation_x_bullet_medium;
+	bullet13.x = -translation_x_bullet_fast;
+
+	bullet14.x = translation_x_bullet_fast;
+	bullet15.x = -translation_x_bullet_medium;
+	bullet16.x = translation_x_bullet;
+	bullet17.x = -translation_x_bullet_slow;
+	bullet18.x = -translation_x_bullet_medium;
+	bullet19.x = translation_x_bullet_fast;
+	bullet20.x = translation_x_bullet;
+	bullet21.x = -translation_x_bullet_fast;
+
+
+	//colision detecion for bullets  
+	{
+		if (colisiondetectionbullets(bullet1, player))
+		{
+			std::cout << "kena bullet1";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet2, player))
+		{
+			std::cout << "kena bullet2";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet3, player))
+		{
+			std::cout << "kena bullet3";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet4, player))
+		{
+			std::cout << "kena bullet4";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet5, player))
+		{
+			std::cout << "kena bullet5";
+			Application::yourself.currency_deducted(1);
+		}
+
+		if (colisiondetectionbullets(bullet6, player))
+		{
+			std::cout << "kena bullet6";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet7, player))
+		{
+			std::cout << "kena bullet7";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet8, player))
+		{
+			std::cout << "kena bullet8";
+			Application::yourself.currency_deducted(1);
+		}
+
+		if (colisiondetectionbullets(bullet9, player))
+		{
+			std::cout << "kena bullet9";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet10, player))
+		{
+			std::cout << "kena bullet10";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet11, player))
+		{
+			std::cout << "kena bullet11";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet12, player))
+		{
+			std::cout << "kena bullet12";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet13, player))
+		{
+			std::cout << "kena bullet13";
+			Application::yourself.currency_deducted(1);
+		}
+
+		if (colisiondetectionbullets(bullet14, player))
+		{
+			std::cout << "kena bullet14";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet15, player))
+		{
+			std::cout << "kena bullet15";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet16, player))
+		{
+			std::cout << "kena bullet16";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet17, player))
+		{
+			std::cout << "kena bullet17";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet18, player))
+		{
+			std::cout << "kena bullet18";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet19, player))
+		{
+			std::cout << "kena bullet19";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet20, player))
+		{
+			std::cout << "kena bullet20";
+			Application::yourself.currency_deducted(1);
+		}
+		if (colisiondetectionbullets(bullet21, player))
+		{
+			std::cout << "kena bullet21";
+			Application::yourself.currency_deducted(1);
+		}
+
+
+	}
+
+	onpavement(1);
+	onpavement(2);
+	onpavement(3);
+	onpavement(4);
+	//questions
+	//npc1
+	if (intnpc1 == 1 && Application::IsKeyPressed('2'))//npc1
+	{
+		std::cout << "correct";
+		intnpc1 = 2;
+	}
+	else if(intnpc1 == 1 && (Application::IsKeyPressed('1')|| Application::IsKeyPressed('3')))
+	{
+		std::cout << "wrong";
+		intnpc1 = 3;
+	}
+	
+	//npc2
+	if (intnpc2 == 1 && Application::IsKeyPressed('2'))
+	{
+		std::cout << "correct";
+		intnpc2 = 2;
+	}
+	else if (intnpc2 == 1 && (Application::IsKeyPressed('1') || Application::IsKeyPressed('3')))
+	{
+		std::cout << "wrong";
+		intnpc2 = 3;
+	}
+
+	//npc3
+	if (intnpc3 == 1 && Application::IsKeyPressed('3'))
+	{
+		std::cout << "correct";
+		intnpc3 = 2;
+	}
+	else if (intnpc3 == 1 && (Application::IsKeyPressed('1') || Application::IsKeyPressed('2')))
+	{
+		std::cout << "wrong";
+		intnpc3 = 3;
+	}
+
+	//npc4
+	if (intnpc4 == 1 && Application::IsKeyPressed('2'))
+	{
+		std::cout << "correct";
+		intnpc4 = 2;
+	}
+	else if (intnpc4 == 1 && (Application::IsKeyPressed('1') || Application::IsKeyPressed('3')))
+	{
+		std::cout << "wrong";
+		intnpc4 = 3;
+	}
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+	
 
 
 
@@ -1246,22 +1681,11 @@ void Scene_LV2::Render()
 	
 	
 	RenderNPC();
-	/*
-	RenderRightSide();
+
+	RenderBullets();
 	
-	RenderLeftSide();
 
-	RenderBackSide();
-	
-	RenderFrontSide();
-
-	RenderRoads();
-
-	RenderBullet();
-
-	RenderLamps();
-	*/
-
+	RenderQuestion();
 	
 
 	
@@ -1303,7 +1727,17 @@ void Scene_LV2::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
 	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
 	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
-	
+
+	if (bloodui)
+	{
+		int i;
+		for (i = 0; i < 10; i++)
+		{
+			RenderMeshOnScreen(meshList[GEO_BLOOD], 40, 30, 85, 65);
+		}
+		i = 0;
+		bloodui = false;
+	}
 
 }
 

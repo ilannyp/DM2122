@@ -83,6 +83,11 @@ class Scene_LV3 : public Scene
 		GEO_BLEND,
 		//**********SP************
 		GEO_SCAMMER,
+		GEO_COIN,
+		GEO_COIN_ICON,
+		GEO_BLOOD,
+		GEO_TAXI,
+
 
 	//*********obj models*********
 		GEO_HOLLOW,
@@ -148,6 +153,7 @@ private:
 	Vector3 spell;
 	Light light[2];
 	void RenderMesh(Mesh* mesh, bool enableLight);
+
 	void RenderSkybox();
 	void RenderScammer();
 	void RenderFloor();
@@ -161,6 +167,7 @@ private:
 
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
+	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
 	unsigned m_vertexArrayID;
 	unsigned m_programID;
 	unsigned m_parameters[U_TOTAL];
