@@ -4,10 +4,21 @@
 
 Camera_SP_LVL2::Camera_SP_LVL2()
 {
+	intnpc = 0;
 }
 
 Camera_SP_LVL2::~Camera_SP_LVL2()
 {
+}
+
+void Camera_SP_LVL2::setNPCinteract(int intnpc)
+{
+	this->intnpc = intnpc;
+}
+
+int Camera_SP_LVL2::getNPCinteract()
+{
+	return intnpc;
 }
 
 void Camera_SP_LVL2::Init(const Vector3& pos, const Vector3& target, const Vector3& up)
@@ -77,7 +88,7 @@ void Camera_SP_LVL2::Update(double dt)
 	if(Application::IsKeyPressed('W'))
 	{
 		temp = position + view * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z > 132 /*front*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
+		if (!(temp.z > 132 /*front*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/) && !(getNPCinteract() == 1))
 		{
 			position += view * ZOOM_SPEED * static_cast<float>(dt);
 			position.y = 3;
@@ -88,7 +99,7 @@ void Camera_SP_LVL2::Update(double dt)
 	if(Application::IsKeyPressed('S'))
 	{
 		temp = position - view * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z > 132 /*front*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
+		if (!(temp.z > 132 /*front*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/) && !(getNPCinteract() == 1))
 		{
 			position -= view * ZOOM_SPEED * static_cast<float>(dt);
 			position.y = 3;
@@ -99,7 +110,7 @@ void Camera_SP_LVL2::Update(double dt)
 	if (Application::IsKeyPressed('A'))
 	{
 		temp = position - right * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z > 132 /*front*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
+		if (!(temp.z > 132 /*front*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/) && !(getNPCinteract() == 1))
 		{
 			position -= right * ZOOM_SPEED * static_cast<float>(dt);
 			position.y = 3;
@@ -110,7 +121,7 @@ void Camera_SP_LVL2::Update(double dt)
 	if (Application::IsKeyPressed('D'))
 	{
 		temp = position + right * ZOOM_SPEED * static_cast<float>(dt);
-		if (!(temp.z > 132 /*front*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/))
+		if (!(temp.z > 132 /*front*/) && !(temp.x > 34 /*utmost left*/) && !(temp.x < -34/*utmost right*/) && !(getNPCinteract() == 1))
 		{
 			position += right * ZOOM_SPEED * static_cast<float>(dt);
 			position.y = 3;

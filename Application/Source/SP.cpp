@@ -927,7 +927,7 @@ void SP::Init()
 		meshList[GEO_BULLET] = MeshBuilder::GenerateOBJMTL("bullet", "OBJ//ironFenceBar.obj", "OBJ//ironFenceBar.mtl");
 
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
-		meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
+		meshList[GEO_TEXT]->textureID = LoadTGA("Image//ArialFont.tga");
 
 		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
@@ -942,6 +942,8 @@ void SP::Init()
 	meshList[GEO_BLOOD] = MeshBuilder::GenerateQuad("blood_gui", Color(1, 1, 1), 1.f);
 	meshList[GEO_BLOOD]->textureID = LoadTGA("Image//Blood.tga");
 
+	meshList[GEO_LV1] = MeshBuilder::GenerateQuad("lv1", Color(1, 1, 1), 1.f);
+	meshList[GEO_LV1]->textureID = LoadTGA("Image//lv1.tga");
 
 
 	meshList[GEO_TAXI] = MeshBuilder::GenerateOBJ("coin", "OBJ//Taxi2.obj");
@@ -1510,7 +1512,10 @@ void SP::Render()
 	RenderLamps();
 
 
-
+	if (count < 150)
+	{
+		RenderMeshOnScreen(meshList[GEO_LV1], 40, 30, 85, 65);
+	}
 
 
 
@@ -1592,6 +1597,7 @@ void SP::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
 
 
+	//currency on screen
 	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
 	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
 
@@ -1611,7 +1617,8 @@ void SP::Render()
 
 	RenderTextOnScreen(meshList[GEO_TEXT], ss.str(), Color(1, 1, 1), 2, 1, 40);
 
-
+	//amt of coins collected on screen
+	RenderTextOnScreen(meshList[GEO_TEXT], "Coins collected : " + std::to_string((Application::yourself.get_currency() / 100) - 1), Color(0, 1, 0), 2, 2, 45);
 }
 
 float SP::cabTP()

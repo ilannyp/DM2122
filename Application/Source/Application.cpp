@@ -170,12 +170,6 @@ void Application::Run()
 			scene->Init();
 			gamestarted = true;
 		}
-		if (yourself.get_coin1_enabled())
-		{
-
-			//std::cout << "asd" << std::endl;
-		}
-		//std::cout << "asd" << std::endl;
 		if (IsKeyPressed(VK_F3))
 		{
 			scene = scene3;

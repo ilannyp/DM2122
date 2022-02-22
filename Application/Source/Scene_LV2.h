@@ -87,6 +87,8 @@ class Scene_LV2 : public Scene , public SP
 		GEO_COIN_ICON,
 		GEO_TUNNEL,
 		GEO_BLOOD,
+		GEO_LV2,
+		GEO_TAXI_LOGO,
 
 
 
@@ -282,6 +284,8 @@ public:
 	
 	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
 	Vector3 tp_sphere = Vector3 (-33, 0, 131);
+	int count2 = 0;
+	int move_car = 1;
 };
 
 #endif

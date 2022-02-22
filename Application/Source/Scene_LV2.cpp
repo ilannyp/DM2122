@@ -944,6 +944,7 @@ void Scene_LV2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, fl
 }
 void Scene_LV2::Init()
 {
+	
 
 	
 	// Set background colour to light purple
@@ -1188,9 +1189,11 @@ void Scene_LV2::Init()
 		meshList[GEO_BLOOD] = MeshBuilder::GenerateQuad("blood_gui", Color(1, 1, 1), 1.f);
 		meshList[GEO_BLOOD]->textureID = LoadTGA("Image//Blood.tga");
 
+		meshList[GEO_LV2] = MeshBuilder::GenerateQuad("lv2", Color(1, 1, 1), 1.f);
+		meshList[GEO_LV2]->textureID = LoadTGA("Image//lv2.tga");
 
-
-
+		meshList[GEO_TAXI_LOGO] = MeshBuilder::GenerateQuad("taxi_logo", Color(1, 1, 1), 1.f);
+		meshList[GEO_TAXI_LOGO]->textureID = LoadTGA("Image//taxi_logo.tga");
 
 
 
@@ -1302,6 +1305,8 @@ void Scene_LV2::Init()
 
 void Scene_LV2::Update(double dt)
 {
+	count2++;
+	move_car++;
 	
 	
 	npc1x = translatenpc;
@@ -1355,9 +1360,8 @@ void Scene_LV2::Update(double dt)
 	if ( (camera.position.x > npc1x - 4 && camera.position.x < npc1x + 4) && (camera.position.z > npc1z - 4 && camera.position.z < npc1z + 4) && !interactnpc1)
 	{
 		interactnpc1 = true;
-		
 		intnpc1 = 1;
-
+		camera.setNPCinteract(intnpc1);
 	}
 
 	if ((camera.position.x > npc2x - 4 && camera.position.x < npc2x + 4) && (camera.position.z > npc2z - 4 && camera.position.z < npc2z + 4) && !interactnpc2)
@@ -1365,7 +1369,7 @@ void Scene_LV2::Update(double dt)
 		interactnpc2 = true;
 		
 		intnpc2 = 1;
-
+		camera.setNPCinteract(intnpc2);
 	}
 
 
@@ -1374,7 +1378,7 @@ void Scene_LV2::Update(double dt)
 		interactnpc3 = true;
 		
 		intnpc3 = 1;
-
+		camera.setNPCinteract(intnpc3);
 	}
 
 	if ((camera.position.x > npc4x - 4 && camera.position.x < npc4x + 4) && (camera.position.z > npc4z - 4 && camera.position.z < npc4z + 4) && !interactnpc4)
@@ -1382,7 +1386,7 @@ void Scene_LV2::Update(double dt)
 		interactnpc4 = true;
 	
 		intnpc4 = 1;
-
+		camera.setNPCinteract(intnpc4);
 	}
 	
 	//player vector set
@@ -1557,11 +1561,13 @@ void Scene_LV2::Update(double dt)
 	{
 		std::cout << "correct";
 		intnpc1 = 2;
+		camera.setNPCinteract(2);
 	}
 	else if(intnpc1 == 1 && (Application::IsKeyPressed('1')|| Application::IsKeyPressed('3')))
 	{
 		std::cout << "wrong";
 		intnpc1 = 3;
+		camera.setNPCinteract(3);
 	}
 	
 	//npc2
@@ -1569,11 +1575,13 @@ void Scene_LV2::Update(double dt)
 	{
 		std::cout << "correct";
 		intnpc2 = 2;
+		camera.setNPCinteract(2);
 	}
 	else if (intnpc2 == 1 && (Application::IsKeyPressed('1') || Application::IsKeyPressed('3')))
 	{
 		std::cout << "wrong";
 		intnpc2 = 3;
+		camera.setNPCinteract(3);
 	}
 
 	//npc3
@@ -1581,11 +1589,13 @@ void Scene_LV2::Update(double dt)
 	{
 		std::cout << "correct";
 		intnpc3 = 2;
+		camera.setNPCinteract(2);
 	}
 	else if (intnpc3 == 1 && (Application::IsKeyPressed('1') || Application::IsKeyPressed('2')))
 	{
 		std::cout << "wrong";
 		intnpc3 = 3;
+		camera.setNPCinteract(3);
 	}
 
 	//npc4
@@ -1593,11 +1603,13 @@ void Scene_LV2::Update(double dt)
 	{
 		std::cout << "correct";
 		intnpc4 = 2;
+		camera.setNPCinteract(2);
 	}
 	else if (intnpc4 == 1 && (Application::IsKeyPressed('1') || Application::IsKeyPressed('3')))
 	{
 		std::cout << "wrong";
 		intnpc4 = 3;
+		camera.setNPCinteract(3);
 	}
 
 
@@ -1736,6 +1748,13 @@ void Scene_LV2::Render()
 		}
 		i = 0;
 		bloodui = false;
+	}
+
+	if (count2 < 150)
+	{
+		RenderMeshOnScreen(meshList[GEO_LV2], 40, 30, 100, 90);
+		modelStack.PushMatrix();
+		RenderMeshOnScreen(meshList[GEO_TAXI_LOGO], (move_car), 2, 45, 35);
 	}
 
 }
