@@ -38,6 +38,7 @@ class SP : public Scene
 		//**********SP************
 		GEO_SCAMMER,
 		GEO_BLOOD,
+		GEO_LV1,
 		GEO_COIN,
 		GEO_COIN_ICON,
 
@@ -224,6 +225,8 @@ public:
 	std::string camerax;
 	std::string cameraz;
 	bool endscreen = false;
+
+	int count = 0;
 
 };
 

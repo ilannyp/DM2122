@@ -661,7 +661,7 @@ void SP::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float siz
 void SP::Init()
 {
 
-	Application::yourself.set_currency(100);
+	Application::yourself.set_currency(10000);
 	Application::yourself.set_alive();
 	Application::yourself.set_in_cab(false);
 	Application::yourself.set_first_scammed(false);
@@ -927,6 +927,8 @@ void SP::Init()
 	meshList[GEO_BLOOD] = MeshBuilder::GenerateQuad("blood_gui", Color(1, 1, 1), 1.f);
 	meshList[GEO_BLOOD]->textureID = LoadTGA("Image//Blood.tga");
 
+	meshList[GEO_LV1] = MeshBuilder::GenerateQuad("lv1", Color(1, 1, 1), 1.f);
+	meshList[GEO_LV1]->textureID = LoadTGA("Image//lv1.tga");
 
 
 	meshList[GEO_TAXI] = MeshBuilder::GenerateOBJ("coin", "OBJ//Taxi2.obj");
@@ -992,6 +994,9 @@ void SP::Update(double dt)
 	Vector3 coin3pos = coin3_pos - camera.position;
 	float coin3dis = sqrt(pow(coin3pos.x, 2) + pow(coin3pos.y, 2) + pow(coin3pos.z, 2));
 
+	count++;
+	std::cout << count << std::endl;
+	
 
 	if (Application::IsKeyPressed('1'))
 	{
@@ -1490,7 +1495,10 @@ void SP::Render()
 	RenderLamps();
 
 
-
+	if (count < 150)
+	{
+		RenderMeshOnScreen(meshList[GEO_LV1], 40, 30, 85, 65);
+	}
 
 
 

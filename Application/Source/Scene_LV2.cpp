@@ -944,6 +944,7 @@ void Scene_LV2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, fl
 }
 void Scene_LV2::Init()
 {
+	
 
 	
 	// Set background colour to light purple
@@ -1188,9 +1189,11 @@ void Scene_LV2::Init()
 		meshList[GEO_BLOOD] = MeshBuilder::GenerateQuad("blood_gui", Color(1, 1, 1), 1.f);
 		meshList[GEO_BLOOD]->textureID = LoadTGA("Image//Blood.tga");
 
+		meshList[GEO_LV2] = MeshBuilder::GenerateQuad("lv2", Color(1, 1, 1), 1.f);
+		meshList[GEO_LV2]->textureID = LoadTGA("Image//lv2.tga");
 
-
-
+		meshList[GEO_TAXI_LOGO] = MeshBuilder::GenerateQuad("taxi_logo", Color(1, 1, 1), 1.f);
+		meshList[GEO_TAXI_LOGO]->textureID = LoadTGA("Image//taxi_logo.tga");
 
 
 
@@ -1302,6 +1305,8 @@ void Scene_LV2::Init()
 
 void Scene_LV2::Update(double dt)
 {
+	count2++;
+	move_car++;
 	
 	if (Application::IsKeyPressed('1'))
 	{
@@ -1751,6 +1756,13 @@ void Scene_LV2::Render()
 		}
 		i = 0;
 		bloodui = false;
+	}
+
+	if (count2 < 150)
+	{
+		RenderMeshOnScreen(meshList[GEO_LV2], 40, 30, 100, 90);
+		modelStack.PushMatrix();
+		RenderMeshOnScreen(meshList[GEO_TAXI_LOGO], (move_car), 2, 45, 35);
 	}
 
 }
