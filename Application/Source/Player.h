@@ -10,6 +10,7 @@ private:
 	bool coin1_enabled, coin2_enabled, coin3_enabled;
 	bool currency_added_from_C1, currency_added_from_C2, currency_added_from_C3;
 	bool win;
+	int coins_collected;
 
 public:
 	Player();
@@ -58,6 +59,11 @@ public:
 
 	void set_win(bool x);
 	bool get_win();
+
+	int get_coins_collected();
+	void add_coins(int x);
+	void deduct_coins(int x);
+	void set_coins(int x);
 
 	void total_reset();
 };

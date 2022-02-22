@@ -686,6 +686,7 @@ void SP::Init()
 	Application::yourself.set_coin1_obtained(false);
 	Application::yourself.set_coin2_obtained(false);
 	Application::yourself.set_coin3_obtained(false);
+	Application::yourself.set_coins(0);
 
 	// Set background colour to light purple
 	glClearColor(0.5f, 0.0f, 0.7f, 0.0f);
@@ -1085,7 +1086,7 @@ void SP::Update(double dt)
 		if (Application::yourself.get_first_scammed() == false)
 		{
 			//talk text
-			scammer_text = "Give me 300 gold and i'll give you a prize";
+			scammer_text = "Give me 3 Gold Coins worth $300 and I'll give you a prize";
 			if (Application::yourself.get_currency() > 300 && Application::IsKeyPressed('E'))
 			{
 				buy = 1;
@@ -1135,6 +1136,7 @@ void SP::Update(double dt)
 			if (Application::yourself.get_currency_added_from_C1() == false)
 			{
 				Application::yourself.currency_added(100);
+				Application::yourself.add_coins(1);
 				Application::yourself.set_currency_added_from_C1(true);
 			}
 
@@ -1161,6 +1163,7 @@ void SP::Update(double dt)
 			if (Application::yourself.get_currency_added_from_C2() == false)
 			{
 				Application::yourself.currency_added(100);
+				Application::yourself.add_coins(1);
 				Application::yourself.set_currency_added_from_C2(true);
 			}
 
@@ -1187,6 +1190,7 @@ void SP::Update(double dt)
 			if (Application::yourself.get_currency_added_from_C3() == false)
 			{
 				Application::yourself.currency_added(100);
+				Application::yourself.add_coins(1);
 				Application::yourself.set_currency_added_from_C3(true);
 			}
 
@@ -1598,6 +1602,7 @@ void SP::Render()
 
 
 	//currency on screen
+	RenderTextOnScreen(meshList[GEO_TEXT], "$", Color(0, 1, 0), 2, 1, 50);
 	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
 	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
 
@@ -1618,7 +1623,8 @@ void SP::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], ss.str(), Color(1, 1, 1), 2, 1, 40);
 
 	//amt of coins collected on screen
-	RenderTextOnScreen(meshList[GEO_TEXT], "Coins collected : " + std::to_string((Application::yourself.get_currency() / 100) - 1), Color(0, 1, 0), 2, 2, 45);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Coins collected : " + std::to_string((Application::yourself.get_currency() / 100 )- 1), Color(0, 1, 0), 2, 2, 45);
+
 }
 
 float SP::cabTP()
