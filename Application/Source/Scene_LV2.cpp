@@ -860,12 +860,12 @@ bool Scene_LV2::onpavement(int pavementint)
 		std::cout << "onpavement2";
 		return true;
 	}
-	else if ((player.x < 34 && player.x > 5) && (player.z < 2 && player.z > -8) && pavementint == 3)
+	else if ((player.x < 34 && player.x > 2) && (player.z < 1 && player.z > -8) && pavementint == 3)
 	{
 		std::cout << "onpavement3";
 		return true;
 	}
-	else if ((player.x < -2 && player.x > -24) && (player.z < 2 && player.z > -8) && pavementint == 4)
+	else if ((player.x < -2 && player.x > -24) && (player.z < 1 && player.z > -8) && pavementint == 4)
 	{
 		std::cout << "onpavement4";
 		return true;
@@ -1379,7 +1379,7 @@ void Scene_LV2::Update(double dt)
 	}
 
 
-	if ((camera.position.x > npc3x - 3 && camera.position.x < npc3x + 3) && (camera.position.z > npc3z - 4 && camera.position.z < npc3z + 4) && !interactnpc3)
+	if ((camera.position.x > npc3x - 1 && camera.position.x < npc3x + 1) && (camera.position.z > npc3z - 4 && camera.position.z < npc3z + 4) && !interactnpc3)
 	{
 		interactnpc3 = true;
 		
@@ -1387,7 +1387,7 @@ void Scene_LV2::Update(double dt)
 		camera.setNPCinteract(intnpc3);
 	}
 
-	if ((camera.position.x > npc4x - 3 && camera.position.x < npc4x + 3) && (camera.position.z > npc4z - 4 && camera.position.z < npc4z + 4) && !interactnpc4)
+	if ((camera.position.x > npc4x - 1 && camera.position.x < npc4x + 1) && (camera.position.z > npc4z - 4 && camera.position.z < npc4z + 4) && !interactnpc4)
 	{
 		interactnpc4 = true;
 	
@@ -1448,110 +1448,110 @@ void Scene_LV2::Update(double dt)
 		if (colisiondetectionbullets(bullet1, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet2, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet3, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet4, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet5, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 
 		if (colisiondetectionbullets(bullet6, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet7, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet8, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 
 		if (colisiondetectionbullets(bullet9, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet10, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet11, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet12, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet13, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 
 		if (colisiondetectionbullets(bullet14, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet15, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet16, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet17, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet18, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet19, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet20, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 		if (colisiondetectionbullets(bullet21, player))
 		{
 
-			Application::yourself.currency_deducted(1);
+			Application::yourself.currency_deducted(1.5f);
 		}
 
 
