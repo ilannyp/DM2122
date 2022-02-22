@@ -283,7 +283,7 @@ public:
 	bool endscreen = false;
 	
 	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
-	Vector3 tp_sphere = Vector3 (-33, 0, 131);
+	Vector3 tp_sphere = Vector3 (1, 3, 125);
 	int count2 = 0;
 	int move_car = 1;
 };

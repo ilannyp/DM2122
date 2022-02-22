@@ -163,18 +163,27 @@ void Application::Run()
 	m_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
 	while (!glfwWindowShouldClose(m_window) && !IsKeyPressed(VK_ESCAPE))
 	{
-		if (IsKeyPressed(VK_RETURN) && !gamestarted)
+		if (scene == scene3)
+			gamestarted = false;
+
+		if (IsKeyPressed(VK_RETURN) && !gamestarted)//start game 
 		{
 			variables();
 			scene = scene2;
 			scene->Init();
 			gamestarted = true;
 		}
-		if (IsKeyPressed(VK_F3))
+
+
+
+
+
+		if (IsKeyPressed(VK_F3))//game over
 		{
 			scene = scene3;
 			scene->Init();
 			die_screen_once = true;
+			gamestarted = false;
 		}
 		if (yourself.get_in_cab() == true)
 		{

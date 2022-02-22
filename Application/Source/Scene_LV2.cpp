@@ -544,7 +544,7 @@ void Scene_LV2::RenderPavement()
 {
 	modelStack.PushMatrix();
 	modelStack.Translate(0, 0, -122);
-	modelStack.Scale(50, 1, 10);
+	modelStack.Scale(70, 1, 10);
 	RenderMesh(meshList[GEO_CUBE], true);
 	modelStack.Translate(0.f, 0.f, 4.9f);
 	RenderMesh(meshList[GEO_CUBE], true);
@@ -849,23 +849,23 @@ void Scene_LV2::RenderQuestion()
 }
 bool Scene_LV2::onpavement(int pavementint)
 {
-	if ((player.x < 24 && player.x > -24) && (player.z < -117 && player.z > -126) && pavementint == 1)
+	if ((player.x < 34 && player.x > -34) && (player.z < -117 && player.z > -126) && pavementint == 1)
 	{
 		std::cout << "onpavement1";
 		return true;
 
 	}
-	else if ((player.x < 24 && player.x > -24) && (player.z < -67 && player.z > -78) && pavementint ==2)
+	else if ((player.x < 34 && player.x > -34) && (player.z < -67 && player.z > -78) && pavementint ==2)
 	{
 		std::cout << "onpavement2";
 		return true;
 	}
-	else if ((player.x < 24 && player.x > 0) && (player.z < 2 && player.z > -8) && pavementint == 3)
+	else if ((player.x < 34 && player.x > 5) && (player.z < 2 && player.z > -8) && pavementint == 3)
 	{
 		std::cout << "onpavement3";
 		return true;
 	}
-	else if ((player.x < -1 && player.x > -24) && (player.z < 2 && player.z > -8) && pavementint == 4)
+	else if ((player.x < -2 && player.x > -24) && (player.z < 2 && player.z > -8) && pavementint == 4)
 	{
 		std::cout << "onpavement4";
 		return true;
@@ -1131,7 +1131,7 @@ void Scene_LV2::Init()
 	}
 
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
-		meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
+		meshList[GEO_TEXT]->textureID = LoadTGA("Image//ArialFont.tga");
 		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
 
@@ -1317,39 +1317,45 @@ void Scene_LV2::Update(double dt)
 	bullet1.x = translation_x_bullet;
 	bullet5.x = translation_x_bullet;
 
+	if (Application::yourself.get_currency() <= 0)
+	{
+		//Application::IsKeyPressed(VK_F3) == true;
+		Application::yourself.set_die();
+	}
+
 	
 	if(!interactnpc1)
 	{
 		translatenpc += (float)(30 * dt * dir1);
-		if (translatenpc > 24)
+		if (translatenpc > 33)
 			dir1 = -1;
-		else if (translatenpc < -24)
+		else if (translatenpc < -33)
 			dir1 = 1;
 	}
 
 	if (!interactnpc2)
 	{
 		translatenpc2 += (float)(50 * dt * dir2);
-		if (translatenpc2 > 24)
+		if (translatenpc2 > 33)
 			dir2 = -1;
-		else if (translatenpc2 < -24)
+		else if (translatenpc2 < -33)
 			dir2 = 1;
 	}
 	if (!interactnpc3)
 	{
 		translatenpc3 += (float)(50 * dt * dir3);
-		if (translatenpc3 > 24)
+		if (translatenpc3 > 33)
 			dir3 = -1;
-		else if (translatenpc3 < 0)
+		else if (translatenpc3 < 4)
 			dir3 = 1;
 	}
 
 	if (!interactnpc4)
 	{
 		translatenpc4 += (float)(50 * dt * dir4);
-		if (translatenpc4 > 1)
+		if (translatenpc4 > -4)
 			dir4 = -1;
-		else if (translatenpc4 < -24)
+		else if (translatenpc4 < -33)
 			dir4 = 1;
 	}
 
@@ -1373,7 +1379,7 @@ void Scene_LV2::Update(double dt)
 	}
 
 
-	if ((camera.position.x > npc3x - 4 && camera.position.x < npc3x + 4) && (camera.position.z > npc3z - 4 && camera.position.z < npc3z + 4) && !interactnpc3)
+	if ((camera.position.x > npc3x - 3 && camera.position.x < npc3x + 3) && (camera.position.z > npc3z - 4 && camera.position.z < npc3z + 4) && !interactnpc3)
 	{
 		interactnpc3 = true;
 		
@@ -1381,7 +1387,7 @@ void Scene_LV2::Update(double dt)
 		camera.setNPCinteract(intnpc3);
 	}
 
-	if ((camera.position.x > npc4x - 4 && camera.position.x < npc4x + 4) && (camera.position.z > npc4z - 4 && camera.position.z < npc4z + 4) && !interactnpc4)
+	if ((camera.position.x > npc4x - 3 && camera.position.x < npc4x + 3) && (camera.position.z > npc4z - 4 && camera.position.z < npc4z + 4) && !interactnpc4)
 	{
 		interactnpc4 = true;
 	
@@ -1441,110 +1447,110 @@ void Scene_LV2::Update(double dt)
 	{
 		if (colisiondetectionbullets(bullet1, player))
 		{
-			std::cout << "kena bullet1";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet2, player))
 		{
-			std::cout << "kena bullet2";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet3, player))
 		{
-			std::cout << "kena bullet3";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet4, player))
 		{
-			std::cout << "kena bullet4";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet5, player))
 		{
-			std::cout << "kena bullet5";
+
 			Application::yourself.currency_deducted(1);
 		}
 
 		if (colisiondetectionbullets(bullet6, player))
 		{
-			std::cout << "kena bullet6";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet7, player))
 		{
-			std::cout << "kena bullet7";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet8, player))
 		{
-			std::cout << "kena bullet8";
+
 			Application::yourself.currency_deducted(1);
 		}
 
 		if (colisiondetectionbullets(bullet9, player))
 		{
-			std::cout << "kena bullet9";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet10, player))
 		{
-			std::cout << "kena bullet10";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet11, player))
 		{
-			std::cout << "kena bullet11";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet12, player))
 		{
-			std::cout << "kena bullet12";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet13, player))
 		{
-			std::cout << "kena bullet13";
+
 			Application::yourself.currency_deducted(1);
 		}
 
 		if (colisiondetectionbullets(bullet14, player))
 		{
-			std::cout << "kena bullet14";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet15, player))
 		{
-			std::cout << "kena bullet15";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet16, player))
 		{
-			std::cout << "kena bullet16";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet17, player))
 		{
-			std::cout << "kena bullet17";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet18, player))
 		{
-			std::cout << "kena bullet18";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet19, player))
 		{
-			std::cout << "kena bullet19";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet20, player))
 		{
-			std::cout << "kena bullet20";
+
 			Application::yourself.currency_deducted(1);
 		}
 		if (colisiondetectionbullets(bullet21, player))
 		{
-			std::cout << "kena bullet21";
+
 			Application::yourself.currency_deducted(1);
 		}
 
@@ -1577,7 +1583,7 @@ void Scene_LV2::Update(double dt)
 		intnpc2 = 2;
 		camera.setNPCinteract(2);
 	}
-	else if (intnpc2 == 1 && (Application::IsKeyPressed('1') || Application::IsKeyPressed('3')))
+	else if (intnpc2 == 1 && (Application::IsKeyPressed('1') || Application::IsKeyPressed('3') || Application::IsKeyPressed('4')))
 	{
 		std::cout << "wrong";
 		intnpc2 = 3;
@@ -1605,7 +1611,7 @@ void Scene_LV2::Update(double dt)
 		intnpc4 = 2;
 		camera.setNPCinteract(2);
 	}
-	else if (intnpc4 == 1 && (Application::IsKeyPressed('1') || Application::IsKeyPressed('3')))
+	else if (intnpc4 == 1 && Application::IsKeyPressed('1'))
 	{
 		std::cout << "wrong";
 		intnpc4 = 3;
@@ -1711,8 +1717,8 @@ void Scene_LV2::Render()
 	//----------------------------sp--------------------------------------
 	if (tut_text==true)
 	{
-		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
-		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0, 1, 0), 2, 25, 53);
+		//RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
+		RenderTextOnScreen(meshList[GEO_TEXT], "Reach the black ball to win", Color(0, 1, 0), 2, 25, 53);
 	}
 	//modelStack.PushMatrix();
 	////scale, translate, rotate
@@ -1733,7 +1739,7 @@ void Scene_LV2::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
 
 
-	RenderTextOnScreen(meshList[GEO_TEXT], "$", Color(0, 1, 0), 2, 1, 30);
+	RenderTextOnScreen(meshList[GEO_TEXT], "$", Color(0, 1, 0), 2, 1, 50);
 	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
 	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
 	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
@@ -1756,6 +1762,7 @@ void Scene_LV2::Render()
 		RenderMeshOnScreen(meshList[GEO_TAXI_LOGO], (move_car), 2, 45, 35);
 	}
 
+	
 }
 
 void Scene_LV2::Exit()

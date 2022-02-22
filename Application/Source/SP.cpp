@@ -1011,7 +1011,7 @@ void SP::Update(double dt)
 	Vector3 coin3pos = coin3_pos - camera.position;
 	float coin3dis = sqrt(pow(coin3pos.x, 2) + pow(coin3pos.y, 2) + pow(coin3pos.z, 2));
 
-
+	count++;
 	
 	if (Application::IsKeyPressed('I'))
 		light[0].position.z -= (float)(LSPEED * dt);
@@ -1070,7 +1070,7 @@ void SP::Update(double dt)
 	if (Application::IsKeyPressed('E') && scammerdis <= 10)
 	{
 		scammaer_talk = true;
-		scammed = true;
+		
 		
 	}
 	else if (!Application::IsKeyPressed('E'))
@@ -1105,6 +1105,7 @@ void SP::Update(double dt)
 		if (Application::yourself.get_first_scammed() == true)
 		{
 			scammer_text = "Haha I was lying. Suck it loser!";
+			scammed = true;
 		}
 
 		std::cout << scam_count << std::endl;
@@ -1515,12 +1516,7 @@ void SP::Render()
 
 	RenderLamps();
 
-
-	if (count < 150)
-	{
-		RenderMeshOnScreen(meshList[GEO_LV1], 40, 30, 85, 65);
-	}
-
+	
 
 
 
@@ -1613,24 +1609,29 @@ void SP::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);
 	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
 
-	int test;
-	test = intquest;
-	std::ostringstream ss;
-	ss.precision(3);
-	ss.str("");//clear ss
-	ss << "quest int :" << intquest;
+	//int test;
+	//test = intquest;
+	//std::ostringstream ss;
+	//ss.precision(3);
+	//ss.str("");//clear ss
+	//ss << "quest int :" << intquest;
 
-	RenderTextOnScreen(meshList[GEO_TEXT], ss.str(), Color(1, 1, 1), 2, 1, 40);
+	//RenderTextOnScreen(meshList[GEO_TEXT], ss.str(), Color(1, 1, 1), 2, 1, 40);
 
 	//amt of coins collected on screen
-	RenderTextOnScreen(meshList[GEO_TEXT], "Coins collected : " + std::to_string((Application::yourself.get_currency() / 100 )- 1), Color(0, 1, 0), 2, 2, 45);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Coins collected : " + std::to_string(Application::yourself.get_coins_collected()) + " / 3", Color(0, 1, 0), 2, 2, 45);
+
+	if (count < 150)
+	{
+		RenderMeshOnScreen(meshList[GEO_LV1], 40, 30, 85, 65);
+	}
 
 }
 
 float SP::cabTP()
 {
 	Vector3 cabpos = cab_pos - camera.position;
-	float cabdis = sqrt(pow(cabpos.x, 2) + pow(cabpos.y, 2) + pow(cabpos.z, 2));
+	float cabdis = sqrt(pow(cabpos.x, 2) + pow(cabpos.y, 2) + pow(cabpos.z, 2)); 
 
 	return cabdis;
 }
