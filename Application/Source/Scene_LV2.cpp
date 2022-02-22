@@ -1370,9 +1370,8 @@ void Scene_LV2::Update(double dt)
 	if ( (camera.position.x > npc1x - 4 && camera.position.x < npc1x + 4) && (camera.position.z > npc1z - 4 && camera.position.z < npc1z + 4) && !interactnpc1)
 	{
 		interactnpc1 = true;
-		
 		intnpc1 = 1;
-
+		camera.setNPCinteract(intnpc1);
 	}
 
 	if ((camera.position.x > npc2x - 4 && camera.position.x < npc2x + 4) && (camera.position.z > npc2z - 4 && camera.position.z < npc2z + 4) && !interactnpc2)
@@ -1380,7 +1379,7 @@ void Scene_LV2::Update(double dt)
 		interactnpc2 = true;
 		
 		intnpc2 = 1;
-
+		camera.setNPCinteract(intnpc2);
 	}
 
 
@@ -1389,7 +1388,7 @@ void Scene_LV2::Update(double dt)
 		interactnpc3 = true;
 		
 		intnpc3 = 1;
-
+		camera.setNPCinteract(intnpc3);
 	}
 
 	if ((camera.position.x > npc4x - 4 && camera.position.x < npc4x + 4) && (camera.position.z > npc4z - 4 && camera.position.z < npc4z + 4) && !interactnpc4)
@@ -1397,7 +1396,7 @@ void Scene_LV2::Update(double dt)
 		interactnpc4 = true;
 	
 		intnpc4 = 1;
-
+		camera.setNPCinteract(intnpc4);
 	}
 	
 	//player vector set
@@ -1572,11 +1571,13 @@ void Scene_LV2::Update(double dt)
 	{
 		std::cout << "correct";
 		intnpc1 = 2;
+		camera.setNPCinteract(2);
 	}
 	else if(intnpc1 == 1 && (Application::IsKeyPressed('1')|| Application::IsKeyPressed('3')))
 	{
 		std::cout << "wrong";
 		intnpc1 = 3;
+		camera.setNPCinteract(3);
 	}
 	
 	//npc2
@@ -1584,11 +1585,13 @@ void Scene_LV2::Update(double dt)
 	{
 		std::cout << "correct";
 		intnpc2 = 2;
+		camera.setNPCinteract(2);
 	}
 	else if (intnpc2 == 1 && (Application::IsKeyPressed('1') || Application::IsKeyPressed('3')))
 	{
 		std::cout << "wrong";
 		intnpc2 = 3;
+		camera.setNPCinteract(3);
 	}
 
 	//npc3
@@ -1596,11 +1599,13 @@ void Scene_LV2::Update(double dt)
 	{
 		std::cout << "correct";
 		intnpc3 = 2;
+		camera.setNPCinteract(2);
 	}
 	else if (intnpc3 == 1 && (Application::IsKeyPressed('1') || Application::IsKeyPressed('2')))
 	{
 		std::cout << "wrong";
 		intnpc3 = 3;
+		camera.setNPCinteract(3);
 	}
 
 	//npc4
@@ -1608,11 +1613,13 @@ void Scene_LV2::Update(double dt)
 	{
 		std::cout << "correct";
 		intnpc4 = 2;
+		camera.setNPCinteract(2);
 	}
 	else if (intnpc4 == 1 && (Application::IsKeyPressed('1') || Application::IsKeyPressed('3')))
 	{
 		std::cout << "wrong";
 		intnpc4 = 3;
+		camera.setNPCinteract(3);
 	}
 
 
