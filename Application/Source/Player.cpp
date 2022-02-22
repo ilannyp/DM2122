@@ -7,7 +7,7 @@ Player::Player()
 	in_cab = false;
 	first_scammed = false;
 	coin1_enabled, coin1_obtained, coin2_enabled, coin2_obtained, coin3_enabled, coin3_obtained = false;
-
+	win = false;
 }
 
 Player::~Player()
@@ -180,6 +180,16 @@ void Player::set_currency_added_from_C3(bool x)
 {
 
 	currency_added_from_C3 = x;
+}
+
+void Player::set_win(bool x)
+{
+	win = x;
+}
+
+bool Player::get_win()
+{
+	return win;
 }
 
 void Player::total_reset()
