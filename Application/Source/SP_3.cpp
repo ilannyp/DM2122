@@ -342,7 +342,7 @@ void SP_3::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float s
 void SP_3::Init()
 {
 
-	Application::yourself.set_currency(1);
+	Application::yourself.set_currency(100);
 	Application::yourself.set_alive();
 	Application::yourself.set_in_cab(false);
 	Application::yourself.set_first_scammed(false);
