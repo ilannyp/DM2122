@@ -912,7 +912,7 @@ void SP::Init()
 		meshList[GEO_BULLET] = MeshBuilder::GenerateOBJMTL("bullet", "OBJ//ironFenceBar.obj", "OBJ//ironFenceBar.mtl");
 
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
-		meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
+		meshList[GEO_TEXT]->textureID = LoadTGA("Image//ArialFont.tga");
 
 		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
