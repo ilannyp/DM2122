@@ -1067,7 +1067,7 @@ void SP::Update(double dt)
 		if (Application::yourself.get_first_scammed() == false)
 		{
 			//talk text
-			scammer_text = "Give me 300 gold and i'll give you a prize";
+			scammer_text = "Give me 3 Gold Coins worth $300 and I'll give you a prize";
 			if (Application::yourself.get_currency() > 300 && Application::IsKeyPressed('E'))
 			{
 				buy = 1;
@@ -1584,6 +1584,7 @@ void SP::Render()
 
 
 	//currency on screen
+	RenderTextOnScreen(meshList[GEO_TEXT], "$", Color(0, 1, 0), 2, 1, 50);
 	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
 	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
 
