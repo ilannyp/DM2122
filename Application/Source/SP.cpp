@@ -661,7 +661,7 @@ void SP::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float siz
 void SP::Init()
 {
 
-	Application::yourself.set_currency(100);
+	Application::yourself.set_currency(1);
 	Application::yourself.set_alive();
 	Application::yourself.set_in_cab(false);
 	Application::yourself.set_first_scammed(false);
@@ -671,6 +671,7 @@ void SP::Init()
 	Application::yourself.set_coin1_obtained(false);
 	Application::yourself.set_coin2_obtained(false);
 	Application::yourself.set_coin3_obtained(false);
+	Application::yourself.set_coins(0);
 
 	// Set background colour to light purple
 	glClearColor(0.5f, 0.0f, 0.7f, 0.0f);
@@ -1116,6 +1117,7 @@ void SP::Update(double dt)
 			if (Application::yourself.get_currency_added_from_C1() == false)
 			{
 				Application::yourself.currency_added(100);
+				Application::yourself.add_coins(1);
 				Application::yourself.set_currency_added_from_C1(true);
 			}
 
@@ -1142,6 +1144,7 @@ void SP::Update(double dt)
 			if (Application::yourself.get_currency_added_from_C2() == false)
 			{
 				Application::yourself.currency_added(100);
+				Application::yourself.add_coins(1);
 				Application::yourself.set_currency_added_from_C2(true);
 			}
 
@@ -1168,6 +1171,7 @@ void SP::Update(double dt)
 			if (Application::yourself.get_currency_added_from_C3() == false)
 			{
 				Application::yourself.currency_added(100);
+				Application::yourself.add_coins(1);
 				Application::yourself.set_currency_added_from_C3(true);
 			}
 
@@ -1591,7 +1595,7 @@ void SP::Render()
 	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
 
 	//amt of coins collected on screen
-	RenderTextOnScreen(meshList[GEO_TEXT], "Coins collected : " + std::to_string((Application::yourself.get_currency() / 100 )- 1), Color(0, 1, 0), 2, 2, 45);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Coins collected : " + std::to_string(Application::yourself.get_coins_collected()) + " / 3" , Color(0, 1, 0), 2, 2, 45);
 
 }
 

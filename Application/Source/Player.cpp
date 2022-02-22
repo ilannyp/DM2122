@@ -8,6 +8,7 @@ Player::Player()
 	first_scammed = false;
 	coin1_enabled, coin1_obtained, coin2_enabled, coin2_obtained, coin3_enabled, coin3_obtained = false;
 	win = false;
+	coins_collected = 0;
 }
 
 Player::~Player()
@@ -112,7 +113,6 @@ void Player::set_coin2_obtained(bool x)
 void Player::set_coin3_obtained(bool x)
 {
 	coin3_obtained = x;
-
 }
 
 bool Player::get_coin1_enabled()
@@ -190,6 +190,26 @@ void Player::set_win(bool x)
 bool Player::get_win()
 {
 	return win;
+}
+
+int Player::get_coins_collected()
+{
+	return coins_collected;
+}
+
+void Player::add_coins(int x)
+{
+	coins_collected = coins_collected + x;
+}
+
+void Player::deduct_coins(int x)
+{
+	coins_collected = coins_collected - x;
+}
+
+void Player::set_coins(int x)
+{
+	coins_collected = x;
 }
 
 void Player::total_reset()
