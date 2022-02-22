@@ -661,7 +661,7 @@ void SP::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float siz
 void SP::Init()
 {
 
-	Application::yourself.set_currency(1);
+	Application::yourself.set_currency(100);
 	Application::yourself.set_alive();
 	Application::yourself.set_in_cab(false);
 	Application::yourself.set_first_scammed(false);
@@ -945,8 +945,6 @@ void SP::Init()
 
 
 
-	//Player yourself;
-
 	enemyz = 25;
 	bullet.x = -65;
 	bullet.z = enemyz;
@@ -1066,7 +1064,7 @@ void SP::Update(double dt)
 		}
 		if (Application::yourself.get_first_scammed() == true)
 		{
-			scammer_text = "Thank you bye bye";
+			scammer_text = "Haha I was lying. Suck it loser!";
 		}
 
 		std::cout << scam_count << std::endl;
@@ -1181,7 +1179,7 @@ void SP::Update(double dt)
 
 
 	// 3rd interaction : fighting
-	if (camera.position.x <= -9 && camera.position.z >= 72)
+	if (Application::yourself.get_first_scammed() == true)
 	{
 		battlestart = true;
 	}
@@ -1231,6 +1229,7 @@ void SP::Update(double dt)
 		}
 	}
 
+	//if player is in radius of bullet
 	if (((bullet.x + 2) > camera.position.x && (bullet.x - 2) < camera.position.x && (bullet.z + 4) > camera.position.z && (bullet.z - 2) < camera.position.z)
 		|| ((bullet2.x + 2) > camera.position.x && (bullet2.x - 2) < camera.position.x && (bullet2.z + 4) > camera.position.z && (bullet2.z - 2) < camera.position.z)
 		|| ((bullet3.x + 2) > camera.position.x && (bullet3.x - 2) < camera.position.x && (bullet3.z + 4) > camera.position.z && (bullet3.z - 2) < camera.position.z)
@@ -1263,7 +1262,7 @@ void SP::Update(double dt)
 	if (battlestart == false)
 	{
 
-		enemyz = 25;
+		enemyz = 17;
 		bullet.x = -65;
 		bullet.z = enemyz;
 

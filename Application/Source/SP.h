@@ -188,7 +188,7 @@ private:
 
 
 	int playerhealth = 20;//slight change to make it into currency
-	int enemyz = 0;//i assume this is where the arrow line -irfan
+	int enemyz = 0;//i assume this is where the arrow line -irfan,  correct - ilan
 	bool battlestart = false;
 	bool win = false;
 	bool die = false;

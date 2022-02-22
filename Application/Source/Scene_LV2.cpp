@@ -552,6 +552,20 @@ void Scene_LV2::RenderPavement()
 	RenderMesh(meshList[GEO_CUBE], true);
 	modelStack.PopMatrix();
 
+	modelStack.PushMatrix();
+	modelStack.Translate(tp_sphere.x,tp_sphere.y,tp_sphere.z);
+	RenderMesh(meshList[GEO_SPHERE], false);
+	modelStack.PopMatrix();
+
+	Vector3 spherepos = tp_sphere - camera.position;
+	float spheredis = sqrt(pow(spherepos.x, 2) + pow(spherepos.y, 2) + pow(spherepos.z, 2));
+
+	if (spheredis <= 5)
+	{
+		Application::yourself.set_win(true);
+		Application::yourself.set_die();
+	}
+
 	//lightpole here
 }
 void Scene_LV2::RenderNPC()
