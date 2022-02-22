@@ -273,6 +273,48 @@ void SP_3::RenderFrontSide()
 	RenderMesh(meshList[GEO_STONEWALL], true);
 	modelStack.PopMatrix();
 }
+void SP_3::sword(Vector3 swordpos)
+{
+	sword1_pos.x = swordpos.x;
+	sword1_pos.y = swordpos.y;
+	sword1_pos.z = swordpos.z;
+	modelStack.PushMatrix();
+	{
+		//modelStack.Translate(-75, 0, 0);
+		modelStack.Translate(sword1_pos.x, sword1_pos.y, sword1_pos.z);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(0.5, 0.5, 0.5);
+		//sword hilt
+		modelStack.PushMatrix();
+		{
+			modelStack.Translate(0, 5, 0);
+			modelStack.Rotate(180, 1, 0, 0);
+			modelStack.Rotate(90, 0, 1, 0);
+			modelStack.Scale(3, 3, 3);
+			//blade
+			modelStack.PushMatrix();
+			{
+				modelStack.Translate(0, 0, 0);
+				modelStack.Rotate(90, 0, 1, 0);
+				modelStack.Scale(3, 20, 2);
+				modelStack.Scale(0.1, 0.1, 0.1);
+				RenderMesh(meshList[GEO_SWORD], true);
+			}
+			modelStack.PopMatrix();
+
+			modelStack.Translate(0, -1, 0);
+			modelStack.Rotate(0, 0, 0, 1);
+			modelStack.Scale(0.5, 8, 0.5);
+			modelStack.Scale(0.1, 0.1, 0.1);
+			RenderMesh(meshList[GEO_CYLINDER], true);
+		}
+		modelStack.PopMatrix();
+
+		modelStack.Scale(20, 20, 20);
+		RenderMesh(meshList[GEO_FIREBASKET], true);
+	}
+	modelStack.PopMatrix();
+}
 void SP_3::RenderText(Mesh* mesh, std::string text, Color color)
 {
 
@@ -341,7 +383,9 @@ void SP_3::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float s
 
 void SP_3::Init()
 {
-
+	sword1_enable=true;
+	enemy_health = 4;
+	sword_count = 4;
 	Application::yourself.set_currency(100);
 	Application::yourself.set_alive();
 	Application::yourself.set_in_cab(false);
@@ -514,12 +558,11 @@ void SP_3::Init()
 
 
 	rotateAngle = 0;
-	/*for (int i = 0; i < NUM_GEOMETRY; ++i)
 	{
-		meshList[i] = nullptr;
-	}*/
+		
+		meshList[GEO_FIREBASKET] = MeshBuilder::GenerateOBJMTL("basket", "OBJ//fireBasket.obj", "OBJ//fireBasket.mtl");
+		meshList[GEO_SWORD] = MeshBuilder::GenerateCone("cone", Color(1, 1, 1), 20, 1.f, 1.f);
 
-	{
 		meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
 
 		meshList[GEO_QUAD] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
@@ -596,6 +639,8 @@ void SP_3::Init()
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 		meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
 
+
+
 		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
 		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
 	}
@@ -609,6 +654,15 @@ void SP_3::Init()
 	meshList[GEO_BLOOD] = MeshBuilder::GenerateQuad("blood_gui", Color(1, 1, 1), 1.f);
 	meshList[GEO_BLOOD]->textureID = LoadTGA("Image//Blood.tga");
 
+	meshList[GEO_FULLHEALTH] = MeshBuilder::GenerateQuad("Full_health", Color(1, 1, 1), 1.f);
+	meshList[GEO_FULLHEALTH]->textureID = LoadTGA("Image//Full_health.tga");
+	meshList[GEO_THREEHEALTH] = MeshBuilder::GenerateQuad("Three_health", Color(1, 1, 1), 1.f);
+	meshList[GEO_THREEHEALTH]->textureID = LoadTGA("Image//three_health.tga");
+	meshList[GEO_HALFHEALTH] = MeshBuilder::GenerateQuad("Half_health", Color(1, 1, 1), 1.f);
+	meshList[GEO_HALFHEALTH]->textureID = LoadTGA("Image//Half_health.tga");
+	meshList[GEO_ZEROHEALTH] = MeshBuilder::GenerateQuad("Zero_health", Color(1, 1, 1), 1.f);
+	meshList[GEO_ZEROHEALTH]->textureID = LoadTGA("Image//Zero_health.tga");
+
 
 
 	meshList[GEO_TAXI] = MeshBuilder::GenerateOBJ("coin", "OBJ//Taxi2.obj");
@@ -617,8 +671,6 @@ void SP_3::Init()
 
 	//-----------------------------------------------------------------------
 	//SP
-	/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
-	meshList[GEO_SCAMMER]->textureID = LoadTGA("Image//scammer.tga");*/
 	//An array of 3 vectors which represents the colors of the 3 vertices
 
 	Mtx44 projection;
@@ -655,27 +707,24 @@ void SP_3::Init()
 	bullet8.z = enemyz;
 
 
-
-
-
-
-
-
-
-
 }
 
 void SP_3::Update(double dt)
 {
 	Vector3 scammerpos = scammer_pos - camera.position;
 	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
-	Vector3 coin1pos = coin1_pos - camera.position;
-	float coin1dis = sqrt(pow(coin1pos.x, 2) + pow(coin1pos.y, 2) + pow(coin1pos.z, 2));
-	Vector3 coin2pos = coin2_pos - camera.position;
-	float coin2dis = sqrt(pow(coin2pos.x, 2) + pow(coin2pos.y, 2) + pow(coin2pos.z, 2));
-	Vector3 coin3pos = coin3_pos - camera.position;
-	float coin3dis = sqrt(pow(coin3pos.x, 2) + pow(coin3pos.y, 2) + pow(coin3pos.z, 2));
-
+	Vector3 sword1pos = sword1_pos - camera.position;
+	float sword1dis = sqrt(pow(sword1pos.x, 2) + pow(sword1pos.y, 2) + pow(sword1pos.z, 2));
+	Vector3 sword2pos = sword2_pos - camera.position;
+	float sword2dis = sqrt(pow(sword2pos.x, 2) + pow(sword2pos.y, 2) + pow(sword2pos.z, 2));
+	Vector3 sword3pos = sword3_pos - camera.position;
+	float sword3dis = sqrt(pow(sword3pos.x, 2) + pow(sword3pos.y, 2) + pow(sword3pos.z, 2));
+	Vector3 sword4pos = sword4_pos - camera.position;
+	float sword4dis = sqrt(pow(sword4pos.x, 2) + pow(sword4pos.y, 2) + pow(sword4pos.z, 2));
+	static bool sword1state = false;
+	static bool sword2state = false;
+	static bool sword3state = false;
+	static bool sword4state = false;
 
 	if (Application::IsKeyPressed('1'))
 	{
@@ -708,13 +757,61 @@ void SP_3::Update(double dt)
 		light[0].position.y += (float)(LSPEED * dt);
 	}
 
+	if (sword1dis<=10)
+	{
+		if (!sword1state && Application::IsKeyPressed('E'))
+		{
+			sword1_enable = false;
+			enemy_health --;
+			sword1state = true;
+		}
+		else if (sword1state && !Application::IsKeyPressed('E'))
+		{
+			sword1state = false;
+		}
+	}
 
+	if (sword2dis <= 10)
+	{
+		if (!sword2state && Application::IsKeyPressed('E'))
+		{
+			sword2_enable = false;
+			enemy_health--;
+			sword2state = true;
+		}
+		else if (sword2state && !Application::IsKeyPressed('E'))
+		{
+			sword2state = false;
+		}
+	}
 
+	if (sword3dis <= 10)
+	{
+		if (!sword3state && Application::IsKeyPressed('E'))
+		{
+			sword3_enable = false;
+			enemy_health--;
+			sword3state = true;
+		}
+		else if (sword3state && !Application::IsKeyPressed('E'))
+		{
+			sword3state = false;
+		}
+	}
 
-
-
-
-
+	if (sword4dis <= 10)
+	{
+		if (!sword4state && Application::IsKeyPressed('E'))
+		{
+			sword4_enable = false;
+			enemy_health--;
+			sword4state = true;
+		}
+		else if (sword4state && !Application::IsKeyPressed('E'))
+		{
+			sword4state = false;
+		}
+	}
 	/*******************************************************************************************************/
 	//tutorial boundary check
 	if (camera.position.x > -15 && camera.position.x<26 && camera.position.z>-14 && camera.position.z < 103)
@@ -740,8 +837,8 @@ void SP_3::Update(double dt)
 	camera.Update(dt);
 	FPS = std::to_string(1.f / dt);
 	camerax = std::to_string(camera.position.x);
-
 	cameraz = std::to_string(camera.position.z);
+	std::cout << enemy_health << std::endl;
 }
 void SP_3::RenderScammer()
 {
@@ -859,6 +956,28 @@ void SP_3::Render()
 	RenderBackSide();
 
 	RenderFrontSide();
+
+	if (sword1_enable)
+	{
+		sword(Vector3(-75, 0, 0));
+	}
+	else
+	{
+	}
+	if (sword2_enable)
+	{
+		sword(Vector3(0, 0, 0));
+	}
+	else
+	{
+	}
+	if (sword3_enable)
+	{
+		sword(Vector3(-25, 0, 0));
+	}
+	else
+	{
+	}
 	
 
 	if (die)
@@ -902,6 +1021,23 @@ void SP_3::Render()
 		modelStack.PopMatrix();
 	}
 	//----------------------------sp--------------------------------------
+	if (enemy_health == 4)
+	{
+		RenderMeshOnScreen(meshList[GEO_FULLHEALTH], 45, 56, 35, 2);
+	}
+	else if (enemy_health == 3)
+	{
+		RenderMeshOnScreen(meshList[GEO_THREEHEALTH], 45, 56, 35, 2);
+	}
+	else if (enemy_health == 2)
+	{
+		RenderMeshOnScreen(meshList[GEO_HALFHEALTH], 45, 56, 35, 2);
+	}
+	else if (enemy_health == 1)
+	{
+		RenderMeshOnScreen(meshList[GEO_ZEROHEALTH], 45, 56, 35, 2);
+	}
+
 	if (blood_ui)
 	{
 		int i;
@@ -914,8 +1050,8 @@ void SP_3::Render()
 	}
 	if (tut_text == true)
 	{
-		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
-		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0, 1, 0), 2, 25, 53);
+		/*RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
+		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0, 1, 0), 2, 25, 53);*/
 	}
 	//----------------------------sp--------------------------------------
 
@@ -936,7 +1072,7 @@ void SP_3::Render()
 
 	/*RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
 	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);*/
-	RenderTextOnScreen(meshList[GEO_TEXT], "scammer_text", Color(0, 1, 0), 2, 0, 10);
+	RenderTextOnScreen(meshList[GEO_TEXT], "give me head", Color(0, 1, 0), 2, 0, 10);
 	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
 
 

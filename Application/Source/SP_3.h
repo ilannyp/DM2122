@@ -40,10 +40,14 @@ class SP_3 : public Scene
 		GEO_BLOOD,
 		GEO_COIN,
 		GEO_COIN_ICON,
-
-
-
+		GEO_SWORD,
+		GEO_FIREBASKET,
 		GEO_TAXI,
+		GEO_FULLHEALTH,
+		GEO_THREEHEALTH,
+		GEO_HALFHEALTH,
+		GEO_ZEROHEALTH,
+
 		//*********obj models*********
 		GEO_HOLLOW,
 		GEO_HORNET,
@@ -155,6 +159,7 @@ private:
 	void RenderLeftSide();
 	void RenderBackSide();
 	void RenderFrontSide();
+	void sword(Vector3 swordpos);
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
 	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
@@ -163,12 +168,14 @@ private:
 
 
 	//sp stuff
-	bool tut_text = true, scammaer_talk = false, coin1_enable = true, coin2_enable = true, coin3_enable = true, blood_ui = false;
+	bool tut_text = true, scammaer_talk = false, 
+		sword1_enable = true, sword2_enable = true, sword3_enable = true, sword4_enable = true, 
+		blood_ui = false;
 	Vector3 scammer_pos = Vector3(-35, 0, -35);
-	Vector3 coin1_pos = Vector3(25, 0, 28);
-	Vector3 coin2_pos = Vector3(27, 0, 104);
-	Vector3 coin3_pos = Vector3(23, 0, -17);
-	Vector3 cab_pos = Vector3(-100, 0, 22);
+	Vector3 sword1_pos = Vector3(0, 0, 0);
+	Vector3 sword2_pos = Vector3(0, 0, 0);
+	Vector3 sword3_pos = Vector3(0, 0, 0);
+	Vector3 sword4_pos = Vector3(0, 0, 0);
 	std::string scammer_text;
 	//-------------------------------------//
 	float rotateAngle;
@@ -178,20 +185,14 @@ private:
 	float scaleAll;
 	float LSPEED = 10.f;
 
-
-
-
-
-
 	int playerhealth = 20;//slight change to make it into currency
 	int enemyz = 0;//i assume this is where the arrow line -irfan
+	int enemy_health = 4;
+	int sword_count=4;
 	bool battlestart = false;
 	bool win = false;
 	bool die = false;
 	bool hit = false;
-
-
-
 
 	Vector3 bullet;
 	Vector3 bullet2;
@@ -215,7 +216,6 @@ public:
 	virtual void Update(double dt);
 	virtual void Render();
 	virtual void Exit();
-	float cabTP();
 	std::string FPS;
 	std::string camerax;
 	std::string cameraz;
