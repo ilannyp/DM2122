@@ -9,6 +9,7 @@ private:
 	bool coin1_obtained, coin2_obtained, coin3_obtained;
 	bool coin1_enabled, coin2_enabled, coin3_enabled;
 	bool currency_added_from_C1, currency_added_from_C2, currency_added_from_C3;
+	bool win;
 
 public:
 	Player();
@@ -54,6 +55,9 @@ public:
 	void set_currency_added_from_C1(bool x);
 	void set_currency_added_from_C2(bool x);
 	void set_currency_added_from_C3(bool x);
+
+	void set_win(bool x);
+	bool get_win();
 
 	void total_reset();
 };

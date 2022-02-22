@@ -281,6 +281,7 @@ public:
 	bool endscreen = false;
 	
 	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
+	Vector3 tp_sphere = Vector3 (-33, 0, 131);
 };
 
 #endif
