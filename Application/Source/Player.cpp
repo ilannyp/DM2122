@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-	currency = 1;
+	currency = 100;
 	alive = true;
 	in_cab = false;
 	first_scammed = false;

@@ -57,4 +57,3 @@ public:
 
 	void total_reset();
 };
-
