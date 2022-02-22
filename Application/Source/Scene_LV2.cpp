@@ -1289,22 +1289,7 @@ void Scene_LV2::Init()
 void Scene_LV2::Update(double dt)
 {
 	
-	if (Application::IsKeyPressed('1'))
-	{
-		glEnable(GL_CULL_FACE);
-	}
-	if (Application::IsKeyPressed('2'))
-	{
-		glDisable(GL_CULL_FACE);
-	}
-	if (Application::IsKeyPressed('3'))
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //default fill mode
-	}
-	if (Application::IsKeyPressed('4'))
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
-	}
+	
 	npc1x = translatenpc;
 	npc2x = translatenpc2;
 	npc3x = translatenpc3;
