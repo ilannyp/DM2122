@@ -1748,7 +1748,7 @@ void Scene_LV2::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
 
 
-	RenderTextOnScreen(meshList[GEO_TEXT], "$", Color(0, 1, 0), 2, 1, 30);
+	RenderTextOnScreen(meshList[GEO_TEXT], "$", Color(0, 1, 0), 2, 1, 50);
 	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
 	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
 	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
