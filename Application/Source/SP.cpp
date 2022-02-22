@@ -7,7 +7,7 @@
 #include "Utility.h"
 #include "LoadTGA.h"
 #include "Light.h"
-
+#include <sstream>
 
 SP::SP()
 {
@@ -37,6 +37,21 @@ void SP::RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey)
 	viewStack.PopMatrix();
 	modelStack.PopMatrix();
 	glEnable(GL_DEPTH_TEST);
+}
+
+void SP::RenderQuest()
+{
+	if(intquest == 1)
+		RenderTextOnScreen(meshList[GEO_TEXT],"Interact with the man", Color(0, 1, 0), 2, 0, 20);
+	if (intquest == 2)
+		RenderTextOnScreen(meshList[GEO_TEXT], "Collect coins", Color(0, 1, 0), 2, 0, 20);
+	if (intquest == 3)
+		RenderTextOnScreen(meshList[GEO_TEXT], "Give the coins to the person", Color(0, 1, 0), 2, 0, 20);
+	if (intquest == 4)
+		RenderTextOnScreen(meshList[GEO_TEXT], "Get to the taxi, Carefull!", Color(0, 1, 0), 2, 0, 20);
+
+
+
 }
 
 void SP::RenderMesh(Mesh* mesh, bool enableLight)
@@ -970,7 +985,8 @@ void SP::Init()
 	bullet8.x = -70;
 	bullet8.z = enemyz;
 
-
+	intquest = 0;
+	scammed = false;
 
 
 
@@ -1018,20 +1034,41 @@ void SP::Update(double dt)
 
 	/*******************************************************************************************************/
 	//tutorial boundary check
-	if (camera.position.x > -15 && camera.position.x<26 && camera.position.z>-14 && camera.position.z < 103)
+	if (camera.position.x > -102 && camera.position.x<-18 && camera.position.z>-59 && camera.position.z < -25)
 	{
 		tut_text = true;
+		
 	}
 	else
 	{
 		tut_text = false;
 	}
+	if (!tut_text && !scammaer_talk)
+	{
+		intquest = 1;
+	}
+	
+	if (scammerdis <= 10)
+		interactednpc = true;
+
+	if (interactednpc)
+		intquest = 2;
+	if (Application::yourself.get_coin1_obtained() && Application::yourself.get_coin2_obtained() && Application::yourself.get_coin3_obtained())
+		intquest = 3;
+
+	if (Application::yourself.get_coin1_obtained() && Application::yourself.get_coin2_obtained() && Application::yourself.get_coin3_obtained() && scammed)
+
+		intquest = 4;
+
+
 	static bool scammaer_talk = false;
 	static int scam_count = 0;
 	static int buy = 0;
-	if (Application::IsKeyPressed('E'))
+	if (Application::IsKeyPressed('E') && scammerdis <= 10)
 	{
 		scammaer_talk = true;
+		scammed = true;
+		
 	}
 	else if (!Application::IsKeyPressed('E'))
 	{
@@ -1248,8 +1285,6 @@ void SP::Update(double dt)
 		camera.Init(Vector3(-96, 3, 30), Vector3(-96, 3, 0), Vector3(0, 1, 0));
 		Application::yourself.set_die();
 	}
-
-
 	if (Application::IsKeyPressed('R'))
 	{
 		camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
@@ -1439,20 +1474,20 @@ void SP::Render()
 	//**************************************************************************************************************
 
 
-	modelStack.PushMatrix();
+	/*modelStack.PushMatrix();
 	modelStack.Translate(light[0].position.x, light[0].position.y, light[0].position.z);
 	RenderMesh(meshList[GEO_LIGHTBALL], false);
-	modelStack.PopMatrix();
+	modelStack.PopMatrix();*/
 
 	modelStack.PushMatrix();
 	modelStack.Translate(light[1].position.x, light[1].position.y, light[1].position.z);
 	RenderMesh(meshList[GEO_LIGHTBALL], true);
 	modelStack.PopMatrix();
 
-	modelStack.PushMatrix();
+	/*modelStack.PushMatrix();
 	modelStack.Translate(light[2].position.x, light[2].position.y, light[2].position.z);
 	RenderMesh(meshList[GEO_LIGHTBALL], true);
-	modelStack.PopMatrix();
+	modelStack.PopMatrix();*/
 
 	RenderSkybox();
 
@@ -1548,6 +1583,7 @@ void SP::Render()
 
 
 	//UI
+	RenderQuest();
 	RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "X:", Color(0, 1, 0), 2, 0, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], cameraz, Color(0, 1, 0), 2, 6, 2);
@@ -1565,6 +1601,15 @@ void SP::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);*/
 	RenderTextOnScreen(meshList[GEO_TEXT], scammer_text, Color(0, 1, 0), 2, 0, 10);
 	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
+
+	int test;
+	test = intquest;
+	std::ostringstream ss;
+	ss.precision(3);
+	ss.str("");//clear ss
+	ss << "quest int :" << intquest;
+
+	RenderTextOnScreen(meshList[GEO_TEXT], ss.str(), Color(1, 1, 1), 2, 1, 40);
 
 
 }

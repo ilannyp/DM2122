@@ -154,7 +154,7 @@ void Application::Run()
 	Scene* scene3 = new Scene_EndScreen();
 	Scene* scene4 = new Scene_LV2();
 	Scene* scene5 = new SP_3();
-
+	bool gamestarted = false;
 
 	Scene* scene = scene1;
 	scene1->Init();
@@ -163,11 +163,12 @@ void Application::Run()
 	m_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
 	while (!glfwWindowShouldClose(m_window) && !IsKeyPressed(VK_ESCAPE))
 	{
-		if (IsKeyPressed(VK_RETURN))
+		if (IsKeyPressed(VK_RETURN) && !gamestarted)
 		{
 			variables();
 			scene = scene2;
 			scene->Init();
+			gamestarted = true;
 		}
 		if (yourself.get_coin1_enabled())
 		{

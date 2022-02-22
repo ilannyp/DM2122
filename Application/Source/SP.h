@@ -173,7 +173,13 @@ private:
 	Vector3 coin2_pos = Vector3(27, 0, 104);
 	Vector3 coin3_pos = Vector3(23, 0, -17);
 	Vector3 cab_pos = Vector3(-100, 0, 22);
+	
 	std::string scammer_text;
+
+	int intquest;
+	bool interactednpc;
+	bool scammed;
+	void RenderQuest();
 	//-------------------------------------//
 	float rotateAngle;
 	float translateX = 1;
@@ -187,8 +193,8 @@ private:
 
 
 
-	int playerhealth = 20;//slight change to make it into currency
-	int enemyz = 0;//i assume this is where the arrow line -irfan,  correct - ilan
+	
+	int enemyz = 0;
 	bool battlestart = false;
 	bool win = false;
 	bool die = false;
