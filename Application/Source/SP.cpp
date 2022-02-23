@@ -497,51 +497,58 @@ void SP::RenderPath()
 void SP::RenderBullet()
 {
 	modelStack.PushMatrix();
-	modelStack.Translate(bullet.x, 1, bullet.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
+	modelStack.Translate(bullet.x, 2, bullet.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(bullet2.x, 1, bullet2.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
+	modelStack.Translate(bullet2.x, 2, bullet2.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(bullet3.x, 1, bullet3.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
+	modelStack.Translate(bullet3.x, 2, bullet3.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(bullet4.x, 1, bullet4.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
+	modelStack.Translate(bullet4.x, 2, bullet4.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(bullet5.x, 1, bullet5.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
+	modelStack.Translate(bullet5.x, 2, bullet5.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(bullet6.x, 1, bullet6.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
+	modelStack.Translate(bullet6.x, 2, bullet6.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(bullet7.x, 1, bullet7.z);
-	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(20, 5, 20);
+	modelStack.Translate(bullet7.x, 2, bullet7.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet8.x, 2, bullet8.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
 
@@ -694,7 +701,7 @@ void SP::Init()
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
 
-	glEnable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE);
 
 	//Default to fill mode
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -925,7 +932,13 @@ void SP::Init()
 
 		meshList[GEO_LANTERN] = MeshBuilder::GenerateOBJMTL("lantern", "OBJ//lanternCandle.obj", "OBJ//lanternCandle.mtl");
 
-		meshList[GEO_BULLET] = MeshBuilder::GenerateOBJMTL("bullet", "OBJ//ironFenceBar.obj", "OBJ//ironFenceBar.mtl");
+	/*	meshList[GEO_BULLET] = MeshBuilder::GenerateOBJMTL("bullet", "OBJ//ironFenceBar.obj", "OBJ//ironFenceBar.mtl");*/
+
+		meshList[GEO_BULLET] = MeshBuilder::GenerateQuad("bullet", Color(1, 1, 1), 1.f);
+		meshList[GEO_BULLET]->textureID = LoadTGA("Image//internetscam.tga");
+
+		meshList[GEO_BULLET2] = MeshBuilder::GenerateQuad("bullet", Color(1, 1, 1), 1.f);
+		meshList[GEO_BULLET2]->textureID = LoadTGA("Image//phonelove.tga");
 
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 		meshList[GEO_TEXT]->textureID = LoadTGA("Image//ArialFont.tga");
@@ -982,7 +995,7 @@ void SP::Init()
 	bullet6.x = -95;
 	bullet6.z = enemyz;
 
-	bullet7.x = -50;
+	bullet7.x = -75;
 	bullet7.z = enemyz;
 
 	bullet8.x = -70;
@@ -1013,6 +1026,7 @@ void SP::Update(double dt)
 
 	count++;
 	
+
 	if (Application::IsKeyPressed('I'))
 		light[0].position.z -= (float)(LSPEED * dt);
 	if (Application::IsKeyPressed('K'))
@@ -1230,44 +1244,47 @@ void SP::Update(double dt)
 	if (battlestart)
 	{
 		bullet.z += (float)(60 * dt);
-		bullet2.z += (float)(120 * dt);
+		bullet2.z += (float)(50 * dt);
 		bullet3.z += (float)(50 * dt);
 		bullet4.z += (float)(70 * dt);
-		bullet5.z += (float)(100 * dt);
+		bullet5.z += (float)(70 * dt);
 		bullet6.z += (float)(30 * dt);
-		bullet7.z += (float)(90 * dt);
-		bullet8.z += (float)(100 * dt);
+		bullet7.z += (float)(50 * dt);
+		bullet8.z += (float)(70 * dt);
+		
 
-		if (bullet.z > 112)
+		rotatebullet += (float)(120 * dt);
+
+		if (bullet.z > 105)
 		{
 			bullet.z = enemyz;
 		}
-		if (bullet2.z > 112)
+		if (bullet2.z > 105)
 		{
 			bullet2.z = enemyz;
 		}
-		if (bullet3.z > 112)
+		if (bullet3.z > 105)
 		{
 			bullet3.z = enemyz;
 		}
-		if (bullet4.z > 112)
+		if (bullet4.z > 105)
 		{
 			bullet4.z = enemyz;
 		}
-		if (bullet5.z > 112)
+		if (bullet5.z > 105)
 		{
 			bullet5.z = enemyz;
 		}
-		if (bullet6.z > 112)
+		if (bullet6.z > 105)
 		{
 			bullet6.z = enemyz;
 		}
-		if (bullet7.z > 112)
+		if (bullet7.z > 105)
 		{
 			bullet7.z = enemyz;
 		}
 
-		if (bullet8.z > 112)
+		if (bullet8.z > 105)
 		{
 			bullet8.z = enemyz;
 		}
@@ -1323,8 +1340,11 @@ void SP::Update(double dt)
 		bullet6.x = -95;
 		bullet6.z = enemyz - 40;
 
-		bullet7.x = -50;
+		bullet7.x = -75;
 		bullet7.z = enemyz;
+
+		bullet8.x = -80;
+		bullet8.z = enemyz;
 	}
 
 

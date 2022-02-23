@@ -650,37 +650,42 @@ void Scene_LV2::RenderBullets()
 	//bullet1
 	modelStack.PushMatrix();
 	modelStack.Translate(bullet1.x, bullet1.y, bullet1.z);
-	modelStack.Rotate(90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
+	//modelStack.Rotate(90, 0, 0, -1);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
 	//bullet2
 	modelStack.PushMatrix();
 	modelStack.Translate(translation_x_bullet_fast, bullet2.y, bullet2.z);
-	modelStack.Rotate(90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
-	RenderMesh(meshList[GEO_BULLET], true);
+	//modelStack.Rotate(90, 0, 0, -1);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
+	RenderMesh(meshList[GEO_BULLET2], true);
 	modelStack.PopMatrix();
 	//bullet3
 	modelStack.PushMatrix();
 	modelStack.Translate(-translation_x_bullet_medium, bullet3.y, bullet3.z);
-	modelStack.Rotate(-90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
+	//modelStack.Rotate(-90, 0, 0, -1);
+	modelStack.Rotate(-rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
 	//bullet4
 	modelStack.PushMatrix();
-	modelStack.Translate(-translation_x_bullet_slow, bullet4.y, bullet4.z);
-	modelStack.Rotate(-90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
-	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.Translate(translation_x_bullet_slow, bullet4.y, bullet4.z);
+	//modelStack.Rotate(-90, 0, 0, -1);
+	modelStack.Rotate(-rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
+	RenderMesh(meshList[GEO_BULLET2], true);
 	modelStack.PopMatrix();
 	//bullet5
 	modelStack.PushMatrix();
 	modelStack.Translate(translation_x_bullet, bullet5.y, bullet5.z);
-	modelStack.Rotate(90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
-	RenderMesh(meshList[GEO_BULLET], true);
+	//modelStack.Rotate(90, 0, 0, -1);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
+	RenderMesh(meshList[GEO_BULLET2], true);
 	modelStack.PopMatrix();
 	}
 
@@ -688,109 +693,116 @@ void Scene_LV2::RenderBullets()
 	{
 		modelStack.PushMatrix();
 		modelStack.Translate(translation_x_bullet_fast, bullet6.y, bullet6.z);
-		modelStack.Rotate(90, 0, 0, -1);
-		modelStack.Scale(20, 5, 10);
-		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.Rotate(rotatebullet, 0, 1, 0);
+		modelStack.Scale(3, 3, 5);
+		RenderMesh(meshList[GEO_BULLET2], true);
 		modelStack.PopMatrix();
 		//bullet2
 		modelStack.PushMatrix();
 		modelStack.Translate(translation_x_bullet_medium, bullet7.y, bullet7.z);
-		modelStack.Rotate(90, 0, 0, -1);
-		modelStack.Scale(20, 5, 10);
+		modelStack.Rotate(rotatebullet, 0, 1, 0);
+		modelStack.Scale(3, 3, 5);
 		RenderMesh(meshList[GEO_BULLET], true);
 		modelStack.PopMatrix();
 		//bullet3
 		modelStack.PushMatrix();
 		modelStack.Translate(-translation_x_bullet_fast, bullet8.y, bullet8.z);
-		modelStack.Rotate(-90, 0, 0, -1);
-		modelStack.Scale(20, 5, 10);
-		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.Rotate(-rotatebullet, 0, 1, 0);
+		modelStack.Scale(3, 3, 5);
+		RenderMesh(meshList[GEO_BULLET2], true);
 		modelStack.PopMatrix();
 	}
 	//third bunch
 	{
 		modelStack.PushMatrix();
 		modelStack.Translate(translation_x_bullet_fast, bullet9.y, bullet9.z);
-		modelStack.Rotate(90, 0, 0, -1);
-		modelStack.Scale(20, 5, 10);
+		modelStack.Rotate(rotatebullet, 0, 1, 0);
+		modelStack.Scale(3, 3, 5);
 		RenderMesh(meshList[GEO_BULLET], true);
 		modelStack.PopMatrix();
 		
 		modelStack.PushMatrix();
 		modelStack.Translate(translation_x_bullet_medium, bullet10.y, bullet10.z);
-		modelStack.Rotate(90, 0, 0, -1);
-		modelStack.Scale(20, 5, 10);
-		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.Rotate(rotatebullet, 0, 1, 0);
+		modelStack.Scale(3, 3, 5);
+		RenderMesh(meshList[GEO_BULLET2], true);
 		modelStack.PopMatrix();
 		
 		modelStack.PushMatrix();
 		modelStack.Translate(-translation_x_bullet_fast, bullet11.y, bullet11.z);
-		modelStack.Rotate(-90, 0, 0, -1);
-		modelStack.Scale(20, 5, 10);
+		modelStack.Rotate(-rotatebullet, 0, 1, 0);
+		modelStack.Scale(3, 3, 5);
 		RenderMesh(meshList[GEO_BULLET], true);
 		modelStack.PopMatrix();
 		
 		modelStack.PushMatrix();
 		modelStack.Translate(translation_x_bullet_medium, bullet12.y, bullet12.z);
-		modelStack.Rotate(90, 0, 0, -1);
-		modelStack.Scale(20, 5, 10);
+		modelStack.Rotate(-rotatebullet, 0, 1, 0);
+		modelStack.Scale(3, 3, 5);
 		RenderMesh(meshList[GEO_BULLET], true);
 		modelStack.PopMatrix();
 	
 		modelStack.PushMatrix();
 		modelStack.Translate(-translation_x_bullet_fast, bullet13.y, bullet13.z);
-		modelStack.Rotate(-90, 0, 0, -1);
-		modelStack.Scale(20, 5, 10);
-		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.Rotate(-rotatebullet, 0, 1, 0);
+		modelStack.Scale(3, 3, 5);
+		RenderMesh(meshList[GEO_BULLET2], true);
 		modelStack.PopMatrix();
 	}
 	//fourth bunch
 	modelStack.PushMatrix();
 	modelStack.Translate(translation_x_bullet_fast, bullet14.y, bullet14.z);
-	modelStack.Rotate(90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
+
 	modelStack.PushMatrix();
 	modelStack.Translate(-translation_x_bullet_medium, bullet15.y, bullet15.z);
-	modelStack.Rotate(-90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
-	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.Rotate(-rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
+	RenderMesh(meshList[GEO_BULLET2], true);
 	modelStack.PopMatrix();
+
 	modelStack.PushMatrix();
 	modelStack.Translate(translation_x_bullet, bullet16.y, bullet16.z);
-	modelStack.Rotate(90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
-	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
+	RenderMesh(meshList[GEO_BULLET2], true);
 	modelStack.PopMatrix();
+
 	modelStack.PushMatrix();
 	modelStack.Translate(-translation_x_bullet_slow, bullet17.y, bullet17.z);
-	modelStack.Rotate(-90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
+	modelStack.Rotate(-rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
+
 	modelStack.PushMatrix();
 	modelStack.Translate(-translation_x_bullet_medium, bullet18.y, bullet18.z);
-	modelStack.Rotate(-90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
-	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.Rotate(-rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
+	RenderMesh(meshList[GEO_BULLET2], true);
 	modelStack.PopMatrix();
+
 	modelStack.PushMatrix();
 	modelStack.Translate(-translation_x_bullet_fast, bullet19.y, bullet19.z);
-	modelStack.Rotate(-90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
+	modelStack.Rotate(-rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
+
 	modelStack.PushMatrix();
 	modelStack.Translate(translation_x_bullet, bullet20.y, bullet20.z);
-	modelStack.Rotate(90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
-	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
+	RenderMesh(meshList[GEO_BULLET2], true);
 	modelStack.PopMatrix();
+
 	modelStack.PushMatrix();
 	modelStack.Translate(-translation_x_bullet_fast, bullet21.y, bullet21.z);
-	modelStack.Rotate(-90, 0, 0, -1);
-	modelStack.Scale(20, 5, 10);
+	modelStack.Rotate(-rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 5);
 	RenderMesh(meshList[GEO_BULLET], true);
 	modelStack.PopMatrix();
 }
@@ -809,9 +821,6 @@ bool Scene_LV2::colisiondetectionbullets(Vector3 bullet, Vector3 player)
 		return false;
 
 	}
-		
-
-
 
 	
 }
@@ -951,7 +960,7 @@ void Scene_LV2::Init()
 	glClearColor(0.5f, 0.0f, 0.7f, 0.0f);
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE);
 	// Enable blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -1127,7 +1136,13 @@ void Scene_LV2::Init()
 		meshList[GEO_LAMP] = MeshBuilder::GenerateOBJMTL("debris", "OBJ//lightpostDouble.obj", "OBJ//lightpostDouble.mtl");
 		meshList[GEO_GRAVE] = MeshBuilder::GenerateOBJMTL("grave", "OBJ//grave.obj", "OBJ//grave.mtl");
 		meshList[GEO_LANTERN] = MeshBuilder::GenerateOBJMTL("lantern", "OBJ//lanternCandle.obj", "OBJ//lanternCandle.mtl");
-		meshList[GEO_BULLET] = MeshBuilder::GenerateOBJMTL("bullet", "OBJ//ironFenceBar.obj", "OBJ//ironFenceBar.mtl");
+
+		/*meshList[GEO_BULLET] = MeshBuilder::GenerateOBJMTL("bullet", "OBJ//ironFenceBar.obj", "OBJ//ironFenceBar.mtl");*/
+		meshList[GEO_BULLET] = MeshBuilder::GenerateQuad("bullet", Color(1, 1, 1), 1.f);
+		meshList[GEO_BULLET]->textureID = LoadTGA("Image//internetscam.tga");
+
+		meshList[GEO_BULLET2] = MeshBuilder::GenerateQuad("bullet", Color(1, 1, 1), 1.f);
+		meshList[GEO_BULLET2]->textureID = LoadTGA("Image//phonelove.tga");
 	}
 
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
@@ -1262,11 +1277,11 @@ void Scene_LV2::Init()
 		bullet5.z = -134;
 
 		//second bunch
-		bullet6.y = 2;
+		bullet6.y = 3;
 		bullet6.z = -107;
-		bullet7.y = 2;
+		bullet7.y = 3;
 		bullet7.z = -96;
-		bullet8.y = 2;
+		bullet8.y = 3;
 		bullet8.z = -84;
 		
 		//third bunch
@@ -1317,6 +1332,7 @@ void Scene_LV2::Update(double dt)
 	bullet1.x = translation_x_bullet;
 	bullet5.x = translation_x_bullet;
 
+	rotatebullet += (float)(120 * dt);
 	if (Application::yourself.get_currency() <= 0)
 	{
 		//Application::IsKeyPressed(VK_F3) == true;

@@ -59,6 +59,7 @@ class SP : public Scene
 		GEO_GRAVE,
 		GEO_LANTERN,
 		GEO_BULLET,
+		GEO_BULLET2,
 		GEO_TEXT,
 		GEO_TEXT2,
 
@@ -189,7 +190,7 @@ private:
 	float scaleAll;
 	float LSPEED = 10.f;
 
-
+	int rotatebullet = 15;
 
 
 

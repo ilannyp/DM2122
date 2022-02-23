@@ -102,6 +102,7 @@ class Assignment2 : public Scene
 		GEO_LANTERN,
 		GEO_BULLET,
 		GEO_FIREBASKET,
+		GEO_SCAMEMAIL,
 		GEO_TEXT,
 		GEO_TEXT2,
 		NUM_GEOMETRY,
