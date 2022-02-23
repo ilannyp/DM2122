@@ -23,6 +23,9 @@ public:
 	virtual void Init(const Vector3& pos, const Vector3& target, const Vector3& up);
 	virtual void Update(double dt);
 	virtual void Reset();
+
+	float CAMERA_SPEED = 80.f;
+	float ZOOM_SPEED = 20.f; //standard 20
 	
 };
 

@@ -208,7 +208,7 @@ void Application::Run()
 				scene->Init();
 			}
 		}
-		if (IsKeyPressed(VK_F4))
+		if (yourself.get_go_lv3() == true)
 		{
 			scene = scene5;
 			scene->Init();
