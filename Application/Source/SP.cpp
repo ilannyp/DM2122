@@ -267,6 +267,8 @@ void SP::RenderRightSide()
 	modelStack.Scale(1, 1, 1);
 	RenderMesh(meshList[GEO_TAXI], true);
 	modelStack.PopMatrix();
+
+
 }
 void SP::RenderLeftSide()
 {
@@ -747,8 +749,6 @@ void SP::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float siz
 	glEnable(GL_DEPTH_TEST); //uncomment for RenderTextOnScreen
 }
 
-
-
 void SP::Init()
 {
 	Application::yourself.set_currency(100);
@@ -928,6 +928,7 @@ void SP::Init()
 		meshList[i] = nullptr;
 	}*/
 
+	//***old mesh***
 	{
 		meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
 

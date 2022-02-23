@@ -139,8 +139,6 @@ void SceneUI::RenderText(Mesh* mesh, std::string text, Color color)
 	/*glEnable(GL_DEPTH_TEST);*/ //uncomment for RenderTextOnScreen
 }
 
-
-
 void SceneUI::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y)
 {
 	if (!mesh || mesh->textureID <= 0) //Proper error check
@@ -203,8 +201,6 @@ void SceneUI::RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey)
 }
 void SceneUI::Init()
 {
-
-
 	// Set background colour to light purple
 	glClearColor(0.5f, 0.0f, 0.7f, 0.0f);
 	// Enable depth test
@@ -440,7 +436,13 @@ void SceneUI::Update(double dt)
 		bLButtonState = false;
 		std::cout << "LBUTTON UP" << std::endl;
 	}
+
+
+
 	static bool bRButtonState = false;
+
+
+
 	if (!bRButtonState && Application::IsMousePressed(1))
 	{
 		bRButtonState = true;

@@ -89,7 +89,8 @@ class Scene_LV2 : public Scene , public SP
 		GEO_BLOOD,
 		GEO_LV2,
 		GEO_TAXI_LOGO,
-
+		GEO_ROADFORBULLETS,
+		GEO_TAXI,
 
 
 
@@ -131,6 +132,8 @@ class Scene_LV2 : public Scene , public SP
 		GEO_BULLET,
 		GEO_TEXT,
 		GEO_TEXT2,
+		GEO_LIGHTPOLE,
+
 
 
 
@@ -240,12 +243,8 @@ private:
 	void RenderMesh(Mesh* mesh, bool enableLight);
 	void RenderSkybox();
 	void RenderFloor();
-	void RenderRightSide();
-	void RenderLeftSide();
-	void RenderBackSide();
-	void RenderFrontSide();
 	void RenderRoads();
-	void RenderLamps();
+
 
 	
 	//**sp**
@@ -258,6 +257,8 @@ private:
 	void RenderQuestion();
 	bool onpavement(int pavementint);
 	bool bloodui;
+	void RenderLightpole();
+	void RenderTaxi();
 
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);

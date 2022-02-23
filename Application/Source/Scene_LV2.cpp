@@ -147,260 +147,61 @@ void Scene_LV2::RenderFloor()
 	RenderMesh(meshList[GEO_QUAD], true);
 	modelStack.PopMatrix();
 }
-void Scene_LV2::RenderRightSide()
-{
-	//right side
-	modelStack.PushMatrix();
-	modelStack.Translate(-30, 0, 0);
-	modelStack.Rotate(0, 0, 0, 1);
-	modelStack.Scale(50, 50, 50);
-	RenderMesh(meshList[GEO_ROCKS], true);
-	modelStack.PopMatrix();
 
-	modelStack.PushMatrix();
-	modelStack.Translate(-20, 0, 35);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(60, 30, 30);
-	RenderMesh(meshList[GEO_TALLROCK], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-16, 0, 67);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 7, 10);
-	RenderMesh(meshList[GEO_GRAVE], true);
-	modelStack.PopMatrix();
-}
-void Scene_LV2::RenderLeftSide()
-{
-	//left side
-	modelStack.PushMatrix();
-	modelStack.Translate(40, 0, 0);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(50, 50, 50);
-	RenderMesh(meshList[GEO_ROCKS], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(40, 0, 60);
-	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Scale(100, 40, 40);
-	RenderMesh(meshList[GEO_TALLROCK], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(24, 0, -18);
-	modelStack.Rotate(95, 0, 1, 0);
-	modelStack.Scale(30, 30, 30);
-	RenderMesh(meshList[GEO_DEBRIS], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 55);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 7, 10);
-	RenderMesh(meshList[GEO_CRYPT], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 35);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 7, 10);
-	RenderMesh(meshList[GEO_CRYPT], true);
-	modelStack.PopMatrix();
-
-
-	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 45);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 10, 10);
-	RenderMesh(meshList[GEO_LAMP], true);
-	modelStack.PopMatrix();
-
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-24, 0, 73);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(10, 10, 10);
-	RenderMesh(meshList[GEO_LANTERN], true);
-	modelStack.PopMatrix();
-}
-void Scene_LV2::RenderBackSide()
-{
-	//back side
-	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -35);
-	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(50, 50, 50);
-	RenderMesh(meshList[GEO_TALLROCK], true);
-	modelStack.PopMatrix();
-}
-void Scene_LV2::RenderFrontSide()
-{
-	//in front
-	modelStack.PushMatrix();
-	modelStack.Translate(-0, 0, 110);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(100, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALL], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-60, 0, 110);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(100, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALL], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-100, 0, 60);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(100, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALL], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-15, 0, 65);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-20, 0, 95);
-	modelStack.Rotate(270, 0, 1, 0);
-	modelStack.Scale(20, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALLDAMAGED], true);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-70, 0, 20);
-	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(100, 10, 10);
-	RenderMesh(meshList[GEO_STONEWALL], true);
-	modelStack.PopMatrix();
-
-}
 void Scene_LV2::RenderRoads()
 {
-	//roads
+	//SPAWN
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 4);
+	modelStack.Translate(0, 0.1f, -222);
 	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.Scale(15.f, 0.1f, 100.f);
+	RenderMesh(meshList[GEO_ROADFORBULLETS], true);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 18);
+	modelStack.Translate(-37.4f, 6.f, -222);
 	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.Scale(21, 25, 1);
+	RenderMesh(meshList[GEO_TUNNEL], true);
 	modelStack.PopMatrix();
 
+	//first bunch
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 32);
+	modelStack.Translate(0, 0.1f, -157);
 	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.Scale(58.f, 0.1f, 100.f);
+	RenderMesh(meshList[GEO_ROADFORBULLETS], true);
 	modelStack.PopMatrix();
 
+	//second bunch
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 46);
+	modelStack.Translate(0.f, 0.1f, -96.5f);
 	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.Scale(34.f, 0.1f, 100.f);
+	RenderMesh(meshList[GEO_ROADFORBULLETS], true);
 	modelStack.PopMatrix();
 
-
+	//third bunch
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 60);
+	modelStack.Translate(0, 0.1f, -37.5f);
 	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.Scale(56.f, 0.1f, 100.f);
+	RenderMesh(meshList[GEO_ROADFORBULLETS], true);
 	modelStack.PopMatrix();
 
+	//fourth bunch
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, 74);
+	modelStack.Translate(0, 0.1f, 50.5f);
 	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
+	modelStack.Scale(92.f, 0.1f, 100.f);
+	RenderMesh(meshList[GEO_ROADFORBULLETS], true);
 	modelStack.PopMatrix();
 
-	modelStack.PushMatrix();
-	modelStack.Translate(-6, 0, 74);
-	modelStack.Rotate(-160, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
 
-	modelStack.PushMatrix();
-	modelStack.Translate(-10, 0, 78);
-	modelStack.Rotate(-160, 0, 1, 0);
-	modelStack.Scale(20, 5, 5);
-	RenderMesh(meshList[GEO_ROAD], true);
-	modelStack.PopMatrix();
+	
 }
-void Scene_LV2::RenderLamps()
-{
-	//my lamps
-	modelStack.PushMatrix();
-	{
-		modelStack.Translate(10, 1, 20);
-		modelStack.Scale(0.1, 0.1, 0.1);
 
-		//lamp base
-		modelStack.PushMatrix();
-		{
 
-			modelStack.Translate(0, -5, 0);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Scale(12, 12, 12);
-			RenderMesh(meshList[GEO_CONE], true);
-		}
-		modelStack.PopMatrix();
-
-		modelStack.Translate(0, 30, 0);
-		modelStack.Rotate(0, 0, 0, 1);
-		modelStack.Scale(4, 80, 4);
-		RenderMesh(meshList[GEO_CAPE], true);
-	}
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	{
-		modelStack.Translate(-11, 1, 67);
-		modelStack.Scale(0.1, 0.1, 0.1);
-
-		//lamp base
-		modelStack.PushMatrix();
-		{
-			modelStack.PushMatrix();
-			{
-				//light
-				modelStack.Translate(0, 75, 0);
-				modelStack.Scale(10, 10, 10);
-				RenderMesh(meshList[GEO_LAMPLIGHT], false);
-			}
-			modelStack.PopMatrix();
-
-			modelStack.Translate(0, -5, 0);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Scale(12, 12, 12);
-			RenderMesh(meshList[GEO_CONE], true);
-		}
-		modelStack.PopMatrix();
-
-		modelStack.Translate(0, 30, 0);
-		modelStack.Rotate(0, 0, 0, 1);
-		modelStack.Scale(4, 80, 4);
-		RenderMesh(meshList[GEO_CAPE], true);
-	}
-	modelStack.PopMatrix();
-
-}
 void Scene_LV2::RenderWall()
 {
 	//left wall
@@ -437,10 +238,12 @@ void Scene_LV2::RenderWall()
 }
 void Scene_LV2::RenderTunnel()
 {
+	//spawn
+	
 	//left side
 	modelStack.PushMatrix();
 	modelStack.Rotate(-90, 0, 1, 0);
-	modelStack.Translate(-180.f, 2.f, -37.4f);
+	modelStack.Translate(-180.f, 2.f, -37.1f);
 	modelStack.Scale(19, 27, 1);
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.1
 	modelStack.Translate(0.6f, 0.f, 0.1f);
@@ -451,13 +254,13 @@ void Scene_LV2::RenderTunnel()
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.4
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.5
-	modelStack.Translate(1.4f, 0.f, 0.1f);
+	modelStack.Translate(1.4f, 0.f, -0.79f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//2.1
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//2.2
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//2.3
-	modelStack.Translate(1.3f, 0.f, 0.1f);
+	modelStack.Translate(1.3f, 0.f, -0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.1
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.2
@@ -467,7 +270,7 @@ void Scene_LV2::RenderTunnel()
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.4
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.5
-	modelStack.Translate(1.3f, 0.f, 0.1f);
+	modelStack.Translate(1.3f, 0.f, -0.5f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//4.1
 	modelStack.Translate(0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//4.2
@@ -500,13 +303,13 @@ void Scene_LV2::RenderTunnel()
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.4
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//1.5
-	modelStack.Translate(-1.4f, 0.f, 0.1f);
+	modelStack.Translate(-1.4f, 0.f, -0.59f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//2.1
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//2.2
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//2.3
-	modelStack.Translate(-1.3f, 0.f, 0.1f);
+	modelStack.Translate(-1.3f, 0.f, -0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.1
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.2
@@ -516,7 +319,7 @@ void Scene_LV2::RenderTunnel()
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.4
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//3.5
-	modelStack.Translate(-1.3f, 0.f, 0.1f);
+	modelStack.Translate(-1.3f, 0.f, -0.5f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//4.1
 	modelStack.Translate(-0.6f, 0.f, 0.1f);
 	RenderMesh(meshList[GEO_TUNNEL], false);//4.2
@@ -566,7 +369,7 @@ void Scene_LV2::RenderPavement()
 		Application::yourself.set_die();
 	}
 
-	//lightpole here
+
 }
 void Scene_LV2::RenderNPC()
 {
@@ -845,29 +648,29 @@ void Scene_LV2::RenderQuestion()
 	else if (intnpc4== 3 && onpavement(4))
 		RenderMeshOnScreen(meshList[GEO_QUESTION4_WRONG], 40, 30, 45, 35);
 
-
+	
 }
 bool Scene_LV2::onpavement(int pavementint)
 {
 	if ((player.x < 34 && player.x > -34) && (player.z < -117 && player.z > -126) && pavementint == 1)
 	{
-		std::cout << "onpavement1";
+		//std::cout << "onpavement1";
 		return true;
 
 	}
 	else if ((player.x < 34 && player.x > -34) && (player.z < -67 && player.z > -78) && pavementint ==2)
 	{
-		std::cout << "onpavement2";
+		//std::cout << "onpavement2";
 		return true;
 	}
 	else if ((player.x < 34 && player.x > 2) && (player.z < 1 && player.z > -8) && pavementint == 3)
 	{
-		std::cout << "onpavement3";
+		//std::cout << "onpavement3";
 		return true;
 	}
-	else if ((player.x < -2 && player.x > -24) && (player.z < 1 && player.z > -8) && pavementint == 4)
+	else if ((player.x < -2 && player.x > -34) && (player.z < 1 && player.z > -8) && pavementint == 4)
 	{
-		std::cout << "onpavement4";
+		//std::cout << "onpavement4";
 		return true;
 	}
 	else
@@ -877,6 +680,24 @@ bool Scene_LV2::onpavement(int pavementint)
 
 
 	
+}
+void Scene_LV2::RenderLightpole()
+{
+	modelStack.PushMatrix();
+	modelStack.Translate(0, 0, -2);
+	modelStack.Scale(30, 30, 30);
+	RenderMesh(meshList[GEO_LIGHTPOLE], true);
+	modelStack.PopMatrix();
+}
+void Scene_LV2::RenderTaxi()
+{
+
+	modelStack.PushMatrix();
+	modelStack.Translate(0, 0, -222);
+	modelStack.Rotate(40, 0, 1, 0);
+	RenderMesh(meshList[GEO_TAXI], true);
+
+	modelStack.PopMatrix();
 }
 void Scene_LV2::RenderText(Mesh * mesh, std::string text, Color color)
 {
@@ -951,7 +772,7 @@ void Scene_LV2::Init()
 	glClearColor(0.5f, 0.0f, 0.7f, 0.0f);
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE);
 	// Enable blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -1068,7 +889,7 @@ void Scene_LV2::Init()
 	{
 		meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
 		meshList[GEO_QUAD] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
-		meshList[GEO_QUAD]->textureID = LoadTGA("Image//Stone_Floor.tga");
+		meshList[GEO_QUAD]->textureID = LoadTGA("Image//floor.tga");
 		meshList[GEO_CUBE] = MeshBuilder::GenerateCube("cube", Color(1, 1, 1), 1.f);
 		meshList[GEO_CUBE]->textureID = LoadTGA("Image//color.tga");
 		meshList[GEO_SPHERE] = MeshBuilder::GenerateSphere("sphere", Color(0, 0, 0), 10, 20, 1.f);
@@ -1137,6 +958,8 @@ void Scene_LV2::Init()
 
 		meshList[GEO_COIN_ICON] = MeshBuilder::GenerateQuad("coin_icon", Color(1, 1, 1), 1.f);
 		meshList[GEO_COIN_ICON]->textureID = LoadTGA("Image//coin_icon.tga");
+
+		meshList[GEO_LIGHTPOLE] = MeshBuilder::GenerateOBJMTL("lightpole", "OBJ//light_squareDouble.obj", "OBJ//light_squareDouble.mtl");
 		//-----------------------------------------------------------------------
 		//SP
 		/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
@@ -1195,13 +1018,12 @@ void Scene_LV2::Init()
 		meshList[GEO_TAXI_LOGO] = MeshBuilder::GenerateQuad("taxi_logo", Color(1, 1, 1), 1.f);
 		meshList[GEO_TAXI_LOGO]->textureID = LoadTGA("Image//taxi_logo.tga");
 
+		meshList[GEO_ROADFORBULLETS] = MeshBuilder::GenerateCube("roadforbullets", Color(0.5f, 0.4f, 0.43f), 1.f);
 
+		meshList[GEO_TAXI] = MeshBuilder::GenerateOBJ("coin", "OBJ//Taxi2.obj");
+		meshList[GEO_TAXI]->textureID = LoadTGA("Image//taxi.tga");
 
-
-
-
-
-
+	
 
 		Mtx44 projection;
 		projection.SetToPerspective(45.f, 4.f / 3.f, 0.1f, 1000.f);
@@ -1618,7 +1440,110 @@ void Scene_LV2::Update(double dt)
 		camera.setNPCinteract(3);
 	}
 
+	//Mouse Inputs
+	static bool bLButtonState = false;
+	if (!bLButtonState && Application::IsMousePressed(0))
+	{
+		bLButtonState = true;
+		//std::cout << "LBUTTON DOWN" << std::endl;
+		//Converting Viewport space to UI space
+		double x, y;
+		double BUTTON_LEFT;
+		Application::GetCursorPos(&x, &y);
+		unsigned w = Application::GetWindowWidth();
+		unsigned h = Application::GetWindowHeight();
+		float posX = x / w * 80; //convert (0,800) to (0,80)
+		float posY = 60 - (y / h * 60); //convert (600,0) to (0,60)
+		//std::cout << "cursorX:" << x << " , cursorY:" << y << std::endl;
+		std::cout << "posX:" << posX << " , posY:" << posY << std::endl;
+		//qn 1
+		if ((posX > 19 && posX < 58 && posY > 30 && posY < 35) && onpavement(1))//ans 1
+		{
+			std::cout << "ans 1 to q1" << std::endl;
+			intnpc1 = 3;
+			camera.setNPCinteract(3);
+		}
+		else if ((posX > 19 && posX < 58 && posY > 25 && posY < 28) && onpavement(1))//ans 2
+		{
+			std::cout << "ans 2 to q1" << std::endl;
+			intnpc1 = 2;
+			camera.setNPCinteract(2);
+		}
+		else if ((posX > 19 && posX < 58 && posY > 16 && posY < 21) && onpavement(1))//ans 3
+		{
+			std::cout << "ans 3 to q1" << std::endl;
+			intnpc1 = 3;
+			camera.setNPCinteract(3);
+		}
+		//qn2
+		if ((posX > 19 && posX < 58 && posY > 31 && posY < 34) && onpavement(2))//ans 1
+		{
+			std::cout << "ans 1 to q2" << std::endl;
+			intnpc2 = 3;
+			camera.setNPCinteract(3);
+		}
+		else if ((posX > 19 && posX < 58 && posY > 27 && posY < 30) && onpavement(2))//ans 2
+		{
+			std::cout << "ans 2 to q2" << std::endl;
+			intnpc2 = 2;
+			camera.setNPCinteract(2);
+		}
+		else if ((posX > 19 && posX < 58 && posY > 23 && posY < 26) && onpavement(2))//ans 3
+		{
+			std::cout << "ans 3 to q2" << std::endl;
+			intnpc2 = 3;
+			camera.setNPCinteract(3);
+		}
+		else if ((posX > 19 && posX < 58 && posY > 14 && posY < 21) && onpavement(2))//ans 4
+		{
+			std::cout << "ans 4 to q2" << std::endl;
+			intnpc2 = 3;
+			camera.setNPCinteract(3);
+		}
 
+		//qn3
+		if ((posX > 19 && posX < 58 && posY > 26 && posY < 29) && onpavement(3))//ans 1
+		{
+			std::cout << "ans 1 to q3" << std::endl;
+			intnpc3 = 3;
+			camera.setNPCinteract(3);
+
+		}
+		else if ((posX > 19 && posX < 58 && posY > 21 && posY < 25) && onpavement(3))//ans 2
+		{
+			std::cout << "ans 2 to q3" << std::endl;
+			intnpc3 = 3;
+			camera.setNPCinteract(3);
+		}
+		else if ((posX > 19 && posX < 58 && posY > 17 && posY < 20) && onpavement(3))//ans 3
+		{
+			std::cout << "ans 3 to q3" << std::endl;
+			intnpc3 = 2;
+			camera.setNPCinteract(2);
+		}
+		
+		//qn4
+		if ((posX > 19 && posX < 58 && posY > 25 && posY < 28) && onpavement(4))//ans 1
+		{
+			std::cout << "ans 1 to q4" << std::endl;
+			intnpc4 = 3;
+			camera.setNPCinteract(3);
+		}
+		else if ((posX > 19 && posX < 58 && posY > 21 && posY < 24) && onpavement(4))//ans 2
+		{
+			std::cout << "ans 2 to q4" << std::endl;
+			intnpc4 = 2;
+			camera.setNPCinteract(2);
+		}
+		
+
+		
+	}
+	else if (bLButtonState && !Application::IsMousePressed(0))
+	{
+		bLButtonState = false;
+		//std::cout << "LBUTTON UP" << std::endl;
+	}
 
 
 
@@ -1693,19 +1618,22 @@ void Scene_LV2::Render()
 	RenderSkybox();
 	RenderWall();
 	RenderFloor();
-	RenderTunnel();
+	
 	RenderPavement();
 	
+	RenderLightpole();
 	
 	RenderNPC();
 
 	RenderBullets();
 	
+	RenderRoads();
+
+	RenderTaxi();
+
+	RenderTunnel();
 
 	RenderQuestion();
-	
-
-	
 
 		modelStack.PushMatrix();
 		modelStack.Translate(-102, 1, 17);
@@ -1737,6 +1665,9 @@ void Scene_LV2::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], "Z:", Color(0, 1, 0), 2, 0, 2);
 	RenderTextOnScreen(meshList[GEO_TEXT], FPS, Color(0, 1, 0), 2, 47, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
+
+	if (intnpc1 == 1 || intnpc2 == 1 || intnpc3 == 1 || intnpc4 == 1)
+		RenderTextOnScreen(meshList[GEO_TEXT], "Click on the answer or press number", Color(0.1f, 0.4f, 0.6f), 2, 23, 51);
 
 
 	RenderTextOnScreen(meshList[GEO_TEXT], "$", Color(0, 1, 0), 2, 1, 50);
