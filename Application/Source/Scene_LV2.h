@@ -130,6 +130,7 @@ class Scene_LV2 : public Scene , public SP
 		GEO_GRAVE,
 		GEO_LANTERN,
 		GEO_BULLET,
+		GEO_BULLET2,
 		GEO_TEXT,
 		GEO_TEXT2,
 		GEO_LIGHTPOLE,
@@ -237,6 +238,7 @@ private:
 	float translation_x_bullet_fast;//speed 60
 	float translation_x_bullet_medium;//speed 30
 
+	int rotatebullet = 15;
 
 
 	Light light[2];
