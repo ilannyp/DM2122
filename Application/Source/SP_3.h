@@ -46,6 +46,7 @@ class SP_3 : public Scene
 		GEO_FULLHEALTH,
 		GEO_THREEHEALTH,
 		GEO_HALFHEALTH,
+		GEO_ONEHEALTH,
 		GEO_ZEROHEALTH,
 
 		//*********obj models*********
@@ -159,7 +160,10 @@ private:
 	void RenderLeftSide();
 	void RenderBackSide();
 	void RenderFrontSide();
-	void sword(Vector3 swordpos);
+	void sword1();
+	void sword2();
+	void sword3();
+	void sword4();
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
 	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
@@ -170,13 +174,14 @@ private:
 	//sp stuff
 	bool tut_text = true, scammaer_talk = false, 
 		sword1_enable = true, sword2_enable = true, sword3_enable = true, sword4_enable = true, 
-		blood_ui = false;
+		blood_ui = false,sword1_press=true, sword2_press = true, sword3_press = true, sword4_press = true,
+		collect_coin=false;
 	Vector3 scammer_pos = Vector3(-35, 0, -35);
-	Vector3 sword1_pos = Vector3(0, 0, 0);
-	Vector3 sword2_pos = Vector3(0, 0, 0);
-	Vector3 sword3_pos = Vector3(0, 0, 0);
-	Vector3 sword4_pos = Vector3(0, 0, 0);
-	std::string scammer_text;
+	Vector3 sword1_pos = Vector3(-75, 0, 0);
+	Vector3 sword2_pos = Vector3(-75, 0, 50);
+	Vector3 sword3_pos = Vector3(2, 0, 30);
+	Vector3 sword4_pos = Vector3(0, 0, -21);
+	std::string scammer_text, sword1_text, sword2_text, sword3_text, sword4_text;
 	//-------------------------------------//
 	float rotateAngle;
 	float translateX = 1;
@@ -187,7 +192,7 @@ private:
 
 	int playerhealth = 20;//slight change to make it into currency
 	int enemyz = 0;//i assume this is where the arrow line -irfan
-	int enemy_health = 4;
+	int enemy_health = 5;
 	int sword_count=4;
 	bool battlestart = false;
 	bool win = false;

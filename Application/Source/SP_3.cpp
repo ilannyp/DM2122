@@ -273,15 +273,129 @@ void SP_3::RenderFrontSide()
 	RenderMesh(meshList[GEO_STONEWALL], true);
 	modelStack.PopMatrix();
 }
-void SP_3::sword(Vector3 swordpos)
+void SP_3::sword1()
 {
-	sword1_pos.x = swordpos.x;
-	sword1_pos.y = swordpos.y;
-	sword1_pos.z = swordpos.z;
 	modelStack.PushMatrix();
 	{
 		//modelStack.Translate(-75, 0, 0);
 		modelStack.Translate(sword1_pos.x, sword1_pos.y, sword1_pos.z);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(0.5, 0.5, 0.5);
+		//sword hilt
+		modelStack.PushMatrix();
+		{
+			modelStack.Translate(0, 5, 0);
+			modelStack.Rotate(180, 1, 0, 0);
+			modelStack.Rotate(90, 0, 1, 0);
+			modelStack.Scale(3, 3, 3);
+			//blade
+			modelStack.PushMatrix();
+			{
+				modelStack.Translate(0, 0, 0);
+				modelStack.Rotate(90, 0, 1, 0);
+				modelStack.Scale(3, 20, 2);
+				modelStack.Scale(0.1, 0.1, 0.1);
+				RenderMesh(meshList[GEO_SWORD], true);
+			}
+			modelStack.PopMatrix();
+
+			modelStack.Translate(0, -1, 0);
+			modelStack.Rotate(0, 0, 0, 1);
+			modelStack.Scale(0.5, 8, 0.5);
+			modelStack.Scale(0.1, 0.1, 0.1);
+			RenderMesh(meshList[GEO_CYLINDER], true);
+		}
+		modelStack.PopMatrix();
+
+		modelStack.Scale(20, 20, 20);
+		RenderMesh(meshList[GEO_FIREBASKET], true);
+	}
+	modelStack.PopMatrix();
+}
+void SP_3::sword2()
+{
+	modelStack.PushMatrix();
+	{
+		//modelStack.Translate(-75, 0, 0);
+		modelStack.Translate(sword2_pos.x, sword2_pos.y, sword2_pos.z);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(0.5, 0.5, 0.5);
+		//sword hilt
+		modelStack.PushMatrix();
+		{
+			modelStack.Translate(0, 5, 0);
+			modelStack.Rotate(180, 1, 0, 0);
+			modelStack.Rotate(90, 0, 1, 0);
+			modelStack.Scale(3, 3, 3);
+			//blade
+			modelStack.PushMatrix();
+			{
+				modelStack.Translate(0, 0, 0);
+				modelStack.Rotate(90, 0, 1, 0);
+				modelStack.Scale(3, 20, 2);
+				modelStack.Scale(0.1, 0.1, 0.1);
+				RenderMesh(meshList[GEO_SWORD], true);
+			}
+			modelStack.PopMatrix();
+
+			modelStack.Translate(0, -1, 0);
+			modelStack.Rotate(0, 0, 0, 1);
+			modelStack.Scale(0.5, 8, 0.5);
+			modelStack.Scale(0.1, 0.1, 0.1);
+			RenderMesh(meshList[GEO_CYLINDER], true);
+		}
+		modelStack.PopMatrix();
+
+		modelStack.Scale(20, 20, 20);
+		RenderMesh(meshList[GEO_FIREBASKET], true);
+	}
+	modelStack.PopMatrix();
+}
+void SP_3::sword3()
+{
+	modelStack.PushMatrix();
+	{
+		//modelStack.Translate(-75, 0, 0);
+		modelStack.Translate(sword3_pos.x, sword3_pos.y, sword3_pos.z);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(0.5, 0.5, 0.5);
+		//sword hilt
+		modelStack.PushMatrix();
+		{
+			modelStack.Translate(0, 5, 0);
+			modelStack.Rotate(180, 1, 0, 0);
+			modelStack.Rotate(90, 0, 1, 0);
+			modelStack.Scale(3, 3, 3);
+			//blade
+			modelStack.PushMatrix();
+			{
+				modelStack.Translate(0, 0, 0);
+				modelStack.Rotate(90, 0, 1, 0);
+				modelStack.Scale(3, 20, 2);
+				modelStack.Scale(0.1, 0.1, 0.1);
+				RenderMesh(meshList[GEO_SWORD], true);
+			}
+			modelStack.PopMatrix();
+
+			modelStack.Translate(0, -1, 0);
+			modelStack.Rotate(0, 0, 0, 1);
+			modelStack.Scale(0.5, 8, 0.5);
+			modelStack.Scale(0.1, 0.1, 0.1);
+			RenderMesh(meshList[GEO_CYLINDER], true);
+		}
+		modelStack.PopMatrix();
+
+		modelStack.Scale(20, 20, 20);
+		RenderMesh(meshList[GEO_FIREBASKET], true);
+	}
+	modelStack.PopMatrix();
+}
+void SP_3::sword4()
+{
+	modelStack.PushMatrix();
+	{
+		//modelStack.Translate(-75, 0, 0);
+		modelStack.Translate(sword4_pos.x, sword4_pos.y, sword4_pos.z);
 		modelStack.Rotate(0, 0, 1, 0);
 		modelStack.Scale(0.5, 0.5, 0.5);
 		//sword hilt
@@ -384,7 +498,7 @@ void SP_3::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float s
 void SP_3::Init()
 {
 	sword1_enable=true;
-	enemy_health = 4;
+	enemy_health = 5;
 	sword_count = 4;
 	Application::yourself.set_currency(100);
 	Application::yourself.set_alive();
@@ -660,6 +774,8 @@ void SP_3::Init()
 	meshList[GEO_THREEHEALTH]->textureID = LoadTGA("Image//three_health.tga");
 	meshList[GEO_HALFHEALTH] = MeshBuilder::GenerateQuad("Half_health", Color(1, 1, 1), 1.f);
 	meshList[GEO_HALFHEALTH]->textureID = LoadTGA("Image//Half_health.tga");
+	meshList[GEO_ONEHEALTH] = MeshBuilder::GenerateQuad("One_health", Color(1, 1, 1), 1.f);
+	meshList[GEO_ONEHEALTH]->textureID = LoadTGA("Image//One_health.tga");
 	meshList[GEO_ZEROHEALTH] = MeshBuilder::GenerateQuad("Zero_health", Color(1, 1, 1), 1.f);
 	meshList[GEO_ZEROHEALTH]->textureID = LoadTGA("Image//Zero_health.tga");
 
@@ -756,73 +872,166 @@ void SP_3::Update(double dt)
 	{
 		light[0].position.y += (float)(LSPEED * dt);
 	}
+	static bool steal_coin = false;
+	static int steal_count = 0;
+	if (Application::IsKeyPressed('E'))
+	{
+		steal_coin = true;
+	}
+	else if (!Application::IsKeyPressed('E'))
+	{
+		steal_coin = false;
+	}
+	if (enemy_health<2 && scammerdis<10)
+	{
+		collect_coin = true;
+		if (steal_coin&& steal_count==0)
+		{
+			Application::yourself.currency_added(300);
+			steal_count++;
+		}
+	}
+	else
+	{
+		collect_coin = false;
+	}
 
+	static bool sword1_check = false;
+	static int sword1_count = 0;
+	if (Application::IsKeyPressed('E'))
+	{
+		sword1_check = true;
+	}
+	else if (!Application::IsKeyPressed('E'))
+	{
+		sword1_check = false;
+	}
 	if (sword1dis<=10)
 	{
-		if (!sword1state && Application::IsKeyPressed('E'))
+		if (sword1_enable)
 		{
-			sword1_enable = false;
-			enemy_health --;
-			sword1state = true;
+			sword1_text = "Press E to attack";
 		}
-		else if (sword1state && !Application::IsKeyPressed('E'))
+		else
 		{
-			sword1state = false;
+			sword1_text = "";
 		}
+		if (sword1_check)
+		{
+			sword1_count++;
+		}
+		if (sword1_press&& sword1_count>=1)
+		{
+			if (!sword1state /*&& Application::IsKeyPressed('E')*/)
+			{
+				sword1_enable = false;
+				enemy_health --;
+				sword1state = true;
+			}
+			else if (sword1state /*&& !Application::IsKeyPressed('E')*/)
+			{
+				sword1state = false;
+			}
+		}
+	}
+	else
+	{
+		sword1_text = "";
 	}
 
 	if (sword2dis <= 10)
 	{
-		if (!sword2state && Application::IsKeyPressed('E'))
+		if (sword2_enable)
 		{
-			sword2_enable = false;
-			enemy_health--;
-			sword2state = true;
+			sword2_text = "Press E to attack";
 		}
-		else if (sword2state && !Application::IsKeyPressed('E'))
+		else
 		{
-			sword2state = false;
+			sword2_text = "";
 		}
+		if (sword2_press)
+		{
+			if (!sword2state && Application::IsKeyPressed('E'))
+			{
+				sword2_enable = false;
+				enemy_health--;
+				sword2state = true;
+			}
+			else if (sword2state && !Application::IsKeyPressed('E'))
+			{
+				sword2state = false;
+			}
+
+		}
+	}
+	else
+	{
+		sword2_text = "";
 	}
 
 	if (sword3dis <= 10)
 	{
-		if (!sword3state && Application::IsKeyPressed('E'))
+		if (sword3_enable)
 		{
-			sword3_enable = false;
-			enemy_health--;
-			sword3state = true;
+			sword3_text = "Press E to attack";
 		}
-		else if (sword3state && !Application::IsKeyPressed('E'))
+		else
 		{
-			sword3state = false;
+			sword3_text = "";
 		}
+		//sword_text = "Press E to attack";
+		if (sword3_press)
+		{
+			if (!sword3state && Application::IsKeyPressed('E'))
+			{
+				sword3_enable = false;
+				enemy_health--;
+				sword3state = true;
+			}
+			else if (sword3state && !Application::IsKeyPressed('E'))
+			{
+				sword3state = false;
+			}
+
+		}
+	}
+	else
+	{
+		sword3_text = "";
 	}
 
 	if (sword4dis <= 10)
 	{
-		if (!sword4state && Application::IsKeyPressed('E'))
+		if (sword4_enable)
 		{
-			sword4_enable = false;
-			enemy_health--;
-			sword4state = true;
+			sword4_text = "Press E to attack";
 		}
-		else if (sword4state && !Application::IsKeyPressed('E'))
+		else
 		{
-			sword4state = false;
+			sword4_text = "";
 		}
-	}
-	/*******************************************************************************************************/
-	//tutorial boundary check
-	if (camera.position.x > -15 && camera.position.x<26 && camera.position.z>-14 && camera.position.z < 103)
-	{
-		tut_text = true;
+		if (sword4_press)
+		{
+			if (!sword4state && Application::IsKeyPressed('E'))
+			{
+				sword4_enable = false;
+				enemy_health--;
+				sword4state = true;
+			}
+			else if (sword4state && !Application::IsKeyPressed('E'))
+			{
+				sword4state = false;
+			}
+
+		}
 	}
 	else
 	{
-		tut_text = false;
+		sword4_text = "";
 	}
-	static bool scammaer_talk = false;
+	/*******************************************************************************************************/
+	//tutorial boundary check
+	//static bool scammaer_talk = false;
 	if (Application::IsKeyPressed('R'))
 	{
 		camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
@@ -838,13 +1047,21 @@ void SP_3::Update(double dt)
 	FPS = std::to_string(1.f / dt);
 	camerax = std::to_string(camera.position.x);
 	cameraz = std::to_string(camera.position.z);
-	std::cout << enemy_health << std::endl;
 }
 void SP_3::RenderScammer()
 {
 	modelStack.PushMatrix();
 	modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
-	//modelStack.Rotate(90, 0, 1, 0);
+	if (enemy_health<=1)
+	{
+		modelStack.Rotate(90, 1, 0, 0);
+		modelStack.Rotate(180, 0, 1, 0);
+		modelStack.Rotate(180, 0, 0, 1);
+	}
+	else
+	{
+
+	}
 	modelStack.Scale(5, 5, 5);
 	RenderMesh(meshList[GEO_HORNET], true);
 	modelStack.PopMatrix();
@@ -852,8 +1069,6 @@ void SP_3::RenderScammer()
 
 void SP_3::Render()
 {
-
-
 	// Render VBO here
 	//Clear color buffer every frame
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -959,24 +1174,35 @@ void SP_3::Render()
 
 	if (sword1_enable)
 	{
-		sword(Vector3(-75, 0, 0));
+		sword1();
 	}
 	else
 	{
+		sword1_press = false;
 	}
 	if (sword2_enable)
 	{
-		sword(Vector3(0, 0, 0));
+		sword2();
 	}
 	else
 	{
+		sword2_press = false;
 	}
 	if (sword3_enable)
 	{
-		sword(Vector3(-25, 0, 0));
+		sword3();
 	}
 	else
 	{
+		sword3_press = false;
+	}
+	if (sword4_enable)
+	{
+		sword4();
+	}
+	else
+	{
+		sword4_press = false;
 	}
 	
 
@@ -1021,19 +1247,23 @@ void SP_3::Render()
 		modelStack.PopMatrix();
 	}
 	//----------------------------sp--------------------------------------
-	if (enemy_health == 4)
+	if (enemy_health == 5)
 	{
 		RenderMeshOnScreen(meshList[GEO_FULLHEALTH], 45, 56, 35, 2);
 	}
-	else if (enemy_health == 3)
+	else if (enemy_health == 4)
 	{
 		RenderMeshOnScreen(meshList[GEO_THREEHEALTH], 45, 56, 35, 2);
 	}
-	else if (enemy_health == 2)
+	else if (enemy_health == 3)
 	{
 		RenderMeshOnScreen(meshList[GEO_HALFHEALTH], 45, 56, 35, 2);
 	}
-	else if (enemy_health == 1)
+	else if (enemy_health == 2)
+	{
+		RenderMeshOnScreen(meshList[GEO_ONEHEALTH], 45, 56, 35, 2);
+	}
+	else /*if (enemy_health == 2)*/
 	{
 		RenderMeshOnScreen(meshList[GEO_ZEROHEALTH], 45, 56, 35, 2);
 	}
@@ -1047,11 +1277,6 @@ void SP_3::Render()
 		}
 		i = 0;
 		blood_ui = false;
-	}
-	if (tut_text == true)
-	{
-		/*RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
-		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0, 1, 0), 2, 25, 53);*/
 	}
 	//----------------------------sp--------------------------------------
 
@@ -1072,7 +1297,22 @@ void SP_3::Render()
 
 	/*RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(playerhealth), Color(0, 1, 0), 2, 15, 50);
 	RenderTextOnScreen(meshList[GEO_TEXT], "Health:", Color(0, 1, 0), 2, 0, 50);*/
-	RenderTextOnScreen(meshList[GEO_TEXT], "give me head", Color(0, 1, 0), 2, 0, 10);
+	RenderTextOnScreen(meshList[GEO_TEXT], sword1_text, Color(0, 1, 0), 2, 0, 10);
+	RenderTextOnScreen(meshList[GEO_TEXT], sword2_text, Color(0, 1, 0), 2, 0, 10);
+	RenderTextOnScreen(meshList[GEO_TEXT], sword3_text, Color(0, 1, 0), 2, 0, 10);
+	RenderTextOnScreen(meshList[GEO_TEXT], sword4_text, Color(0, 1, 0), 2, 0, 10);
+	if (collect_coin)
+	{
+		RenderTextOnScreen(meshList[GEO_TEXT], "Press E to take coins back", Color(0, 1, 0), 2, 0, 10);
+	}
+	if (enemy_health>1)
+	{
+		RenderTextOnScreen(meshList[GEO_TEXT], "Use the swords to attack the scammer", Color(0, 1, 0), 2, 0, 8);
+	}
+	else
+	{
+		RenderTextOnScreen(meshList[GEO_TEXT], "Get your coins back from the scammer", Color(0, 1, 0), 2, 0, 8);
+	}
 	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
 
 
