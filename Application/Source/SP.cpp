@@ -42,16 +42,66 @@ void SP::RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey)
 void SP::RenderQuest()
 {
 	if(intquest == 1)
-		RenderTextOnScreen(meshList[GEO_TEXT],"Interact with the man", Color(0, 1, 0), 2, 0, 20);
-	if (intquest == 2)
-		RenderTextOnScreen(meshList[GEO_TEXT], "Collect coins", Color(0, 1, 0), 2, 0, 20);
+		RenderTextOnScreen(meshList[GEO_TEXT],"Interact with the man", Color(1, 1, 1) ,2, 2, 45);
 	if (intquest == 3)
-		RenderTextOnScreen(meshList[GEO_TEXT], "Give the coins to the person", Color(0, 1, 0), 2, 0, 20);
+		RenderTextOnScreen(meshList[GEO_TEXT], "Give the coins to the person", Color(1, 1, 1), 2, 2, 43);
 	if (intquest == 4)
-		RenderTextOnScreen(meshList[GEO_TEXT], "Get to the taxi, Carefull!", Color(0, 1, 0), 2, 0, 20);
+		RenderTextOnScreen(meshList[GEO_TEXT], "Get to the taxi, Carefull!", Color(1, 1, 1), 2, 2, 45);
 
 
 
+}
+
+void SP::RenderPress_E()
+{
+	if (coin1dis <= 10 && !coin1_collected)
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(coin1_pos.x - 1, coin1_pos.y + 1, coin1_pos.z - 2);
+		modelStack.Rotate(-90, 0, 1, 0);
+		modelStack.Scale(0.2f, 0.2f, 0.2f);
+		RenderText(meshList[GEO_TEXT],"Press E to collect", Color(1, 1, 1));
+		modelStack.PopMatrix();
+	}
+
+	if (coin2dis <= 12 && !coin2_collected)
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(coin2_pos.x - 2, coin2_pos.y + 1, coin2_pos.z - 3);
+		modelStack.Rotate(-100, 0, 1, 0);
+		modelStack.Scale(0.2f, 0.2f, 0.2f);
+		RenderText(meshList[GEO_TEXT], "Press E to collect", Color(1, 1, 1));
+		modelStack.PopMatrix();
+	}
+
+	if (coin3dis <= 10 && !coin3_collected)
+	{
+		modelStack.PushMatrix();
+		
+		modelStack.Translate(coin3_pos.x - 1 , coin3_pos.y + 1, coin3_pos.z -2);
+		modelStack.Rotate(-70, 0, 1, 0);
+		modelStack.Scale(0.2f, 0.2f, 0.2f);
+		RenderText(meshList[GEO_TEXT], "Press E to collect", Color(1, 1, 1));
+		modelStack.PopMatrix();
+	}
+	if (scammerdis <= 10 && intquest == 3)
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(-16.f,2.5f,83.f);
+		modelStack.Rotate(90, 0, 1, 0);
+		modelStack.Scale(0.2f, 0.2f, 0.2f);
+		RenderText(meshList[GEO_TEXT], "Press E to give the coins", Color(1, 1, 1));
+		modelStack.PopMatrix();
+	}
+	if (cabTP() <= 10)
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(cab_pos.x - 2,cab_pos.y+3, cab_pos.z + 4);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(0.2f, 0.2f, 0.2f);
+		RenderText(meshList[GEO_TEXT], "Press E to ride", Color(1, 1, 1));
+		modelStack.PopMatrix();
+	}
 }
 
 void SP::RenderMesh(Mesh* mesh, bool enableLight)
@@ -154,8 +204,6 @@ void SP::RenderSkybox()
 	modelStack.PopMatrix();
 }
 
-
-
 void SP::RenderFloor()
 {
 	modelStack.PushMatrix();
@@ -165,6 +213,20 @@ void SP::RenderFloor()
 	modelStack.Scale(1000, 1000, 1000);
 	RenderMesh(meshList[GEO_QUAD], true);
 	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-59.f, 0.01f, 66.f);
+	modelStack.Scale(53.f, 0.1f, 100.f);
+	RenderMesh(meshList[GEO_ROAD_FOR_BULLETS], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-100.f, 0.01f, 66.f);
+	modelStack.Scale(15.f, 0.1f, 100.f);
+	RenderMesh(meshList[GEO_ROAD_FOR_BULLETS], true);
+	modelStack.PopMatrix();
+
+
 }
 
 void SP::RenderRightSide()
@@ -176,27 +238,27 @@ void SP::RenderRightSide()
 	modelStack.Scale(50, 50, 50);
 	RenderMesh(meshList[GEO_ROCKS], true);
 	modelStack.PopMatrix();
-
+	
 	modelStack.PushMatrix();
 	modelStack.Translate(-20, 0, 35);
 	modelStack.Rotate(90, 0, 1, 0);
 	modelStack.Scale(60, 30, 30);
 	RenderMesh(meshList[GEO_TALLROCK], true);
 	modelStack.PopMatrix();
-
+	/*
 	modelStack.PushMatrix();
 	modelStack.Translate(-16, 0, 67);
 	modelStack.Rotate(0, 0, 1, 0);
 	modelStack.Scale(10, 7, 10);
 	RenderMesh(meshList[GEO_GRAVE], true);
-	modelStack.PopMatrix();
+	modelStack.PopMatrix();*/
 
-	modelStack.PushMatrix();
+	/*modelStack.PushMatrix();
 	modelStack.Translate(-24, 0, 73);
 	modelStack.Rotate(0, 0, 1, 0);
 	modelStack.Scale(10, 10, 10);
 	RenderMesh(meshList[GEO_LANTERN], true);
-	modelStack.PopMatrix();
+	modelStack.PopMatrix();*/
 
 	modelStack.PushMatrix();
 	modelStack.Translate(cab_pos.x, cab_pos.y, cab_pos.z);
@@ -238,7 +300,7 @@ void SP::RenderLeftSide()
 	RenderMesh(meshList[GEO_DEBRIS], true);
 	modelStack.PopMatrix();
 
-	modelStack.PushMatrix();
+	/*modelStack.PushMatrix();
 	modelStack.Translate(25, 0, 55);
 	modelStack.Rotate(0, 0, 1, 0);
 	modelStack.Scale(10, 7, 10);
@@ -250,11 +312,18 @@ void SP::RenderLeftSide()
 	modelStack.Rotate(0, 0, 1, 0);
 	modelStack.Scale(10, 7, 10);
 	RenderMesh(meshList[GEO_CRYPT], true);
+	modelStack.PopMatrix();*/
+
+	modelStack.PushMatrix();
+	modelStack.Translate(35, 0, 25);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(180, 10, 10);
+	RenderMesh(meshList[GEO_STONEWALL], true);
 	modelStack.PopMatrix();
 
 
 	modelStack.PushMatrix();
-	modelStack.Translate(25, 0, 45);
+	modelStack.Translate(7, 0, 45);
 	modelStack.Rotate(0, 0, 1, 0);
 	modelStack.Scale(10, 10, 10);
 	RenderMesh(meshList[GEO_LAMP], true);
@@ -266,17 +335,17 @@ void SP::RenderLeftSide()
 void SP::RenderBackSide()
 {
 	//back side
-	modelStack.PushMatrix();
+	/*modelStack.PushMatrix();
 	modelStack.Translate(0, 0, -81);
 	modelStack.Rotate(180, 0, 1, 0);
 	modelStack.Scale(50, 50, 50);
 	RenderMesh(meshList[GEO_TALLROCK], true);
-	modelStack.PopMatrix();
+	modelStack.PopMatrix();*/
 
 	modelStack.PushMatrix();
-	modelStack.Translate(-63, 0, -59);
+	modelStack.Translate(-25, 0, -59);
 	modelStack.Rotate(0, 0, 1, 0);
-	modelStack.Scale(108, 10, 10);
+	modelStack.Scale(158, 10, 10);
 	RenderMesh(meshList[GEO_STONEWALL], true);
 	modelStack.PopMatrix();
 }
@@ -347,6 +416,13 @@ void SP::RenderFrontSide()
 	modelStack.Rotate(90, 0, 1, 0);
 	modelStack.Scale(100, 10, 10);
 	RenderMesh(meshList[GEO_STONEWALL], true);
+	modelStack.PopMatrix();
+
+	//tunnel for the taxi
+	modelStack.PushMatrix();
+	modelStack.Translate(-98.f, 0.f, 16.1f);
+	modelStack.Scale(21, 25, 1);
+	RenderMesh(meshList[GEO_TUNNEL], true);
 	modelStack.PopMatrix();
 
 }
@@ -546,66 +622,66 @@ void SP::RenderBullet()
 	modelStack.PopMatrix();
 
 }
-void SP::RenderLamps()
-{
-	//my lamps
-	modelStack.PushMatrix();
-	{
-		modelStack.Translate(10, 1, 20);
-		modelStack.Scale(0.1, 0.1, 0.1);
-
-		//lamp base
-		modelStack.PushMatrix();
-		{
-
-			modelStack.Translate(0, -5, 0);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Scale(12, 12, 12);
-			RenderMesh(meshList[GEO_CONE], true);
-		}
-		modelStack.PopMatrix();
-
-		modelStack.Translate(0, 30, 0);
-		modelStack.Rotate(0, 0, 0, 1);
-		modelStack.Scale(4, 80, 4);
-		RenderMesh(meshList[GEO_CAPE], true);
-	}
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	{
-		modelStack.Translate(-11, 1, 67);
-		modelStack.Scale(0.1, 0.1, 0.1);
-
-		//lamp base
-		modelStack.PushMatrix();
-		{
-			modelStack.PushMatrix();
-			{
-				//light
-				modelStack.Translate(0, 75, 0);
-				modelStack.Scale(10, 10, 10);
-				RenderMesh(meshList[GEO_LAMPLIGHT], false);
-			}
-			modelStack.PopMatrix();
-
-			modelStack.Translate(0, -5, 0);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Rotate(0, 0, 0, 1);
-			modelStack.Scale(12, 12, 12);
-			RenderMesh(meshList[GEO_CONE], true);
-		}
-		modelStack.PopMatrix();
-
-		modelStack.Translate(0, 30, 0);
-		modelStack.Rotate(0, 0, 0, 1);
-		modelStack.Scale(4, 80, 4);
-		RenderMesh(meshList[GEO_CAPE], true);
-	}
-	modelStack.PopMatrix();
-
-}
+//void SP::RenderLamps()
+//{
+//	//my lamps
+//	modelStack.PushMatrix();
+//	{
+//		modelStack.Translate(10, 1, 20);
+//		modelStack.Scale(0.1, 0.1, 0.1);
+//
+//		//lamp base
+//		modelStack.PushMatrix();
+//		{
+//
+//			modelStack.Translate(0, -5, 0);
+//			modelStack.Rotate(0, 0, 0, 1);
+//			modelStack.Rotate(0, 0, 0, 1);
+//			modelStack.Scale(12, 12, 12);
+//			RenderMesh(meshList[GEO_CONE], true);
+//		}
+//		modelStack.PopMatrix();
+//
+//		modelStack.Translate(0, 30, 0);
+//		modelStack.Rotate(0, 0, 0, 1);
+//		modelStack.Scale(4, 80, 4);
+//		RenderMesh(meshList[GEO_CAPE], true);
+//	}
+//	modelStack.PopMatrix();
+//
+//	modelStack.PushMatrix();
+//	{
+//		modelStack.Translate(-11, 1, 67);
+//		modelStack.Scale(0.1, 0.1, 0.1);
+//
+//		//lamp base
+//		modelStack.PushMatrix();
+//		{
+//			modelStack.PushMatrix();
+//			{
+//				//light
+//				modelStack.Translate(0, 75, 0);
+//				modelStack.Scale(10, 10, 10);
+//				RenderMesh(meshList[GEO_LAMPLIGHT], false);
+//			}
+//			modelStack.PopMatrix();
+//
+//			modelStack.Translate(0, -5, 0);
+//			modelStack.Rotate(0, 0, 0, 1);
+//			modelStack.Rotate(0, 0, 0, 1);
+//			modelStack.Scale(12, 12, 12);
+//			RenderMesh(meshList[GEO_CONE], true);
+//		}
+//		modelStack.PopMatrix();
+//
+//		modelStack.Translate(0, 30, 0);
+//		modelStack.Rotate(0, 0, 0, 1);
+//		modelStack.Scale(4, 80, 4);
+//		RenderMesh(meshList[GEO_CAPE], true);
+//	}
+//	modelStack.PopMatrix();
+//
+//}
 void SP::RenderText(Mesh* mesh, std::string text, Color color)
 {
 
@@ -675,7 +751,6 @@ void SP::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float siz
 
 void SP::Init()
 {
-
 	Application::yourself.set_currency(100);
 	Application::yourself.set_alive();
 	Application::yourself.set_in_cab(false);
@@ -694,7 +769,7 @@ void SP::Init()
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
 
-	glEnable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE);
 
 	//Default to fill mode
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -789,10 +864,10 @@ void SP::Init()
 	light[0].spotDirection.Set(0.f, 1.f, 0.f);
 
 
-	light[1].type = Light::LIGHT_POINT;
-	light[1].position.Set(9.9f, 8.5f, 20.f);
+	light[1].type = Light::LIGHT_DIRECTIONAL;
+	light[1].position.Set(-100, 140, -100);
 	light[1].color.Set(0.4, 0.9, 0.7);
-	light[1].power = 1;
+	light[1].power = 0.5f;
 	light[1].kC = 1.f;
 	light[1].kL = 0.01f;
 	light[1].kQ = 0.001f;
@@ -859,8 +934,8 @@ void SP::Init()
 		meshList[GEO_QUAD] = MeshBuilder::GenerateQuad("quad", Color(0, 0, 0), 1.f);
 		meshList[GEO_QUAD]->textureID = LoadTGA("Image//floor.tga");
 
-		meshList[GEO_CUBE] = MeshBuilder::GenerateCube("cube", Color(1, 1, 1), 1.f);
-		meshList[GEO_CUBE]->textureID = LoadTGA("Image//color.tga");
+		/*meshList[GEO_CUBE] = MeshBuilder::GenerateCube("cube", Color(1, 1, 1), 1.f);
+		meshList[GEO_CUBE]->textureID = LoadTGA("Image//color.tga");*/
 
 		meshList[GEO_FRONT] = MeshBuilder::GenerateQuad("front", Color(1, 1, 1), 1.f);
 		meshList[GEO_FRONT]->textureID = LoadTGA("Image//miramar_ft.tga");
@@ -880,58 +955,60 @@ void SP::Init()
 		meshList[GEO_BACK] = MeshBuilder::GenerateQuad("back", Color(1, 1, 1), 1.f);
 		meshList[GEO_BACK]->textureID = LoadTGA("Image//miramar_bk.tga");
 
-		meshList[GEO_BLEND] = MeshBuilder::GenerateQuad("blend", Color(1, 1, 1), 1.f);
-		meshList[GEO_BLEND]->textureID = LoadTGA("Image//Grimm.tga");
+		/*meshList[GEO_BLEND] = MeshBuilder::GenerateQuad("blend", Color(1, 1, 1), 1.f);
+		meshList[GEO_BLEND]->textureID = LoadTGA("Image//Grimm.tga");*/
 
-		meshList[GEO_SPHERE] = MeshBuilder::GenerateSphere("sphere", Color(0, 0, 0), 10, 20, 1.f);			//limbs
+		//meshList[GEO_SPHERE] = MeshBuilder::GenerateSphere("sphere", Color(0, 0, 0), 10, 20, 1.f);			//limbs
 
-		meshList[GEO_LAMPLIGHT] = MeshBuilder::GenerateSphere("sphere", Color(0.4, 0.4, 0.4), 10, 20, 1.f);			//limbs
+		//meshList[GEO_LAMPLIGHT] = MeshBuilder::GenerateSphere("sphere", Color(0.4, 0.4, 0.4), 10, 20, 1.f);			//limbs
 
-		meshList[GEO_CYLINDER] = MeshBuilder::GenerateCylinder("cylinder", Color(1, 1, 1), 20, 1.f, 1.f);		//base of head
+		//meshList[GEO_CYLINDER] = MeshBuilder::GenerateCylinder("cylinder", Color(1, 1, 1), 20, 1.f, 1.f);		//base of head
 
-		meshList[GEO_HEMISPHERE] = MeshBuilder::GenerateHemisphere("hemisphere", Color(1, 1, 1), 10, 20, 1.f);  //ends of head
+		//meshList[GEO_HEMISPHERE] = MeshBuilder::GenerateHemisphere("hemisphere", Color(1, 1, 1), 10, 20, 1.f);  //ends of head
 
-		meshList[GEO_TORUS] = MeshBuilder::GenerateTorus("torus", Color(0.3, 0.3, 0.3), 20, 20, 1.f, 0.5f);			//cape head
+		//meshList[GEO_TORUS] = MeshBuilder::GenerateTorus("torus", Color(0.3, 0.3, 0.3), 20, 20, 1.f, 0.5f);			//cape head
 
-		meshList[GEO_CAPE] = MeshBuilder::GenerateCylinder("cylinder", Color(0.3, 0.3, 0.3), 20, 1.f, 1.f);		//base of head
+		//meshList[GEO_CAPE] = MeshBuilder::GenerateCylinder("cylinder", Color(0.3, 0.3, 0.3), 20, 1.f, 1.f);		//base of head
 
-		meshList[GEO_HALFTORUS] = MeshBuilder::GenerateHalfTorus("quartertorus", Color(1, 1, 1), 10, 20, 1.f, 0.5f);   //horns
+		//meshList[GEO_HALFTORUS] = MeshBuilder::GenerateHalfTorus("quartertorus", Color(1, 1, 1), 10, 20, 1.f, 0.5f);   //horns
 
-		meshList[GEO_CONE] = MeshBuilder::GenerateCone("cone", Color(0.3, 0.3, 0.3), 20, 1.f, 1.f);   //cape end
+		//meshList[GEO_CONE] = MeshBuilder::GenerateCone("cone", Color(0.3, 0.3, 0.3), 20, 1.f, 1.f);   //cape end
 
-		meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("sphere", Color(1, 1, 1), 10, 20, 1.f);		//light for lamppost
+		//meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("sphere", Color(1, 1, 1), 10, 20, 1.f);		//light for lamppost
 
 		meshList[GEO_HORNET] = MeshBuilder::GenerateOBJMTL("hornet", "OBJ//zombie.obj", "OBJ//zombie.mtl");
 
 		meshList[GEO_ROCKS] = MeshBuilder::GenerateOBJMTL("rocks", "OBJ//rocks.obj", "OBJ//rocks.mtl");
-		meshList[GEO_ROCKS]->textureID = LoadTGA("Image//rockwall.tga");
+		meshList[GEO_ROCKS]->textureID = LoadTGA("Image//rockwall_darkercolor.tga");
 		meshList[GEO_TALLROCK] = MeshBuilder::GenerateOBJMTL("tallrock", "OBJ//rocksTall.obj", "OBJ//rocksTall.mtl");
-		meshList[GEO_TALLROCK]->textureID = LoadTGA("Image//rockwall.tga");
+		meshList[GEO_TALLROCK]->textureID = LoadTGA("Image//rockwall_darkercolor.tga");
 
 		meshList[GEO_STONEWALL] = MeshBuilder::GenerateOBJMTL("stonewall", "OBJ//stoneWall.obj", "OBJ//stoneWall.mtl");
+		meshList[GEO_STONEWALL]->textureID = LoadTGA("Image//rockwall_darkercolor.tga");
 
 		meshList[GEO_STONEWALLDAMAGED] = MeshBuilder::GenerateOBJMTL("stonewalldamaged", "OBJ//stoneWallDamaged.obj", "OBJ//stoneWallDamaged.mtl");
+		meshList[GEO_STONEWALLDAMAGED]->textureID = LoadTGA("Image//rockwall_darkercolor.tga");
 
 		meshList[GEO_ROAD] = MeshBuilder::GenerateOBJMTL("road", "OBJ//road.obj", "OBJ//road.mtl");
 
-		meshList[GEO_CRYPT] = MeshBuilder::GenerateOBJMTL("crypt", "OBJ//crypt.obj", "OBJ//crypt.mtl");
+		//meshList[GEO_CRYPT] = MeshBuilder::GenerateOBJMTL("crypt", "OBJ//crypt.obj", "OBJ//crypt.mtl");
 
 		meshList[GEO_DEBRIS] = MeshBuilder::GenerateOBJMTL("debris", "OBJ//debris.obj", "OBJ//debris.mtl");
-		meshList[GEO_DEBRIS]->textureID = LoadTGA("Image//rockwall.tga");
+		meshList[GEO_DEBRIS]->textureID = LoadTGA("Image//rockwall_darkercolor.tga");
 
 		meshList[GEO_LAMP] = MeshBuilder::GenerateOBJMTL("debris", "OBJ//lightpostDouble.obj", "OBJ//lightpostDouble.mtl");
 
-		meshList[GEO_GRAVE] = MeshBuilder::GenerateOBJMTL("grave", "OBJ//grave.obj", "OBJ//grave.mtl");
+		//meshList[GEO_GRAVE] = MeshBuilder::GenerateOBJMTL("grave", "OBJ//grave.obj", "OBJ//grave.mtl");
 
-		meshList[GEO_LANTERN] = MeshBuilder::GenerateOBJMTL("lantern", "OBJ//lanternCandle.obj", "OBJ//lanternCandle.mtl");
+		//meshList[GEO_LANTERN] = MeshBuilder::GenerateOBJMTL("lantern", "OBJ//lanternCandle.obj", "OBJ//lanternCandle.mtl");
 
 		meshList[GEO_BULLET] = MeshBuilder::GenerateOBJMTL("bullet", "OBJ//ironFenceBar.obj", "OBJ//ironFenceBar.mtl");
 
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 		meshList[GEO_TEXT]->textureID = LoadTGA("Image//ArialFont.tga");
 
-		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
-		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
+		//meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
+		//meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
 	}
 
 	meshList[GEO_COIN] = MeshBuilder::GenerateOBJMTL("coin", "OBJ//coin.obj", "OBJ//coin.mtl");
@@ -950,6 +1027,13 @@ void SP::Init()
 	meshList[GEO_TAXI] = MeshBuilder::GenerateOBJ("coin", "OBJ//Taxi2.obj");
 	meshList[GEO_TAXI]->textureID = LoadTGA("Image//taxi.tga");
 
+	meshList[GEO_TUNNEL] = MeshBuilder::GenerateQuad("tunnel", Color(1, 1, 1), 1.f);
+	meshList[GEO_TUNNEL]->textureID = LoadTGA("Image//tunnel.tga");
+
+	meshList[GEO_ROAD_FOR_BULLETS] = MeshBuilder::GenerateCube("roadforbullets", Color(0.5f, 0.4f, 0.43f), 1.f);
+
+	/*meshList[GEO_BUILDINGD] = MeshBuilder::GenerateOBJMTL("buildind", "OBJ//low_buildingD.obj", "OBJ//low_buildingD.mtl");
+	meshList[GEO_BUILDINGJ] = MeshBuilder::GenerateOBJMTL("buildinj	", "OBJ//low_buildingJ.obj", "OBJ//low_buildingJ.mtl");*/
 
 	//-----------------------------------------------------------------------
 	//SP
@@ -992,41 +1076,21 @@ void SP::Init()
 	scammed = false;
 
 
-
-
-
-
-
-
 }
 
 void SP::Update(double dt)
 {
-	Vector3 scammerpos = scammer_pos - camera.position;
-	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
+	scammerpos = scammer_pos - camera.position;
+	scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
 	Vector3 coin1pos = coin1_pos - camera.position;
-	float coin1dis = sqrt(pow(coin1pos.x, 2) + pow(coin1pos.y, 2) + pow(coin1pos.z, 2));
+	coin1dis = sqrt(pow(coin1pos.x, 2) + pow(coin1pos.y, 2) + pow(coin1pos.z, 2));
 	Vector3 coin2pos = coin2_pos - camera.position;
-	float coin2dis = sqrt(pow(coin2pos.x, 2) + pow(coin2pos.y, 2) + pow(coin2pos.z, 2));
+	coin2dis = sqrt(pow(coin2pos.x, 2) + pow(coin2pos.y, 2) + pow(coin2pos.z, 2));
 	Vector3 coin3pos = coin3_pos - camera.position;
-	float coin3dis = sqrt(pow(coin3pos.x, 2) + pow(coin3pos.y, 2) + pow(coin3pos.z, 2));
+	coin3dis = sqrt(pow(coin3pos.x, 2) + pow(coin3pos.y, 2) + pow(coin3pos.z, 2));
 
 	count++;
 	
-	if (Application::IsKeyPressed('I'))
-		light[0].position.z -= (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('K'))
-		light[0].position.z += (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('J'))
-		light[0].position.x -= (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('L'))
-		light[0].position.x += (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('O'))
-		light[0].position.y -= (float)(LSPEED * dt);
-	if (Application::IsKeyPressed('P'))
-	{
-		light[0].position.y += (float)(LSPEED * dt);
-	}
 
 
 
@@ -1077,6 +1141,7 @@ void SP::Update(double dt)
 	{
 		scammaer_talk = false;
 	}
+
 	if (scammerdis <= 10)
 	{
 		if (scammaer_talk)
@@ -1122,16 +1187,14 @@ void SP::Update(double dt)
 		if (Application::IsKeyPressed('E'))
 		{
 			Application::yourself.set_coin1_obtained(true);
+			coin1_collected = true;
 		}
 
 		if (Application::yourself.get_coin1_obtained() == true)
 		{
 			Application::yourself.set_coin1_enabled(true);
 		}
-		else
-		{
-			scammer_text = "Press E to collect";
-		}
+	
 		if (Application::IsKeyPressed('E') && Application::yourself.get_coin1_obtained() == true)
 		{
 			if (Application::yourself.get_currency_added_from_C1() == false)
@@ -1149,16 +1212,15 @@ void SP::Update(double dt)
 		if (Application::IsKeyPressed('E'))
 		{
 			Application::yourself.set_coin2_obtained(true);
+			coin2_collected = true;
 		}
 
 		if (Application::yourself.get_coin2_obtained() == true)
 		{
 			Application::yourself.set_coin2_enabled(true);
 		}
-		else
-		{
-			scammer_text = "Press E to collect";
-		}
+		
+		
 		if (Application::IsKeyPressed('E') && Application::yourself.get_coin2_obtained() == true)
 		{
 			if (Application::yourself.get_currency_added_from_C2() == false)
@@ -1176,6 +1238,7 @@ void SP::Update(double dt)
 		if (Application::IsKeyPressed('E'))
 		{
 			Application::yourself.set_coin3_obtained(true);
+			coin3_collected = true;
 		}
 
 		if (Application::yourself.get_coin3_obtained() == true)
@@ -1207,10 +1270,7 @@ void SP::Update(double dt)
 		{
 			Application::yourself.set_in_cab(true);
 		}
-		else
-		{
-			scammer_text = "Press E to ride";
-		}
+		
 	}
 
 	//std::cout << coin1_count << std::endl;
@@ -1220,7 +1280,7 @@ void SP::Update(double dt)
 
 
 
-
+	
 
 	// 3rd interaction : fighting
 	if (Application::yourself.get_first_scammed() == true)
@@ -1284,7 +1344,7 @@ void SP::Update(double dt)
 		|| ((bullet8.x + 2) > camera.position.x && (bullet8.x - 2) < camera.position.x && (bullet8.z + 4) > camera.position.z && (bullet8.z - 2) < camera.position.z))
 	{
 		//yourself.set_currency(yourself.get_currency() - 1);
-		Application::yourself.set_currency(Application::yourself.get_currency() - 1);
+		Application::yourself.set_currency(Application::yourself.get_currency() - 1.5f);
 		blood_ui = true;
 	}
 	if (Application::yourself.get_currency() <= 0)
@@ -1486,10 +1546,10 @@ void SP::Render()
 	RenderMesh(meshList[GEO_LIGHTBALL], false);
 	modelStack.PopMatrix();*/
 
-	modelStack.PushMatrix();
+	/*modelStack.PushMatrix();
 	modelStack.Translate(light[1].position.x, light[1].position.y, light[1].position.z);
 	RenderMesh(meshList[GEO_LIGHTBALL], true);
-	modelStack.PopMatrix();
+	modelStack.PopMatrix();*/
 
 	/*modelStack.PushMatrix();
 	modelStack.Translate(light[2].position.x, light[2].position.y, light[2].position.z);
@@ -1498,27 +1558,36 @@ void SP::Render()
 
 	RenderSkybox();
 
-	RenderFloor();
-
-	RenderScammer();
-
 	RenderRightSide();
 
 	RenderLeftSide();
 
 	RenderBackSide();
 
+	RenderFloor();
+
 	RenderFrontSide();
-
-	RenderPath();
-
-	RenderBullet();
-
-	RenderLamps();
 
 	
 
+	RenderScammer();
 
+	//RenderLamps();
+	
+
+	
+
+	RenderPath();
+	
+	
+
+	RenderBullet();
+
+	
+
+	RenderPress_E();
+
+	
 
 
 	if (die)
@@ -1574,10 +1643,12 @@ void SP::Render()
 	}
 	if (tut_text == true)
 	{
-		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
-		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0, 1, 0), 2, 25, 53);
+		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0.3f, 0.4f, 0.2f), 2, 30, 55);
+		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0.3f, 0.4f, 0.2f), 2, 25, 53);
+		RenderTextOnScreen(meshList[GEO_TEXT], "<-- is your health..", Color(0.0f, 0.9f, 0.5f), 2, 6, 50);
+		RenderTextOnScreen(meshList[GEO_TEXT], "do not let it go to 0 or u will die of bankrupt", Color(0.0f, 0.9f, 0.5f), 2, 6, 48);
 	}
-	//modelStack.PushMatrix();
+	//modelStack.PushMatrix();// 
 	////scale, translate, rotate
 	//modelStack.Translate(0, 3, 18);
 	//modelStack.Rotate(90, 0, 1, 0);
@@ -1619,7 +1690,8 @@ void SP::Render()
 	//RenderTextOnScreen(meshList[GEO_TEXT], ss.str(), Color(1, 1, 1), 2, 1, 40);
 
 	//amt of coins collected on screen
-	RenderTextOnScreen(meshList[GEO_TEXT], "Coins collected : " + std::to_string(Application::yourself.get_coins_collected()) + " / 3", Color(0, 1, 0), 2, 2, 45);
+	if(intquest > 1 && intquest < 4)
+		RenderTextOnScreen(meshList[GEO_TEXT], "Coins collected : " + std::to_string(Application::yourself.get_coins_collected()) + " / 3", Color(0, 1, 0), 2, 2, 45);
 
 	if (count < 150)
 	{

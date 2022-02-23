@@ -17,32 +17,32 @@ class SP : public Scene
 		GEO_TRIANGLE_1 = 0,
 		GEO_AXES,
 		GEO_QUAD,
-		GEO_CUBE,
+		//GEO_CUBE,
 		GEO_CIRCLE,
-		GEO_SPHERE,
-		GEO_LAMPLIGHT,
-		GEO_LIGHTBALL,
-		GEO_CYLINDER,
-		GEO_CAPE,
-		GEO_CONE,
-		GEO_HEMISPHERE,
-		GEO_TORUS,
-		GEO_HALFTORUS,
+		//GEO_SPHERE,
+		//GEO_LAMPLIGHT,
+		//GEO_LIGHTBALL,
+		//GEO_CYLINDER,
+		//GEO_CAPE,
+		//GEO_CONE,
+		//GEO_HEMISPHERE,
+		//GEO_TORUS,
+		//GEO_HALFTORUS,
 		GEO_LEFT,
 		GEO_RIGHT,
 		GEO_TOP,
 		GEO_BOTTOM,
 		GEO_FRONT,
 		GEO_BACK,
-		GEO_BLEND,
+		//GEO_BLEND,
 		//**********SP************
 		GEO_SCAMMER,
 		GEO_BLOOD,
 		GEO_LV1,
 		GEO_COIN,
 		GEO_COIN_ICON,
-
-
+		GEO_TUNNEL,
+		GEO_ROAD_FOR_BULLETS,
 
 		GEO_TAXI,
 		//*********obj models*********
@@ -52,16 +52,17 @@ class SP : public Scene
 		GEO_TALLROCK,
 		GEO_STONEWALL,
 		GEO_STONEWALLDAMAGED,
-		GEO_CRYPT,
+		//GEO_CRYPT,
 		GEO_ROAD,
 		GEO_DEBRIS,
 		GEO_LAMP,
-		GEO_GRAVE,
-		GEO_LANTERN,
+		//GEO_GRAVE,
+		//GEO_LANTERN,
 		GEO_BULLET,
 		GEO_TEXT,
-		GEO_TEXT2,
-
+		//GEO_TEXT2,
+		/*GEO_BUILDINGD,
+		GEO_BUILDINGJ,*/
 
 
 
@@ -181,6 +182,19 @@ private:
 	bool interactednpc;
 	bool scammed;
 	void RenderQuest();
+	void RenderPress_E();
+	Vector3 scammerpos;
+	bool coin1_collected;
+	bool coin2_collected;
+	bool coin3_collected;
+
+	float scammerdis;
+	float coin1dis;
+	float coin2dis;
+	float coin3dis;
+
+	
+	
 	//-------------------------------------//
 	float rotateAngle;
 	float translateX = 1;
