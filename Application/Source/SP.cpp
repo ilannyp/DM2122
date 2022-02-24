@@ -1052,8 +1052,9 @@ void SP::Init()
 
 	//-----------------------------------------------------------------------
 	//SP
-	/*meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scam","OBJ//scammer.obj");
-	meshList[GEO_SCAMMER]->textureID = LoadTGA("Image//scammer.tga");*/
+	meshList[GEO_SCAMMER] = MeshBuilder::GenerateOBJ("scammer", "OBJ//scammer.obj");
+	meshList[GEO_SCAMMER]->textureID = LoadTGA("Image//scammer.tga");
+
 	//An array of 3 vectors which represents the colors of the 3 vertices
 
 	Mtx44 projection;
@@ -1425,11 +1426,17 @@ void SP::RenderScammer()
 	{
 		modelStack.PushMatrix();
 		modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
-		//modelStack.Translate(0, 0, 30);
-		modelStack.Rotate(90, 0, 1, 0);
-		modelStack.Scale(5, 5, 5);
-		RenderMesh(meshList[GEO_HORNET], true);
+		modelStack.Scale(0.5, 0.5, 0.5);
+		RenderMesh(meshList[GEO_SCAMMER], true);
 		modelStack.PopMatrix();
+
+		//modelStack.PushMatrix();
+		//modelStack.Translate(scammer_pos.x, scammer_pos.y, scammer_pos.z);
+		////modelStack.Translate(0, 0, 30);
+		//modelStack.Rotate(90, 0, 1, 0);
+		//modelStack.Scale(5, 5, 5);
+		//RenderMesh(meshList[GEO_HORNET], true);
+		//modelStack.PopMatrix();
 	}
 
 	if (Application::yourself.get_coin1_enabled() == false)
