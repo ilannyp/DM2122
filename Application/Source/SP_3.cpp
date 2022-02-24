@@ -1394,6 +1394,8 @@ void SP_3::Update(double dt)
 		if (steal_coin&& steal_count==0)
 		{
 			Application::yourself.currency_added(300);
+			Application::yourself.set_win(true);
+			Application::yourself.set_die();
 			steal_count++;
 		}
 	}

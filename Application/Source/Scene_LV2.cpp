@@ -773,7 +773,8 @@ void Scene_LV2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, fl
 }
 void Scene_LV2::Init()
 {
-	
+	camera.ZOOM_SPEED = 20.f;
+	camera.CAMERA_SPEED = 80.f;
 
 	
 	// Set background colour to light purple
