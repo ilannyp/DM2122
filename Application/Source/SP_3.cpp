@@ -1313,6 +1313,12 @@ void SP_3::Init()
 
 void SP_3::Update(double dt)
 {
+	if (Application::yourself.get_currency() <= 0)
+	{
+		//Application::IsKeyPressed(VK_F3) == true;
+		Application::yourself.set_die();
+	}
+
 	Vector3 scammerpos = scammer_pos - camera.position;
 	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
 	Vector3 sword1pos = sword1_pos - camera.position;
