@@ -430,6 +430,7 @@ void SP::RenderFrontSide()
 }
 void SP::RenderPath()
 {
+
 	//roads
 	modelStack.PushMatrix();
 	modelStack.Translate(0, 0, 4);

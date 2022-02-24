@@ -2431,6 +2431,7 @@ void SP_3::Render()
 	}
 	else if (enemy_health == 2)
 	{
+		Phase4Attack();
 		RenderMeshOnScreen(meshList[GEO_ONEHEALTH], 45, 56, 35, 2);
 	}
 	else /*if (enemy_health == 2)*/

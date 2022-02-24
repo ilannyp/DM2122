@@ -1727,14 +1727,12 @@ void Scene_LV2::Render()
 	
 	RenderNPC();
 
-	RenderBullets();
 	
 	RenderRoads();
 
 	RenderTaxi();
 
 	RenderTunnel();
-
 
 	RenderBullets();
 
