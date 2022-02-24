@@ -772,10 +772,18 @@ void Scene_LV2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, fl
 	glEnable(GL_DEPTH_TEST); //uncomment for RenderTextOnScreen
 }
 void Scene_LV2::Init()
-{
+{ 
 	camera.ZOOM_SPEED = 20.f;
 	camera.CAMERA_SPEED = 80.f;
+	count2 = 0;
+	move_car = 1;
 
+	Application::yourself.set_shop1(false);
+	Application::yourself.set_shop2(false);
+	Application::yourself.set_shop3(false);
+	Application::yourself.set_shop4(false);
+	/*count2, count3 = 0;*/
+	Application::yourself.set_in_cab(false);
 	
 	// Set background colour to light purple
 	glClearColor(0.5f, 0.0f, 0.7f, 0.0f);
@@ -1160,9 +1168,9 @@ void Scene_LV2::Update(double dt)
 	{
 		count3++;
 	}
-	std::cout << count3 << std::endl;
+	//std::cout << count3 << std::endl;
 	move_car++;
-	
+	std::cout << count2 << std::endl;
 	
 	npc1x = translatenpc;
 	npc2x = translatenpc2;

@@ -1239,6 +1239,8 @@ void SP_3::Init()
 	steal_count = 0;
 	enemy_health = 5;
 	sword_count = 4;
+	Application::yourself.set_win(false);
+	Application::yourself.set_alive();
 	/*Application::yourself.set_currency(100);
 	Application::yourself.set_alive();
 	Application::yourself.set_in_cab(false);
