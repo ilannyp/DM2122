@@ -1497,7 +1497,7 @@ void SP_3::Init()
 		meshList[GEO_BULLET4]->textureID = LoadTGA("Image//scam2.tga");
 
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
-		meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
+		meshList[GEO_TEXT]->textureID = LoadTGA("Image//ArialFont.tga");
 
 
 
