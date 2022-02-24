@@ -999,7 +999,15 @@ void SP_3::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float s
 
 void SP_3::Init()
 {
-	sword1_enable=true;
+	sword1_enable = true;
+	sword2_enable = true;
+	sword3_enable = true;
+	sword4_enable = true;
+	sword1_press = true;
+	sword2_press = true;
+	sword3_press = true;
+	sword4_press = true;
+	steal_count = 0;
 	enemy_health = 5;
 	sword_count = 4;
 	/*Application::yourself.set_currency(100);
@@ -1379,7 +1387,6 @@ void SP_3::Update(double dt)
 		light[0].position.y += (float)(LSPEED * dt);
 	}
 	static bool steal_coin = false;
-	static int steal_count = 0;
 	if (Application::IsKeyPressed('E'))
 	{
 		steal_coin = true;
@@ -1401,18 +1408,50 @@ void SP_3::Update(double dt)
 	{
 		collect_coin = false;
 	}
-
-	static bool sword1_check = false;
-	static int sword1_count = 0;
-	if (Application::IsKeyPressed('E'))
-	{
-		sword1_check = true;
-	}
-	else if (!Application::IsKeyPressed('E'))
-	{
-		sword1_check = false;
-	}
-	if (sword1dis<=10)
+	std::cout << steal_count << std::endl;
+	//static bool sword1_check = false;
+	//static int sword1_count = 0;
+	//if (Application::IsKeyPressed('E'))
+	//{
+	//	sword1_check = true;
+	//}
+	//else if (!Application::IsKeyPressed('E'))
+	//{
+	//	sword1_check = false;
+	//}
+	//if (sword1dis<=10)
+	//{
+	//	if (sword1_enable)
+	//	{
+	//		sword1_text = "Press E to attack";
+	//	}
+	//	else
+	//	{
+	//		sword1_text = "";
+	//	}
+	//	if (sword1_check)
+	//	{
+	//		sword1_count++;
+	//	}
+	//	if (sword1_press&& sword1_count>=1)
+	//	{
+	//		if (!sword1state /*&& Application::IsKeyPressed('E')*/)
+	//		{
+	//			sword1_enable = false;
+	//			enemy_health --;
+	//			sword1state = true;
+	//		}
+	//		else if (sword1state /*&& !Application::IsKeyPressed('E')*/)
+	//		{
+	//			sword1state = false;
+	//		}
+	//	}
+	//}
+	//else
+	//{
+	//	sword1_text = "";
+	//}
+	if (sword1dis <= 10)
 	{
 		if (sword1_enable)
 		{
@@ -1422,22 +1461,19 @@ void SP_3::Update(double dt)
 		{
 			sword1_text = "";
 		}
-		if (sword1_check)
+		if (sword1_press)
 		{
-			sword1_count++;
-		}
-		if (sword1_press&& sword1_count>=1)
-		{
-			if (!sword1state /*&& Application::IsKeyPressed('E')*/)
+			if (!sword1state && Application::IsKeyPressed('E'))
 			{
 				sword1_enable = false;
-				enemy_health --;
+				enemy_health--;
 				sword1state = true;
 			}
-			else if (sword1state /*&& !Application::IsKeyPressed('E')*/)
+			else if (sword1state && !Application::IsKeyPressed('E'))
 			{
 				sword1state = false;
 			}
+
 		}
 	}
 	else

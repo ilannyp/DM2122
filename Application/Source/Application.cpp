@@ -227,7 +227,11 @@ void Application::Run()
 			scene = scene4;
 			scene->Init();
 		}
-
+		if (IsKeyPressed(VK_F4))
+		{
+			scene = scene5;
+			scene->Init();
+		}
 
 
 
