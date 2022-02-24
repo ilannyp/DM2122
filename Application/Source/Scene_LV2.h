@@ -88,6 +88,7 @@ class Scene_LV2 : public Scene , public SP
 		GEO_TUNNEL,
 		GEO_BLOOD,
 		GEO_LV2,
+		GEO_LV3,
 		GEO_TAXI_LOGO,
 		GEO_ROADFORBULLETS,
 		GEO_TAXI,
@@ -293,7 +294,7 @@ public:
 	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
 	Vector3 tp_sphere = Vector3 (1, 3, 125);
 	Vector3 shop_shpere = Vector3(33, 0, 134);
-	int count2 = 0;
+	int count2,count3 = 0;
 	int move_car = 1;
 
 	Vector3 shoppos;
@@ -302,6 +303,8 @@ public:
 	bool shop_open = false;
 	bool display_shop_ui = false;
 	bool scammed_screen = false;
+	bool lv3_cutscene = false;
+	bool count3_start = false;
 };
 
 #endif

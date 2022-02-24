@@ -366,18 +366,7 @@ void Scene_LV2::RenderPavement()
 	RenderMesh(meshList[GEO_SHOP], true);
 	modelStack.PopMatrix();
 
-	Vector3 spherepos = tp_sphere - camera.position;
-	float spheredis = sqrt(pow(spherepos.x, 2) + pow(spherepos.y, 2) + pow(spherepos.z, 2));
-
-	shoppos = shop_shpere - camera.position;
-	shopdis = sqrt(pow(shoppos.x, 2) + pow(shoppos.y, 2) + pow(shoppos.z, 2));
-
-	if (spheredis <= 5)
-	{
-		/*Application::yourself.set_win(true);
-		Application::yourself.set_die();*/
-		Application::yourself.set_go_lv3(true);
-	}
+	
 
 
 }
@@ -1050,6 +1039,9 @@ void Scene_LV2::Init()
 		meshList[GEO_LV2] = MeshBuilder::GenerateQuad("lv2", Color(1, 1, 1), 1.f);
 		meshList[GEO_LV2]->textureID = LoadTGA("Image//lv2.tga");
 
+		meshList[GEO_LV3] = MeshBuilder::GenerateQuad("lv3", Color(1, 1, 1), 1.f);
+		meshList[GEO_LV3]->textureID = LoadTGA("Image//lv3.tga");
+
 		meshList[GEO_TAXI_LOGO] = MeshBuilder::GenerateQuad("taxi_logo", Color(1, 1, 1), 1.f);
 		meshList[GEO_TAXI_LOGO]->textureID = LoadTGA("Image//taxi_logo.tga");
 
@@ -1163,6 +1155,11 @@ void Scene_LV2::Init()
 void Scene_LV2::Update(double dt)
 {
 	count2++;
+	if (count3_start == true)
+	{
+		count3++;
+	}
+	std::cout << count3 << std::endl;
 	move_car++;
 	
 	
@@ -1815,6 +1812,33 @@ void Scene_LV2::Render()
 		RenderMeshOnScreen(meshList[GEO_TAXI_LOGO], (move_car), 2, 45, 35);
 	}
 
+	Vector3 spherepos = tp_sphere - camera.position;
+	float spheredis = sqrt(pow(spherepos.x, 2) + pow(spherepos.y, 2) + pow(spherepos.z, 2));
+
+	shoppos = shop_shpere - camera.position;
+	shopdis = sqrt(pow(shoppos.x, 2) + pow(shoppos.y, 2) + pow(shoppos.z, 2));
+
+
+
+	if (spheredis <= 5 && lv3_cutscene == false)
+	{
+		count3_start = true;
+		camera.CAMERA_SPEED = 0.0f;
+		camera.ZOOM_SPEED = 0.0f;
+		//play cutscene
+		if (count3 < 150)
+		{
+			RenderMeshOnScreen(meshList[GEO_LV3], 40, 30, 85, 65);
+		}
+		else
+		{
+			lv3_cutscene = true;
+		}
+	}
+	else if (spheredis <= 5 && lv3_cutscene == true)
+	{
+		Application::yourself.set_go_lv3(true);
+	}
 	
 }
 
