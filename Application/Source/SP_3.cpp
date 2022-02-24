@@ -1895,7 +1895,7 @@ void SP_3::Update(double dt)
 		}
 	}
 	//boss fight Phase 2 and 4: 
-	else if (enemy_health == 4 || enemy_health == 2)
+	else if (enemy_health == 4 )
 	{
 		//first row
 		bullet1.x = -85;
@@ -2199,7 +2199,173 @@ void SP_3::Update(double dt)
 		}
 	}
 
-	
+	else if (enemy_health == 2)
+	{
+	//first row
+	bullet1.x = -85;
+	bullet1.z = -32;
+
+	bullet2.x = -75;
+	bullet2.z = -32;
+
+	bullet3.x = -65;
+	bullet3.z = -32;
+
+	bullet4.x = -55;
+	bullet4.z = -32;
+
+	bullet5.x = -45;
+	bullet5.z = -32;
+
+	bullet6.x = -35;
+	bullet6.z = -32;
+
+	bullet7.x = -25;
+	bullet7.z = -32;
+
+	bullet8.x = -15;
+	bullet8.z = -32;
+
+	bullet9.x = -5;
+	bullet9.z = -32;
+
+	bullet10.x = 5;
+	bullet10.z = -32;
+
+	bullet11.x = 15;
+	bullet11.z = -32;
+
+	//the second row
+	bullet12.x = -80;
+	bullet12.z = -36;
+
+	bullet13.x = -70;
+	bullet13.z = -36;
+
+	bullet14.x = -60;
+	bullet14.z = -36;
+
+	bullet15.x = -50;
+	bullet15.z = -36;
+
+	bullet16.x = -40;
+	bullet16.z = -36;
+
+	bullet17.x = -30;
+	bullet17.z = -36;
+
+	bullet18.x = -20;
+	bullet18.z = -36;
+
+	bullet19.x = -10;
+	bullet19.z = -36;
+
+	bullet20.x = 0;
+	bullet20.z = -36;
+
+	bullet21.x = 10;
+	bullet21.z = -36;
+
+	//third row
+	bullet22.x = -85;
+	bullet22.z = -32;
+
+	bullet23.x = -75;
+	bullet23.z = -32;
+
+	bullet24.x = -65;
+	bullet24.z = -32;
+
+	bullet25.x = -55;
+	bullet25.z = -32;
+
+	bullet26.x = -45;
+	bullet26.z = -32;
+
+	bullet27.x = -35;
+	bullet27.z = -32;
+
+	bullet28.x = -25;
+	bullet28.z = -32;
+
+	bullet29.x = -15;
+	bullet29.z = -32;
+
+	bullet30.x = -5;
+	bullet30.z = -32;
+
+	bullet31.x = 5;
+	bullet31.z = -32;
+
+	bullet32.x = 15;
+	bullet32.z = -32;
+
+	//first row
+	bullet1.z = phase2translationZ;
+	bullet2.z = phase2translationZ;
+	bullet3.z = phase2translationZ;
+	bullet4.z = phase2translationZ;
+	bullet5.z = phase2translationZ;
+	bullet6.z = phase2translationZ;
+	bullet7.z = phase2translationZ;
+	bullet8.z = phase2translationZ;
+	bullet9.z = phase2translationZ;
+	bullet10.z = phase2translationZ;
+	bullet11.z = phase2translationZ;
+
+
+	//second row
+	bullet12.z = phase2translationZ_2;
+	bullet13.z = phase2translationZ_2;
+	bullet14.z = phase2translationZ_2;
+	bullet15.z = phase2translationZ_2;
+	bullet16.z = phase2translationZ_2;
+	bullet17.z = phase2translationZ_2;
+	bullet18.z = phase2translationZ_2;
+	bullet19.z = phase2translationZ_2;
+	bullet20.z = phase2translationZ_2;
+	bullet21.z = phase2translationZ_2;
+
+	//third row
+	bullet22.z = phase2translationZ_3;
+	bullet23.z = phase2translationZ_3;
+	bullet24.z = phase2translationZ_3;
+	bullet25.z = phase2translationZ_3;
+	bullet26.z = phase2translationZ_3;
+	bullet27.z = phase2translationZ_3;
+	bullet28.z = phase2translationZ_3;
+	bullet29.z = phase2translationZ_3;
+	bullet30.z = phase2translationZ_3;
+	bullet31.z = phase2translationZ_3;
+	bullet32.z = phase2translationZ_3;
+
+	if (Application::yourself.get_shop2() == false)
+	{
+		phase2translationZ += (float)(35 * dt);
+		phase2translationZ_2 += (float)(35 * dt);
+		phase2translationZ_3 += (float)(35 * dt);
+	}
+	else
+	{
+		phase2translationZ += (float)(26.25 * dt);
+		phase2translationZ_2 += (float)(26.25 * dt);
+		phase2translationZ_3 += (float)(26.25 * dt);
+	}
+
+	if (phase2translationZ >= 61)
+	{
+		phase2translationZ = -32;
+	}
+	if (phase2translationZ_2 >= 61)
+	{
+		phase2translationZ_2 = -32;
+	}
+	if (phase2translationZ_3 >= 61)
+	{
+		phase2translationZ_3 = -32;
+	}
+
+	}
 	else if (enemy_health < 2)
 	{
 
@@ -2477,15 +2643,7 @@ void SP_3::Update(double dt)
 	}
 	
 
-	if (Application::IsKeyPressed('R'))
-	{
-		camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
-		Application::yourself.set_currency(100);
-		battlestart = false;
-		die = false;
-		win = false;
 
-	}
 
 	rotateAngle += (float)(20 * dt);
 	camera.Update(dt);
