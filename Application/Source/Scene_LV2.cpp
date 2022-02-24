@@ -1760,12 +1760,12 @@ void Scene_LV2::Render()
 	
 	
 	//UI
-	/*RenderTextOnScreen(meshList[GEO_TEXT], camerax , Color(0, 1, 0), 2, 6, 0);
+	RenderTextOnScreen(meshList[GEO_TEXT], camerax , Color(0, 1, 0), 2, 6, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "X:", Color(0, 1, 0), 2, 0, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], cameraz, Color(0, 1, 0), 2, 6, 2);
 	RenderTextOnScreen(meshList[GEO_TEXT], "Z:", Color(0, 1, 0), 2, 0, 2);
 	RenderTextOnScreen(meshList[GEO_TEXT], FPS, Color(0, 1, 0), 2, 47, 0);
-	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);*/
+	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
 
 	if (intnpc1 == 1 || intnpc2 == 1 || intnpc3 == 1 || intnpc4 == 1)
 		RenderTextOnScreen(meshList[GEO_TEXT], "Click on the answer or press number", Color(0.1f, 0.4f, 0.6f), 2, 23, 51);
