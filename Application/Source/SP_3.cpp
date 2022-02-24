@@ -1002,7 +1002,7 @@ void SP_3::Init()
 	sword1_enable=true;
 	enemy_health = 5;
 	sword_count = 4;
-	Application::yourself.set_currency(100);
+	/*Application::yourself.set_currency(100);
 	Application::yourself.set_alive();
 	Application::yourself.set_in_cab(false);
 	Application::yourself.set_first_scammed(false);
@@ -1011,7 +1011,7 @@ void SP_3::Init()
 	Application::yourself.set_coin3_enabled(false);
 	Application::yourself.set_coin1_obtained(false);
 	Application::yourself.set_coin2_obtained(false);
-	Application::yourself.set_coin3_obtained(false);
+	Application::yourself.set_coin3_obtained(false);*/
 
 	// Set background colour to light purple
 	glClearColor(0.5f, 0.0f, 0.7f, 0.0f);

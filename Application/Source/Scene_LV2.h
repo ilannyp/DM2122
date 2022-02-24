@@ -139,6 +139,7 @@ class Scene_LV2 : public Scene , public SP
 		GEO_SHOP_UI,
 		GEO_SCAMMED,
 		GEO_LIGHTPOLE,
+		
 
 
 
@@ -291,12 +292,12 @@ public:
 	
 	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
 	Vector3 tp_sphere = Vector3 (1, 3, 125);
-	Vector3 shop_shpere = Vector3(33, 3, 134);
+	Vector3 shop_shpere = Vector3(33, 0, 134);
 	int count2 = 0;
 	int move_car = 1;
 
 	Vector3 shoppos;
-	float shopdis = 7.0;
+	float shopdis = 12.0;
 	std::string shop_speech = "";
 	bool shop_open = false;
 	bool display_shop_ui = false;

@@ -258,7 +258,7 @@ public:
 	~SP_3();
 
 
-	Player yourself;
+	//Player yourself;
 	virtual void Init();
 	virtual void Update(double dt);
 	virtual void Render();

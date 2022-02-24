@@ -17,7 +17,7 @@ public:
 
 	Camera_SP_LVL2();
 	~Camera_SP_LVL2();
-	void setNPCinteract(int intnpc);
+	void setNPCinteract(int intnpc); 
 	int getNPCinteract();
 
 	virtual void Init(const Vector3& pos, const Vector3& target, const Vector3& up);

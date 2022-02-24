@@ -362,7 +362,8 @@ void Scene_LV2::RenderPavement()
 
 	modelStack.PushMatrix();
 	modelStack.Translate(shop_shpere.x, shop_shpere.y, shop_shpere.z);
-	RenderMesh(meshList[GEO_SHOP], false);
+	modelStack.Scale(7, 7, 7);
+	RenderMesh(meshList[GEO_SHOP], true);
 	modelStack.PopMatrix();
 
 	Vector3 spherepos = tp_sphere - camera.position;
@@ -955,7 +956,7 @@ void Scene_LV2::Init()
 		meshList[GEO_HORNET] = MeshBuilder::GenerateOBJMTL("hornet", "OBJ//zombie.obj", "OBJ//zombie.mtl");
 
 
-		meshList[GEO_SHOP] = MeshBuilder::GenerateSphere("sphere", Color(1, 0, 0), 10, 20, 1.f);
+		//meshList[GEO_SHOP] = MeshBuilder::GenerateSphere("sphere", Color(1, 0, 0), 10, 20, 1.f);
 
 
 		meshList[GEO_ROCKS] = MeshBuilder::GenerateOBJMTL("rocks", "OBJ//rocks.obj", "OBJ//rocks.mtl");
@@ -971,6 +972,7 @@ void Scene_LV2::Init()
 		meshList[GEO_LAMP] = MeshBuilder::GenerateOBJMTL("debris", "OBJ//lightpostDouble.obj", "OBJ//lightpostDouble.mtl");
 		meshList[GEO_GRAVE] = MeshBuilder::GenerateOBJMTL("grave", "OBJ//grave.obj", "OBJ//grave.mtl");
 		meshList[GEO_LANTERN] = MeshBuilder::GenerateOBJMTL("lantern", "OBJ//lanternCandle.obj", "OBJ//lanternCandle.mtl");
+		meshList[GEO_SHOP] = MeshBuilder::GenerateOBJMTL("shop", "OBJ//stallGreen.obj", "OBJ//stallGreen.mtl");
 
 		/*meshList[GEO_BULLET] = MeshBuilder::GenerateOBJMTL("bullet", "OBJ//ironFenceBar.obj", "OBJ//ironFenceBar.mtl");*/
 		meshList[GEO_BULLET] = MeshBuilder::GenerateQuad("bullet", Color(1, 1, 1), 1.f);
@@ -1179,9 +1181,9 @@ void Scene_LV2::Update(double dt)
 		Application::yourself.set_die();
 	}
 
-	std::cout << camera.ZOOM_SPEED << std::endl;
-	if (shopdis < 5)
+	if (shopdis < 10)
 	{
+		shop_speech = "Press E to open shop";
 		if (shop_open == false)
 		{
 			if (Application::yourself.get_shop1() == false)
@@ -1193,7 +1195,7 @@ void Scene_LV2::Update(double dt)
 				camera.ZOOM_SPEED = 40.0f;
 			}
 			camera.CAMERA_SPEED = 80.0f;
-			shop_speech = "Press E to open shop";
+			
 			if (Application::IsKeyPressed('E'))
 			{
 				shop_open = true;
@@ -1237,6 +1239,10 @@ void Scene_LV2::Update(double dt)
 				Application::yourself.set_shop4(true);
 			}
 		}
+	}
+	else
+	{
+		shop_speech = "";
 	}
 	
 	if(!interactnpc1)
@@ -1745,7 +1751,7 @@ void Scene_LV2::Render()
 	if (tut_text==true)
 	{
 		//RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0, 1, 0), 2, 30, 55);
-		RenderTextOnScreen(meshList[GEO_TEXT], "Reach the black ball to win", Color(0, 1, 0), 2, 25, 53);
+		RenderTextOnScreen(meshList[GEO_TEXT], "Reach the black ball to find scammer", Color(0, 1, 0), 2, 20, 53);
 	}
 	//modelStack.PushMatrix();
 	////scale, translate, rotate
