@@ -1325,7 +1325,6 @@ void SP_3::Update(double dt)
 		camera.ZOOM_SPEED = 40.f;
 	}
 
-	std::cout << camera.ZOOM_SPEED << std::endl;
 
 	Vector3 scammerpos = scammer_pos - camera.position;
 	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
@@ -1612,7 +1611,14 @@ void SP_3::Update(double dt)
 		bullet16.x = phase1translationX;
 		bullet17.x = phase1translationX;
 
-		phase1translationX -= (float)(20 * dt);
+		if (Application::yourself.get_shop2() == false)
+		{
+			phase1translationX -= (float)(20 * dt);
+		}
+		else
+		{
+			phase1translationX -= (float)(15 * dt);
+		}
 
 		if (phase1translationX <= -85)
 		{
@@ -1760,9 +1766,19 @@ void SP_3::Update(double dt)
 		bullet31.z = phase2translationZ_3;
 		bullet32.z = phase2translationZ_3;
 
-		phase2translationZ += (float)(35 * dt);
-		phase2translationZ_2 += (float)(35 * dt);
-		phase2translationZ_3 += (float)(35 * dt);
+		if (Application::yourself.get_shop2() == false)
+		{
+			phase2translationZ += (float)(35 * dt);
+			phase2translationZ_2 += (float)(35 * dt);
+			phase2translationZ_3 += (float)(35 * dt);
+		}
+		else
+		{
+			phase2translationZ += (float)(26.25 * dt);
+			phase2translationZ_2 += (float)(26.25 * dt);
+			phase2translationZ_3 += (float)(26.25 * dt);
+		}
+
 		if (phase2translationZ >= 61)
 		{
 			phase2translationZ = -32;
@@ -1894,8 +1910,16 @@ void SP_3::Update(double dt)
 		bullet16.x = phase3translationX;
 		bullet17.x = phase1translationX;
 
-		phase1translationX -= (float)(30 * dt);
-		phase3translationX += (float)(30 * dt);
+		if (Application::yourself.get_shop2() == false)
+		{
+			phase1translationX -= (float)(30 * dt);
+			phase3translationX += (float)(30 * dt);
+		}
+		else
+		{
+			phase1translationX -= (float)(22.5 * dt);
+			phase3translationX += (float)(22.5 * dt);
+		}
 		if (phase1translationX <= -85)
 		{
 			phase1translationX = 15;

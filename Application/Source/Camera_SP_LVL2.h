@@ -25,7 +25,7 @@ public:
 	virtual void Reset();
 
 	float CAMERA_SPEED = 80.f;
-	float ZOOM_SPEED = 20.f; //standard 20
+	float ZOOM_SPEED = 150.f; //standard 20
 	
 };
 
