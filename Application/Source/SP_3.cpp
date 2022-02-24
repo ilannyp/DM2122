@@ -429,6 +429,508 @@ void SP_3::sword4()
 	}
 	modelStack.PopMatrix();
 }
+void SP_3::Phase1Attack()
+{
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet1.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet2.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet3.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet4.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet5.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet6.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet7.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet8.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet9.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet10.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet11.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet12.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet13.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet14.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet15.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet16.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet17.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+
+}
+void SP_3::Phase2Attack()
+{
+	{//third row
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet22.x, 2, phase2translationZ_3);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET3], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet23.x, 2, phase2translationZ_3);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET3], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet24.x, 2, phase2translationZ_3);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET3], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet25.x, 2, phase2translationZ_3);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET3], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet26.x, 2, phase2translationZ_3);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET3], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet27.x, 2, phase2translationZ_3);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET3], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet28.x, 2, phase2translationZ_3);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET3], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet29.x, 2, phase2translationZ_3);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET3], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet30.x, 2, phase2translationZ_3);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET3], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet31.x, 2, phase2translationZ_3);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET3], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(bullet32.x, 2, phase2translationZ_3);
+	modelStack.Rotate(0, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET3], true);
+	modelStack.PopMatrix();
+	}
+
+	{//second row
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet12.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet13.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet14.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet15.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet16.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet17.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet18.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet19.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet20.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet21.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+	}
+
+	{//first row
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet1.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet2.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet3.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet4.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet5.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet6.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet7.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet8.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet9.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet10.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet11.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+	}
+
+}
+void SP_3::Phase3Attack()
+{
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet1.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase3translationX, 2, bullet2.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet3.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase3translationX, 2, bullet4.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet5.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase3translationX, 2, bullet6.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet7.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase3translationX, 2, bullet8.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet9.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase3translationX, 2, bullet10.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet11.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase3translationX, 2, bullet12.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet13.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase3translationX, 2, bullet14.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet15.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase3translationX, 2, bullet16.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(phase1translationX, 2, bullet17.z);
+	modelStack.Rotate(rotatebullet, 0, 1, 0);
+	modelStack.Scale(3, 3, 3);
+	RenderMesh(meshList[GEO_BULLET], true);
+	modelStack.PopMatrix();
+
+}
+void SP_3::Phase4Attack()
+{
+
+}
+bool SP_3::colisiondetectionbullets(Vector3 bullet, Vector3 player)
+{
+
+	if ((player.x > bullet.x - 2 && player.x < bullet.x + 2) && (player.z > bullet.z - 4 && player.z < bullet.z + 4))
+	{
+		blood_ui = true;
+		return true;
+
+	}
+	else
+	{
+
+		return false;
+
+	}
+
+
+}
+
 void SP_3::RenderText(Mesh* mesh, std::string text, Color color)
 {
 
@@ -517,7 +1019,7 @@ void SP_3::Init()
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
 
-	glEnable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE);
 
 	//Default to fill mode
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -748,7 +1250,14 @@ void SP_3::Init()
 
 		meshList[GEO_LANTERN] = MeshBuilder::GenerateOBJMTL("lantern", "OBJ//lanternCandle.obj", "OBJ//lanternCandle.mtl");
 
-		meshList[GEO_BULLET] = MeshBuilder::GenerateOBJMTL("bullet", "OBJ//ironFenceBar.obj", "OBJ//ironFenceBar.mtl");
+		meshList[GEO_BULLET] = MeshBuilder::GenerateQuad("bullet", Color(1, 1, 1), 1.f);
+		meshList[GEO_BULLET]->textureID = LoadTGA("Image//internetscam.tga");
+		meshList[GEO_BULLET2] = MeshBuilder::GenerateQuad("bullet", Color(1, 1, 1), 1.f);
+		meshList[GEO_BULLET2]->textureID = LoadTGA("Image//phonelove.tga");
+		meshList[GEO_BULLET3] = MeshBuilder::GenerateQuad("bullet", Color(1, 1, 1), 1.f);
+		meshList[GEO_BULLET3]->textureID = LoadTGA("Image//scam1.tga");
+		meshList[GEO_BULLET4] = MeshBuilder::GenerateQuad("bullet", Color(1, 1, 1), 1.f);
+		meshList[GEO_BULLET4]->textureID = LoadTGA("Image//scam2.tga");
 
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 		meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
@@ -795,32 +1304,9 @@ void SP_3::Init()
 
 
 
+
 	//Player yourself;
 
-	enemyz = 25;
-	bullet.x = -65;
-	bullet.z = enemyz;
-
-	bullet2.x = -85;
-	bullet2.z = enemyz;
-
-	bullet3.x = -45;
-	bullet3.z = enemyz;
-
-	bullet4.x = -35;
-	bullet4.z = enemyz;
-
-	bullet5.x = -55;
-	bullet5.z = enemyz;
-
-	bullet6.x = -95;
-	bullet6.z = enemyz;
-
-	bullet7.x = -50;
-	bullet7.z = enemyz;
-
-	bullet8.x = -70;
-	bullet8.z = enemyz;
 
 
 }
@@ -842,22 +1328,29 @@ void SP_3::Update(double dt)
 	static bool sword3state = false;
 	static bool sword4state = false;
 
-	if (Application::IsKeyPressed('1'))
-	{
-		glEnable(GL_CULL_FACE);
-	}
-	if (Application::IsKeyPressed('2'))
-	{
-		glDisable(GL_CULL_FACE);
-	}
-	if (Application::IsKeyPressed('3'))
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //default fill mode
-	}
-	if (Application::IsKeyPressed('4'))
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
-	}
+	//intialising player vector
+	player.x = camera.position.x;
+	player.y = camera.position.y;
+	player.z = camera.position.z;
+
+	//if (Application::IsKeyPressed('1'))
+	//{
+	//	glEnable(GL_CULL_FACE);
+	//}
+	//if (Application::IsKeyPressed('2'))
+	//{
+	//	glDisable(GL_CULL_FACE);
+	//}
+	//if (Application::IsKeyPressed('3'))
+	//{
+	//	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //default fill mode
+	//}
+	//if (Application::IsKeyPressed('4'))
+	//{
+	//	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
+	//}
+
+
 	if (Application::IsKeyPressed('I'))
 		light[0].position.z -= (float)(LSPEED * dt);
 	if (Application::IsKeyPressed('K'))
@@ -1032,6 +1525,654 @@ void SP_3::Update(double dt)
 	/*******************************************************************************************************/
 	//tutorial boundary check
 	//static bool scammaer_talk = false;
+
+	//boss fight Phase 1: 
+	if (enemy_health == 5)
+	{
+		bullet1.x = 15;
+		bullet1.z = 59;
+
+		bullet2.x = 15;
+		bullet2.z = 54;
+
+		bullet3.x = 15;
+		bullet3.z = 39;
+
+		bullet4.x = 15;
+		bullet4.z = 34;
+
+		bullet5.x = 15;
+		bullet5.z = 29;
+
+		bullet6.x = 15;
+		bullet6.z = 24;
+
+		bullet7.x = 15;
+		bullet7.z = 19;
+
+		bullet8.x = 15;
+		bullet8.z = 14;
+
+		bullet9.x = 15;
+		bullet9.z = 9;
+
+		bullet10.x = 15;
+		bullet10.z = 4;
+
+		bullet11.x = 15;
+		bullet11.z = -1;
+
+		bullet12.x = 15;
+		bullet12.z = -6;
+
+		bullet13.x = 15;
+		bullet13.z = -11;
+
+		bullet14.x = 15;
+		bullet14.z = -16;
+
+		bullet15.x = 15;
+		bullet15.z = -21;
+
+		bullet16.x = 15;
+		bullet16.z = -26;
+
+		bullet17.x = 15;
+		bullet17.z = -31;
+
+		bullet1.x = phase1translationX;
+		bullet2.x = phase1translationX;
+		bullet3.x = phase1translationX;
+		bullet4.x = phase1translationX;
+		bullet5.x = phase1translationX;
+		bullet6.x = phase1translationX;
+		bullet7.x = phase1translationX;
+		bullet8.x = phase1translationX;
+		bullet9.x = phase1translationX;
+		bullet10.x = phase1translationX;
+		bullet11.x = phase1translationX;
+		bullet12.x = phase1translationX;
+		bullet13.x = phase1translationX;
+		bullet14.x = phase1translationX;
+		bullet15.x = phase1translationX;
+		bullet16.x = phase1translationX;
+		bullet17.x = phase1translationX;
+
+		phase1translationX -= (float)(20 * dt);
+
+		if (phase1translationX <= -85)
+		{
+			phase1translationX = 15;
+		}
+	}
+	//boss fight Phase 2:
+	else if (enemy_health == 4)
+	{
+		//first row
+		bullet1.x = -85;
+		bullet1.z = -32;
+
+		bullet2.x = -75;
+		bullet2.z = -32;
+
+		bullet3.x = -65;
+		bullet3.z = -32;
+
+		bullet4.x = -55;
+		bullet4.z = -32;
+
+		bullet5.x = -45;
+		bullet5.z = -32;
+
+		bullet6.x = -35;
+		bullet6.z = -32;
+
+		bullet7.x = -25;
+		bullet7.z = -32;
+
+		bullet8.x = -15;
+		bullet8.z = -32;
+
+		bullet9.x = -5;
+		bullet9.z = -32;
+
+		bullet10.x = 5;
+		bullet10.z = -32;
+
+		bullet11.x = 15;
+		bullet11.z = -32;
+
+		//the second row
+		bullet12.x = -80;
+		bullet12.z = -36;
+
+		bullet13.x = -70;
+		bullet13.z = -36;
+
+		bullet14.x = -60;
+		bullet14.z = -36;
+
+		bullet15.x = -50;
+		bullet15.z = -36;
+
+		bullet16.x = -40;
+		bullet16.z = -36;
+
+		bullet17.x = -30;
+		bullet17.z = -36;
+
+		bullet18.x = -20;
+		bullet18.z = -36;
+		
+		bullet19.x = -10;
+		bullet19.z = -36;
+
+		bullet20.x = 0;
+		bullet20.z = -36;
+
+		bullet21.x = 10;
+		bullet21.z = -36;
+
+		//third row
+		bullet22.x = -85;
+		bullet22.z = -32;
+
+		bullet23.x = -75;
+		bullet23.z = -32;
+
+		bullet24.x = -65;
+		bullet24.z = -32;
+
+		bullet25.x = -55;
+		bullet25.z = -32;
+
+		bullet26.x = -45;
+		bullet26.z = -32;
+
+		bullet27.x = -35;
+		bullet27.z = -32;
+
+		bullet28.x = -25;
+		bullet28.z = -32;
+
+		bullet29.x = -15;
+		bullet29.z = -32;
+
+		bullet30.x = -5;
+		bullet30.z = -32;
+
+		bullet31.x = 5;
+		bullet31.z = -32;
+
+		bullet32.x = 15;
+		bullet32.z = -32;
+
+		//first row
+		bullet1.z = phase2translationZ;
+		bullet2.z = phase2translationZ;
+		bullet3.z = phase2translationZ;
+		bullet4.z = phase2translationZ;
+		bullet5.z = phase2translationZ;
+		bullet6.z = phase2translationZ;
+		bullet7.z = phase2translationZ;
+		bullet8.z = phase2translationZ;
+		bullet9.z = phase2translationZ;
+		bullet10.z = phase2translationZ;
+		bullet11.z = phase2translationZ;
+
+
+		//second row
+		bullet12.z = phase2translationZ_2;
+		bullet13.z = phase2translationZ_2;
+		bullet14.z = phase2translationZ_2;
+		bullet15.z = phase2translationZ_2;
+		bullet16.z = phase2translationZ_2;
+		bullet17.z = phase2translationZ_2;
+		bullet18.z = phase2translationZ_2;
+		bullet19.z = phase2translationZ_2;
+		bullet20.z = phase2translationZ_2;
+		bullet21.z = phase2translationZ_2;
+
+		//third row
+		bullet22.z = phase2translationZ_3;
+		bullet23.z = phase2translationZ_3;
+		bullet24.z = phase2translationZ_3;
+		bullet25.z = phase2translationZ_3;
+		bullet26.z = phase2translationZ_3;
+		bullet27.z = phase2translationZ_3;
+		bullet28.z = phase2translationZ_3;
+		bullet29.z = phase2translationZ_3;
+		bullet30.z = phase2translationZ_3;
+		bullet31.z = phase2translationZ_3;
+		bullet32.z = phase2translationZ_3;
+
+		phase2translationZ += (float)(35 * dt);
+		phase2translationZ_2 += (float)(35 * dt);
+		phase2translationZ_3 += (float)(35 * dt);
+		if (phase2translationZ >= 61)
+		{
+			phase2translationZ = -32;
+		}
+		if (phase2translationZ_2 >= 61)
+		{
+			phase2translationZ_2 = -32;
+		}
+		if (phase2translationZ_3 >= 61)
+		{
+			phase2translationZ_3 = -32;
+		}
+
+	}
+	//boss fight Phase 3:
+	else if (enemy_health == 3)
+	{
+		bullet1.x = 15;
+		bullet1.z = 59;
+
+		bullet2.x = 15;
+		bullet2.z = 54;
+
+		bullet3.x = 15;
+		bullet3.z = 39;
+
+		bullet4.x = 15;
+		bullet4.z = 34;
+
+		bullet5.x = 15;
+		bullet5.z = 29;
+
+		bullet6.x = 15;
+		bullet6.z = 24;
+
+		bullet7.x = 15;
+		bullet7.z = 19;
+
+		bullet8.x = 15;
+		bullet8.z = 14;
+
+		bullet9.x = 15;
+		bullet9.z = 9;
+
+		bullet10.x = 15;
+		bullet10.z = 4;
+
+		bullet11.x = 15;
+		bullet11.z = -1;
+
+		bullet12.x = 15;
+		bullet12.z = -6;
+
+		bullet13.x = 15;
+		bullet13.z = -11;
+
+		bullet14.x = 15;
+		bullet14.z = -16;
+
+		bullet15.x = 15;
+		bullet15.z = -21;
+
+		bullet16.x = 15;
+		bullet16.z = -26;
+
+		bullet17.x = 15;
+		bullet17.z = -31;
+
+		bullet18.x = 80;
+		bullet18.z = -32;
+
+		bullet19.x = 80;
+		bullet19.z = -32;
+
+		bullet20.x = 80;
+		bullet20.z = -32;
+
+		bullet21.x = 80;
+		bullet21.z = -32;
+
+		bullet22.x = 80;
+		bullet22.z = -32;
+
+		bullet23.x = 80;
+		bullet23.z = -32;
+
+		bullet24.x = 80;
+		bullet24.z = -32;
+
+		bullet25.x = 80;
+		bullet25.z = -32;
+
+		bullet26.x = 80;
+		bullet26.z = -32;
+
+		bullet27.x = 80;
+		bullet27.z = -32;
+
+		bullet28.x = 80;
+		bullet28.z = -32;
+
+		bullet29.x = 80;
+		bullet29.z = -32;
+
+		bullet30.x = 80;
+		bullet30.z = -32;
+
+		bullet31.x = 80;
+		bullet31.z = -32;
+
+		bullet32.x = 80;
+		bullet32.z = -32;
+
+		bullet1.x = phase1translationX;
+		bullet2.x = phase3translationX;
+		bullet3.x = phase1translationX;
+		bullet4.x = phase3translationX;
+		bullet5.x = phase1translationX;
+		bullet6.x = phase3translationX;
+		bullet7.x = phase1translationX;
+		bullet8.x = phase3translationX;
+		bullet9.x = phase1translationX;
+		bullet10.x = phase3translationX;
+		bullet11.x = phase1translationX;
+		bullet12.x = phase3translationX;
+		bullet13.x = phase1translationX;
+		bullet14.x = phase3translationX;
+		bullet15.x = phase1translationX;
+		bullet16.x = phase3translationX;
+		bullet17.x = phase1translationX;
+
+		phase1translationX -= (float)(30 * dt);
+		phase3translationX += (float)(30 * dt);
+		if (phase1translationX <= -85)
+		{
+			phase1translationX = 15;
+		}
+		if (phase3translationX >= 15)
+		{
+			phase3translationX = -85;
+		}
+	}
+	//boss fight Phase 4:
+	else if (enemy_health == 2)
+	{
+		
+	}
+	else if (enemy_health < 2)
+	{
+
+		bullet1.x = 84;
+		bullet1.z = -32;
+
+		bullet2.x = 80;
+		bullet2.z = -32;
+
+		bullet3.x = 80;
+		bullet3.z = -32;
+
+		bullet4.x = 80;
+		bullet4.z = -32;
+
+		bullet5.x = 80;
+		bullet5.z = -32;
+
+		bullet6.x = 80;
+		bullet6.z = -32;
+
+		bullet7.x = 80;
+		bullet7.z = -32;
+
+		bullet8.x = 80;
+		bullet8.z = -32;
+
+		bullet9.x = 80;
+		bullet9.z = -32;
+
+		bullet10.x = 80;
+		bullet10.z = -32;
+
+		bullet11.x = 80;
+		bullet11.z = -32;
+
+		bullet12.x = 80;
+		bullet12.z = -32;
+
+		bullet13.x = 80;
+		bullet13.z = -32;
+
+		bullet14.x = 80;
+		bullet14.z = -32;
+
+		bullet15.x = 80;
+		bullet15.z = -32;
+
+		bullet16.x = 80;
+		bullet16.z = -32;
+
+		bullet17.x = 80;
+		bullet17.z = -32;
+
+		bullet18.x = 80;
+		bullet18.z = -32;
+
+		bullet19.x = 80;
+		bullet19.z = -32;
+
+		bullet20.x = 80;
+		bullet20.z = -32;
+
+		bullet21.x = 80;
+		bullet21.z = -32;
+
+		bullet22.x = 80;
+		bullet22.z = -32;
+		
+		bullet23.x = 80;
+		bullet23.z = -32;
+
+		bullet24.x = 80;
+		bullet24.z = -32;
+
+		bullet25.x = 80;
+		bullet25.z = -32;
+
+		bullet26.x = 80;
+		bullet26.z = -32;
+
+		bullet27.x = 80;
+		bullet27.z = -32;
+
+		bullet28.x = 80;
+		bullet28.z = -32;
+
+		bullet29.x = 80;
+		bullet29.z = -32;
+
+		bullet30.x = 80;
+		bullet30.z = -32;
+
+		bullet31.x = 80;
+		bullet31.z = -32;
+
+		bullet32.x = 80;
+		bullet32.z = -32;
+	}
+
+	{
+		if (colisiondetectionbullets(bullet1, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet2, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet3, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet4, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet5, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet6, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet7, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet8, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+
+		if (colisiondetectionbullets(bullet9, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet10, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet11, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet12, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet13, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+
+		if (colisiondetectionbullets(bullet14, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet15, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet16, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet17, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet18, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet19, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet20, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet21, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet22, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet23, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet24, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet25, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet26, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet27, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet28, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet29, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet30, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet31, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+		if (colisiondetectionbullets(bullet32, player))
+		{
+
+			Application::yourself.currency_deducted(1.5f);
+		}
+
+
+
+
+
+
+
+
+
+
+
+	}
+	
+
 	if (Application::IsKeyPressed('R'))
 	{
 		camera.Init(Vector3(0, 3, 1), Vector3(0, 3, 10), Vector3(0, 1, 0));
@@ -1213,20 +2354,8 @@ void SP_3::Render()
 		{
 			Application::IsKeyPressed(VK_F3) == true;
 		}
-		battlestart = false;
-		modelStack.PushMatrix();
-		modelStack.Translate(-100, 3, 17);
-		modelStack.Rotate(0, 0, 1, 0);
-		modelStack.Scale(1, 1, 1);
-		RenderText(meshList[GEO_TEXT], "You Died!", Color(1, 0, 0));
-		modelStack.PopMatrix();
-		modelStack.PushMatrix();
-
-		modelStack.Translate(-102, 1, 17);
-		modelStack.Rotate(0, 0, 1, 0);
-		modelStack.Scale(0.6, 0.6, 0.6);
-		RenderText(meshList[GEO_TEXT], "Press 'R' to restart", Color(1, 0, 0));
-		modelStack.PopMatrix();
+		
+	
 	}
 	if (win)
 	{
@@ -1249,14 +2378,17 @@ void SP_3::Render()
 	//----------------------------sp--------------------------------------
 	if (enemy_health == 5)
 	{
+		Phase1Attack();
 		RenderMeshOnScreen(meshList[GEO_FULLHEALTH], 45, 56, 35, 2);
 	}
 	else if (enemy_health == 4)
 	{
+		Phase2Attack();
 		RenderMeshOnScreen(meshList[GEO_THREEHEALTH], 45, 56, 35, 2);
 	}
 	else if (enemy_health == 3)
 	{
+		Phase3Attack();
 		RenderMeshOnScreen(meshList[GEO_HALFHEALTH], 45, 56, 35, 2);
 	}
 	else if (enemy_health == 2)
