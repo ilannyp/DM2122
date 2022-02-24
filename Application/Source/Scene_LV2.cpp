@@ -1769,8 +1769,8 @@ void Scene_LV2::Render()
 		RenderTextOnScreen(meshList[GEO_TEXT], "Click on the answer or press number", Color(0.1f, 0.4f, 0.6f), 2, 23, 51);
 
 
-	RenderTextOnScreen(meshList[GEO_TEXT], "$", Color(0, 1, 0), 2, 1, 50);
-	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
+	RenderTextOnScreen(meshList[GEO_TEXT], "$", Color(0, 1, 0), 3, 1, 49);
+	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 3, 2, 49);
 	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
 	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
 
