@@ -1729,6 +1729,9 @@ void Scene_LV2::Render()
 
 	RenderTunnel();
 
+
+	RenderBullets();
+
 	RenderQuestion();
 
 		modelStack.PushMatrix();
