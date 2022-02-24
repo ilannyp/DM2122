@@ -1088,7 +1088,7 @@ void SP::Init()
 
 	intquest = 0;
 	scammed = false;
-
+	count = 0;
 
 }
 
@@ -1665,8 +1665,7 @@ void SP::Render()
 	{
 		RenderTextOnScreen(meshList[GEO_TEXT], "Use WASD to move", Color(0.3f, 0.4f, 0.2f), 2, 30, 55);
 		RenderTextOnScreen(meshList[GEO_TEXT], "Use Arrow keys to look around", Color(0.3f, 0.4f, 0.2f), 2, 25, 53);
-		RenderTextOnScreen(meshList[GEO_TEXT], "<-- is your health..", Color(0.0f, 0.9f, 0.5f), 2, 6, 50);
-		RenderTextOnScreen(meshList[GEO_TEXT], "do not let it go to 0 or u will die of bankrupt", Color(0.0f, 0.9f, 0.5f), 2, 6, 48);
+		RenderTextOnScreen(meshList[GEO_TEXT], "<-- is your health..", Color(0.0f, 0.9f, 0.5f), 3, 7, 49);
 	}
 	//modelStack.PushMatrix();// 
 	////scale, translate, rotate
@@ -1680,17 +1679,17 @@ void SP::Render()
 
 	//UI
 	RenderQuest();
-	RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
+	/*RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "X:", Color(0, 1, 0), 2, 0, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], cameraz, Color(0, 1, 0), 2, 6, 2);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Z:", Color(0, 1, 0), 2, 0, 2);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Z:", Color(0, 1, 0), 2, 0, 2);*/
 	RenderTextOnScreen(meshList[GEO_TEXT], FPS, Color(0, 1, 0), 2, 47, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
 
 
 	//currency on screen
-	RenderTextOnScreen(meshList[GEO_TEXT], "$", Color(0, 1, 0), 2, 1, 50);
-	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
+	RenderTextOnScreen(meshList[GEO_TEXT], "$", Color(0, 1, 0), 3, 1, 49);
+	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 3, 2, 49);
 	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
 
 
