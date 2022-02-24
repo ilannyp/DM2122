@@ -148,6 +148,7 @@ void Application::Init()
 void Application::Run()
 {
 	//Main Loop
+	int intloop = 0;
 	SP cab;
 	Scene* scene1 = new SP_Start();
 	Scene* scene2 = new SP();
@@ -172,6 +173,8 @@ void Application::Run()
 			scene = scene2;
 			scene->Init();
 			gamestarted = true;
+			intloop = 0;
+			
 		}
 
 
@@ -208,10 +211,11 @@ void Application::Run()
 				scene->Init();
 			}
 		}
-		if (yourself.get_go_lv3() == true)
+		if (yourself.get_go_lv3() == true && intloop != 1)
 		{
 			scene = scene5;
 			scene->Init();
+			intloop = 1;
 		}
 
 		if (IsKeyPressed(VK_F9))
