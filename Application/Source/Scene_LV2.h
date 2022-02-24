@@ -205,6 +205,7 @@ private:
 	int intnpc3;
 	bool interactnpc4;
 	int intnpc4;
+	int counta = 0;
 
 	//bullets vectors
 	Vector3 bullet1;

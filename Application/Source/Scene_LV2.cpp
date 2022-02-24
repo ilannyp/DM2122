@@ -1796,17 +1796,21 @@ void Scene_LV2::Render()
 		i = 0;
 		bloodui = false;
 	}
-
+	
 	if (scammed_screen == true)
 	{
-		int counta = 0;
-		if (counta < 1500)
+
+		if (counta < 100)
 		{
 			RenderMeshOnScreen(meshList[GEO_SCAMMED], 40, 30, 85, 65);
 		}
+		else if (counta > 100)
+			scammed_screen = false;
 		counta++;
-		scammed_screen = false;
+
 	}
+	else
+		counta = 0;
 
 	if (count2 < 150)
 	{
