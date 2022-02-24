@@ -360,13 +360,22 @@ void Scene_LV2::RenderPavement()
 	RenderMesh(meshList[GEO_SPHERE], false);
 	modelStack.PopMatrix();
 
+	modelStack.PushMatrix();
+	modelStack.Translate(shop_shpere.x, shop_shpere.y, shop_shpere.z);
+	RenderMesh(meshList[GEO_SHOP], false);
+	modelStack.PopMatrix();
+
 	Vector3 spherepos = tp_sphere - camera.position;
 	float spheredis = sqrt(pow(spherepos.x, 2) + pow(spherepos.y, 2) + pow(spherepos.z, 2));
 
+	shoppos = shop_shpere - camera.position;
+	shopdis = sqrt(pow(shoppos.x, 2) + pow(shoppos.y, 2) + pow(shoppos.z, 2));
+
 	if (spheredis <= 5)
 	{
-		Application::yourself.set_win(true);
-		Application::yourself.set_die();
+		/*Application::yourself.set_win(true);
+		Application::yourself.set_die();*/
+		Application::yourself.set_go_lv3(true);
 	}
 
 
@@ -926,7 +935,11 @@ void Scene_LV2::Init()
 		meshList[GEO_TUNNEL]->textureID = LoadTGA("Image//tunnel.tga");
 
 
+		meshList[GEO_SHOP_UI] = MeshBuilder::GenerateQuad("shop_ui", Color(1, 1, 1), 1.f);
+		meshList[GEO_SHOP_UI]->textureID = LoadTGA("Image//shop_ui.tga");
 
+		meshList[GEO_SCAMMED] = MeshBuilder::GenerateQuad("scammed", Color(1, 1, 1), 1.f);
+		meshList[GEO_SCAMMED]->textureID = LoadTGA("Image//scammed.tga");
 
 		meshList[GEO_LAMPLIGHT] = MeshBuilder::GenerateSphere("sphere", Color(0.4, 0.4, 0.4), 10, 20, 1.f);			//limbs
 		meshList[GEO_CAPE] = MeshBuilder::GenerateCylinder("cylinder", Color(0.3, 0.3, 0.3), 20, 1.f, 1.f);		//base of head
@@ -942,6 +955,7 @@ void Scene_LV2::Init()
 		meshList[GEO_HORNET] = MeshBuilder::GenerateOBJMTL("hornet", "OBJ//zombie.obj", "OBJ//zombie.mtl");
 
 
+		meshList[GEO_SHOP] = MeshBuilder::GenerateSphere("sphere", Color(1, 0, 0), 10, 20, 1.f);
 
 
 		meshList[GEO_ROCKS] = MeshBuilder::GenerateOBJMTL("rocks", "OBJ//rocks.obj", "OBJ//rocks.mtl");
@@ -1161,6 +1175,65 @@ void Scene_LV2::Update(double dt)
 		Application::yourself.set_die();
 	}
 
+	std::cout << camera.ZOOM_SPEED << std::endl;
+	if (shopdis < 5)
+	{
+		if (shop_open == false)
+		{
+			if (Application::yourself.get_shop1() == false)
+			{
+				camera.ZOOM_SPEED = 20.0f;
+			}
+			else
+			{
+				camera.ZOOM_SPEED = 40.0f;
+			}
+			camera.CAMERA_SPEED = 80.0f;
+			shop_speech = "Press E to open shop";
+			if (Application::IsKeyPressed('E'))
+			{
+				shop_open = true;
+				display_shop_ui = true;
+			}
+		}
+		else if (shop_open == true)
+		{
+			camera.ZOOM_SPEED = 0.0f;
+			camera.CAMERA_SPEED = 0.0f;
+			shop_speech = "";
+			if (Application::IsKeyPressed('Q'))
+			{
+				shop_open = false;
+				display_shop_ui = false;
+			}
+			if (Application::IsKeyPressed('1') && Application::yourself.get_currency() > 20 && Application::yourself.get_shop1() == false)
+			{
+				//faster movespd
+				Application::yourself.currency_deducted(20);
+				Application::yourself.set_shop1(true);
+			}
+			if (Application::IsKeyPressed('2') && Application::yourself.get_currency() > 20 && Application::yourself.get_shop2() == false)
+			{
+				//slower arrows
+				Application::yourself.currency_deducted(20);
+				Application::yourself.set_shop2(true);
+			}
+			if (Application::IsKeyPressed('3') && Application::yourself.get_currency() > 20 && Application::yourself.get_shop3() == false)
+			{
+				//scammed
+				scammed_screen = true;
+				Application::yourself.currency_deducted(20);
+				Application::yourself.set_shop3(true);
+			}
+			if (Application::IsKeyPressed('4') && Application::yourself.get_currency() > 20 && Application::yourself.get_shop4() == false)
+			{
+				//scammed
+				scammed_screen = true;
+				Application::yourself.currency_deducted(20);
+				Application::yourself.set_shop4(true);
+			}
+		}
+	}
 	
 	if(!interactnpc1)
 	{
@@ -1198,7 +1271,6 @@ void Scene_LV2::Update(double dt)
 	}
 
 
-	
 
 
 	if ( (camera.position.x > npc1x - 4 && camera.position.x < npc1x + 4) && (camera.position.z > npc1z - 4 && camera.position.z < npc1z + 4) && !interactnpc1)
@@ -1691,6 +1763,14 @@ void Scene_LV2::Render()
 	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
 	RenderMeshOnScreen(meshList[GEO_COIN_ICON], 5, 56, 10, 10);
 
+
+	//shop ui
+	if (display_shop_ui == true)
+	{
+		RenderMeshOnScreen(meshList[GEO_SHOP_UI], 40, 30, 75, 55);
+	}
+	RenderTextOnScreen(meshList[GEO_TEXT], shop_speech, Color(0, 1, 0), 2, 1, 12);
+
 	if (bloodui)
 	{
 		int i;
@@ -1700,6 +1780,17 @@ void Scene_LV2::Render()
 		}
 		i = 0;
 		bloodui = false;
+	}
+
+	if (scammed_screen == true)
+	{
+		int counta = 0;
+		if (counta < 1500)
+		{
+			RenderMeshOnScreen(meshList[GEO_SCAMMED], 40, 30, 85, 65);
+		}
+		counta++;
+		scammed_screen = false;
 	}
 
 	if (count2 < 150)

@@ -9,6 +9,8 @@ Player::Player()
 	coin1_enabled, coin1_obtained, coin2_enabled, coin2_obtained, coin3_enabled, coin3_obtained = false;
 	win = false;
 	coins_collected = 0;
+	shop1, shop2, shop3, shop4 = false;
+	go_lv3 = false;
 }
 
 Player::~Player()
@@ -65,6 +67,16 @@ void Player::set_in_cab(bool x)
 bool Player::get_in_cab()
 {
 	return in_cab;
+}
+
+void Player::set_go_lv3(bool x)
+{
+	go_lv3 = x;
+}
+
+bool Player::get_go_lv3()
+{
+	return go_lv3;
 }
 
 void Player::set_first_scammed(bool x)
@@ -210,6 +222,46 @@ void Player::deduct_coins(int x)
 void Player::set_coins(int x)
 {
 	coins_collected = x;
+}
+
+bool Player::get_shop1()
+{
+	return shop1;
+}
+
+bool Player::get_shop2()
+{
+	return shop2;
+}
+
+bool Player::get_shop3()
+{
+	return shop3;
+}
+
+bool Player::get_shop4()
+{
+	return shop4;
+}
+
+void Player::set_shop1(bool x)
+{
+	shop1 = x;
+}
+
+void Player::set_shop2(bool x)
+{
+	shop2 = x;
+}
+
+void Player::set_shop3(bool x)
+{
+	shop3 = x;
+}
+
+void Player::set_shop4(bool x)
+{
+	shop4 = x;
 }
 
 void Player::total_reset()

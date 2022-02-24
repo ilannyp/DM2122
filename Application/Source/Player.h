@@ -11,6 +11,8 @@ private:
 	bool currency_added_from_C1, currency_added_from_C2, currency_added_from_C3;
 	bool win;
 	int coins_collected;
+	bool shop1, shop2, shop3, shop4;
+	bool go_lv3;
 
 public:
 	Player();
@@ -29,6 +31,9 @@ public:
 
 	void set_in_cab(bool x);
 	bool get_in_cab();
+
+	void set_go_lv3(bool x);
+	bool get_go_lv3();
 
 	void set_first_scammed(bool x);
 	bool get_first_scammed();
@@ -64,6 +69,16 @@ public:
 	void add_coins(int x);
 	void deduct_coins(int x);
 	void set_coins(int x);
+
+	bool get_shop1();
+	bool get_shop2();
+	bool get_shop3();
+	bool get_shop4();
+
+	void set_shop1(bool x);
+	void set_shop2(bool x);
+	void set_shop3(bool x);
+	void set_shop4(bool x);
 
 	void total_reset();
 };
