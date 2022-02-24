@@ -1882,11 +1882,11 @@ void SP_3::Update(double dt)
 
 		if (Application::yourself.get_shop2() == false)
 		{
-			phase1translationX -= (float)(20 * dt);
+			phase1translationX -= (float)(15 * dt);
 		}
 		else
 		{
-			phase1translationX -= (float)(15 * dt);
+			phase1translationX -= (float)(10 * dt);
 		}
 
 		if (phase1translationX <= -85)
