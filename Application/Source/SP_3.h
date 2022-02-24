@@ -206,12 +206,15 @@ private:
 	float phase2translationZ_2 = -44;
 	float phase2translationZ_3 = -56;
 	float phase3translationX = -85;
+	float phase4translationX = 15;
+	float phase4translationZ = -32;
 
 	int steal_count=0;
 	int playerhealth = 20;//slight change to make it into currency
 	int enemyz = 0;//i assume this is where the arrow line -irfan
 	int enemy_health = 5;
 	int sword_count=4;
+	int turn = 0; 
 	bool battlestart = false;
 	bool win = false;
 	bool die = false;

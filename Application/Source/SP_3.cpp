@@ -910,6 +910,235 @@ void SP_3::Phase3Attack()
 }
 void SP_3::Phase4Attack()
 {
+	{//third row
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet22.x, 2, phase2translationZ_3);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET3], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet23.x, 2, phase2translationZ_3);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET3], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet24.x, 2, phase2translationZ_3);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET3], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet25.x, 2, phase2translationZ_3);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET3], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet26.x, 2, phase2translationZ_3);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET3], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet27.x, 2, phase2translationZ_3);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET3], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet28.x, 2, phase2translationZ_3);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET3], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet29.x, 2, phase2translationZ_3);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET3], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet30.x, 2, phase2translationZ_3);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET3], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet31.x, 2, phase2translationZ_3);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET3], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet32.x, 2, phase2translationZ_3);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET3], true);
+		modelStack.PopMatrix();
+	}
+
+	{//second row
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet12.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet13.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet14.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet15.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet16.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet17.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet18.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet19.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet20.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet21.x, 2, phase2translationZ_2);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET], true);
+		modelStack.PopMatrix();
+	}
+
+	{//first row
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet1.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet2.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet3.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet4.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet5.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet6.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet7.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet8.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet9.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet10.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+
+		modelStack.PushMatrix();
+		modelStack.Translate(bullet11.x, 2, phase2translationZ);
+		modelStack.Rotate(0, 0, 1, 0);
+		modelStack.Scale(3, 3, 3);
+		RenderMesh(meshList[GEO_BULLET2], true);
+		modelStack.PopMatrix();
+	}
 
 }
 bool SP_3::colisiondetectionbullets(Vector3 bullet, Vector3 player)
@@ -1663,8 +1892,8 @@ void SP_3::Update(double dt)
 			phase1translationX = 15;
 		}
 	}
-	//boss fight Phase 2:
-	else if (enemy_health == 4)
+	//boss fight Phase 2 and 4: 
+	else if (enemy_health == 4 || enemy_health == 2)
 	{
 		//first row
 		bullet1.x = -85;
@@ -1967,11 +2196,8 @@ void SP_3::Update(double dt)
 			phase3translationX = -85;
 		}
 	}
-	//boss fight Phase 4:
-	else if (enemy_health == 2)
-	{
-		
-	}
+
+	
 	else if (enemy_health < 2)
 	{
 
