@@ -514,7 +514,7 @@ void Scene_LV2::RenderBullets()
 		modelStack.Translate(translation_x_bullet_medium, bullet7.y, bullet7.z);
 		modelStack.Rotate(rotatebullet, 0, 1, 0);
 		modelStack.Scale(3, 3, 5);
-		RenderMesh(meshList[GEO_BULLET], true);
+		RenderMesh(meshList[GEO_BULLET4], true);
 		modelStack.PopMatrix();
 		//bullet3
 		modelStack.PushMatrix();
@@ -537,14 +537,14 @@ void Scene_LV2::RenderBullets()
 		modelStack.Translate(translation_x_bullet_medium, bullet10.y, bullet10.z);
 		modelStack.Rotate(rotatebullet, 0, 1, 0);
 		modelStack.Scale(3, 3, 5);
-		RenderMesh(meshList[GEO_BULLET2], true);
+		RenderMesh(meshList[GEO_BULLET4], true);
 		modelStack.PopMatrix();
 		
 		modelStack.PushMatrix();
 		modelStack.Translate(-translation_x_bullet_fast, bullet11.y, bullet11.z);
 		modelStack.Rotate(-rotatebullet, 0, 1, 0);
 		modelStack.Scale(3, 3, 5);
-		RenderMesh(meshList[GEO_BULLET], true);
+		RenderMesh(meshList[GEO_BULLET3], true);
 		modelStack.PopMatrix();
 		
 		modelStack.PushMatrix();
@@ -558,7 +558,7 @@ void Scene_LV2::RenderBullets()
 		modelStack.Translate(-translation_x_bullet_fast, bullet13.y, bullet13.z);
 		modelStack.Rotate(-rotatebullet, 0, 1, 0);
 		modelStack.Scale(3, 3, 5);
-		RenderMesh(meshList[GEO_BULLET2], true);
+		RenderMesh(meshList[GEO_BULLET4], true);
 		modelStack.PopMatrix();
 	}
 	//fourth bunch
@@ -587,7 +587,7 @@ void Scene_LV2::RenderBullets()
 	modelStack.Translate(-translation_x_bullet_slow, bullet17.y, bullet17.z);
 	modelStack.Rotate(-rotatebullet, 0, 1, 0);
 	modelStack.Scale(3, 3, 5);
-	RenderMesh(meshList[GEO_BULLET], true);
+	RenderMesh(meshList[GEO_BULLET3], true);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
@@ -615,7 +615,7 @@ void Scene_LV2::RenderBullets()
 	modelStack.Translate(-translation_x_bullet_fast, bullet21.y, bullet21.z);
 	modelStack.Rotate(-rotatebullet, 0, 1, 0);
 	modelStack.Scale(3, 3, 5);
-	RenderMesh(meshList[GEO_BULLET], true);
+	RenderMesh(meshList[GEO_BULLET3], true);
 	modelStack.PopMatrix();
 }
 bool Scene_LV2::colisiondetectionbullets(Vector3 bullet, Vector3 player)
@@ -978,6 +978,10 @@ void Scene_LV2::Init()
 
 		meshList[GEO_BULLET2] = MeshBuilder::GenerateQuad("bullet", Color(1, 1, 1), 1.f);
 		meshList[GEO_BULLET2]->textureID = LoadTGA("Image//phonelove.tga");
+		meshList[GEO_BULLET3] = MeshBuilder::GenerateQuad("bullet", Color(1, 1, 1), 1.f);
+		meshList[GEO_BULLET3]->textureID = LoadTGA("Image//scam1.tga");
+		meshList[GEO_BULLET4] = MeshBuilder::GenerateQuad("bullet", Color(1, 1, 1), 1.f);
+		meshList[GEO_BULLET4]->textureID = LoadTGA("Image//scam2.tga");
 	}
 
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
@@ -1168,7 +1172,7 @@ void Scene_LV2::Update(double dt)
 	bullet1.x = translation_x_bullet;
 	bullet5.x = translation_x_bullet;
 
-	rotatebullet += (float)(120 * dt);
+	rotatebullet += (float)(70 * dt);
 	if (Application::yourself.get_currency() <= 0)
 	{
 		//Application::IsKeyPressed(VK_F3) == true;
@@ -1311,14 +1315,14 @@ void Scene_LV2::Update(double dt)
 	player.z = camera.position.z;
 
 	//bullets translation
-	translation_x_bullet += (float)(45 * dt);
+	translation_x_bullet += (float)(35 * dt);
 	if (translation_x_bullet > 38)
 		translation_x_bullet = -38;
 
 	translation_x_bullet_slow += (float)(10 * dt);
 	if (translation_x_bullet_slow > 38)
 		translation_x_bullet_slow = -38;
-	translation_x_bullet_fast += (float)(60 * dt);
+	translation_x_bullet_fast += (float)(40 * dt);
 	if (translation_x_bullet_fast > 38)
 		translation_x_bullet_fast = -38;
 	translation_x_bullet_medium += (float)(30 * dt);

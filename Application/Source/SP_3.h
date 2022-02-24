@@ -63,6 +63,9 @@ class SP_3 : public Scene
 		GEO_GRAVE,
 		GEO_LANTERN,
 		GEO_BULLET,
+		GEO_BULLET2,
+		GEO_BULLET3,
+		GEO_BULLET4,
 		GEO_TEXT,
 		GEO_TEXT2,
 
@@ -160,10 +163,17 @@ private:
 	void RenderLeftSide();
 	void RenderBackSide();
 	void RenderFrontSide();
+
 	void sword1();
 	void sword2();
 	void sword3();
 	void sword4();
+
+	void Phase1Attack();
+	void Phase2Attack();
+	void Phase3Attack();
+	void Phase4Attack();
+
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
 	void RenderMeshOnScreen(Mesh* mesh, int x, int y, int sizex, int sizey);
@@ -190,6 +200,13 @@ private:
 	float scaleAll;
 	float LSPEED = 10.f;
 
+	float rotatebullet = 90;
+	float phase1translationX = 15;
+	float phase2translationZ = -32;
+	float phase2translationZ_2 = -44;
+	float phase2translationZ_3 = -56;
+	float phase3translationX = -85;
+
 	int playerhealth = 20;//slight change to make it into currency
 	int enemyz = 0;//i assume this is where the arrow line -irfan
 	int enemy_health = 5;
@@ -199,7 +216,7 @@ private:
 	bool die = false;
 	bool hit = false;
 
-	Vector3 bullet;
+	Vector3 bullet1;
 	Vector3 bullet2;
 	Vector3 bullet3;
 	Vector3 bullet4;
@@ -207,9 +224,34 @@ private:
 	Vector3 bullet6;
 	Vector3 bullet7;
 	Vector3 bullet8;
+	Vector3 bullet9;
+	Vector3 bullet10;
+	Vector3 bullet11;
 
+	Vector3 bullet12;
+	Vector3 bullet13;
+	Vector3 bullet14;
+	Vector3 bullet15;
+	Vector3 bullet16;
+	Vector3 bullet17;
+	Vector3 bullet18;
+	Vector3 bullet19;
+	Vector3 bullet20;
+	Vector3 bullet21;
 
+	Vector3 bullet22;
+	Vector3 bullet23;
+	Vector3 bullet24;
+	Vector3 bullet25;
+	Vector3 bullet26;
+	Vector3 bullet27;
+	Vector3 bullet28;
+	Vector3 bullet29;
+	Vector3 bullet30;
+	Vector3 bullet31;
+	Vector3 bullet32;
 
+	Vector3 player;
 
 public:
 	SP_3();
@@ -221,6 +263,7 @@ public:
 	virtual void Update(double dt);
 	virtual void Render();
 	virtual void Exit();
+	bool colisiondetectionbullets(Vector3 bullet, Vector3 player);
 	std::string FPS;
 	std::string camerax;
 	std::string cameraz;

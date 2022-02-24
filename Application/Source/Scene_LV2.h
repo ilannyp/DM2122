@@ -131,6 +131,8 @@ class Scene_LV2 : public Scene , public SP
 		GEO_LANTERN,
 		GEO_BULLET,
 		GEO_BULLET2,
+		GEO_BULLET3,
+		GEO_BULLET4,
 		GEO_TEXT,
 		GEO_TEXT2,
 		GEO_SHOP,
