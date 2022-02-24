@@ -1319,6 +1319,14 @@ void SP_3::Update(double dt)
 		Application::yourself.set_die();
 	}
 
+	if (Application::yourself.get_shop1() == true)
+	{
+		camera.CAMERA_SPEED = 80.f;
+		camera.ZOOM_SPEED = 40.f;
+	}
+
+	std::cout << camera.ZOOM_SPEED << std::endl;
+
 	Vector3 scammerpos = scammer_pos - camera.position;
 	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
 	Vector3 sword1pos = sword1_pos - camera.position;

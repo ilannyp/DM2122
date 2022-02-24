@@ -25,8 +25,7 @@ void Camera_SP_LVL3::Init(const Vector3& pos, const Vector3& target, const Vecto
 void Camera_SP_LVL3::Update(double dt)
 {
 
-	static const float CAMERA_SPEED = 80.f;
-	static const float ZOOM_SPEED = 20.f;
+	
 
 	Vector3 temp;
 	Vector3 view = (target - position).Normalized();
