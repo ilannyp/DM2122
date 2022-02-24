@@ -1268,12 +1268,12 @@ void SP_3::Init()
 		meshList[GEO_BULLET4]->textureID = LoadTGA("Image//scam2.tga");
 
 		meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
-		meshList[GEO_TEXT]->textureID = LoadTGA("Image//RockwellFont.tga");
+		meshList[GEO_TEXT]->textureID = LoadTGA("Image//ArialFont.tga");
 
 
 
 		meshList[GEO_TEXT2] = MeshBuilder::GenerateText("text2", 16, 16);
-		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//comicsans.tga");
+		meshList[GEO_TEXT2]->textureID = LoadTGA("Image//ArialFont.tga");
 	}
 
 	meshList[GEO_COIN] = MeshBuilder::GenerateOBJMTL("coin", "OBJ//coin.obj", "OBJ//coin.mtl");
@@ -2491,15 +2491,16 @@ void SP_3::Render()
 
 
 	//UI
-	RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
+	/*RenderTextOnScreen(meshList[GEO_TEXT], camerax, Color(0, 1, 0), 2, 6, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], "X:", Color(0, 1, 0), 2, 0, 0);
 	RenderTextOnScreen(meshList[GEO_TEXT], cameraz, Color(0, 1, 0), 2, 6, 2);
 	RenderTextOnScreen(meshList[GEO_TEXT], "Z:", Color(0, 1, 0), 2, 0, 2);
 	RenderTextOnScreen(meshList[GEO_TEXT], FPS, Color(0, 1, 0), 2, 47, 0);
-	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);
+	RenderTextOnScreen(meshList[GEO_TEXT], "FPS:", Color(0, 1, 0), 2, 40, 0);*/
 
 
-	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 2, 2, 50);
+	RenderTextOnScreen(meshList[GEO_TEXT], "$", Color(0, 1, 0), 3, 1, 49);
+	RenderTextOnScreen(meshList[GEO_TEXT], std::to_string(Application::yourself.get_currency()), Color(0, 1, 0), 3, 2, 49);
 	//RenderTextOnScreen(meshList[GEO_TEXT], "Currency:", Color(0, 1, 0), 2, 0, 50);
 
 
