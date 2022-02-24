@@ -1155,7 +1155,7 @@ void Scene_LV2::Init()
 		bullet21.z = 90;
 
 		bloodui = false;
-	
+		count = 0;
 }
 
 void Scene_LV2::Update(double dt)
@@ -1488,6 +1488,7 @@ void Scene_LV2::Update(double dt)
 		std::cout << "wrong";
 		intnpc1 = 3;
 		camera.setNPCinteract(3);
+		Application::yourself.currency_deducted(5);
 	}
 	
 	//npc2
@@ -1502,6 +1503,7 @@ void Scene_LV2::Update(double dt)
 		std::cout << "wrong";
 		intnpc2 = 3;
 		camera.setNPCinteract(3);
+		Application::yourself.currency_deducted(5);
 	}
 
 	//npc3
@@ -1516,6 +1518,7 @@ void Scene_LV2::Update(double dt)
 		std::cout << "wrong";
 		intnpc3 = 3;
 		camera.setNPCinteract(3);
+		Application::yourself.currency_deducted(5);
 	}
 
 	//npc4
@@ -1530,6 +1533,7 @@ void Scene_LV2::Update(double dt)
 		std::cout << "wrong";
 		intnpc4 = 3;
 		camera.setNPCinteract(3);
+		Application::yourself.currency_deducted(5);
 	}
 
 	//Mouse Inputs

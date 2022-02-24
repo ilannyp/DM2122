@@ -188,11 +188,13 @@ void Application::Run()
 			die_screen_once = true;
 			gamestarted = false;
 		}
+
 		if (yourself.get_in_cab() == true)
 		{
 			scene = scene4;
 			scene->Init();
 			yourself.set_in_cab(false);
+		
 		}
 
 		if (yourself.get_life_status() == false)
@@ -200,6 +202,8 @@ void Application::Run()
 			scene = scene3;
 			scene->Init();
 			die_screen_once = true;
+			gamestarted = false;
+			yourself.set_go_lv3(false);
 		}
 		if (cab.cabTP() <= 10)
 		{
