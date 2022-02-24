@@ -1563,7 +1563,13 @@ void SP_3::Update(double dt)
 		camera.CAMERA_SPEED = 80.f;
 		camera.ZOOM_SPEED = 40.f;
 	}
+	else
+	{
+		camera.CAMERA_SPEED = 80.f;
+		camera.ZOOM_SPEED = 20.f;
+	}
 
+	std::cout << camera.ZOOM_SPEED << std::endl;
 
 	Vector3 scammerpos = scammer_pos - camera.position;
 	float scammerdis = sqrt(pow(scammerpos.x, 2) + pow(scammerpos.y, 2) + pow(scammerpos.z, 2));
@@ -1641,7 +1647,7 @@ void SP_3::Update(double dt)
 	{
 		collect_coin = false;
 	}
-	std::cout << steal_count << std::endl;
+	//std::cout << steal_count << std::endl;
 	//static bool sword1_check = false;
 	//static int sword1_count = 0;
 	//if (Application::IsKeyPressed('E'))
